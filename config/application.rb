@@ -40,3 +40,11 @@ module Castle
     config.filter_parameters += [:password]
   end
 end
+# Custom Time View
+Date::DATE_FORMATS[:simple_date] = '%B %e, %Y' # ie May 3, 2010
+Date::DATE_FORMATS[:calendar_date] = '%m/%d/%Y'
+Time::DATE_FORMATS[:nice_date] = "%A, %B %d, %Y"
+Time::DATE_FORMATS[:event_time] = "%A %B %d, at %I:%M %p"
+Time::DATE_FORMATS[:table_date] = "%B %d %Y, at %I:%M %p"
+
+APPLICATION_NAME = "Castle Protection Inc"

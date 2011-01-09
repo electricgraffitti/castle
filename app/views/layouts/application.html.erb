@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <head>
   <%= render :partial => "layouts/headmeta" %>
 </head>
@@ -7,9 +11,9 @@
   <!-- Application Layout -->
   <div id="wrapper" class="container_12">
     <%= render :partial => 'layouts/flash', :locals => {:flash => flash} %>
-	  <div id="hd" class='grid_12 alpha omega'>
+	  <header class='grid_12 alpha omega'>
       <%= render :partial => "layouts/header" %>
-	  </div>
+	  </header>
     <div id="bd" class="grid_12 alpha omega">
       <div id="banner" class="grid_12 alpha omega">
         <%= yield :banner %>
@@ -21,9 +25,9 @@
         <%= yield :sub_boxes %>
       </div>
     </div>
-    <div id="ft" class="grid_12 alpha omega">
+    <footer class="grid_12 alpha omega">
       <%= render :partial => "layouts/footer" %>
-    </div>
+    </footer>
     <div class="clear"></div>
 	</div>  
 	<%= render :partial => "layouts/scripts" %>
