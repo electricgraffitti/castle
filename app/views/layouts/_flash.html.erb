@@ -1,0 +1,8 @@
+<div id="flash" class="flash_html round_bottom">
+ <% unless flash[:notice].blank? %>
+   <%= flash[:notice]%>
+ <% end %>
+ <% unless flash[:error].blank? %>
+   <%= flash[:error]%>
+ <% end %>
+</div>

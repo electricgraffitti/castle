@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <%= render :partial => "layouts/headmeta" %>
+</head>
+<body class="yui-skin-sam">
+  <!-- Application Layout -->
+  <div id="wrapper" class="container_12">
+    <%= render :partial => 'layouts/flash', :locals => {:flash => flash} %>
+	  <div id="hd" class='grid_12 alpha omega'>
+      <%= render :partial => "layouts/header" %>
+	  </div>
+    <div id="bd" class="grid_12 alpha omega">
+      <div id="banner" class="grid_12 alpha omega">
+        <%= yield :banner %>
+      </div>
+      <div class="main_content grid_12 alpha omega">
+        <%= yield %>
+      </div>
+      <div id="sub_boxes" class="grid_12 alpha omega">
+        <%= yield :sub_boxes %>
+      </div>
+    </div>
+    <div id="ft" class="grid_12 alpha omega">
+      <%= render :partial => "layouts/footer" %>
+    </div>
+    <div class="clear"></div>
+	</div>  
+	<%= render :partial => "layouts/scripts" %>
+</body>
+</html>
