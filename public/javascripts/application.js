@@ -1,3 +1,6 @@
+/*jslint white: false, onevar: false, browser: true, devel: true, undef: true, nomen: true, laxbreak: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, strict: false, newcap: true, immed: true, laxbreak: true */
+/*global jQuery, $, Raphael */
+
 var flash = {
 
 	injectFlashBox: function() {
@@ -6,11 +9,11 @@ var flash = {
 	},
 
 	setFlash: function() {
-		flash_message = $("#flash").html();
-		msg = $.trim(flash_message);
-		if (msg != "") {
+		var flash_message = $("#flash").html();
+		var msg = $.trim(flash_message);
+		if (msg !== "") {
 			flash.activateNotice(flash_message);
-		};
+		}
 	},
 
 	activateNotice: function(flash_message) {
@@ -26,60 +29,53 @@ var flash = {
 			},
 			function() {
 				$flash_div.html("");
-				$flash_div.hide()
-			})
+				$flash_div.hide();
+			});
 		},
 		2500);
 	}
 
 };
 
-var ajax = {
-
-	setAjaxNotice: function() {
-		$('body').append('<div id="ajax_notice" style="display:none;"></div>')
-	},
-
-	findId: function(el) {
-		elId = el.attr("content_id");
-		return elId;
-	},
-	
-	setAjaxCallbacks: function() {
-		$('body').ajaxStart(function() {
-			$("#ajax_notice").slideDown().text("Loading...");
-		});
-		$('body').ajaxStop(function() {
-			$("#ajax_notice").slideUp();
-		});
-	},
-
-	closeFormBox: function() {
-		$('.ajax_form_box_close').live('click', function(e) {
-			e.preventDefault();
-			$('#ajax_form_box').slideUp('slow');
-			$('#ajax_form').remove();
-		});
-	},
-
-	setLiveDatepicker: function() {
-		$(".date_field").live('click', function() {
-			$(this).datepicker({
-				showOn: 'focus'
-			}).focus();
-		});
-	}
-
-};
-
 var base = {
+
+	setNavHovers: function() {
+		$('ul#main_nav_ul li').removeClass('highlight');
+		$('ul#main_nav_ul li').prepend('<span class="active" />').each(function() {
+			var $span = $('> span.active', this).css({
+				opacity: 0
+			});
+			$(this).hover(function() {
+				if ($(this).hasClass('active')) {
+					$span.stop().fadeTo(400, 0);
+				} else {
+					$span.stop().fadeTo(400, 1);
+				}
+			},
+			function() {
+				$span.stop().fadeTo(400, 0);
+			});
+			$(this).click(function() {
+				$span.fadeTo(200, 0);
+				$('ul#main_nav_ul a').removeClass('active');
+				$(this).addClass('active');
+			});
+		});
+	},
 
 	stopProp: function() {
 		$('.stop_prop').bind('click', function(e) {
 			e.stopPropagation();
 		});
+	},
+
+	setFade: function(e) {
+		e.effect("highlight", {
+			color: '#cff2ff'
+		},
+		1000);
 	}
-	
+
 };
 
 //**********Initialize Document**********//
@@ -87,6 +83,4 @@ $(document).ready(function() {
 	// injects flash div into dom
 	flash.injectFlashBox();
 	flash.setFlash();
-	ajax.setAjaxNotice();
-	ajax.setAjaxCallbacks();
 });
