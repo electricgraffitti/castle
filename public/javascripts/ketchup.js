@@ -83,6 +83,15 @@
       }
     });
     
+    errorContainer.bind('click', function() {
+      if(visibleContainer) {
+        options.hideContainer(errorContainer);
+        options.initialPositionContainer(errorContainer, field);
+        visibleContainer = false;
+        field.focus();
+      }
+    });
+    
     if(field.attr('type') == 'checkbox') {
       field.change(function() { //chrome dont fire blur on checkboxes, but change
         $(this).blur(); //so just simulate a blur
@@ -266,7 +275,7 @@ $.fn.ketchup.messages = {
   'min':          'Must be at least $arg1.',
   'max':          'Can not be greater than $arg1.',
   'range':        'Must be between $arg1 and $arg2.',
-  'number':       'Must be a number.',
+  'number':       'Numeric Digits Only.',
   'digits':       'Must be digits.',
   'email':        'Must be a valid E-Mail.',
   'url':          'Must be a valid URL.',
