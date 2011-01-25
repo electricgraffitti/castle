@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
   
-  include Permissions
-  
   # Associations
   belongs_to :account
 
