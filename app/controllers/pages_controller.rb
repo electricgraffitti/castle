@@ -19,5 +19,14 @@ class PagesController < ApplicationController
   def return_policy
     
   end
+  
+  def about
+    
+  end
+  
+  def contact
+    
+  end
+  
 
 end

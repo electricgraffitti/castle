@@ -7,28 +7,27 @@
 <head>
   <%= render :partial => "layouts/headmeta" %>
 </head>
-<body class="yui-skin-sam">
+<body>
   <!-- Application Layout -->
-  <div id="wrapper" class="container_12">
+  <div id="wrapper" class="clearfix">
     <%= render :partial => 'layouts/flash', :locals => {:flash => flash} %>
-	  <header class='grid_12 alpha omega'>
+	  <header class="clearfix">
       <%= render :partial => "layouts/header" %>
 	  </header>
-    <div id="bd" class="grid_12 alpha omega">
-      <div id="banner" class="grid_12 alpha omega">
+    <div id="bd" class="clearfix">
+      <div id="banner" class="clearfix">
         <%= yield :banner %>
       </div>
-      <div class="main_content grid_12 alpha omega">
+      <div class="main_content clearfix">
         <%= yield %>
       </div>
-      <div id="sub_boxes" class="grid_12 alpha omega">
+      <div id="sub_boxes" class="clearfix">
         <%= yield :sub_boxes %>
       </div>
     </div>
-    <footer class="grid_12 alpha omega">
+    <footer class="clearfix">
       <%= render :partial => "layouts/footer" %>
     </footer>
-    <div class="clear"></div>
 	</div>  
 	<%= render :partial => "layouts/scripts" %>
 </body>
