@@ -442,6 +442,9 @@ h1.index_header {
 ul.address {
 	margin-bottom: 5px;
 }
+ul.address li {
+	margin-left: 10px;
+}
 .faq p {
 	margin-bottom: 5px;
 }
