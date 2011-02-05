@@ -1,0 +1,26 @@
+<% content_for :banner do  %>
+<div class="full_row">
+	<h1 class="index_header">GE Alarm Systems</h1>
+	<% @products.each do |product| %>
+	<div class="blog_wrap top_hr">		
+		<%= image_tag(product.photos.last.attachment.url(:small)) %>
+		<h3>
+			System Name: <%= (product.item_name).titleize %>
+		</h3>
+		<p>
+			Price: <%= number_to_currency(product.price) %>
+		</p>
+		<p>
+			Features of the <%= product.item_name.titleize %>:
+		</p>
+		<p>
+			<%= product.description %>
+		</p>
+	</div>
+	<% end %>		
+</div>
+<% end %>
+
+<% content_for :sub_boxes do %>
+	<% render :partial => 'pages/sub_boxes', :locals => {:blog => @blog} %>
+<% end %>

@@ -1,0 +1,23 @@
+<% content_for :banner do  %>
+<div class="full_row">
+	<h1 class="index_header">Alarming Updates</h1>
+	<% @blogs.each do |blog| %>
+	<div class="blog_wrap top_hr">		
+		<%= image_tag(blog.photos.last.attachment.url(:medium)) %>
+		<h3>
+			<%= (blog.title).titleize %>
+		</h3>
+		<h5>
+			<%= (blog.created_at).to_s(:nice_date) %>
+		</h5>
+		<p>
+			<%= blog.description %>
+		</p>
+	</div>
+	<% end %>		
+</div>
+<% end %>
+
+<% content_for :sub_boxes do %>
+	<% render :partial => 'pages/sub_boxes', :locals => {:blog => @blog} %>
+<% end %>

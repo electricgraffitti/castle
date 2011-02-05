@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.3)
       activesupport (= 3.0.3)
     activesupport (3.0.3)
+    annotate (2.4.0)
     arel (2.0.6)
     authlogic (2.1.6)
       activesupport
@@ -84,6 +85,8 @@ GEM
       bundler (~> 1.0)
       railties (= 3.0.3)
     rails-geocoder (0.9.5)
+    rails3-generators (0.17.2)
+      railties (>= 3.0.0)
     railties (3.0.3)
       actionpack (= 3.0.3)
       activesupport (= 3.0.3)
@@ -99,6 +102,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate (= 2.4.0)
   authlogic
   capistrano
   chargify_api_ares
@@ -107,3 +111,4 @@ DEPENDENCIES
   paperclip
   rails (= 3.0.3)
   rails-geocoder
+  rails3-generators

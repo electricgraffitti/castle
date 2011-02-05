@@ -1,2 +1,27 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<% content_for :banner do  %>
+<div class="full_row">
+	<h1 class="index_header">Complete Security Solutions</h1>
+</div>
+ <div class="full_row">
+	<div class="column_2">
+		<div class="text">			
+    <h3>
+    	Castle Protection Security
+    </h3>
+		<p>
+			Quisque tellus felis, luctus et interdum eget, porta eu tortor. Vestibulum lacus risus, condimentum id elementum sed, euismod tristique mi? Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer pharetra tincidunt augue imperdiet consectetur. Phasellus pretium dolor id nibh pharetra vel suscipit tortor mattis. Praesent sit amet nulla diam, elementum facilisis sem? Nam sit amet porta est. Donec bibendum aliquet quam, vel accumsan turpis pharetra vitae. Nulla consectetur rutrum velit, quis eleifend enim sollicitudin nec. Donec scelerisque, lorem vitae commodo ultricies, ipsum est tincidunt tellus.
+		</p>
+		</div>
+	</div>
+	<div class="column_2">
+		<div class="images">
+			<%= image_tag('../images/alarm1.png') %>
+		</div>
+	</div>
+</div>
+<% end %>
+<% content_for :sub_boxes do %>
+	<% render :partial => 'pages/sub_boxes', :locals => {:blog => @blog} %>
+<% end %>
+	
+	

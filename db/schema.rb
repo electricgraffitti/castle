@@ -10,10 +10,38 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110109102855) do
+ActiveRecord::Schema.define(:version => 20110205061935) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "blogs", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photos", :force => true do |t|
+    t.integer  "blog_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.integer  "product_id"
+  end
+
+  create_table "products", :force => true do |t|
+    t.string   "item_name"
+    t.text     "description"
+    t.boolean  "alarm_system"
+    t.boolean  "addons"
+    t.decimal  "price",        :precision => 8, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end

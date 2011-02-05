@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <%= render :partial => "layouts/headmeta" %>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/assets/skins/sam/skin.css">
+  <%= yield :head %>
+</head>
+<body>
+  <%= render :partial => 'layouts/flash', :locals => {:flash => flash} %>
+  <!-- Application Layout -->
+  <!-- header sections -->
+<div id="wrapper">
+  <div id="mast_header">
+      <%= render :partial => "layouts/header" %>
+	  </header>
+  </div>
+  <!-- main content section -->
+  <div id="mast_main_content">
+    <div id="main_content" class="container_12">
+      <%= yield %>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <!-- footer section -->
+  <div id="mast_footer">
+   <footer id="ft">
+      <%= render :partial => "layouts/footer" %>
+    </footer>
+  </div>
+</div>
+
+
+  </div>
+
+</body>
+</html>

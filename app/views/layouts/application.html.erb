@@ -11,13 +11,16 @@
   <!-- Application Layout -->
   <div id="wrapper" class="clearfix">
     <%= render :partial => 'layouts/flash', :locals => {:flash => flash} %>
-	  <header class="clearfix">
-      <%= render :partial => "layouts/header" %>
+		<div id="mast_header">
+	  	<header class="clearfix">
+      	<%= render :partial => "layouts/header" %>
 	  </header>
+		</div>
     <div id="bd" class="clearfix">
       <div id="banner" class="clearfix">
         <%= yield :banner %>
       </div>
+
       <div class="main_content clearfix">
         <%= yield %>
       </div>

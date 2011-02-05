@@ -1,12 +1,26 @@
 Castle::Application.routes.draw do
   
+  resources :products
+
+  resources :images
+
+  get "admin_sessions/new"
+
+  resources :blogs
   resources :accounts
   resources :users
   resources :user_sessions
+  resources :admins
+  resources :admin_sessions
   
   # Login/Logout Paths
   match "account-login" => "user_sessions#check_session", :as => :account_login
   match "account-logout" => "user_sessions#destroy", :as => :account_logout
+  
+  # Admin Login/Logout Paths
+  match "admin-login" => "admin_sessions#check_session", :as => :account_login
+  match "admin-logout" => "admin_sessions#destroy", :as => :account_logout
+  match "admin-dashboard" => "admins#admin_dashboard", :as => :admin_dashboard
   
   # Password Reset Path
   match "password-reset-submit" => "password_resets#create", :as => :password_submit_reset
@@ -14,6 +28,11 @@ Castle::Application.routes.draw do
   # Custom Routes
   match "about-castle-protection" => "pages#about", :as => :about
   match "contact-castle-protection" => "pages#contact", :as => :contact
+  match "castle-protection-systems" => "pages#products", :as => :product
+  match "castle-privacy-policy" => "pages#privacy_policy", :as => :privacy
+  match "castle-terms-of-service" => "pages#terms", :as  => :terms
+  match "frequently-asked-questions" => "pages#faq", :as => :faq
+  match "castle-return-policy" => "pages#return_policy", :as => :returns
   
   root :to => "pages#index"
 
