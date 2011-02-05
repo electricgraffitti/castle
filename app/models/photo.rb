@@ -22,7 +22,7 @@ class Photo < ActiveRecord::Base
   
   #Paperclip
   has_attached_file :attachment,
-                    :styles => {:medium => "650x323", :small => "300x169", :thumb => "178x88", :tiny => "89x44"},
+                    :styles => {:medium => "650x323#", :small => "300x169#", :thumb => "178x88#", :tiny => "89x44#"},
                     :url => '/photos/:id/:style_:basename.:extension',
                     :path => ":rails_root/public/photos/:id/:style_:basename.:extension"
 end
