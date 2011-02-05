@@ -24,7 +24,6 @@ Castle::Application.routes.draw do
   # Custom Routes
   match "about-castle-protection" => "pages#about", :as => :about
   match "contact-castle-protection" => "pages#contact", :as => :contact
-  match "castle-protection-systems" => "pages#products", :as => :product
   match "castle-privacy-policy" => "pages#privacy_policy", :as => :privacy
   match "castle-terms-of-service" => "pages#terms", :as  => :terms
   match "frequently-asked-questions" => "pages#faq", :as => :faq
