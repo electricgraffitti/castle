@@ -21,7 +21,7 @@ class PagesController < ApplicationController
   end
   
   def about
-    
+    @product = Product.last
   end
   
   def contact
