@@ -5,16 +5,16 @@
 		<div class="column_2">
 	  	<div class="product_wrap">	
 				<h3>
-					System Name: <%= (product.item_name).titleize %>
+					<%= (product.item_name).titleize %> System
 				</h3>	
 				<%= image_tag(product.photos.last.attachment.url(:small), :class => "blue_bg") %>
-				<p>
+				<p class="money blue_text">
 					Price: <%= number_to_currency(product.price) %>
 				</p>
-				<p>
+				<h4>
 					Features of the <%= product.item_name.titleize %>:
-				</p>
-				<p>
+				</h4>
+				<p class="top_hr">
 					<%= product.description %>
 				</p>
 			</div>
