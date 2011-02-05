@@ -1,11 +1,7 @@
 Castle::Application.routes.draw do
   
   resources :products
-
   resources :images
-
-  get "admin_sessions/new"
-
   resources :blogs
   resources :accounts
   resources :users

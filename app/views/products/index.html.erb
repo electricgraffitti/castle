@@ -2,21 +2,23 @@
 <div class="full_row">
 	<h1 class="index_header">GE Alarm Systems</h1>
 	<% @products.each do |product| %>
-	<div class="blog_wrap top_hr">		
-		<%= image_tag(product.photos.last.attachment.url(:small)) %>
-		<h3>
-			System Name: <%= (product.item_name).titleize %>
-		</h3>
-		<p>
-			Price: <%= number_to_currency(product.price) %>
-		</p>
-		<p>
-			Features of the <%= product.item_name.titleize %>:
-		</p>
-		<p>
-			<%= product.description %>
-		</p>
-	</div>
+		<div class="column_2">
+	  	<div class="product_wrap">	
+				<h3>
+					System Name: <%= (product.item_name).titleize %>
+				</h3>	
+				<%= image_tag(product.photos.last.attachment.url(:small), :class => "blue_bg") %>
+				<p>
+					Price: <%= number_to_currency(product.price) %>
+				</p>
+				<p>
+					Features of the <%= product.item_name.titleize %>:
+				</p>
+				<p>
+					<%= product.description %>
+				</p>
+			</div>
+		</div>
 	<% end %>		
 </div>
 <% end %>
