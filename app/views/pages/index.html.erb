@@ -1,17 +1,16 @@
 <% content_for :banner do %>
-  <div id="banner" class="full_row">
-    <div class="column_2 column_left">
-  	  <h2 class="page_header">Complete Security Solutions</h2>		
-      <h3>
-      	Castle Protection Security
-      </h3>
-  		<p>
-  			Quisque tellus felis, luctus et interdum eget, porta eu tortor. Vestibulum lacus risus, condimentum id elementum sed, euismod tristique mi? Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer pharetra tincidunt augue imperdiet consectetur. Phasellus pretium dolor id nibh pharetra vel suscipit tortor mattis. Praesent sit amet nulla diam, elementum facilisis sem? Nam sit amet porta est. Donec bibendum aliquet quam, vel accumsan turpis pharetra vitae. Nulla consectetur rutrum velit, quis eleifend enim sollicitudin nec. Donec scelerisque, lorem vitae commodo ultricies, ipsum est tincidunt tellus.
-  		</p>
-  	</div>
-  	<div class="column_2 column_right">
-  	  <%= image_tag('../images/alarm1.png') %>
-  	</div>
+  <div id="banner" class="full_row">  	
+  	<div id="slider" class="index_banner">
+      <div class="scroll">
+        <div class="scrollContainer">
+          <%= render :partial => 'pages/index_banner', :locals => {:banner_id => "1"} %>
+          <%= render :partial => 'pages/index_banner', :locals => {:banner_id => "2"} %>
+          <%= render :partial => 'pages/index_banner', :locals => {:banner_id => "3"} %>
+          <%= render :partial => 'pages/index_banner', :locals => {:banner_id => "4"} %>
+        </div>
+      </div>
+    </div>
+    <!-- Banner Nav -->
   	<div class="banner_arrows left_arrow"></div>
     <div class="banner_arrows right_arrow"></div>
   </div>
@@ -29,18 +28,25 @@
   </div>
 </div>
 <div id="banner_nav" class="full_row center no_top">
-  <ul>
-    <li><%= link_to "Nav 1", "", :class => "banner_nav_1" %></li>
-    <li><%= link_to "Nav 2", "", :class => "banner_nav_2" %></li>
-    <li><%= link_to "Nav 3", "", :class => "banner_nav_3" %></li>
-    <li><%= link_to "Nav 4", "", :class => "banner_nav_4" %></li>
+  <ul class="navigation">
+    <li><%= link_to "Nav 1", "#banner_1", :class => "banner_nav_1 active" %></li>
+    <li><%= link_to "Nav 2", "#banner_2", :class => "banner_nav_2" %></li>
+    <li><%= link_to "Nav 3", "#banner_3", :class => "banner_nav_3" %></li>
+    <li><%= link_to "Nav 4", "#banner_4", :class => "banner_nav_4" %></li>
   </ul>
   
 </div>
 
-
 <% content_for :sub_boxes do %>
 	<% render :partial => 'sub_boxes/home_sub_box', :locals => {:blog => @blog} %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      base.indexBanners();
+    });
+  </script>
 <% end %>
 	
 	

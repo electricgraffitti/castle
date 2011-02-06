@@ -398,7 +398,6 @@ header {
 	width: 404px;
 }
 #banner .column_2.column_left {
-	padding-left: 56px;
 }
 #banner .column_2.column_left h2, #banner .column_2.column_left h3, #banner .column_2.column_left p {
 	padding-left: 10px;
@@ -434,9 +433,29 @@ h2.page_header {
 	text-indent: -9999em;
 	background: url(../images/banner_nav_sprite.png) 0px -16px no-repeat;
 }
-#banner_nav ul li a:hover, #banner_nav ul li a:active {
+#banner_nav ul li a:hover, #banner_nav ul li a.active {
 	background: url(../images/banner_nav_sprite.png) 0px 0px no-repeat;
 }
+#slider {
+  position: relative;
+}
+.scroll {
+  margin: 0px 56px;
+	width: 850px;
+  height: 370px;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative; /* fix for IE to respect overflow */
+  clear: left;
+}
+.scrollContainer {
+  height: 370px;
+}
+.panel {
+	position: relative;
+	width: 940px;
+}
+
 /*************************************************************************************************************************************/
 /****************************************************************************************************** BLOG CONTENT *****************/
 .blog_wrap {
