@@ -8,30 +8,29 @@
   <%= render :partial => "layouts/headmeta" %>
 </head>
 <body>
+  <div id="mast_header"></div>
   <!-- Application Layout -->
   <div id="wrapper" class="clearfix">
     <%= render :partial => 'layouts/flash', :locals => {:flash => flash} %>
-		<div id="mast_header">
-	  	<header class="clearfix">
-      	<%= render :partial => "layouts/header" %>
-	  </header>
-		</div>
+  	<header class="clearfix">
+    	<%= render :partial => "layouts/header" %>
+    </header>
     <div id="bd" class="clearfix">
-      <div id="banner" class="clearfix">
-        <%= yield :banner %>
-      </div>
-
-      <div class="main_content clearfix">
+      <div id="content_star"></div>
+      <%= yield :banner %>
+      <div id="content" class="clearfix">
         <%= yield %>
       </div>
-      <div id="sub_boxes" class="clearfix">
-        <%= yield :sub_boxes %>
-      </div>
     </div>
-    <footer class="clearfix">
-      <%= render :partial => "layouts/footer" %>
-    </footer>
-	</div>  
+  </div>
+  <div id="mast_sub_boxes">
+    <div id="sub_boxes" class="clearfix">
+      <%= yield :sub_boxes %>
+    </div>
+  </div>
+  <footer class="clearfix">
+    <%= render :partial => "layouts/footer" %>
+  </footer>
 	<%= render :partial => "layouts/scripts" %>
 </body>
 </html>

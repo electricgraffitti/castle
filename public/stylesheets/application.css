@@ -59,7 +59,7 @@ body,select,input,textarea{/* #444 looks better than black:twitter.com/H_FJ/stat
 color:#444;}
 /* Headers (h1,h2,etc) have no default font-size or margin,
 you'll want to define those yourself. */
-h1,h2,h3,h4,h5,h6{font-weight:bold;}
+h1,h2,h3,h4,h5,h6{font-weight:700;}
 /* always force a scrollbar in non-IE */
 html{overflow-y:scroll;}
 .title{font-weight:700;}
@@ -139,6 +139,7 @@ clip:rect(1px,1px,1px,1px);}
 .clear{clear:both;}
 .left{float:left;}
 .right{float:right;}
+.center{text-align:center;}
 /*************************************************************************************************************************************/
 /******************************************************************************************************* ERRORS **********************/
 #flash{display:none;background:none repeat scroll 0 0 #3557C0;color:#FFFFFF;font-size:175%;/* left:50%;margin-left:-480px;*/
@@ -165,11 +166,9 @@ label.error{background:#efefef none repeat scroll 0 0;color:#DB0404;font-size:85
 
 /*************************************************************************************************************************************/
 /*************************************************************************************************** TYPOGRAPHY **********************/
-h1,h2,h3,h4,h5{color:#0d0402;margin-top:5px;text-shadow:0px 1px 0px #fff;}
+h1,h2,h3,h4,h5{color:#333;margin-top:0px;text-shadow:0px 1px 0px #fff;}
 h1{font-size:235%;}
-h2{/*font-size:153.9%;*/
-font-size:215%;}
-h2.banner_heading{font-weight:normal;color:#ffffff;margin-top:10px;text-shadow:0px 1px 0px #000;font-size:235%;}
+h2{font-size:215%;}
 h3{font-size:145.5%;}
 h4{font-size:118%;}
 h5{}
@@ -269,73 +268,93 @@ header, #hd, #bd, footer, #ft {
 /***************************************************************************************************** COLORS ************************/
 html, body {
   color:#444;
-	background: url('../images/mast_header_bg.png') #fff repeat-x;
+	background: url('../images/gray_bg_pattern.png') 0px 0px repeat;
+	font-family: "museo-sans-1","museo-sans-2", Helvetica, Arial, sans-serif;
 }
 .title {
   color: #cc0000;
 }
-
+.blue {
+	color:#3058bf;
+}
+.dark_blue {
+	color:#07246a;
+}
+.red {
+	color: #b11919;
+}
+.gray {
+	color: #444;
+}
 /*************************************************************************************************************************************/
 /****************************************************************************************************** HEADER ***********************/
 #mast_header {
-  background: none repeat scroll 0 0 transparent;
-  float: left;
-  height: 120px;
-  margin: 0 0 18px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+  background: url('../images/mast_header_bg.png') #fff repeat-x;
+  height: 130px;
   width: 100%;
+	border-bottom: 4px solid #3058bf;
+}
+header {
+	position: relative;
+	float: left;
+	height: 134px;
 }
 #logo {
   background: url("../images/logo.png") no-repeat scroll 0 0 transparent;
   height: 200px;
-  margin: 0;
+  left: -80px;
+  position: absolute;
   text-indent: -9999em;
+  top: -3px;
   width: 530px;
-	float: left;
-	z-index:1;
-	position: relative;
+  z-index: 1;
+	margin: 0px;
 }
 #logo a {
-	height: 195px;
-	display: block;
+  display: block;
+  height: 130px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 400px;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** NAVIGATION *******************/
 #main_nav {
-  background: none;
-  float: left;
+  background: none repeat scroll 0 0 transparent;
+  float: right;
   height: 20px;
-  margin-left: 35px;
-  margin-top: 60px;
-  width: 380px;
+  margin-right: 35px;
+  margin-top: 53px;
+	min-width: 100px;
 }
 #main_nav ul {
   float: left;
   position: relative;
   text-align: right;
-  width: 380px;
+	min-width: 100px;
 }
 #main_nav ul.nav_ul li {
-  background: url("../images/nav_shield.png") no-repeat scroll right center;
+  background: url(../images/nav_shield.png) no-repeat scroll right center transparent;
   float: left;
   height: 20px;
-  margin-right: 15px;
+  padding: 4px 30px 0 12px;
   position: relative;
   text-align: left;
-  width: 60px;
 }
-#main_nav ul.nav_ul li.products {
-  margin-right: 15px;
-  width: 80px;
-}
-
 #main_nav ul li.last {
 	background: none;
-	margin: 0;
 }
 #main_nav ul li a {
-	color: #d2d2d2;
-	text-decoration: none;
-	display: block;
+  color: #D2D2D2;
+  display: block;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: -1px;
+  text-decoration: none;
 }
 #main_nav ul li a:hover {
 	color: #fff;
@@ -345,28 +364,71 @@ html, body {
 
 /*************************************************************************************************************************************/
 /****************************************************************************************************** MAIN CONTENT *****************/
-#banner {
-	background: url('../images/banner_bg.png') no-repeat #ddd;
+#bd {
+	background: url(../images/highlight.png) 35px -4px no-repeat;
+	text-align: left;
+}
+#content {
+	position: relative;
 	width: 100%;
 	float:left;
 }
-h1.index_header {
-	color: #444;
-	margin-top: 30px;
+#content_star {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	width: 100%;
+	height: 300px;
+	background: url(../images/content_bg.png) -20px bottom no-repeat;
 }
-.text {
-  margin-left: 40px;
-  margin-top: 30px;
-  text-align: left;
-  width: 400px;
+/*************************************************************************************************************************************/
+/****************************************************************************************************** BANNER CONTENT ***************/
+#banner .column_2 {
+	width: 404px;
 }
-.text h3 {
-	color: #444;
-	text-align: center;
+#banner .column_2.column_left {
+	padding-left: 56px;
 }
-.images {
-	margin-top: 60px;
+#banner .column_2.column_left h2, #banner .column_2.column_left h3, #banner .column_2.column_left p {
+	padding-left: 10px;
 }
+#banner .column_2.column_right {
+	padding-right: 56px;
+}
+#banner h2 {
+	padding-top: 40px;
+	padding-bottom: 10px;
+}
+#banner h3 {
+	font-size: 163.5%;
+  text-shadow: 0 -1px 0 #999999;
+	color: #fff;
+}
+#banner img {
+	padding-top: 20px;
+}
+#banner_nav ul {
+	position: relative;
+	margin: 0px auto;
+	padding-bottom: 20px;
+	width: 116px;
+	height: 16px;
+}
+#banner_nav ul li a {
+	position: relative;
+	float: left;
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin: 0px 5px;
+	text-indent: -9999em;
+	background: url(../images/banner_nav_sprite.png) 0px -16px no-repeat;
+}
+#banner_nav ul li a:hover, #banner_nav ul li a:active {
+	background: url(../images/banner_nav_sprite.png) 0px 0px no-repeat;
+}
+/*************************************************************************************************************************************/
+/****************************************************************************************************** BLOG CONTENT *****************/
 .blog_wrap {
     padding: 40px 0;
 }
@@ -380,6 +442,8 @@ h1.index_header {
   text-align: left;
   width: 660px;
 }
+/*************************************************************************************************************************************/
+/****************************************************************************************************** PRODUCT CONTENT **************/
 .product_wrap {
 	margin: 30px 0px;
 }
@@ -404,22 +468,53 @@ h1.index_header {
 	font-weight: bold;
 }
 /*************************************************************************************************************************************/
-/****************************************************************************************************** SIDEBAR **********************/
-
-
+/****************************************************************************************************** QUOTES ***********************/
+.index_quote {
+  color: #888888;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 100;
+  padding-right: 30px;
+	text-align: right;
+}
+p.index_quote span {
+	display: block;
+  font-size: 12px;
+  font-style: normal;
+  width: 100%;
+}
 
 /*************************************************************************************************************************************/
 /****************************************************************************************************** SUB BOXES ********************/
+#mast_sub_boxes {
+  background: url("../images/mast_sub_box_bg.png") repeat scroll 0 0 transparent;
+  border-bottom: 1px solid #222222;
+  border-top: 1px solid #333333;
+  position: relative;
+  text-align: center;
+  width: 100%;
+	padding-bottom: 20px;
+}
 #sub_boxes {
-	background: url('../images/sub_box_bg.png') no-repeat #314fab;
-	width: 100%;
-	color: #fff;	
+	position: relative;
+	margin: 0px auto;
+	width: 960px;
+	background: url(../images/sub_box_shadow.png) 0px 0px no-repeat;
+	text-align: left;
+}
+#sub_boxes .column_right {
+	padding-left: 40px;
+  width: 580px;
 }
 #sub_boxes h3 {
 	color: #fff;
-	text-shadow: none;
+	text-shadow: 0px -1px 0px #07246a;
 	margin-bottom: 10px;
-	text-align: center;
+}
+#sub_boxes h4 {
+	color: #91c1f0;
+	margin-bottom: 10px;
+	text-shadow: none;
 }
 #sub_boxes img {
   background: none repeat scroll 0 0 #000000;
@@ -428,31 +523,12 @@ h1.index_header {
 }
 #sub_boxes p {
   color: #FFFFFF;
-  padding-left: 35px;
-  text-align: left;
-  width: 255px;
 }
-.sub_box_blog {
-	position: relative;
-	float: left;
-	padding-left: 15px;
-}
-#sub_boxes .sub_box_right h3 {
-	text-align: center;
-}
-#sub_boxes .sub_box_right h5 {
-	color: #ddd;
-	text-shadow: none;
-	margin-bottom: 15px;
-}
-.sub_box_right ul {
-  float: left;
-  margin-left: 50px;
-  width: 535px;
-}
-.sub_box_right ul li {
+#sub_boxes ul li {
 	background: url('../images/blue_footer_bullet_shield.png') no-repeat;
 	height: 30px;
+	padding-left: 30px;
+	color: #b4b4b4;
 }
 
 /*************************************************************************************************************************************/
@@ -482,8 +558,18 @@ ul.address li {
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** FOOTER ***********************/
+footer {
+  background: url("../images/mast_footer_bg.png") repeat scroll 0 0 transparent;
+  border-top: 1px solid #555555;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
 .footer {
-	background: url('../images/mast_footer_bg.png');
+	position: relative;
+	width: 960px;
+	margin:0px auto;
+	padding-top: 20px;
 	height: 80px;
 }
 .footer_nav ul {
@@ -493,9 +579,8 @@ ul.address li {
 }
 .footer_nav ul li {
   float: left;
-  font-size: 10px;
+  padding: 0 10px;
   position: relative;
-  width: 77px;
 }
 .footer_nav ul li a {
 	color: #D2D2D2;
@@ -507,6 +592,7 @@ ul.address li {
 }
 .c2link {
   float: right;
+  font-size: 12px;
   margin-right: 15px;
 }
 .c2link a {
@@ -520,9 +606,56 @@ ul.address li {
 
 /*************************************************************************************************************************************/
 /****************************************************************************************************** BUTTONS **********************/
-
-
-
+.cta_wrap {
+	position: relative;
+	padding-bottom: 20px;
+	text-align: center;
+}
+a.cta_button {
+	cursor: pointer;
+  display: block;
+  font-size: 34px;
+  height: 66px;
+  margin-left: 20px;
+  padding-top: 18px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 2px 2px #222222;
+  width: 328px;
+	background: url(../images/buttons/cta_button.png) 0px -85px no-repeat;
+	color:#fff;
+	font-weight: 700;
+}
+a.cta_button:hover {
+	background: url(../images/buttons/cta_button.png) 0px 0px no-repeat;
+	color: #efefef;
+}
+a.cta_button:active, a.cta_button:visited {
+	color: #fff;
+}
+.banner_arrows {
+	position: absolute;
+	top: 50%;
+	margin-top: -28px;
+	width: 56px;
+	height: 65px;
+	cursor: pointer;
+	background: url(../images/buttons/banner_arrows.png) 0px 0px no-repeat;
+}
+.banner_arrows.left_arrow {
+	left:0px;
+}
+.banner_arrows.left_arrow:hover {
+	background: url(../images/buttons/banner_arrows.png) 0px -65px no-repeat;
+}
+.banner_arrows.right_arrow {
+	background: url(../images/buttons/banner_arrows.png) -56px 0px no-repeat;
+	right:0px;
+}
+.banner_arrows.right_arrow:hover {
+	background: url(../images/buttons/banner_arrows.png) -56px -65px no-repeat;
+}
 /*************************************************************************************************************************************/
 /****************************************************************************************************** FORMS ************************/
 .admin_form_wrap {
@@ -533,10 +666,6 @@ ul.address li {
 	text-align: left;
 	background: #ddd;
 }
-
-
-
-
 /*************************************************************************************************************************************/
 /****************************************************************************************************** OVERLAY **********************/
 /* the overlayed element */
