@@ -180,7 +180,7 @@ p{margin:5px 0px 0px;line-height:19.35px;;}
 .bold{font-weight:bold;}
 .small_text{font-size:77%;}
 h2 a.small_text{font-size:55%;}
-.wf-loading h2, .wf-loading h3, .wf-loading h4, .wf-loading h5, .wf-loading p {
+.wf-loading h2, .wf-loading h3, .wf-loading h4, .wf-loading h5 {
 	/* Hide the blog title and post titles while web fonts are loading */
 	visibility: hidden;
 }
@@ -642,7 +642,7 @@ a.cta_button {
   font-size: 34px;
   height: 63px;
   margin-left: 20px;
-  padding-top: 15px;
+  padding-top: 22px;
   position: relative;
   text-align: center;
   text-decoration: none;
