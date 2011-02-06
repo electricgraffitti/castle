@@ -1,17 +1,15 @@
-<% content_for :banner do  %>
-<div class="full_row">
-	<h1 class="index_header">Get Castle Protection Sytems</h1>
+<div class="full_row no_bottom">
+	<h2 class="page_header">Get Castle Protection Sytems</h2>
 </div>
- <div class="full_row">
-	<div class="column_2">
-		<div class="text">			
+
+<div class="full_row no_top">
+  <div class="column_2">	
     <h3>
-    	How it Works
+  	  How it Works
     </h3>
 		<p>
 			Quisque tellus felis, luctus et interdum eget, porta eu tortor. Vestibulum lacus risus, condimentum id elementum sed, euismod tristique mi? Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer pharetra tincidunt augue imperdiet consectetur. Phasellus pretium dolor id nibh pharetra vel suscipit tortor mattis. Praesent sit amet nulla diam, elementum facilisis sem? Nam sit amet porta est. Donec bibendum aliquet quam, vel accumsan turpis pharetra vitae. Nulla consectetur rutrum velit, quis eleifend enim sollicitudin nec. Donec scelerisque, lorem vitae commodo ultricies, ipsum est tincidunt tellus.
 		</p>
-		</div>
 	</div>
 	<div class="column_2">
 		<div class="images">
@@ -19,7 +17,20 @@
 		</div>
 	</div>
 </div>
-<% end %>
+<div class="full_row no_top">
+  <div class="column_2">
+    <p class="index_quote">
+      "I feel much safer with an<br/>
+      system alarm in my home"<br/>
+      <span>James Vaughn - Sante Fe, New Mexico</span>
+    </p>
+  </div>
+  <div class="column_2 cta_wrap">
+    <%= link_to "Get Started Today", "", :class => "cta_button custom_text" %>
+  </div>
+</div>
+
+
 <% content_for :sub_boxes do %>
 	<% render :partial => 'sub_boxes/about_sub_box', :locals => {:product => @product} %>
 <% end %>

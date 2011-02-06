@@ -1,22 +1,20 @@
-<% content_for :banner do  %>
 <div class="full_row">
-	<h1 class="index_header">Alarming Updates</h1>
+	<h2 class="page_header bottom_hr">Alarming Updates</h2>
 	<% @blogs.each do |blog| %>
 	<div class="blog_wrap top_hr">		
-		<%= image_tag(blog.photos.last.attachment.url(:medium)) %>
-		<h3>
+		<%= image_tag(blog.photos.last.attachment.url(:medium), :class => "wrapped_image") %>
+		<h3 class="blue">
 			<%= (blog.title).titleize %>
 		</h3>
-		<h5>
+		<div class="sub_title">
 			<%= (blog.created_at).to_s(:nice_date) %>
-		</h5>
+		</div>
 		<p>
 			<%= blog.description %>
 		</p>
 	</div>
 	<% end %>		
 </div>
-<% end %>
 
 <% content_for :sub_boxes do %>
 	<% render :partial => 'sub_boxes/blog_sub_box', :locals => {:blog => @blog} %>

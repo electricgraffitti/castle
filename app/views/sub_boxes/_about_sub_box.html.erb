@@ -1,23 +1,20 @@
 <div class="full_row">
 	<div class="column_13">
-		<div class="sub_box_blog">
-			<h3>
-				<%= product.item_name %>
-			</h3>
-				<%= image_tag(product.photos.last.attachment.url(:thumb)) %>
-			<p>
-				<%= truncate(product.description, :length => 250, :separator => '') %> <%= link_to "read more", products_path %>
-			</p>
-		</div>
+    <h3>
+			<%= product.item_name %>
+		</h3>
+			<%= image_tag(product.photos.last.attachment.url(:thumb)) %>
+		<p>
+			<%= truncate(product.description, :length => 250, :separator => '') %> <%= link_to "read more", products_path %>
+		</p>
 	</div>
-	<div class="column_23">
-		<div class="sub_box_right">
+	<div class="column_23 column_right">
 		<h3>
 			Residential Security
 		</h3>
-		<h5>
+		<h4>
 			Key Features of Simon XT Alarms
-		</h5>
+		</h4>
 		<ul>
 			<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ipsum orci; suscipit.
 			</li>
@@ -31,6 +28,4 @@
 			</li>
 		</ul>
 	</div>
-	</div>
-
 </div>

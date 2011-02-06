@@ -1,6 +1,5 @@
-<% content_for :banner do  %>
 <div class="full_row">
-	<h1 class="index_header">GE Alarm Systems</h1>
+	<h2 class="page_header">GE Alarm Systems</h2>
 	<% @products.each do |product| %>
 		<div class="column_2">
 	  	<div class="product_wrap">	
@@ -11,7 +10,7 @@
 				<p class="money blue_text">
 					Price: <%= number_to_currency(product.price) %>
 				</p>
-				<h4>
+				<h4 class="bottom_hr">
 					Features of the <%= product.item_name.titleize %>:
 				</h4>
 				<p class="top_hr">
@@ -21,7 +20,14 @@
 		</div>
 	<% end %>		
 </div>
-<% end %>
+<div class="full_row no_top">
+  <div class="column_2">
+
+  </div>
+  <div class="column_2 cta_wrap">
+    <%= link_to "Get Started Today", "", :class => "cta_button custom_text" %>
+  </div>
+</div>
 
 <% content_for :sub_boxes do %>
 	<% render :partial => 'sub_boxes/products_sub_box', :locals => {:blog => @blog} %>
