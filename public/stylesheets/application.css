@@ -655,7 +655,7 @@ a.cta_button:active, a.cta_button:visited {
 	background: url(../images/buttons/banner_arrows.png) -56px 0px no-repeat;
 	right:0px;
 }
-.banner_arrows.right_arrow:hoveri {
+.banner_arrows.right_arrow:hover {
 	background: url(../images/buttons/banner_arrows.png) -56px -65px no-repeat;
 }
 /*************************************************************************************************************************************/
