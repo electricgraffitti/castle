@@ -1,7 +1,7 @@
 <div class="full_row">
 	<h2 class="page_header bottom_hr">Alarming Updates</h2>
 	<% @blogs.each do |blog| %>
-	<div class="blog_wrap top_hr">		
+	<div class="blog_wrap top_hr bottom_hr">		
 		<%= image_tag(blog.photos.last.attachment.url(:medium), :class => "wrapped_image") %>
 		<h3 class="blue">
 			<%= (blog.title).titleize %>

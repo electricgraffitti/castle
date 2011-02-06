@@ -247,7 +247,7 @@ header, #hd, #bd, footer, #ft {
 	border-top: 1px solid #fff;
 }
 .bottom_hr {
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #b0b0b0;
 }
 .bulleted_list li {
 	list-style: disc inside;
