@@ -1,0 +1,45 @@
+<div class="full_row no_top">
+  <div class="column_2">
+  <% form_for @support, :url => { :action => "create" }, :html => { :method => :post } do |f| %>
+      <div class="form_field">
+        <%= f.label "First Name" %><br />
+        <%= f.text_field :first_name %>
+      </div>
+      <div class="form_field">
+        <%= f.label "Last Name" %><br />
+        <%= f.text_field :last_name %>
+      </div>
+      <div class="form_field">
+        <%= f.label "Email Address" %><br />
+        <%= f.text_field :email %>
+      </div>
+      <div class="form_field">
+        <%= f.label "Phone Number" %><br />
+        <%= f.text_field :phone_number %>
+      </div>
+      <div class="form_field">
+        <%= f.label "City" %><br />
+        <%= f.text_field :city %>
+      </div>
+      <div class="form_field">
+        <%= f.label "State" %><br />
+        <%= f.text_field :state %>
+      </div>
+			<div class="form_field">
+				<%= f.label "Zipcode" %><br />
+				<%= f.text_field :zipcode %>
+			</div>
+      <div class="form_field">
+        <%= f.select :support_type,
+            options_for_select(["General Inquiry", "Support", "Sales"]) %>
+      </div>
+      <div class="form_field_text">
+        <%= f.label "Comments" %><br />
+        <%= f.text_area :content, :rows => 5, :cols => 72 %>
+      </div>
+      <div class="form_field">
+        <%= f.submit "Submit" %>
+      </div>
+  <% end %>
+</div>
+</div>
