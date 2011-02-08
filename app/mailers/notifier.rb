@@ -1,6 +1,5 @@
 class Notifier < ActionMailer::Base
 
-  
   def support_notification(sender)
     @sender = sender
     mail(:to => "larry@cube2media.com", 
