@@ -37,11 +37,12 @@ class User < ActiveRecord::Base
   # Validations
   validates :first_name, :presence => true, :length => { :minimum => 2 }
   validates :last_name, :presence => true, :length => { :minimum => 2 }
-  validates :email, :presence => true, :email => true
-  validates :username, :presence => true, :length => { 4..15 }
-  validates :password, :presence => true, :length => { :minimum 4 }, :confirmation => true,
-  validates_confirmation_of :password
   validates :phone, :presence => true, :numericality => true
+  validates :email, :presence => true, 
+                    :length => {:minimum => 3, :maximum => 254},
+                    :uniqueness => true,
+                    :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+
 
   # Paperclip
 
