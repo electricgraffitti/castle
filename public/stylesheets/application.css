@@ -388,6 +388,13 @@ header {
 	background: #efefef;
 	margin-bottom: 10px;
 }
+#content img.wrapped_image.contact {
+	background: none repeat scroll 0 0 #EFEFEF;
+  border: 1px solid #AAAAAA;
+  margin-bottom: 10px;
+	margin-top: 40px;
+  padding: 5px;
+}
 #content .sub_title {
 	font-size: 12px;
 	font-weight: 100;
@@ -686,6 +693,20 @@ a.cta_button:active, a.cta_button:visited {
   width: 100%;
 	text-align: left;
 	background: #ddd;
+}
+.form_field {
+	padding: 8px;
+}
+form label {
+	margin-bottom: 3px;
+	font-weight: bold;
+}
+input[type="text"] {
+  margin-top: 3px;
+  padding: 3px;
+}
+select {
+	padding: 3px;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** OVERLAY **********************/
