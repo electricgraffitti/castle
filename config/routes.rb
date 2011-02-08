@@ -32,11 +32,14 @@ Castle::Application.routes.draw do
   
   # Custom Routes
   match "about-castle-protection" => "pages#about", :as => :about
-  match "contact-castle-protection" => "supports#new", :as => :contact
+  match "contact-castle-protection" => "pages#contact", :as => :contact
   match "castle-privacy-policy" => "pages#privacy_policy", :as => :privacy
   match "castle-terms-of-service" => "pages#terms", :as  => :terms
   match "frequently-asked-questions" => "pages#faq", :as => :faq
   match "castle-return-policy" => "pages#return_policy", :as => :returns
+  
+  # Mailer Paths
+  match "send-contact-email" => "supports#contact_email", :as => :contact_email
   
   root :to => "pages#index"
 

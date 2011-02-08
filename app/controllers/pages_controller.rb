@@ -25,7 +25,7 @@ class PagesController < ApplicationController
   end
   
   def contact
-
+    @support = Support.new
   end
   
   def products
