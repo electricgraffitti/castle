@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110205061935) do
+ActiveRecord::Schema.define(:version => 20110208032557) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "product_id"
@@ -42,6 +42,27 @@ ActiveRecord::Schema.define(:version => 20110205061935) do
     t.boolean  "alarm_system"
     t.boolean  "addons"
     t.decimal  "price",        :precision => 8, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "states", :force => true do |t|
+    t.string   "abbreviation"
+    t.string   "full_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "supports", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "city"
+    t.integer  "state_id"
+    t.string   "zipcode"
+    t.string   "support_type"
+    t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,41 +1,44 @@
-  <% form_for @support, :url => { :action => "create" }, :html => { :method => :post } do |f| %>
-      <div class="form_field">
-        <%= f.label "First Name" %><br />
-        <%= f.text_field :first_name %>
-      </div>
-      <div class="form_field">
-        <%= f.label "Last Name" %><br />
-        <%= f.text_field :last_name %>
-      </div>
-      <div class="form_field">
-        <%= f.label "Email Address" %><br />
-        <%= f.text_field :email %>
-      </div>
-      <div class="form_field">
-        <%= f.label "Phone Number" %><br />
-        <%= f.text_field :phone_number %>
-      </div>
-      <div class="form_field">
-        <%= f.label "City" %><br />
-        <%= f.text_field :city %>
-      </div>
-      <div class="form_field">
-        <%= f.label "State" %><br />
-        <%= f.text_field :state %>
-      </div>
-			<div class="form_field">
-				<%= f.label "Zipcode" %><br />
-				<%= f.text_field :zipcode %>
-			</div>
-      <div class="form_field">
-        <%= f.select :support_type,
-            options_for_select(["General Inquiry", "Support", "Sales"]) %>
-      </div>
-      <div class="form_field_text">
-        <%= f.label "Comments" %><br />
-        <%= f.text_area :content, :rows => 5, :cols => 45 %>
-      </div>
-      <div class="form_field">
-        <%= f.submit "Submit" %>
-      </div>
-  <% end %>
+<%= form_for support, :url => contact_email_path, :html => { :method => :post } do |f| %>
+  <div class="form_field">
+    <%= f.label :first_name, "First Name" %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="form_field">
+    <%= f.label :last_name, "Last Name" %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="form_field">
+    <%= f.label :email, "Email Address" %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="form_field">
+    <%= f.label :phone, "Phone Number" %><br />
+    <%= f.text_field :phone %>
+  </div>
+  <div class="form_field">
+    <%= f.label :city, "City" %><br />
+    <%= f.text_field :city %>
+  </div>
+  <div class="form_field">
+  	<%= f.label :zipcode, "Zipcode" %><br />
+  	<%= f.text_field :zipcode %>
+  </div>
+  <div class="form_field">
+    <%= f.label "State" %><br />
+    <%= f.collection_select(:state_id, State.all, :id, :full_name, {:prompt => "Choose a State"}) %>
+  </div>
+  <div class="form_field">
+    <%= f.label :support_type, "Support Type" %><br />
+    <%= f.select :support_type,
+        options_for_select(["General Inquiry", "Support", "Sales"]) %>
+  </div>
+  <div class="clear"></div>
+  <div class="form_field">
+    <%= f.label :comments, "Comments" %><br />
+    <%= f.text_area :comments, :rows => 5, :cols => 45 %>
+  </div>
+  <div class="clear"></div>
+  <div class="form_field">
+    <%= f.submit "Submit", :class => "btn" %>
+  </div>
+<% end %>

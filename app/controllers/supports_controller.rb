@@ -1,16 +1,14 @@
 class SupportsController < ApplicationController
-  def new
-    # id is required to deal with form
-    @support = Support.new(:id => 1)
-  end
-
-  def create
+  
+  def contact_email
+    
     @support = Support.new(params[:support])
-    if @support.save
-      redirect_to('/', :notice => "Support was successfully sent.")
+    
+    if @support.valid?
+      @support.send_contact_mail
+      redirect_to root_path, :notice => "Support was successfully sent."
     else
-      flash[:alert] = "You must fill all fields."
-      render 'new'
+      redirect_to :back, :notice => "You must fill all fields."
     end
   end
 end

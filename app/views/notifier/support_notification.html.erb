@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style type="text/css" media="screen">
-      h3 { color: #a70d0e; }
+      h3 { color: #3058bf; }
       ul { list-style-type: none; }
       li { list-style-type: none; }
     </style>
@@ -16,16 +16,16 @@
         <li><strong>First Name:</strong> <%= @sender.first_name %></li>
         <li><strong>Last Name:</strong> <%= @sender.last_name %>
         <li><strong>Email:</strong> <%= @sender.email %></li>
-        <li><strong>Phone Number:</strong> <%= @sender.phone_number %></li>
+        <li><strong>Phone Number:</strong> <%= @sender.phone %></li>
         <li><strong>City:</strong> <%= @sender.city %></li>
-        <li><strong>State:</strong> <%= @sender.state %></li>
+        <li><strong>State:</strong> <%= @sender.state.full_name %></li>
 				<li><strong>Zipcode:</strong> <%= @sender.zipcode %></li>
         <li><strong>Reason:</strong> <%= @sender.support_type %></li>
       </ul>
 
       <p>
         <h4>Comments: </h4>
-        <%= @sender.content %>
+        <%= @sender.comments %>
       </p>
 
     </body>
