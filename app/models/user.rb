@@ -31,12 +31,17 @@ class User < ActiveRecord::Base
   
   # Associations
   belongs_to :account
+  has_many :carts
+  has_many :orders
 
   # Validations
-  validates_presence_of :first_name, :last_name, :email, :username, :password, :password_confirmation, :phone, :on => :create, :message => "can't be blank"
-  validates_length_of :first_name, :last_name, :minimum => 2, :on => :create, :message => "Minimum 2 letters required."
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, :message => "Enter a Valid Email"
-
+  validates :first_name, :presence => true, :length => { :minimum => 2 }
+  validates :last_name, :presence => true, :length => { :minimum => 2 }
+  validates :email, :presence => true, :email => true
+  validates :username, :presence => true, :length => { 4..15 }
+  validates :password, :presence => true, :length => { :minimum 4 }, :confirmation => true,
+  validates_confirmation_of :password
+  validates :phone, :presence => true, :numericality => true
 
   # Paperclip
 

@@ -12,8 +12,8 @@
 class Blog < ActiveRecord::Base
   
   #Validations
-  validates_presence_of :title, :on => :create, :message => "Must give a blog title"
-  validates_presence_of :description, :on => :create, :message => "Must give a blog description"
+  validates :title, :presence => true
+  validates :description, :presence => true
   
   #Associations
   has_many :photos, :dependent => :destroy

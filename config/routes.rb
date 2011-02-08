@@ -1,5 +1,13 @@
 Castle::Application.routes.draw do
   
+  resources :packages
+
+  resources :cart_items
+
+  resources :carts
+
+  resources :orders
+
   resources :supports, :only => [:new, :create]
   resources :products
   resources :images

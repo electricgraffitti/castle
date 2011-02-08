@@ -19,6 +19,7 @@ class Photo < ActiveRecord::Base
   #Associations
   belongs_to :blog
   belongs_to :product
+  belongs_to :package
   
   #Paperclip
   has_attached_file :attachment,
