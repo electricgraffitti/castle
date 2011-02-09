@@ -1,0 +1,18 @@
+<h2>Customers</h2>
+
+<% @users.each do |user| %>
+  <ul>
+		First Name: <li><%= user.first_name %></li>
+    Last Name: <li><%= user.last_name %></li>
+		Email: <li><%= user.email %></li>
+		Phone: <li><%= user.phone %></li>
+		Username: <li><%= user.username %></li>
+    <li>
+			<%= link_to 'Show', user %> | <%= link_to 'Edit', edit_user_path(user) %> | <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'New User', new_user_path %>
+		</li>
+
+  </ul>
+<hr />
+<% end %>
+
+

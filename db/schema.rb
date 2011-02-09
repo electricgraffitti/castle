@@ -10,10 +10,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110208032557) do
+ActiveRecord::Schema.define(:version => 20110209042148) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "admin_sessions", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "admins", :force => true do |t|
+    t.string   "username"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
+    t.string   "single_access_token"
+    t.string   "perishable_token"
+    t.integer  "login_count"
+    t.integer  "failed_login_count"
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,7 +95,12 @@ ActiveRecord::Schema.define(:version => 20110208032557) do
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.integer  "product_id"
+    t.integer  "package_id"
   end
+
+  add_index "photos", ["blog_id"], :name => "index_photos_on_blog_id"
+  add_index "photos", ["package_id"], :name => "index_photos_on_package_id"
+  add_index "photos", ["product_id"], :name => "index_photos_on_product_id"
 
   create_table "products", :force => true do |t|
     t.string   "item_name"
@@ -85,6 +113,8 @@ ActiveRecord::Schema.define(:version => 20110208032557) do
     t.integer  "cart_id"
     t.string   "unit_number"
   end
+
+  add_index "products", ["cart_id"], :name => "index_products_on_cart_id"
 
   create_table "states", :force => true do |t|
     t.string   "abbreviation"

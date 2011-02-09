@@ -3,7 +3,9 @@
 			<h3>
 				<%= blog.title %>
 			</h3>
-				<%= image_tag(blog.photos.last.attachment.url(:thumb)) %>
+				<% unless blog.photos.blank? %>
+					<%= image_tag(blog.photos.last.attachment.url(:thumb)) %>
+				<% end %>
 			<p>
 				<%= truncate(blog.description, :length => 250, :separator => '') %> <%= link_to "read more", blogs_path %>
 			</p>

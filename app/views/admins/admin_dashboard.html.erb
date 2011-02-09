@@ -1,0 +1,23 @@
+<div class="full row">
+	<div class="admin_panel">
+<ul>
+	<li><%= link_to "New Blog Post", new_blog_path %></li>
+	<li><%= link_to "New System", new_package_path %></li>
+	<li><%= link_to "New Product Item", new_product_path %></li>
+	<li><%= link_to "Orders", orders_path %></li>
+	<li><%= link_to "Customers", users_path %></li>
+</ul>
+</div>
+	<div class="full_row bottom_hr top_hr">
+	<%= render :partial => 'admins/blog_dashboard' %>
+	</div>
+	<div class="full_row bottom_hr top_hr">
+		<%= render :partial => 'admins/customer_dashboard' %>
+	</div>
+	<div class="full_row bottom_hr top_hr">
+		<%= render :partial => 'admins/package_dashboard' %>
+	</div>
+	<div class="full_row bottom_hr top_hr">
+		<%= render :partial => 'admins/products_dashboard' %>
+	</div>
+</div>

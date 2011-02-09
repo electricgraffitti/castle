@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Username:</b>
+  <%= @admin.username %>
+</p>
+
+<p>
+  <b>Crypted password:</b>
+  <%= @admin.crypted_password %>
+</p>
+
+<p>
+  <b>Password salt:</b>
+  <%= @admin.password_salt %>
+</p>
+
+<p>
+  <b>Persistence token:</b>
+  <%= @admin.persistence_token %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_path(@admin) %> |
+<%= link_to 'Back', admins_path %>

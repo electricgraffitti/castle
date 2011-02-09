@@ -1,0 +1,22 @@
+<h2>Product Addons</h2>
+
+<% @products.each do |product| %>
+  <ul>
+	<% unless product.photos.blank? %>
+		<li><%= image_tag(product.photos.last.attachment.url(:tiny), :class => "wrapped_image") %></li>
+	<% end %>
+    <li>
+			<h4>
+				<%= (product.item_name).titleize %>
+			</h4>
+		</li>
+		<li><%= product.price %></li>
+    <li><%= product.description %></li>
+    <li><%= product.unit_number %></li>
+    <li>
+			<%= link_to 'Show', product %> | <%= link_to 'Edit', edit_product_path(product) %> | <%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'New System', new_product_path %>
+		</li>
+
+  </ul>
+<hr />
+<% end %>

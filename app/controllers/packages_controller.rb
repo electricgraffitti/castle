@@ -37,8 +37,8 @@ class PackagesController < ApplicationController
   def edit
     @package = Package.find(params[:id])
     
-    if @product.photos.blank?
-       @product.photos.build
+    if @package.photos.blank?
+       @package.photos.build
     end
   end
 

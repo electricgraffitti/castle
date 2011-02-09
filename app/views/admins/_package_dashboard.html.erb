@@ -1,0 +1,22 @@
+<h2>Complete Systems</h2>
+
+<% @packages.each do |package| %>
+  <ul>
+	<% unless package.photos.blank? %>
+		<li><%= image_tag(package.photos.last.attachment.url(:tiny), :class => "wrapped_image") %></li>
+	<% end %>
+    <li>
+			<h4>
+				<%= (package.name).titleize %>
+			</h4>
+		</li>
+		<li><%= package.price %></li>
+    <li><%= package.description %></li>
+    <li>
+			<%= link_to 'Show', package %> | <%= link_to 'Edit', edit_package_path(package) %> | <%= link_to 'Destroy', package, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'New Addon', new_package_path %>
+		</li>
+
+  </ul>
+<hr />
+<% end %>
+
