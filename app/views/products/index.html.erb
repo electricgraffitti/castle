@@ -1,5 +1,5 @@
 <div class="full_row">
-	<h2 class="page_header">GE Alarm Systems</h2>
+	<h2 class="page_header">Additional System Addons</h2>
 	<% @products.each do |product| %>
 		<div class="column_2">
 	  	<div class="product_wrap">	
@@ -10,14 +10,14 @@
 				<p class="money blue_text">
 					Price: <%= number_to_currency(product.price) %>
 				</p>
-				<h4 class="bottom_hr">
+				<h4>
 					Features of the <%= (product.item_name).titleize %>:
 				</h4>
-				<p class="top_hr">
+				<p>
 					<%= product.description %>
 				</p>
-				<p>
-					<%= product.unit_number %>
+				<p class="part bottom_hr">
+					Part#: <%= product.unit_number %><%= link_to "Add to Cart", products_path %>
 				</p>
 			</div>
 			<% if current_admin %>
