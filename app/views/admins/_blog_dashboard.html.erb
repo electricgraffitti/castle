@@ -1,20 +1,31 @@
-<h2>Blog Posts</h2>
+<div class="admin_segment">
+  <h3>Posted Blogs</h3>
+  <div class="table_actions">
+    <%= link_to 'Add Blog Post', new_blog_path, :class => "admin_new_link" %>
+  </div>
+  <table id="dashboard_blogs_table" class="display">
+    <thead>  
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Edit Blogs</th>
+        <th>Delete Blogs</th>
+      </tr>
+    </thead>
 
-<% @blogs.each do |blog| %>
-  <ul>
-		<li><%= image_tag(blog.photos.last.attachment.url(:tiny), :class => "wrapped_image") %></li>
-    <li>
-			<h4>
-				<%= (blog.title).titleize %>
-			</h4>
-		</li>
-    <li><%= (blog.description).titleize %></li>
-    <li>
-			<%= link_to 'Show', blog %> | <%= link_to 'Edit', edit_blog_path(blog) %> | <%= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'New Blog', new_blog_path %>
-		</li>
-
-  </ul>
-<hr />
-<% end %>
+    <tbody>
+      <% blogs.each do |blog| %>
+			<% unless blog.blank? %>
+        <tr>
+          <td><%=h (blog.title).titleize %></td>
+          <td><%=h truncate(blog.description, :length => 200) %></td>
+          <td><%= link_to 'Update Blog', edit_blog_path(blog), :class => "update" %></td>
+          <td><%= link_to 'Delete Blog', blog, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
+        </tr>
+			<% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 

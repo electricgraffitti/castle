@@ -3,6 +3,7 @@ class PackagesController < ApplicationController
   # GET /packages.xml
   def index
     @packages = Package.all
+    @blog = Blog.last
 
     respond_to do |format|
       format.html # index.html.erb

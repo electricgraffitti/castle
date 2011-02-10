@@ -20,6 +20,9 @@
 					<%= product.unit_number %>
 				</p>
 			</div>
+			<% if current_admin %>
+				<%= link_to "Edit Product Item", edit_product_path(product) %>
+			<% end %>
 		</div>
 	<% end %>		
 </div>

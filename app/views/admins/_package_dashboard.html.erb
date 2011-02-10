@@ -1,22 +1,31 @@
-<h2>Complete Systems</h2>
+<div class="admin_segment">
+	<h3>Current Systems</h3>
+  <div class="table_actions">
+    <%= link_to 'Add New System', new_package_path, :class => "admin_new_link" %>
+  </div>
+  <table id="dashboard_packages_table" class="display">
+    <thead>  
+      <tr>
+        <th>System</th>
+        <th>Price</th>
+				<th>Description</th>
+        <th>Edit System</th>
+        <th>Delete System</th>
+      </tr>
+    </thead>
 
-<% @packages.each do |package| %>
-  <ul>
-	<% unless package.photos.blank? %>
-		<li><%= image_tag(package.photos.last.attachment.url(:tiny), :class => "wrapped_image") %></li>
-	<% end %>
-    <li>
-			<h4>
-				<%= (package.name).titleize %>
-			</h4>
-		</li>
-		<li><%= package.price %></li>
-    <li><%= package.description %></li>
-    <li>
-			<%= link_to 'Show', package %> | <%= link_to 'Edit', edit_package_path(package) %> | <%= link_to 'Destroy', package, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'New Addon', new_package_path %>
-		</li>
-
-  </ul>
-<hr />
-<% end %>
-
+    <tbody>
+      <% packages.each do |package| %>
+			<% unless package.blank? %>
+        <tr>
+          <td><%=h (package.name).titleize %></td>
+					<td><%=h number_to_currency(package.price) %></td>
+          <td><%=h truncate(package.description, :length => 200) %></td>
+          <td><%= link_to 'Update System', edit_package_path(package), :class => "update" %></td>
+          <td><%= link_to 'Delete System', package, :confirm => 'Are you sure?', :method => :delete, :class => "update" %></td>
+        </tr>
+			<% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
