@@ -52,12 +52,17 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to(@blog, :notice => 'Blog was successfully created.') }
+        if current_admin
+          render admin_dashboard_path
+        else
+        format.html { redirect_to blogs_path, :notice => 'Blog was successfully created.' }
         format.xml  { render :xml => @blog, :status => :created, :location => @blog }
+      end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @blog.errors, :status => :unprocessable_entity }
       end
+
     end
   end
 

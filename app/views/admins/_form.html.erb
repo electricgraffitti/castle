@@ -1,0 +1,19 @@
+<%= form_for(@admin) do |f| %>
+<%= render :partial => "layouts/error_block", :locals => {:object => @admin} %>
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="field">
+    <%= f.submit :class => "btn" %>
+    <%= link_to 'Back', admins_path %>
+  </div>
+<% end %>

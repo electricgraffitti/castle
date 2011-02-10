@@ -1,0 +1,24 @@
+<div class="full row">
+	<div class="admin_panel">
+		<div class="full_row">
+			<%= render :partial => 'admins/blog_dashboard', :locals => {:blogs => @blogs} %>
+		</div>
+		<div class="full_row bottom_hr top_hr">
+			<%= render :partial => 'admins/customer_dashboard', :locals => {:users => @users} %>
+		</div>
+		<div class="full_row bottom_hr top_hr">
+			<%= render :partial => 'admins/package_dashboard', :locals => {:packages => @packages} %>
+		</div>
+		<div class="full_row bottom_hr top_hr">
+			<%= render :partial => 'admins/products_dashboard', :locals => {:products => @products} %>
+		</div>
+	</div>
+</div>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      admin.adminScripts();
+    });
+  </script>
+<% end %>

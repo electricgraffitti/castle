@@ -3,6 +3,7 @@ class PackagesController < ApplicationController
   # GET /packages.xml
   def index
     @packages = Package.all
+    @blog = Blog.last
 
     respond_to do |format|
       format.html # index.html.erb
@@ -37,8 +38,8 @@ class PackagesController < ApplicationController
   def edit
     @package = Package.find(params[:id])
     
-    if @product.photos.blank?
-       @product.photos.build
+    if @package.photos.blank?
+       @package.photos.build
     end
   end
 

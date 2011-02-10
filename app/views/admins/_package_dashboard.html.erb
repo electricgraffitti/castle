@@ -1,0 +1,31 @@
+<div class="admin_segment">
+	<h3>Current Systems</h3>
+  <div class="table_actions">
+    <%= link_to 'Add New System', new_package_path, :class => "admin_new_link" %>
+  </div>
+  <table id="dashboard_packages_table" class="display">
+    <thead>  
+      <tr>
+        <th>System</th>
+        <th>Price</th>
+				<th>Description</th>
+        <th>Edit System</th>
+        <th>Delete System</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% packages.each do |package| %>
+			<% unless package.blank? %>
+        <tr>
+          <td><%=h (package.name).titleize %></td>
+					<td><%=h number_to_currency(package.price) %></td>
+          <td><%=h truncate(package.description, :length => 200) %></td>
+          <td><%= link_to 'Update System', edit_package_path(package), :class => "update" %></td>
+          <td><%= link_to 'Delete System', package, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
+        </tr>
+			<% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
