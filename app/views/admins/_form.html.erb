@@ -12,7 +12,8 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="field">
+    <%= f.submit :class => "btn" %>
+    <%= link_to 'Back', admins_path %>
   </div>
 <% end %>

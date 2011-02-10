@@ -1009,9 +1009,9 @@ text-decoration: underline;
   display: block;
   height: 22px;
   margin-bottom: 8px;
-  padding-top: 3px;
+  min-width: 104px;
+  padding: 7px 8px 2px;
   text-align: center;
-  width: 104px;
 	float: right;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -1117,7 +1117,7 @@ width: 100%;
 text-align: left;
 background: #ddd;
 }
-.form_field {
+.form_field, .field {
 float: left;
 padding: 8px;
 width: 215px;
@@ -1126,7 +1126,7 @@ form label {
 margin-bottom: 3px;
 font-weight: bold;
 }
-input[type="text"] {
+input[type="text"], input[type="password"] {
 margin: 3px;
 padding: 3px;
 margin-right: 5px;
