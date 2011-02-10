@@ -1,0 +1,37 @@
+<div class="admin_segment">
+  <h3>Account Users</h3>
+  <div class="table_actions">
+    <%= link_to 'Add New User', new_user_path, :class => "admin_new_link" %>
+  </div>
+  <table id="dashboard_users_table" class="display">
+    <thead>  
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+				<th>Username</th>
+				<th>Edit User</th>
+        <th>Delete User</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% users.each do |user| %>
+			<% unless user.blank? %>
+        <tr>
+          <td><%=h (user.first_name).titleize %></td>
+					<td><%=h (user.last_name).titleize %></td>
+					<td><%=h user.email %></td>
+					<td><%=h user.phone %></td>
+					<td><%=h user.username %></td>
+          <td><%= link_to 'Update Users', edit_user_path(user), :class => "update" %></td>
+          <td><%= link_to 'Delete Users', user, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
+        </tr>
+			<% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

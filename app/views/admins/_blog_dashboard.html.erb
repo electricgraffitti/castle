@@ -1,0 +1,31 @@
+<div class="admin_segment">
+  <h3>Posted Blogs</h3>
+  <div class="table_actions">
+    <%= link_to 'Add Blog Post', new_blog_path, :class => "admin_new_link" %>
+  </div>
+  <table id="dashboard_blogs_table" class="display">
+    <thead>  
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Edit Blogs</th>
+        <th>Delete Blogs</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% blogs.each do |blog| %>
+			<% unless blog.blank? %>
+        <tr>
+          <td><%=h (blog.title).titleize %></td>
+          <td><%=h truncate(blog.description, :length => 200) %></td>
+          <td><%= link_to 'Update Blog', edit_blog_path(blog), :class => "update" %></td>
+          <td><%= link_to 'Delete Blog', blog, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
+        </tr>
+			<% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

@@ -10,5 +10,12 @@
 			<li><%= link_to "FAQ", faq_path %></li>
 			<li><%= link_to "Returns", returns_path %></li>
 			<li><%= link_to "Terms of Service", terms_path %></li>
+			<% if current_admin %>
+				<li><%= link_to "Logout", admin_logout_path, :title => "Admin Logout", :class => "admin_nav" %></li>
+				<li><%= link_to "Dashboard", admin_dashboard_path, :title => "Admin Dashboard", :class => "admin_nav" %></li>
+			<% else %>
+				<li><%= link_to "Admin", admin_login_path, :title => "Castle Protection Admin" %></li>
+			<% end %>
+				
   	</ul>
   </div>

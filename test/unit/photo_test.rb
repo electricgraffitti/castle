@@ -11,6 +11,7 @@
 #  attachment_file_size    :integer(4)
 #  attachment_updated_at   :datetime
 #  product_id              :integer(4)
+#  package_id              :integer(4)
 #
 
 require 'test_helper'

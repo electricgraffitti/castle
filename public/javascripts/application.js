@@ -100,6 +100,50 @@ var base = {
 
 };
 
+
+var admin = {
+	
+	adminScripts: function() {
+		admin.setupDataTables();
+	},
+	
+	setupDataTables: function() {
+		postsTable = $('#dashboard_blogs_table').dataTable({
+			"bJQueryUI": true,
+			"sPaginationType": "full_numbers"
+		});
+		eventsTable = $('#dashboard_users_table').dataTable({
+			"bJQueryUI": true,
+			"sPaginationType": "full_numbers"
+		});
+		linksTable = $('#dashboard_packages_table').dataTable({
+			"bJQueryUI": true,
+			"sPaginationType": "full_numbers"
+		});
+		linksTable = $('#dashboard_products_table').dataTable({
+			"bJQueryUI": true,
+			"sPaginationType": "full_numbers"
+		});
+		// photosTable = $('#dashboard_photos_table').dataTable({
+		// 	"bJQueryUI": true,
+		// 	"sPaginationType": "full_numbers"
+		// });
+		// customersTable = $('#dashboard_customers_table').dataTable({
+		// 	"bJQueryUI": true,
+		// 	"sPaginationType": "full_numbers"
+		// });
+	},
+	
+	setupCalendars: function() {
+		// $('#event_start_date').datepicker({
+		// 	showButtonPanel: true
+		// });
+		// 
+		// $('#event_end_date').datepicker({
+		// 	showButtonPanel: true
+		// });
+	}
+};
 //**********Initialize Document**********//
 $(document).ready(function() {
 	// injects flash div into dom

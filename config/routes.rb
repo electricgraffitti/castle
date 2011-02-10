@@ -13,14 +13,11 @@ Castle::Application.routes.draw do
   resources :user_sessions
   resources :admins
   resources :admin_sessions
-  
-  # Login/Logout Paths
-  match "account-login" => "user_sessions#check_session", :as => :account_login
-  match "account-logout" => "user_sessions#destroy", :as => :account_logout
+
   
   # Admin Login/Logout Paths
-  match "admin-login" => "admin_sessions#check_session", :as => :account_login
-  match "admin-logout" => "admin_sessions#destroy", :as => :account_logout
+  match "admin-login" => "admin_sessions#check_session", :as => :admin_login
+  match "admin-logout" => "admin_sessions#destroy", :as => :admin_logout
   match "admin-dashboard" => "admins#admin_dashboard", :as => :admin_dashboard
   
   # Password Reset Path

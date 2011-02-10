@@ -1,0 +1,33 @@
+<div class="admin_segment">
+  <h3>Addon Items</h3>
+  <div class="table_actions">
+    <%= link_to 'Add Items', new_product_path, :class => "admin_new_link" %>
+  </div>
+  <table id="dashboard_products_table" class="display">
+    <thead>  
+      <tr>
+        <th>Item Name</th>
+        <th>Price</th>
+        <th>Unit No.</th>
+        <th>Description</th>
+        <th>Edit Item</th>
+        <th>Delete Item</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% products.each do |product| %>
+			<% unless product.blank? %>
+        <tr>
+          <td><%=h (product.item_name).titleize %></td>
+          <td><%=h product.price %></td>
+          <td><%=h product.unit_number %></td>
+          <td><%=h truncate(product.description, :length => 200) %></td>
+          <td><%= link_to 'Update Items', edit_product_path(product), :class => "update" %></td>
+          <td><%= link_to 'Delete Items', product, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
+        </tr>
+			<% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -12,6 +12,9 @@
 		<p>
 			<%= blog.description %>
 		</p>
+		<% if current_admin %>
+			<%= link_to "Edit Blog Post", edit_blog_path(blog) %>
+		<% end %>
 	</div>
 	<% end %>		
 </div>

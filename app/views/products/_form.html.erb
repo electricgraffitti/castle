@@ -6,20 +6,24 @@
     <%= f.text_field :item_name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :alarm_system %><br />
-    <%= f.check_box :alarm_system %>
-  </div>
-  <div class="field">
-    <%= f.label :addons %><br />
-    <%= f.check_box :addons %>
-  </div>
-  <div class="field">
     <%= f.label :price %><br />
     <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_number, "Item Part#" %><br />
+    <%= f.text_field :unit_number %>
+  </div>
+	<div class="field">
+	  <%= f.label :description %><br />
+	  <%= f.text_area :description, :rows => 5, :cols => 30 %>
+	</div>
+	<div class="field">
+		<%= f.check_box :alarm_system %>
+   	<%= f.label :alarm_system %>
+  </div>
+  <div class="field">
+	  <%= f.check_box :addons %>
+   	<%= f.label :addons %>
   </div>
 	<%= f.fields_for :photos do |photo_form| %>
 		<div class="field">
@@ -28,6 +32,6 @@
 		</div>
 	<% end %>
   <div class="actions">
-    <%= f.submit %>
+   	<%= f.submit %>
   </div>
 <% end %>
