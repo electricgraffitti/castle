@@ -1,4 +1,7 @@
 class PackagesController < ApplicationController
+  
+  before_filter :require_admin, :except => [:index]
+
   # GET /packages
   # GET /packages.xml
   def index
