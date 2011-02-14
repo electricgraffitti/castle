@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
 
+before_filter :require_admin, :except => [:index]
   
   # GET /blogs
   # GET /blogs.xml

@@ -39,9 +39,8 @@ class User < ActiveRecord::Base
   validates :last_name, :presence => true, :length => { :minimum => 2 }
   validates :phone, :presence => true, :numericality => true
   validates :email, :presence => true, 
-                    :length => {:minimum => 3, :maximum => 254},
                     :uniqueness => true,
-                    :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+                    :email => true
 
 
   # Paperclip
