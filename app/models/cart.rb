@@ -7,6 +7,7 @@
 #  complete   :boolean(1)
 #  created_at :datetime
 #  updated_at :datetime
+#  package_id :integer(4)
 #
 
 class Cart < ActiveRecord::Base
@@ -15,5 +16,6 @@ class Cart < ActiveRecord::Base
   belongs_to :user
   has_many :cart_items
   has_many :products
+  belongs_to :package
   
 end

@@ -13,7 +13,7 @@
 				<p class="top_hr">
 					<%= package.description %>
 				</p>
-				<%= link_to "View System Addons Here", products_path %>
+				<%= button_to "Purchase System", cart_items_path(:package_id => package) %>
 			</div>
 			<% if current_admin %>
 				<%= link_to "Edit System Item", edit_package_path(package) %>

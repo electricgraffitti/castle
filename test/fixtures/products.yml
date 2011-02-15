@@ -12,6 +12,7 @@
 #  updated_at   :datetime
 #  cart_id      :integer(4)
 #  unit_number  :string(255)
+#  package_id   :integer(4)
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

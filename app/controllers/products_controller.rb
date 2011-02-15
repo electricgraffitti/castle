@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   
-  before_filter :require_admin, :except => [:index]
+  # before_filter :require_admin, :except => [:index]
   
   # GET /products
   # GET /products.xml

@@ -8,15 +8,17 @@
 #  notes      :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  package_id :integer(4)
 #
 
 class CartItem < ActiveRecord::Base
   
   #Validations
-  validates :notes, :presence => true, :uniqueness => true
+  # validates :notes, :presence => true, :uniqueness => true
   
   #Associations
   belongs_to :cart
   belongs_to :product
+  belongs_to :package
   
 end
