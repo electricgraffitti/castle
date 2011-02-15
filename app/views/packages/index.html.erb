@@ -1,19 +1,43 @@
 <div class="full_row">
 	<h2 class="page_header">Our Complete Systems</h2>
 	<% @packages.each do |package| %>
-		<div class="column_2">
+		<div class="column_3">
 	  	<div class="product_wrap">	
 				<h3>
-					<%= (package.name).titleize %> System
+					<%= (package.name).titleize %>
 				</h3>	
-				<%= image_tag(package.photos.last.attachment.url(:small), :class => "blue_bg") %>
+				<%= image_tag(package.photos.last.attachment.url(:showcase), :class => "blue_bg") %>
 				<p class="money blue_text">
 					Price: <%= number_to_currency(package.price) %>
 				</p>
 				<p class="top_hr">
 					<%= package.description %>
 				</p>
-				<%= link_to "View System Addons Here", products_path %>
+				<h5>This System Comes Standard With:</h5>
+				<% if package.name == "Simon XT Base Package" %>
+					<ul>
+						<li>(1) - Alarm Keypad/Control Panel</li>
+						<li>(2) - Door Contact Sensors</li>
+						<li>(1) - Motion Sensor Detector</li>
+					</ul>
+				<% elsif package.name == "Simon XT Pro Package" %>
+					<ul>
+						<li>(1) - Alarm Keypad/Control Panel</li>
+						<li>(3) - Door Contact Sensors</li>
+						<li>(1) - Motion Sensor Detector</li>
+						<li>(1) - Keychain Remote Controller</li>
+					</ul>
+				<% elsif package.name == "Simon XT Pro Plus Package" %>
+					<ul>
+						<li>(1) - Alarm Keypad/Control Panel</li>
+						<li>(5) - Door Contact Sensors</li>
+						<li>(1) - Motion Sensor Detector</li>
+						<li>(1) - Keychain Remote Controller</li>
+						<li>(1) - Two-Way Touch Screen Sensor</li>
+					</ul>
+				<% end %>
+				
+				<%= link_to "Select System", products_path %>
 			</div>
 			<% if current_admin %>
 				<%= link_to "Edit System Item", edit_package_path(package) %>
@@ -25,8 +49,10 @@
   <div class="column_2">
 
   </div>
-  <div class="column_2 cta_wrap">
-    <%= link_to "Get Started Today", "", :class => "cta_button custom_text" %>
+  <div class="full_wrap selection_bottom">
+		<h4>
+			To get started on securing your home today, just select one of the packages above that best suits your needs, and you will be on your way to securing your home and your family.
+		</h4>
   </div>
 </div>
 

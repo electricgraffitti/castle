@@ -815,6 +815,9 @@ text-align: left;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** PRODUCT CONTENT **************/
+.product_wrap {
+	width: 300px;
+}
 .product_wrap h3 {
 margin: 0px 0px 20px;
 }
@@ -846,8 +849,23 @@ padding-bottom: 5px;
 text-align: left;
 margin-right: 30px;
 }
+.product_wrap h5 {
+	margin-top: 15px;
+	margin-bottom: 10px;
+	text-decoration: underline;
+}
 .money {
 font-weight: bold;
+}
+.selection_bottom {
+	width: 100%;
+}
+.selection_bottom h4 {
+	color: #333333;
+	margin-top: 20px auto;
+	text-shadow: 0 1px 0 #FFFFFF;
+	width: 455px;
+	text-align: left;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** QUOTES ***********************/
