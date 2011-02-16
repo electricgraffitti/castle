@@ -1,5 +1,16 @@
+<div id="cart" session_id="<%= session[:id] %>">
+  <ul>
+    <li><span>Package:</span> Basic Package</li>
+    <li><span>Key FOB:</span> 5</li>
+    <li><span>C02 Sensor:</span> 2</li>
+    <li><span>Glass Sensor:</span> 5</li>
+    <li><span>Motion Sensor:</span> 2</li>
+  </ul>
+</div>
 <div class="full_row">
 	<h2 class="page_header">Additional System Addons</h2>
+</div>
+<div class="full_row no_top">
 	<% @products.each do |product| %>
 		<div class="column_2">
 	  	<div class="product_wrap">	
@@ -25,14 +36,6 @@
 			<% end %>
 		</div>
 	<% end %>		
-</div>
-<div class="full_row no_top">
-  <div class="column_2">
-
-  </div>
-  <div class="column_2 cta_wrap">
-    <%= link_to "Get Started Today", "", :class => "cta_button custom_text" %>
-  </div>
 </div>
 
 <% content_for :sub_boxes do %>

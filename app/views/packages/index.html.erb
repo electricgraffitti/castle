@@ -1,33 +1,55 @@
 <div class="full_row">
 	<h2 class="page_header">Our Complete Systems</h2>
-	<% @packages.each do |package| %>
-		<div class="column_2">
-	  	<div class="product_wrap">	
-				<h3>
-					<%= (package.name).titleize %> System
-				</h3>	
-				<%= image_tag(package.photos.last.attachment.url(:small), :class => "blue_bg") %>
-				<p class="money blue_text">
-					Price: <%= number_to_currency(package.price) %>
-				</p>
-				<p class="top_hr">
-					<%= package.description %>
-				</p>
-				<%= link_to "View System Addons Here", products_path %>
-			</div>
-			<% if current_admin %>
-				<%= link_to "Edit System Item", edit_package_path(package) %>
-			<% end %>
-		</div>
-	<% end %>		
 </div>
 <div class="full_row no_top">
-  <div class="column_2">
-
-  </div>
-  <div class="column_2 cta_wrap">
-    <%= link_to "Get Started Today", "", :class => "cta_button custom_text" %>
-  </div>
+	<p>
+		Get started on securing your home today. Just select one of the packages<br/> that best suits your needs, and you will be on your way to securing your home and your family.
+	</p>
+</div>
+<div class="full_row no_top">
+	<% @packages.each do |package| %>
+		<div class="column_3 product_wrap">	
+			<h3>
+				<%= (package.name).titleize %>
+			</h3>	
+			<%= image_tag(package.photos.last.attachment.url(:showcase), :class => "blue_bg") %>
+			<p class="money blue_text">
+				Price: <%= number_to_currency(package.price) %>
+			</p>
+			<p class="top_hr">
+				<%= package.description %>
+			</p>
+			<h5>This System Comes Standard With:</h5>
+			<% if package.name == "Simon XT Base Package" %>
+				<ul class="package_bullets">
+					<li>(1) - Alarm Keypad/Control Panel</li>
+					<li>(2) - Door Contact Sensors</li>
+					<li>(1) - Motion Sensor Detector</li>
+				</ul>
+			<% elsif package.name == "Simon XT Pro Package" %>
+				<ul class="package_bullets">
+					<li>(1) - Alarm Keypad/Control Panel</li>
+					<li>(3) - Door Contact Sensors</li>
+					<li>(1) - Motion Sensor Detector</li>
+					<li>(1) - Keychain Remote Controller</li>
+				</ul>
+			<% elsif package.name == "Simon XT Pro Plus Package" %>
+				<ul class="package_bullets">
+					<li>(1) - Alarm Keypad/Control Panel</li>
+					<li>(5) - Door Contact Sensors</li>
+					<li>(1) - Motion Sensor Detector</li>
+					<li>(1) - Keychain Remote Controller</li>
+					<li>(1) - Two-Way Touch Screen Sensor</li>
+				</ul>
+			<% end %>
+			<div class="button_wrap">
+  		  <%= link_to "Select System", products_path, :class => "btn" %>
+  		</div>
+		</div>
+		<% if current_admin %>
+			<%= link_to "Edit System Item", edit_package_path(package) %>
+		<% end %>
+	<% end %>		
 </div>
 
 <% content_for :sub_boxes do %>

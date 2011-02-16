@@ -5,7 +5,7 @@ class PackagesController < ApplicationController
   # GET /packages
   # GET /packages.xml
   def index
-    @packages = Package.all
+    @packages = Package.order('price DESC')
     @blog = Blog.last
 
     respond_to do |format|
@@ -53,7 +53,7 @@ class PackagesController < ApplicationController
 
     respond_to do |format|
       if @package.save
-        format.html { redirect_to(@package, :notice => 'Package was successfully created.') }
+        format.html { redirect_to(packages_path, :notice => 'Package was successfully created.') }
         format.xml  { render :xml => @package, :status => :created, :location => @package }
       else
         format.html { render :action => "new" }
@@ -69,7 +69,7 @@ class PackagesController < ApplicationController
 
     respond_to do |format|
       if @package.update_attributes(params[:package])
-        format.html { redirect_to(@package, :notice => 'Package was successfully updated.') }
+        format.html { redirect_to(packages_path, :notice => 'Package was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

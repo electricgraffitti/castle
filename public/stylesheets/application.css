@@ -129,7 +129,7 @@ font-weight: 700;
 a:hover,a:active {
 outline: none;
 }
-a,a:active,a:visited {
+a {
 color: #0088cc;
 }
 a:hover {
@@ -815,15 +815,17 @@ text-align: left;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** PRODUCT CONTENT **************/
+.product_wrap {
+}
 .product_wrap h3 {
-margin: 0px 0px 20px;
+margin: 5px 0px 10px;
 }
 .product_wrap img {
 padding: 3px;
 border: 1px solid #333;
 }
 .product_wrap p {
-  margin-right: 30px;
+  margin-right: 35px;
   margin-top: 0;
   padding: 5px 0 0;
   text-align: left;
@@ -846,8 +848,52 @@ padding-bottom: 5px;
 text-align: left;
 margin-right: 30px;
 }
+.product_wrap h5 {
+	margin-top: 15px;
+	margin-bottom: 10px;
+	text-decoration: underline;
+}
+.package_bullets {
+	min-height: 100px;
+}
 .money {
 font-weight: bold;
+}
+.selection_bottom {
+	width: 100%;
+}
+.selection_bottom h4 {
+	color: #333333;
+	margin-top: 20px auto;
+	text-shadow: 0 1px 0 #FFFFFF;
+	width: 455px;
+	text-align: left;
+}
+/*************************************************************************************************************************************/
+/****************************************************************************************************** CART *************************/
+#cart {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	background: #213c82;
+	background: rgba(33,60,130,.9);
+	border-right:1px solid #fff;
+	border-left:1px solid #fff;
+	border-bottom:1px solid #fff;
+	-moz-box-shadow: 0px 1px 10px #000;
+	-webkit-box-shadow: 0px 1px 10px #000;
+	width: 400px;
+	min-height: 90px;
+}
+#cart ul {
+	padding: 5px;
+}
+#cart ul li {
+	padding-left: 5px;
+	color: #91c1f0;
+}
+#cart ul li span {
+	color: #fff;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** QUOTES ***********************/
@@ -1080,11 +1126,17 @@ color: #efefef;
 a.cta_button:active,a.cta_button:visited {
 color: #fff;
 }
+input[type="submit"].btn, input[type="button"].btn {
+	cursor: pointer;
+  height: 35px;
+  padding: 0;
+}
 .btn {
 cursor: pointer;
 display: block;
 font-size: 12px;
-height: 35px;
+height: 15px;
+padding: 10px 0px;
 position: relative;
 text-align: center;
 text-decoration: none;
