@@ -5,6 +5,9 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index
+    if params
+      session[:cart][:package_id] = params[:package_id]
+    end
     @products = Product.system
     @blog = Blog.last
 

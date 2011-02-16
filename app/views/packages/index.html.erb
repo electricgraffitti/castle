@@ -43,7 +43,7 @@
 				</ul>
 			<% end %>
 			<div class="button_wrap">
-  		  <%= link_to "Select System", products_path, :class => "btn" %>
+  		  <%= link_to "Select System", products_path(:package_id => package.id), :class => "btn" %>
   		</div>
 		</div>
 		<% if current_admin %>
