@@ -7,6 +7,7 @@
 #  complete   :boolean(1)
 #  created_at :datetime
 #  updated_at :datetime
+#  package_id :integer(4)
 #
 
 require 'test_helper'

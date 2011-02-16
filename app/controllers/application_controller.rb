@@ -15,6 +15,14 @@ class ApplicationController < ActionController::Base
       return @current_user if defined?(@current_user)
       @current_user = current_user_session && current_user_session.record
     end
+    
+    def current_cart
+      Cart.find(session[:cart_id])
+    rescue  ActiveRecord::RecordNotFound
+      cart = Cart.create
+      session[:cart_id] = cart.id
+      cart
+    end
 
     def require_user
       unless current_user

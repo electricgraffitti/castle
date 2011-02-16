@@ -21,6 +21,21 @@ class Package < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => lambda { |a| a[:attachment].blank? }
   
-  # Assets
+  has_many :products
+  has_many :carts
+  has_many :cart_items
+  
+  # Methods
+  
+  before_destroy :ensure_not_referenced_by_any_cart_item
+  
+  def ensure_not_referenced_by_any_cart_item
+    if cart_items.count.zero?
+      return true
+    else
+      errors[:base] << "Items in cart are Present"
+      return false
+  end
+end
   
 end
