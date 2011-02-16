@@ -14,8 +14,8 @@ class Cart < ActiveRecord::Base
   
   #Associtations
   belongs_to :user
-  has_many :cart_items
-  has_many :products
-  belongs_to :package
+  has_many :cart_items, :dependent => :destroy
+  has_one :package, :through => :cart_items
+  has_many :products, :through => :cart_items
   
 end
