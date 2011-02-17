@@ -34,6 +34,9 @@ Castle::Application.routes.draw do
   # Mailer Paths
   match "send-contact-email" => "supports#contact_email", :as => :contact_email
   
+  # Cart Paths
+  match "add-item-to-cart(/:id)" => "products#add_items", :as => :add_item
+  
   root :to => "pages#index"
 
 end

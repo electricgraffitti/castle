@@ -59,6 +59,10 @@ class ApplicationController < ActionController::Base
         return false
       end
     end
+    
+    def setup_cart
+      session[:cart] ||= Cart.new
+    end
   
   
   protected
