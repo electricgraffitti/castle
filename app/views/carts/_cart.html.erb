@@ -1,14 +1,10 @@
-<% if session[:package_id] %>
-  <% 
-    cart = Package.find(session[:package_id]) || "No Package Chosen" 
-  %>
-  <div id="cart" session_id="<%= session[:id] %>">
+<% if cart %>
+<div id="cart" >
     <ul>
-      <li><span>Package:</span> <%= cart.name %></li>
-      <li><span>Key FOB:</span> 5</li>
-      <li><span>C02 Sensor:</span> 2</li>
-      <li><span>Glass Sensor:</span> 5</li>
-      <li><span>Motion Sensor:</span> 2</li>
+      <li><span>Package:</span> <%= @cart.package.name %></li>
+      <% cart.items.each do |p| %>
+      <li><%= p.item_name %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>

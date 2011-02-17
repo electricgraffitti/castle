@@ -1,13 +1,20 @@
 class ProductsController < ApplicationController
   
-  # before_filter :require_admin, :except => [:index]
+  before_filter :require_admin, :except => [:index, :add_items]
   
   # GET /products
   # GET /products.xml
   def index
-    if params
-      session[:cart][:package_id] = params[:package_id]
+    
+    @cart = setup_cart
+    
+    if params[:package_id]
+      @cart.add_package(params[:package_id])
     end
+    
+    # raise @cart.to_yaml
+    
+    # raise @cart.to_yaml
     @products = Product.system
     @blog = Blog.last
 
@@ -91,4 +98,14 @@ class ProductsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def add_items
+    
+    @cart = setup_cart
+    @cart.add_items(params[:product_id])
+    
+    redirect_to products_path
+    
+  end
+  
 end

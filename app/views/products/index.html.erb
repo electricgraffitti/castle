@@ -1,4 +1,4 @@
-<%= render :partial => 'carts/cart' %>
+<%= render :partial => 'carts/cart', :locals => {:cart => @cart} %>
 
 <div class="full_row">
 	<h2 class="page_header">Additional System Addons</h2>
@@ -21,7 +21,7 @@
 					<%= product.description %>
 				</p>
 				<p class="part bottom_hr">
-					Part#: <%= product.unit_number %><%= link_to "Add to Cart", products_path %>
+					Part#: <%= product.unit_number %><%= link_to "Add to Cart", add_item_path(:product_id => product.id) %>
 				</p>
 			</div>
 			<% if current_admin %>
