@@ -17,4 +17,10 @@ class Cart < ActiveRecord::Base
   has_one :package, :through => :cart_items
   has_many :products, :through => :cart_items
   
+  attr_accessible :items
+  
+  def initialize
+    @items = []
+  end
+  
 end
