@@ -1,34 +1,34 @@
 <%= render :partial => 'carts/cart', :locals => {:cart => @cart} %>
 
 <div class="full_row">
-	<h2 class="page_header">Additional System Addons</h2>
+	<h2 class="page_header"><%= @cart.package.name %><br />Devise Addons</h2>
 </div>
 <div class="full_row no_top">
 	<% @products.each do |product| %>
-		<div class="column_2">
-	  	<div class="product_wrap">	
-				<h3>
-					<%= (product.item_name).titleize %> System
-				</h3>	
-				<%= image_tag(product.photos.last.attachment.url(:small), :class => "blue_bg") %>
-				<p class="money blue_text">
-					Price: <%= number_to_currency(product.price) %>
-				</p>
-				<h4>
-					Features of the <%= (product.item_name).titleize %>:
-				</h4>
-				<p>
-					<%= product.description %>
-				</p>
-				<p class="part bottom_hr">
-					Part#: <%= product.unit_number %><%= link_to "Add to Cart", add_item_path(:product_id => product.id) %>
-				</p>
+			<div class="column_3">
+		  	<div class="product_wrap">	
+					<h3>
+						<%= (product.item_name).titleize %>
+					</h3>	
+					<%= image_tag(product.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
+					<p class="money blue_text">
+						Price: <%= number_to_currency(product.price) %>
+					</p>
+					<h4>
+						<%= (product.item_name).titleize %>:
+					</h4>
+					<p class="text">
+						<%= product.description %>
+					</p>
+					<p class="part bottom_hr">
+						Part#: <%= product.unit_number %><%= link_to "Add to Cart", add_item_path(:product_id => product.id) %>
+					</p>
+				</div>
+				<% if current_admin %>
+					<%= link_to "Edit Product Item", edit_product_path(product), :class => "admin_btn" %>
+				<% end %>
 			</div>
-			<% if current_admin %>
-				<%= link_to "Edit Product Item", edit_product_path(product) %>
-			<% end %>
-		</div>
-	<% end %>		
+		<% end %>
 </div>
 
 <% content_for :sub_boxes do %>

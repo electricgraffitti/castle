@@ -133,7 +133,7 @@ a {
 color: #0088cc;
 }
 a:hover {
-color: #0088cc;
+color: #ffffff;
 }
 ol {
 margin-left: 1.8em;
@@ -602,6 +602,9 @@ padding-left: 10px;
 padding-bottom: 20px;
 list-style: disc inside;
 }
+.right {
+float: right;
+}
 /*************************************************************************************************************************************/
 /***************************************************************************************************** COLORS ************************/
 html,body {
@@ -833,8 +836,11 @@ border: 1px solid #333;
   padding: 5px 0 0;
   text-align: left;
 }
+.product_wrap p.text {
+	height: 40px;
+}
 .product_wrap p.part {
-width: 310px;
+width: 250px;
 }
 .product_wrap p.part a {
 display: inline;
@@ -858,7 +864,6 @@ margin-right: 30px;
 }
 .package_bullets {
 	min-height: 100px;
-	margin-bottom: 15px;
 }
 .money {
 font-weight: bold;
@@ -1042,6 +1047,26 @@ text-decoration: underline;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** ADMINS **********************/
+.admin_btn {
+cursor: pointer;
+display: block;
+font-size: 12px;
+height: 15px;
+padding: 10px 0px;
+position: relative;
+text-align: center;
+text-decoration: none;
+text-shadow: 0 2px 2px #222222;
+width: 134px;
+background: url(../images/buttons/admin_blue_button.png) 0px -35px no-repeat;
+color: #fff;
+font-weight: 300;
+border: none;
+margin-top: 15px;
+}
+.admin_btn:hover {
+background: url(../images/buttons/admin_blue_button.png) 0px 0px no-repeat;
+}
 .admin_panel {
 margin-top: 60px;
 }
@@ -1153,26 +1178,6 @@ border: none;
 }
 .btn:hover {
 background: url(../images/buttons/button.png) 0px 0px no-repeat;
-}
-.admin_btn {
-cursor: pointer;
-display: block;
-font-size: 12px;
-height: 15px;
-padding: 10px 0px;
-position: relative;
-text-align: center;
-text-decoration: none;
-text-shadow: 0 2px 2px #222222;
-width: 134px;
-background: url(../images/buttons/admin_blue_button.png) 0px -35px no-repeat;
-color: #fff;
-font-weight: 300;
-border: none;
-margin-top: 15px;
-}
-.admin_btn:hover {
-background: url(../images/buttons/admin_blue_button.png) 0px 0px no-repeat;
 }
 .banner_arrows {
 position: absolute;
