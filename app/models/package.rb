@@ -15,7 +15,7 @@ class Package < ActiveRecord::Base
   # Validations
   validates :name, :presence => true, :uniqueness => true
   validates :description, :presence => true
-  validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality => {:greater_than => 0, :less_than => 1000}
+  # validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality => {:greater_than => 0, :less_than => 1000}
   
   # Associations
   has_many :photos, :dependent => :destroy

@@ -5,7 +5,7 @@ class PackagesController < ApplicationController
   # GET /packages
   # GET /packages.xml
   def index
-    @packages = Package.order('price ASC')
+    @packages = Package.order('id DESC')
     @blog = Blog.last
 
     respond_to do |format|

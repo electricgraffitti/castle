@@ -764,7 +764,10 @@ text-shadow: 0 -1px 0 #999999;
 color: #fff;
 }
 #banner img {
-padding-top: 20px;
+border: 1px solid #3058BF;
+margin-left: 27px;
+margin-top: 40px;
+padding: 5px;
 }
 #banner_nav ul {
 position: relative;
@@ -855,6 +858,7 @@ margin-right: 30px;
 }
 .package_bullets {
 	min-height: 100px;
+	margin-bottom: 15px;
 }
 .money {
 font-weight: bold;
@@ -1149,6 +1153,26 @@ border: none;
 }
 .btn:hover {
 background: url(../images/buttons/button.png) 0px 0px no-repeat;
+}
+.admin_btn {
+cursor: pointer;
+display: block;
+font-size: 12px;
+height: 15px;
+padding: 10px 0px;
+position: relative;
+text-align: center;
+text-decoration: none;
+text-shadow: 0 2px 2px #222222;
+width: 134px;
+background: url(../images/buttons/admin_blue_button.png) 0px -35px no-repeat;
+color: #fff;
+font-weight: 300;
+border: none;
+margin-top: 15px;
+}
+.admin_btn:hover {
+background: url(../images/buttons/admin_blue_button.png) 0px 0px no-repeat;
 }
 .banner_arrows {
 position: absolute;

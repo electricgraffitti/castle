@@ -14,7 +14,7 @@
 			</h3>	
 			<%= image_tag(package.photos.last.attachment.url(:showcase), :class => "blue_bg") %>
 			<p class="money blue_text">
-				Price: <%= number_to_currency(package.price) %>
+				Price: <%= number_to_currency(package.price) %>*
 			</p>
 			<p class="top_hr">
 				<%= package.description %>
@@ -25,6 +25,7 @@
 					<li>(1) - Alarm Keypad/Control Panel</li>
 					<li>(2) - Door Contact Sensors</li>
 					<li>(1) - Motion Sensor Detector</li>
+					<li>$35.95/month Base monitoring package</li>
 				</ul>
 			<% elsif package.name == "Simon XT Pro Package" %>
 				<ul class="package_bullets">
@@ -32,6 +33,8 @@
 					<li>(3) - Door Contact Sensors</li>
 					<li>(1) - Motion Sensor Detector</li>
 					<li>(1) - Keychain Remote Controller</li>
+					<li></li>
+					<li>$39.95/month Pro monitoring package</li>
 				</ul>
 			<% elsif package.name == "Simon XT Pro Plus Package" %>
 				<ul class="package_bullets">
@@ -40,16 +43,22 @@
 					<li>(1) - Motion Sensor Detector</li>
 					<li>(1) - Keychain Remote Controller</li>
 					<li>(1) - Two-Way Touch Screen Sensor</li>
+					<li>$45.95/month Plus monitoring package</li>
 				</ul>
 			<% end %>
 			<div class="button_wrap">
   		  <%= link_to "Select System", products_path(:package_id => package.id), :class => "btn" %>
+				<% if current_admin %>
+					<%= link_to "Edit System Item", edit_package_path(package), :class => "admin_btn" %>
+				<% end %>
   		</div>
+
 		</div>
-		<% if current_admin %>
-			<%= link_to "Edit System Item", edit_package_path(package) %>
-		<% end %>
+
 	<% end %>		
+</div>
+<div class="full_row">
+	* Requires monitoring agreement
 </div>
 
 <% content_for :sub_boxes do %>
