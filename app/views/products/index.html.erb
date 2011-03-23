@@ -12,11 +12,8 @@
 					</h3>	
 					<%= image_tag(product.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
 					<p class="money blue_text">
-						Price: <%= number_to_currency(product.price) %>
+						Price: <%= number_to_currency(product.price) %>/Month Each
 					</p>
-					<h4>
-						<%= (product.item_name).titleize %>:
-					</h4>
 					<p class="text">
 						<%= product.description %>
 					</p>
@@ -28,6 +25,7 @@
 					<%= link_to "Edit Product Item", edit_product_path(product), :class => "admin_btn" %>
 				<% end %>
 			</div>
+			<h2></h2>
 		<% end %>
 </div>
 
