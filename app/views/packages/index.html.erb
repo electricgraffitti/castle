@@ -21,30 +21,11 @@
 			</p>
 			<h5>This System Comes Standard With:</h5>
 			<% if package.name == "Simon XT Base Package" %>
-				<ul class="package_bullets">
-					<li>(1) - Alarm Keypad/Control Panel</li>
-					<li>(2) - Door Contact Sensors</li>
-					<li>(1) - Motion Sensor Detector</li>
-					<li>$35.95/month Base monitoring package</li>
-				</ul>
+        <%= render :partial => 'products/base_package' %>
 			<% elsif package.name == "Simon XT Pro Package" %>
-				<ul class="package_bullets">
-					<li>(1) - Alarm Keypad/Control Panel</li>
-					<li>(3) - Door Contact Sensors</li>
-					<li>(1) - Motion Sensor Detector</li>
-					<li>(1) - Keychain Remote Controller</li>
-					<li></li>
-					<li>$39.95/month Pro monitoring package</li>
-				</ul>
+				<%= render :partial => 'products/pro_package' %>
 			<% elsif package.name == "Simon XT Pro Plus Package" %>
-				<ul class="package_bullets">
-					<li>(1) - Alarm Keypad/Control Panel</li>
-					<li>(5) - Door Contact Sensors</li>
-					<li>(1) - Motion Sensor Detector</li>
-					<li>(1) - Keychain Remote Controller</li>
-					<li>(1) - Two-Way Touch Screen Sensor</li>
-					<li>$45.95/month Plus monitoring package</li>
-				</ul>
+        <%= render :partial => 'products/plus_package' %>
 			<% end %>
 			<div class="button_wrap">
   		  <%= link_to "Select System", products_path(:package_id => package.id), :class => "btn" %>
