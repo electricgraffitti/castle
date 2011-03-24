@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
     
     # raise @cart.to_yaml
     @products = Product.system
+    @monitors = Product.monitoring
     @blog = Blog.last
 
     respond_to do |format|

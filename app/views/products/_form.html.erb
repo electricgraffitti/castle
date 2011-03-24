@@ -17,6 +17,10 @@
 	  <%= f.label :description %><br />
 	  <%= f.text_area :description, :rows => 5, :cols => 30 %>
 	</div>
+		<div class="field">
+		<%= f.check_box :monitoring_addon %>
+   	<%= f.label :monitoring_addon, "Monitoring Addon" %>
+  </div>
 	<div class="field">
 		<%= f.check_box :alarm_system %>
    	<%= f.label :alarm_system %>
