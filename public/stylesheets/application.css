@@ -864,6 +864,7 @@ margin-right: 30px;
 }
 .package_bullets {
 	min-height: 100px;
+	margin-bottom: 10px;
 }
 .money {
 font-weight: bold;

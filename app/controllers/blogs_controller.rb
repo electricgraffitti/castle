@@ -6,7 +6,7 @@ before_filter :require_admin, :except => [:index]
   # GET /blogs.xml
   def index
     @blogs = Blog.all
-    @blog = Blog.last
+    @product = Product.first
 
     respond_to do |format|
       format.html # index.html.erb

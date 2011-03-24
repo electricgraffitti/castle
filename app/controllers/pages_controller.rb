@@ -26,6 +26,7 @@ class PagesController < ApplicationController
   
   def contact
     @support = Support.new
+    @product = Product.first
   end
   
   def products

@@ -9,3 +9,6 @@
 			<%= image_tag('../images/contact.jpg', :class => "wrapped_image contact") %>
 	</div>
 </div>
+<% content_for :sub_boxes do %>
+	<% render :partial => 'sub_boxes/about_sub_box', :locals => {:product => @product} %>
+<% end %>
