@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+<p>
+	<%= image_tag(@blog.photos.last.attachment.url(:medium)) %>
+</p>
+<p>
+  <%= @blog.title %>
+</p>
+
+<p>
+  <%= @blog.description %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>
+

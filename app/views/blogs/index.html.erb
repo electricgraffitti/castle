@@ -1,0 +1,24 @@
+<div class="full_row">
+	<h2 class="page_header bottom_hr">Alarming Updates</h2>
+	<% @blogs.each do |blog| %>
+	<div class="blog_wrap top_hr bottom_hr">		
+		<%= image_tag(blog.photos.last.attachment.url(:medium), :class => "wrapped_image") %>
+		<h3 class="blue">
+			<%= (blog.title).titleize %>
+		</h3>
+		<div class="sub_title">
+			<%= (blog.created_at).to_s(:nice_date) %>
+		</div>
+		<p>
+			<%= blog.description %>
+		</p>
+		<% if current_admin %>
+			<%= link_to "Edit Blog Post", edit_blog_path(blog) %>
+		<% end %>
+	</div>
+	<% end %>		
+</div>
+
+<% content_for :sub_boxes do %>
+	<% render :partial => 'sub_boxes/blog_sub_box', :locals => {:blog => @blog} %>
+<% end %>

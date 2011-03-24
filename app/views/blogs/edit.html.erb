@@ -1,0 +1,12 @@
+<div class="full_row">
+  <h2 class="page_header">Edit <%= @blog.title %></h2>
+</div>
+<div class="full_row no_top">
+	<div class="column_2">
+		<%= render 'blogs/form' %>
+	</div>
+	<div class="colummn_2">
+	 	<%= link_to 'Show', @blog %> |
+		<%= link_to 'Back', blogs_path %>
+	</div>
+</div>

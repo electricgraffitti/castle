@@ -1,0 +1,21 @@
+<%= form_for @blog, :html => {:multipart => true} do |f| %>
+	<%= render :partial => "layouts/error_block", :locals => {:object => @blog} %>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :rows => 10, :cols => 30 %>
+  </div>
+	<%= f.fields_for :photos do |photo_form| %>
+		<div class="field">
+			<%= photo_form.label :photo, "Upload an image" %><br />
+			<%= photo_form.file_field :attachment, :size => 16 %>
+		</div>
+	<% end %>
+  <div class="field">
+    <%= f.submit :class => 'btn' %>
+    <%= link_to 'Back', blogs_path %>
+  </div>
+<% end %>

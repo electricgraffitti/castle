@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   
   def index
-    
+    @blog = Blog.last
   end
   
   def terms
@@ -19,5 +19,18 @@ class PagesController < ApplicationController
   def return_policy
     
   end
+  
+  def about
+    @product = Product.last
+  end
+  
+  def contact
+    @support = Support.new
+  end
+  
+  def products
+    
+  end
+  
 
 end

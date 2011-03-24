@@ -1,0 +1,6 @@
+<h2>My Alarming Cart</h2>
+<ul>
+	<% for item in @cart.cart_items %>
+	<li><%= item.package.name %></li>
+	<% end %>
+</ul>

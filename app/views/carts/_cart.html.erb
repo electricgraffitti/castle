@@ -1,0 +1,12 @@
+<% if cart.package %>
+<div id="cart">
+    <ul>
+      <li><span>Alarm System:</span> <%= cart.package.name if cart.package %></li>
+      <% unless cart.items.empty? %>
+        <% cart.items.each do |p| %>
+        <li><%= p.item_name %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,0 +1,66 @@
+<div class="full_row">
+	<h2 class="page_header">Our Complete Systems</h2>
+</div>
+<div class="full_row no_top">
+	<p>
+		Get started on securing your home today. Just select one of the packages<br/> that best suits your needs, and you will be on your way to securing your home and your family.
+	</p>
+</div>
+<div class="full_row no_top">
+	<% @packages.each do |package| %>
+		<div class="column_3 product_wrap">	
+			<h3>
+				<%= (package.name).titleize %>
+			</h3>	
+			<%= image_tag(package.photos.last.attachment.url(:showcase), :class => "blue_bg") %>
+			<p class="money blue_text">
+				Price: <%= number_to_currency(package.price) %>*
+			</p>
+			<p class="top_hr">
+				<%= package.description %>
+			</p>
+			<h5>This System Comes Standard With:</h5>
+			<% if package.name == "Simon XT Base Package" %>
+				<ul class="package_bullets">
+					<li>(1) - Alarm Keypad/Control Panel</li>
+					<li>(2) - Door Contact Sensors</li>
+					<li>(1) - Motion Sensor Detector</li>
+					<li>$35.95/month Base monitoring package</li>
+				</ul>
+			<% elsif package.name == "Simon XT Pro Package" %>
+				<ul class="package_bullets">
+					<li>(1) - Alarm Keypad/Control Panel</li>
+					<li>(3) - Door Contact Sensors</li>
+					<li>(1) - Motion Sensor Detector</li>
+					<li>(1) - Keychain Remote Controller</li>
+					<li></li>
+					<li>$39.95/month Pro monitoring package</li>
+				</ul>
+			<% elsif package.name == "Simon XT Pro Plus Package" %>
+				<ul class="package_bullets">
+					<li>(1) - Alarm Keypad/Control Panel</li>
+					<li>(5) - Door Contact Sensors</li>
+					<li>(1) - Motion Sensor Detector</li>
+					<li>(1) - Keychain Remote Controller</li>
+					<li>(1) - Two-Way Touch Screen Sensor</li>
+					<li>$45.95/month Plus monitoring package</li>
+				</ul>
+			<% end %>
+			<div class="button_wrap">
+  		  <%= link_to "Select System", products_path(:package_id => package.id), :class => "btn" %>
+				<% if current_admin %>
+					<%= link_to "Edit System Item", edit_package_path(package), :class => "admin_btn" %>
+				<% end %>
+  		</div>
+
+		</div>
+
+	<% end %>		
+</div>
+<div class="full_row">
+	* Each system requires a monitoring agreement. <%= link_to "View agreement here.", "" %>
+</div>
+
+<% content_for :sub_boxes do %>
+	<% render :partial => 'sub_boxes/products_sub_box', :locals => {:blog => @blog} %>
+<% end %>

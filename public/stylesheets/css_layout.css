@@ -1,0 +1,183 @@
+/*
+HTML5 ✰ Boilerplate
+style.css contains a reset,font normalization and some base styles.
+credit is left where credit is due.
+much inspiration was taken from these projects:yui.yahooapis.com/2.8.1/build/base/base.css
+camendesign.com/design/
+praegnanz.de/weblog/htmlcssjs-kickstart
+*/
+/*
+html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)
+v1.4 2009-07-27 | Authors:Eric Meyer & Richard Clark
+html5doctor.com/html-5-reset-stylesheet/
+*/
+html,body,div,span,object,iframe,
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+abbr,address,cite,code,
+del,dfn,em,img,ins,kbd,q,samp,
+small,strong,sub,sup,var,
+b,i,
+dl,dt,dd,ol,ul,li,
+fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td,
+article,aside,canvas,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section,summary,
+time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section{display:block;}
+nav ul{list-style:none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,
+q:before,q:after{content:'';content:none;}
+a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent;}
+ins{background-color:#ff9;color:#000;text-decoration:none;}
+mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold;}
+del{text-decoration:line-through;}
+abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help;}
+/* tables still need cellspacing="0" in the markup */
+table{border-collapse:collapse;border-spacing:0;}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0;}
+input,select{vertical-align:middle;}
+/* END RESET CSS */
+/* fonts.css from the YUI Library:developer.yahoo.com/yui/
+Refer to developer.yahoo.com/yui/3/cssfonts/ for font sizing percentages
+There are three custom edits:* remove arial,helvetica from explicit font stack
+* we normalize monospace styles ourselves
+* table font-size is reset in the HTML5 reset above so there is no need to repeat
+*/
+body{font:13px/1.231 sans-serif;*font-size:small;}
+/* hack retained to preserve specificity */
+select,input,textarea,button{font:99% sans-serif;}
+/* normalize monospace sizing
+* en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome
+*/
+pre,code,kbd,samp{font-family:monospace,sans-serif;}
+/*
+* minimal base styles
+*/
+body,select,input,textarea{/* #444 looks better than black:twitter.com/H_FJ/statuses/11800719859 */
+color:#444;}
+/* Headers (h1,h2,etc) have no default font-size or margin,
+you'll want to define those yourself. */
+h1,h2,h3,h4,h5,h6{font-weight:bold;}
+/* always force a scrollbar in non-IE */
+html{overflow-y:scroll;}
+.title{font-weight:700;}
+/* Accessible focus treatment:people.opera.com/patrickl/experiments/keyboard/test */
+a:hover,a:active{outline:none;}
+a,a:active,a:visited{color:#0088cc;}
+a:hover{color:#0088cc;}
+ol{margin-left:1.8em;}
+ol{list-style-type:decimal;}
+li{list-style:none;}
+/* Remove margins for navigation lists */
+nav ul,nav li{margin:0;}
+small{font-size:85%;}
+b,strong,th{font-weight:bold;}
+td,td img{vertical-align:top;}
+sub{vertical-align:sub;font-size:smaller;}
+sup{vertical-align:super;font-size:smaller;}
+pre{padding:15px;/* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+white-space:pre;/* CSS2 */
+white-space:pre-wrap;/* CSS 2.1 */
+white-space:pre-line;/* CSS 3 (and 2.1 as well,actually) */
+word-wrap:break-word;/* IE */}
+textarea{overflow:auto;}
+/* thnx ivannikolic! www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+.ie6 legend,.ie7 legend{margin-left:-7px;}
+/* thnx ivannikolic! */
+/* align checkboxes,radios,text inputs with their label
+by:Thierry Koblentz tjkdesign.com/ez-css/css/base.css */
+input[type="radio"]{vertical-align:text-bottom;}
+input[type="checkbox"]{vertical-align:bottom;}
+.ie7 input[type="checkbox"]{vertical-align:baseline;}
+.ie6 input{vertical-align:text-bottom;}
+/* hand cursor on clickable input elements */
+label,input[type=button],input[type=submit],button{cursor:pointer;}
+/* webkit browsers add a 2px margin outside the chrome of form elements */
+button,input,select,textarea{margin:0;}
+/* colors for form validity */
+input:valid,textarea:valid{}
+input:invalid,textarea:invalid{border-radius:1px;-moz-box-shadow:0px 0px 5px red;-webkit-box-shadow:0px 0px 5px red;box-shadow:0px 0px 5px red;}
+.no-boxshadow input:invalid,
+.no-boxshadow textarea:invalid{background-color:#f0dddd;}
+/* These selection declarations have to be separate.
+No text-shadow:twitter.com/miketaylr/status/12228805301
+Also:hot pink. */
+::-moz-selection{background:#FF5E99;color:#fff;text-shadow:none;}
+::selection{background:#FF5E99;color:#fff;text-shadow:none;}
+/* j.mp/webkit-tap-highlight-color */
+a:link{-webkit-tap-highlight-color:#FF5E99;}
+/* make buttons play nice in IE:www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button{width:auto;overflow:visible;}
+/* bicubic resizing for non-native sized IMG:code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
+.ie7 img{-ms-interpolation-mode:bicubic;}
+/***Firefox dotted line tweak***/
+a{outline:none;}
+:focus{-moz-outline-style:none;}
+a:active{outline:none;}
+/*
+* Non-semantic helper classes
+*/
+/* for image replacement */
+.ir{display:block;text-indent:-999em;overflow:hidden;background-repeat:no-repeat;text-align:left;direction:ltr;}
+/* Hide for both screenreaders and browsers
+css-discuss.incutio.com/wiki/Screenreader_Visibility */
+.hidden{display:none;visibility:hidden;}
+/* Hide only visually,but have it available for screenreaders
+www.webaim.org/techniques/css/invisiblecontent/ & j.mp/visuallyhidden */
+.visuallyhidden{position:absolute !important;clip:rect(1px 1px 1px 1px);/* IE6,IE7 */
+clip:rect(1px,1px,1px,1px);}
+/* Hide visually and from screenreaders,but maintain layout */
+.invisible{visibility:hidden;}
+/* >> The Magnificent CLEARFIX:Updated to prevent margin-collapsing on child elements << j.mp/bestclearfix */
+.clearfix:before,.clearfix:after{content:"\0020";display:block;height:0;visibility:hidden;}
+.clearfix:after{clear:both;}
+/* Fix clearfix:blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
+.clearfix{zoom:1;}
+.hide_text{text-indent:-3000em;}
+.clear{clear:both;}
+.left{float:left;}
+.right{float:right;}
+/*************************************************************************************************************************************/
+/******************************************************************************************************* ERRORS **********************/
+#flash{display:none;background:none repeat scroll 0 0 #5E9408;color:#FFFFFF;font-size:175%;/* left:50%;margin-left:-480px;*/
+margin-top:0;padding:20px 10px;position:absolute;text-align:center;top:0;width:940px;z-index:210;-webkit-box-shadow:1px 7px 13px #000000;-moz-box-shadow:1px 7px 13px #000000;box-shadow:1px 7px 13px #000000;}
+div.fieldWithErrors input[type="text"]{border:2px solid #CC0000;}
+div.fieldWithErrors label{color:#CC0000;font-weight:bold;}
+#errorExplanation{position:relative;top:0px;left:0%;width:580px;border:2px solid red;padding:7px;padding-bottom:12px;margin-bottom:20px;background-color:#fff;font-weight:bold;}
+#signup_form #errorExplanation h2{text-align:left;text-indent:0px;padding:5px 5px 5px 15px;font-size:125%;margin:-7px;color:#CC0000;width:560px;height:20px;}
+#errorExplanation p{color:#333;margin-bottom:0;padding:5px;float:left;}
+#errorExplanation ul{clear:both;}
+#errorExplanation ul li{font-size:12px;padding-left:10px;}
+/******JS Form Errors********/
+input.error,textarea.error{border:2px solid #DB0404;margin:0px;padding:1px;}
+#signup_form p{position:relative;}
+label.error{background:#efefef none repeat scroll 0 0;color:#DB0404;font-size:85%;font-weight:bold;padding:0;position:absolute;top:-3px;left:-5px;width:300px;}
+
+/*************************************************************************************************************************************/
+/*********************************************************************************************** KETCHUP ERRORS **********************/
+.ketchup-error-container{display:none;position:absolute;width:auto;top:-26px;right:33px;}
+.ketchup-error-container ol{font-size:12px;color:#fff;background:#222;background:rgba(15,15,15,1);padding:10px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;list-style:none;line-height:16px;-moz-box-shadow:0px 1px 2px #283F04;-webkit-box-shadow:0px 1px 2px #283F04;box-shadow:0px 1px 2px #283F04;}
+.ketchup-error-container span{display:block;width:0;height:0;border-left:0 solid transparent;border-right:15px solid transparent;border-top:10px solid #222;border-top:10px solid rgba(15,15,15,1);border-bottom:0;margin:0 auto;}
+#error_404_page{position:relative;margin:20px auto;width:800px;height:500px;background:url(../images/404.png) 0px 0px no-repeat;}
+#error_500_page{position:relative;margin:20px auto;width:800px;height:500px;background:url(../images/500.png) 0px 0px no-repeat;}
+
+/*************************************************************************************************************************************/
+/*************************************************************************************************** TYPOGRAPHY **********************/
+h1,h2,h3,h4,h5{color:#0d0402;margin-top:5px;text-shadow:0px 1px 0px #fff;}
+h1{font-size:235%;}
+h2{/*font-size:153.9%;*/
+font-size:215%;}
+h2.banner_heading{font-weight:normal;color:#ffffff;margin-top:10px;text-shadow:0px 1px 0px #000;font-size:235%;}
+h3{font-size:145.5%;}
+h4{font-size:118%;}
+h5{}
+h6{font-size:110%;font-weight:bold;color:#000;margin-top:5px;margin-bottom:10px;}
+h3 a,h4 a{font-size:100%;color:#19c0ec;text-decoration:none;}
+h3 a:hover,h4 a:hover{color:#00467f;/* DK BLUE */
+text-decoration:underline;}
+p{margin:5px 0px 0px;line-height:19.35px;;}
+.bold{font-weight:bold;}
+.small_text{font-size:77%;}
+h2 a.small_text{font-size:55%;}
