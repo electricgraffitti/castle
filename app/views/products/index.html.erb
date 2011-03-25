@@ -2,11 +2,12 @@
 
 <div class="full_row">
 	<h2 class="page_header"><%= @cart.package.name %></h2>
+	<h3>Items included in package:</h3>
 	  <% if @cart.package.name == "Simon XT Base Package" %>
 	    <%= render :partial => "products/base_package" %>
-	  <% elsif %>
+	  <% elsif @cart.package.name == "Simon XT Pro Package" %>
 	    <%= render :partial => "products/pro_package" %>
-	  <% elsif %>
+	  <% elsif @cart.package.name == "Simon XT Pro Plus Package" %>
 	    <%= render :partial => "products/plus_package" %>
 	  <% end %>
 	<h2>Devise Add-Ons</h2>
@@ -23,6 +24,7 @@
 <div class="full_row no_top">
   	<%= render :partial => 'products/product_addon', :locals => { :objects => @monitors } %>
 </div>
+<p>*Actual products may vary slightly from images shown.</p>
 
 <% content_for :sub_boxes do %>
 	<% render :partial => 'sub_boxes/products_sub_box', :locals => {:blog => @blog} %>
