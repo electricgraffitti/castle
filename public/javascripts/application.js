@@ -96,7 +96,13 @@ var base = {
 			color: '#cff2ff'
 		},
 		1000);
-	}
+	},
+	
+	setTips: function() {
+		$('.tool_tip').tipTip({
+			defaultPosition: "top"
+		});
+	},
 
 };
 
@@ -149,4 +155,5 @@ $(document).ready(function() {
 	// injects flash div into dom
 	flash.injectFlashBox();
 	flash.setFlash();
+	base.setTips();
 });

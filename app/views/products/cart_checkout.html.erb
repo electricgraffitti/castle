@@ -1,0 +1,98 @@
+<div class="checkout">
+  <div class="full_row">
+    <h2 class="page_header">Castle Protection Order Processing</h2>
+  </div>
+  <div class="full_row no_top">
+  		<div class="column_3 product_wrap">	
+  			<h3>
+  				<%= (@cart.package.name).titleize %>
+  			</h3>	
+  			<%= image_tag(@cart.package.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
+  			<p class="money blue_text bottom_hr">
+  				Price: <%= number_to_currency(@cart.package.price) %>/Month*
+  			</p>
+  			<div class="top_hr bottom_hr"> 
+  			<h5>This System Comes Standard With:</h5>
+  			<% if @cart.package.name == "Simon XT Base Package" %>
+          <%= render :partial => 'products/base_package' %>
+  			<% elsif @cart.package.name == "Simon XT Pro Package" %>
+  				<%= render :partial => 'products/pro_package' %>
+  			<% elsif @cart.package.name == "Simon XT Pro Plus Package" %>
+          <%= render :partial => 'products/plus_package' %>
+  			<% end %>
+  			</div>
+  				<% unless @cart.items.empty? %>
+      		<div class="top_hr bottom_h">
+      		  <h3>Package Add Ons</h3>
+      		  <ul>
+                <% @cart.items.each do |p| %>
+                <li>(<%= link_to p.quantity, remove_item_path(:product_id => p.cart_item, :page => "order"), :class => "tool_tip", :title => "Remove Item" %>) <%= p.title %> - <%= number_to_currency(p.price) %></li>
+                <% end %>
+            </ul>
+            <p class="bottom_hr">
+  					<%= link_to "More Addons", products_path, :class => "tool_tip", :title => "Get more Addons" %>
+  					</p>
+  					<h3 class="top_hr">Total Monthly Rate: <%= number_to_currency(@cart.total_price) %></h3>
+      		</div>
+      		<% end %>
+    		
+  		</div>
+      <div id="signup_form" class="column_23">
+        <div class="form_segment bottom_hr">
+          <h3>
+    				Account Information
+    			</h3>
+    			<div class="purchase_form">
+    			  <%= form_for @user do |f| %>
+    			    <div class="field">
+                <%= f.label :first_name, raw("<span class='bold'>*</span> First Name") %><br />
+                <%= f.text_field :first_name, :class => "tool_tip validate(required)", :title => "First Name as it appears on your credit card" %>
+              </div>
+              <div class="field">
+                <%= f.label :last_name, raw("<span class='bold'>*</span> Last Name") %><br />
+                <%= f.text_field :last_name, :class => "tool_tip validate(required)", :title => "Last Name as it appears on your Credit Card" %>
+              </div>
+              <div class="field">
+                <%= f.label :email, raw("<span class='bold'>*</span> Email Address") %><br />
+                <%= f.text_field :email, :class => "tool_tip validate(required)", :title => "Current Email Address" %>
+              </div>
+              <div class="field">
+                <%= f.label :phone, raw("<span class='bold'>*</span> Phone Number") %><br />
+                <%= f.text_field :phone, :class => "tool_tip validate(required)", :title => "Contact Phone Number" %>
+              </div>
+    			</div>
+        </div>
+        <div class="form_segment top_hr bottom_hr">
+           <h3>
+     				Billing Information: - SECURE
+     			</h3>
+     			<div class="purchase_form">
+            <%= fields_for :credit_card do |c| %>
+      	      <div class="field">
+      	        <%= c.label :credit_card, raw("<span class='bold'>*</span> Credit Card Number") %><br />
+      	        <%= c.text_field :credit_card, :class => "tool_tip validate(required)", :title => "Enter Valid Credit Card Numbers" %>
+      	      </div>
+      	      <div id="cvv_form">
+      	        <%= c.label :cvv, raw("<span class='bold'>*</span> CVV"), :class => "cvv" %><br />
+      	        <%= c.text_field :cvv, :class => "tool_tip validate(required)", :title => "3-4 Digit Code on Rear of Card" %>
+      					<%= render :partial => 'layouts/cc_badge' %>
+      	      </div>
+      				<div class="clear"></div>
+      	     	<div id="date_select" class="field">
+      	        <%= c.label :expiration_date, raw("<span class='bold'>*</span> Expiration Date") %><br />
+      					<%= date_select("chargify", "expiration_date", :prompt => {:year => 'Year', :month => 'Month'}, :use_short_month => true, :order => [:month, :year], :start_year => 2010,:end_year => Time.now.year + 5 ) %>
+      	      </div>
+      	      <div class="field">
+      	        <%= c.label :billing_zip, raw("<span class='bold'>*</span> Billing Zipcode") %><br />
+      	        <%= c.text_field :billing_zip, :class => "tool_tip validate(required)", :title => "Enter Billing Zipcode for Credit Card" %>
+      	      </div>
+      			<% end %>
+     			  <% end %>
+     			</div>
+        </div>
+        <div class="form_segment top_hr">
+          <%= link_to "Place Your Order", process_path, :class => "btn right custom_text" %>
+        </div>
+      </div>
+  </div>
+</div>

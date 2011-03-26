@@ -34,6 +34,7 @@ class Product < ActiveRecord::Base
   #Assets
   accepts_nested_attributes_for :systems
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => lambda { |a| a[:attachment].blank? }
-
+  
+  # Methods
   
 end

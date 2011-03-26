@@ -30,9 +30,27 @@ class Cart # < ActiveRecord::Base
     self.package = p 
   end
   
-  def add_items(pid)
-    item = Product.find(pid)
-    self.items.push(item)
+  def add_items(product_id)
+    current_item = @items.find {|item| item.cart_item == product_id}
+    if current_item
+      current_item.increment_quantity
+    else
+      @items << CartItem.new(product_id)
+    end
+  end
+  
+  def remove_items(product_id)
+    current_item = @items.find {|item| item.cart_item == product_id}
+    current_item.decrement_quantity
+    if current_item.quantity <= 0
+      @items.reject! { |item| item.quantity <= 0 }
+    end
+  end
+  
+  def total_price
+    item_prices = @items.sum {|item| item.price}
+    total_price = item_prices + @package.price    
+    return total_price
   end
   
 end

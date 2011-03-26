@@ -1,12 +1,17 @@
 <% if cart.package %>
 <div id="cart">
-    <ul>
-      <li><span>Alarm System:</span> <%= cart.package.name if cart.package %></li>
-      <% unless cart.items.empty? %>
-        <% cart.items.each do |p| %>
-        <li><%= p.item_name %></li>
-        <% end %>
+  <%= link_to "Empty Cart", empty_cart_path, :class => "empty_cart_link tool_tip", :title => "Empty Cart" %>
+  <ul>
+    <li><span>Alarm System:</span> <%= cart.package.name if cart.package %></li>
+    <% unless cart.items.empty? %>
+      <% cart.items.each do |p| %>
+      <li>(<%= link_to p.quantity, remove_item_path(:product_id => p.cart_item), :class => "tool_tip", :title => "Remove Item" %>) <%= p.title %> - <%= number_to_currency(p.price) %></li>
       <% end %>
-    </ul>
+    <% end %>
+  </ul>
+  <div class="cart_actions">
+    <span>Total Monthly Rate: <%= number_to_currency(cart.total_price) %></span>
+    <%= link_to "Check Out", checkout_path, :class => "btn tool_tip", :title => "Check Out"%>
   </div>
+</div>
 <% end %>

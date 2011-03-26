@@ -14,7 +14,7 @@
 			</h3>	
 			<%= image_tag(package.photos.last.attachment.url(:showcase), :class => "blue_bg") %>
 			<p class="money blue_text">
-				Price: <%= number_to_currency(package.price) %>*
+				Price: <%= number_to_currency(package.price) %>/Month*
 			</p>
 			<p class="top_hr">
 				<%= package.description %>
@@ -28,7 +28,7 @@
         <%= render :partial => 'products/plus_package' %>
 			<% end %>
 			<div class="button_wrap">
-  		  <%= link_to "Select System", products_path(:package_id => package.id), :class => "btn" %>
+  		  <%= link_to "Select System", products_path(:package_id => package.id), :class => "btn tool_tip", :title => "Add #{(package.name).titleize} to Cart" %>
 				<% if current_admin %>
 					<%= link_to "Edit System Item", edit_package_path(package), :class => "admin_btn" %>
 				<% end %>

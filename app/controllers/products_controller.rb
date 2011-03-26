@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   
-  before_filter :require_admin, :except => [:index, :add_items]
+  before_filter :require_admin, :except => [:index, :add_items, :empty_cart, :remove_items, :cart_checkout ]
   
   # GET /products
   # GET /products.xml
@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     @products = Product.all
     @monitors = Product.monitoring
     @blog = Blog.last
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
@@ -98,12 +98,41 @@ class ProductsController < ApplicationController
   end
   
   def add_items
-    
     @cart = setup_cart
-    @cart.add_items(params[:product_id])
-    
+    @cart.add_items(params[:product_id].to_i)
     redirect_to products_path
     
+    rescue ActiveRecord::RecordNotFound 
+      logger.error("Attempt to access invalid product #{params[:id]}") 
+      flash[:notice] = "Invalid product" 
+      redirect_to products_path
+    
+  end
+  
+  def remove_items
+    @cart = setup_cart
+    @cart.remove_items(params[:product_id].to_i)
+    
+    if params[:page]
+      redirect_to checkout_path
+    else
+      redirect_to products_path
+    end
+  end
+  
+  def empty_cart
+    session[:cart] = nil
+    redirect_to packages_path, :notice => "Your cart is empty"
+  end
+  
+  def cart_checkout
+    @user = User.new
+    @cart = setup_cart
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @products }
+    end
   end
   
 end

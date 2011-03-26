@@ -80,4 +80,9 @@ class OrdersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def process_path
+    @cart = setup_cart
+    raise params.to_yaml
+  end
 end
