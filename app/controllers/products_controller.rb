@@ -14,8 +14,8 @@ class ProductsController < ApplicationController
     
     # raise @cart.to_yaml
     
-    # raise @cart.to_yaml
-    @products = Product.system
+
+    @products = Product.all
     @monitors = Product.monitoring
     @blog = Blog.last
 
@@ -41,6 +41,8 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.photos.build
+    @packages = Package.all
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -54,11 +56,15 @@ class ProductsController < ApplicationController
     if @product.photos.blank?
        @product.photos.build
     end
+    @packages = Package.all    
   end
 
   # POST /products
   # POST /products.xml
   def create
+    
+         # raise params.to_yaml
+         
     @product = Product.new(params[:product])
 
     respond_to do |format|

@@ -489,6 +489,9 @@ font-size: 77%;
 h2 a.small_text {
 font-size: 55%;
 }
+h4.form_header {
+	margin-bottom: 5px;
+}
 /*.wf-loading h2,.wf-loading h3 {
 visibility: hidden;
 }
