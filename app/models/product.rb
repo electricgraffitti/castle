@@ -30,8 +30,8 @@ class Product < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
   has_many :cart_items
   belongs_to :cart
-  belongs_to :package
   has_many :systems
+  has_many :packages, :through => :systems
   
   #Assets
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => lambda { |a| a[:attachment].blank? }
