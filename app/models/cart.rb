@@ -49,8 +49,13 @@ class Cart # < ActiveRecord::Base
   
   def total_price
     item_prices = @items.sum {|item| item.price}
-    total_price = item_prices + @package.price    
-    return total_price
+    
+    if @package
+      total_price = item_prices + @package.price
+      return total_price
+    else
+      return item_prices
+    end
   end
   
 end
