@@ -85,7 +85,7 @@ class PackagesController < ApplicationController
     @package.destroy
 
     respond_to do |format|
-      format.html { redirect_to(packages_url) }
+      format.html {redirect_to(admin_dashboard_path, :notice => "Package has been deleted")}
       format.xml  { head :ok }
     end
   end
