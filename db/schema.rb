@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110325191314) do
+ActiveRecord::Schema.define(:version => 20110326015415) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "product_id"
@@ -114,12 +114,10 @@ ActiveRecord::Schema.define(:version => 20110325191314) do
     t.datetime "updated_at"
     t.integer  "cart_id"
     t.string   "unit_number"
-    t.integer  "package_id"
     t.boolean  "monitoring_addon"
   end
 
   add_index "products", ["cart_id"], :name => "index_products_on_cart_id"
-  add_index "products", ["package_id"], :name => "index_products_on_package_id"
 
   create_table "states", :force => true do |t|
     t.string   "abbreviation"

@@ -12,9 +12,6 @@ class ProductsController < ApplicationController
       @cart.add_package(params[:package_id])
     end
     
-    # raise @cart.to_yaml
-    
-
     @products = Product.all
     @monitors = Product.monitoring
     @blog = Blog.last
@@ -41,9 +38,7 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.photos.build
-    @packages = Package.all
-
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @product }
@@ -55,16 +50,12 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.photos.blank?
        @product.photos.build
-    end
-    @packages = Package.all    
+    end  
   end
 
   # POST /products
   # POST /products.xml
   def create
-    
-         # raise params.to_yaml
-         
     @product = Product.new(params[:product])
 
     respond_to do |format|

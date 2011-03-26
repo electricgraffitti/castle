@@ -17,25 +17,16 @@
 	  <%= f.label :description %><br />
 	  <%= f.text_area :description, :rows => 5, :cols => 30 %>
 	</div>
-		<%= f.fields_for :systems do |builder| %>
-		<div class="field">
-			<% @packages.each do |package| %>
-				<%= builder.check_box :package_id %>
-				<%= package.name %><br />
-			<% end %>
-		</div>
-		<% end %>
-		<div class="field">
-			<%= f.check_box :monitoring_addon %>
-   		<%= f.label :monitoring_addon, "Monitoring Addon" %>
-  </div>
+	<% for package in Package.all %>
+	  <div class="field">
+    	<%= check_box_tag "product[package_ids][]", package.id, @product.packages.include?(package) %>
+    	<%= package.name %>
+  	</div>
+	<% end %>
+  <%= hidden_field_tag 'product[package_ids][]', "" %>
 	<div class="field">
-		<%= f.check_box :alarm_system %>
-   	<%= f.label :alarm_system %>
-  </div>
-  <div class="field">
-	  <%= f.check_box :addons %>
-   	<%= f.label :addons %>
+		<%= f.check_box :monitoring_addon %>
+ 		<%= f.label :monitoring_addon, "Monitoring Addon" %>
   </div>
 	<%= f.fields_for :photos do |photo_form| %>
 		<div class="field">

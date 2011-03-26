@@ -25,6 +25,7 @@ class Package < ActiveRecord::Base
   has_many :carts
   has_many :cart_items
   has_many :systems
+  accepts_nested_attributes_for :systems
   has_many :products, :through => :systems
   
   # Methods
