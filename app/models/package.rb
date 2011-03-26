@@ -25,7 +25,7 @@ class Package < ActiveRecord::Base
   has_many :carts
   has_many :cart_items
   has_many :systems
-  # has_many :products, :through => :systems
+  has_many :products, :through => :systems
   
   # Methods
   
