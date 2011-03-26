@@ -17,15 +17,25 @@
 	  <%= f.label :description %><br />
 	  <%= f.text_area :description, :rows => 5, :cols => 30 %>
 	</div>
-		<%= f.fields_for :systems do |s| %>
-			<div class="field">
-				<h4 class="form_header">Select System Compatibility:</h4>
-				<%= s.collection_select(:package_id, Package.all, :id, :name, {:prompt => "Select a System"}) %>
-			</div>
+		<%= f.fields_for :systems do |builder| %>
+		<div class="field">
+			<% @packages.each do |package| %>
+				<%= builder.check_box :package_id %>
+				<%= package.name %><br />
+			<% end %>
+		</div>
 		<% end %>
+		<div class="field">
+			<%= f.check_box :monitoring_addon %>
+   		<%= f.label :monitoring_addon, "Monitoring Addon" %>
+  </div>
 	<div class="field">
-		<%= f.check_box :monitoring_addon %>
-   	<%= f.label :monitoring_addon, "Monitoring Addon?" %>
+		<%= f.check_box :alarm_system %>
+   	<%= f.label :alarm_system %>
+  </div>
+  <div class="field">
+	  <%= f.check_box :addons %>
+   	<%= f.label :addons %>
   </div>
 	<%= f.fields_for :photos do |photo_form| %>
 		<div class="field">

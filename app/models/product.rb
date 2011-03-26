@@ -25,15 +25,18 @@ class Product < ActiveRecord::Base
   
   #Scopes
     scope :monitoring, where("monitoring_addon = ?", true)
+    # scope :system_listing, order("package_id")
   
   #Associations
   has_many :photos, :dependent => :destroy
   has_many :cart_items
   belongs_to :cart
-  belongs_to :package
+  # belongs_to :package
   has_many :systems
+  has_many :packages, :through => :systems
   
   #Assets
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => lambda { |a| a[:attachment].blank? }
+  # accepts_nested_attributes_for :systems, :allow_destroy => true
   
 end
