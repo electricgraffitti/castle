@@ -76,4 +76,5 @@ class OrdersController < ApplicationController
     @billing_info = params
     Cart.process_order(@cart, @billing_info)
   end
+  
 end
