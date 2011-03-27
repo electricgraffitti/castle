@@ -58,4 +58,10 @@ class Cart # < ActiveRecord::Base
     end
   end
   
+  def self.process_order(cart, billing)
+    
+    raise cart.to_yaml
+    
+  end
+  
 end

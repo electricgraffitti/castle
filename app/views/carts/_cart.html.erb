@@ -4,7 +4,7 @@
   <ul>
     
     <% if cart.package %>
-      <li><span>Alarm System:</span> <%= cart.package.name if cart.package %></li>
+      <li class="cart_alarm_title"><span>Alarm System:</span> <%= cart.package.name if cart.package %></li>
     <% end %>
     
     <% unless cart.items.empty? %>

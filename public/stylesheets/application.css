@@ -955,6 +955,9 @@ font-weight: bold;
 	padding-left: 5px;
 	color: #91c1f0;
 }
+#cart ul li.cart_alarm_title {
+	margin-bottom: 10px;
+}
 #cart ul li a {
 	color: #fff;
 }

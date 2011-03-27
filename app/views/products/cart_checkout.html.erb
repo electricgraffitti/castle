@@ -12,87 +12,104 @@
   				Price: <%= number_to_currency(@cart.package.price) %>/Month*
   			</p>
   			<div class="top_hr bottom_hr"> 
-  			<h5>This System Comes Standard With:</h5>
-  			<% if @cart.package.name == "Simon XT Base Package" %>
-          <%= render :partial => 'products/base_package' %>
-  			<% elsif @cart.package.name == "Simon XT Pro Package" %>
-  				<%= render :partial => 'products/pro_package' %>
-  			<% elsif @cart.package.name == "Simon XT Pro Plus Package" %>
-          <%= render :partial => 'products/plus_package' %>
-  			<% end %>
+    			<h5>This System Comes Standard With:</h5>
+    			<% if @cart.package.name == "Simon XT Base Package" %>
+            <%= render :partial => 'products/base_package' %>
+    			<% elsif @cart.package.name == "Simon XT Pro Package" %>
+    				<%= render :partial => 'products/pro_package' %>
+    			<% elsif @cart.package.name == "Simon XT Pro Plus Package" %>
+            <%= render :partial => 'products/plus_package' %>
+    			<% end %>
   			</div>
-  				<% unless @cart.items.empty? %>
-      		<div class="top_hr bottom_h">
-      		  <h3>Package Add Ons</h3>
+				<% unless @cart.items.empty? %>
+    		  <div class="top_hr bottom_h">
+    		    <h3>Package Add Ons</h3>
       		  <ul>
                 <% @cart.items.each do |p| %>
                 <li>(<%= link_to p.quantity, remove_item_path(:product_id => p.cart_item, :page => "order"), :class => "tool_tip", :title => "Remove Item" %>) <%= p.title %> - <%= number_to_currency(p.price) %></li>
                 <% end %>
             </ul>
             <p class="bottom_hr">
-  					<%= link_to "More Addons", products_path, :class => "tool_tip", :title => "Get more Addons" %>
+  					  <%= link_to "More Addons", products_path, :class => "tool_tip", :title => "Get more Addons" %>
   					</p>
-  					<h3 class="top_hr">Total Monthly Rate: <%= number_to_currency(@cart.total_price) %></h3>
-      		</div>
-      		<% end %>
+					  <h3 class="top_hr">Total Monthly Rate: <%= number_to_currency(@cart.total_price) %></h3>
+    		  </div>
+    		<% end %>
     		
   		</div>
       <div id="signup_form" class="column_23">
-        <div class="form_segment bottom_hr">
+        <%= form_tag (process_order_path, :method => "post") do %>
+          <div class="form_segment bottom_hr">
           <h3>
     				Account Information
     			</h3>
     			<div class="purchase_form">
-    			  <%= form_for @user do |f| %>
     			    <div class="field">
-                <%= f.label :first_name, raw("<span class='bold'>*</span> First Name") %><br />
-                <%= f.text_field :first_name, :class => "tool_tip validate(required)", :title => "First Name as it appears on your credit card" %>
+                <%= label_tag :first_name, raw("<span class='bold'>*</span> First Name") %><br />
+                <%= text_field_tag :first_name, "", :class => "tool_tip validate(required)", :title => "First Name as it appears on your credit card" %>
               </div>
               <div class="field">
-                <%= f.label :last_name, raw("<span class='bold'>*</span> Last Name") %><br />
-                <%= f.text_field :last_name, :class => "tool_tip validate(required)", :title => "Last Name as it appears on your Credit Card" %>
+                <%= label_tag :last_name, raw("<span class='bold'>*</span> Last Name") %><br />
+                <%= text_field_tag :last_name, "", :class => "tool_tip validate(required)", :title => "Last Name as it appears on your Credit Card" %>
               </div>
               <div class="field">
-                <%= f.label :email, raw("<span class='bold'>*</span> Email Address") %><br />
-                <%= f.text_field :email, :class => "tool_tip validate(required)", :title => "Current Email Address" %>
+                <%= label_tag :email, raw("<span class='bold'>*</span> Email Address") %><br />
+                <%= text_field_tag :email, "", :class => "tool_tip validate(required)", :title => "Current Email Address" %>
               </div>
               <div class="field">
-                <%= f.label :phone, raw("<span class='bold'>*</span> Phone Number") %><br />
-                <%= f.text_field :phone, :class => "tool_tip validate(required)", :title => "Contact Phone Number" %>
+                <%= label_tag :phone, raw("<span class='bold'>*</span> Phone Number") %><br />
+                <%= text_field_tag :phone, "", :class => "tool_tip validate(required)", :title => "Contact Phone Number" %>
               </div>
     			</div>
         </div>
-        <div class="form_segment top_hr bottom_hr">
+          <div class="form_segment top_hr bottom_hr">
+          <h3>
+    				Account/Billing Address
+    			</h3>
+    			<div class="purchase_form">
+    			    <div class="field">
+                <%= label_tag :address, raw("<span class='bold'>*</span> Address") %><br />
+                <%= text_field_tag :address, "", :class => "tool_tip validate(required)", :title => "Your Billing Address" %>
+              </div>
+              <div class="field">
+                <%= label_tag :city, raw("<span class='bold'>*</span> City") %><br />
+                <%= text_field_tag :city, "", :class => "tool_tip validate(required)", :title => "City" %>
+              </div>
+              <div class="field">
+                <%= label_tag :state, raw("<span class='bold'>*</span> State") %><br />
+                <%= collection_select :state, :state_id, State.all, :id, :abbreviation, {:prompt => "Select State"} %>
+              </div>
+      	      <div class="field">
+      	        <%= label_tag :billing_zip, raw("<span class='bold'>*</span> Billing Zipcode") %><br />
+      	        <%= text_field_tag :billing_zip, "", :class => "tool_tip validate(required)", :title => "Enter Billing Zipcode for Credit Card"%>
+      	      </div>
+    			</div>
+        </div>
+          <div class="form_segment top_hr bottom_hr">
            <h3>
      				Billing Information: - SECURE
      			</h3>
      			<div class="purchase_form">
-            <%= fields_for :credit_card do |c| %>
       	      <div class="field">
-      	        <%= c.label :credit_card, raw("<span class='bold'>*</span> Credit Card Number") %><br />
-      	        <%= c.text_field :credit_card, :class => "tool_tip validate(required)", :title => "Enter Valid Credit Card Numbers" %>
+      	        <%= label_tag :credit_card, raw("<span class='bold'>*</span> Credit Card Number") %><br />
+      	        <%= text_field_tag :credit_card, "",:class => "tool_tip validate(required)", :title => "Enter Valid Credit Card Numbers" %>
       	      </div>
       	      <div id="cvv_form">
-      	        <%= c.label :cvv, raw("<span class='bold'>*</span> CVV"), :class => "cvv" %><br />
-      	        <%= c.text_field :cvv, :class => "tool_tip validate(required)", :title => "3-4 Digit Code on Rear of Card" %>
+      	        <%= label_tag :cvv, raw("<span class='bold'>*</span> CVV"), :class => "cvv" %><br />
+      	        <%= text_field_tag :cvv, "",  :class => "tool_tip validate(required)", :title => "3-4 Digit Code on Rear of Card" %>
       					<%= render :partial => 'layouts/cc_badge' %>
       	      </div>
       				<div class="clear"></div>
       	     	<div id="date_select" class="field">
-      	        <%= c.label :expiration_date, raw("<span class='bold'>*</span> Expiration Date") %><br />
-      					<%= date_select("chargify", "expiration_date", :prompt => {:year => 'Year', :month => 'Month'}, :use_short_month => true, :order => [:month, :year], :start_year => 2010,:end_year => Time.now.year + 5 ) %>
+      	        <%= label_tag :expiration_date, raw("<span class='bold'>*</span> Expiration Date") %><br />
+      					<%= date_select("credit_card_expiration", "expiration_date", :prompt => {:year => 'Year', :month => 'Month'}, :use_short_month => true, :order => [:month, :year], :start_year => 2010,:end_year => Time.now.year + 5 ) %>
       	      </div>
-      	      <div class="field">
-      	        <%= c.label :billing_zip, raw("<span class='bold'>*</span> Billing Zipcode") %><br />
-      	        <%= c.text_field :billing_zip, :class => "tool_tip validate(required)", :title => "Enter Billing Zipcode for Credit Card" %>
-      	      </div>
-      			<% end %>
-     			  <% end %>
      			</div>
         </div>
-        <div class="form_segment top_hr">
-          <%= link_to "Place Your Order", process_path, :class => "btn right custom_text" %>
+          <div class="form_segment top_hr">
+          <%= submit_tag "Place Your Order", :class => "btn right custom_text" %>
         </div>
+        <% end %>
       </div>
   </div>
 </div>
