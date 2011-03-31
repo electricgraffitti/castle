@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.5'
 gem 'mongrel'
 gem 'mysql2'
 gem 'annotate', '2.4.0'
