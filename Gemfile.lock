@@ -107,7 +107,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  abstract (= 1.0.0)
   annotate (= 2.4.0)
   authlogic
   capistrano
