@@ -20,7 +20,11 @@
 <% end %>
 
 <div class="full_row no_top">
-	<%= render :partial => 'products/product_addon', :locals => { :objects => @products } %>
+  <% @products.each do |product| %>
+    <% unless product.monitoring_addon %>
+	    <%= render :partial => 'products/product_addon', :locals => { :product => product} %>
+	  <% end %>
+	<% end %>
 </div>
 
 <div class="full_row">
@@ -28,8 +32,13 @@
 </div>
 
 <div class="full_row no_top">
-  	<%= render :partial => 'products/product_addon', :locals => { :objects => @monitors } %>
+	<% @products.each do |product| %>
+	  <% if product.monitoring_addon %>
+	    <%= render :partial => 'products/product_addon', :locals => { :product => product} %>
+	  <% end %>
+	<% end %>
 </div>
+
 <p>*Actual products may vary slightly from images shown.</p>
 
 <% content_for :sub_boxes do %>

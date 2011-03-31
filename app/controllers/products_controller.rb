@@ -12,8 +12,9 @@ class ProductsController < ApplicationController
       @cart.add_package(params[:package_id])
     end
     
-    @products = Product.all
-    @monitors = Product.monitoring
+    @package = Package.find(params[:package_id])
+    @products = @package.products
+ 
     @blog = Blog.last
     
     respond_to do |format|

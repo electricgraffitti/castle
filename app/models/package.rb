@@ -22,10 +22,7 @@ class Package < ActiveRecord::Base
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => lambda { |a| a[:attachment].blank? }
   
   # has_many :products
-  has_many :carts
-  has_many :cart_items
   has_many :systems
-  accepts_nested_attributes_for :systems
   has_many :products, :through => :systems
   
   # Methods
