@@ -4,6 +4,7 @@ gem 'rails', '3.0.5'
 gem 'mongrel'
 gem 'mysql2'
 gem 'annotate', '2.4.0'
+gem 'abstract', '1.0.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'

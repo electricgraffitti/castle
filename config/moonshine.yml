@@ -73,7 +73,6 @@
 :passenger:
   :max_pool_size: 2
   :use_global_queue: true
-  :version: 2.2.15
 
 # MySQL-specific options. Refer to the following templates for details about
 # what values are used:
