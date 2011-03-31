@@ -28,7 +28,6 @@ GEM
       activemodel (= 3.0.5)
       activesupport (= 3.0.5)
     activesupport (3.0.5)
-    annotate (2.4.0)
     arel (2.0.9)
     authlogic (2.1.6)
       activesupport
@@ -107,7 +106,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  annotate (= 2.4.0)
   authlogic
   capistrano
   chargify_api_ares
