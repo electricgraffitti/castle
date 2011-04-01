@@ -15,8 +15,12 @@ class ProductsController < ApplicationController
       @package = Package.find(@cart.package.id)
     end  
     
-    @products = @package.products
- 
+    if @package
+      @products = @package.products
+    else
+      @products = Product.all
+    end
+    
     @blog = Blog.last
     
     respond_to do |format|
