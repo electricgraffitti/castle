@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110326015415) do
+ActiveRecord::Schema.define(:version => 20110401041732) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "product_id"
@@ -72,14 +72,20 @@ ActiveRecord::Schema.define(:version => 20110326015415) do
   add_index "carts", ["package_id"], :name => "index_carts_on_package_id"
   add_index "carts", ["user_id"], :name => "index_carts_on_user_id"
 
-  create_table "orders", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "cart_id"
+  create_table "order_products", :force => true do |t|
+    t.integer  "order_id"
+    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "orders", ["cart_id"], :name => "index_orders_on_cart_id"
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "complete"
+  end
+
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "packages", :force => true do |t|

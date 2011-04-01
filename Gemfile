@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.5'
 gem 'mongrel'
 gem 'mysql2'
+gem 'annotate'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -13,7 +14,7 @@ gem 'authlogic'
 gem 'rails3-generators'
 gem 'paperclip'
 gem 'chargify_api_ares'
-gem 'rails-geocoder', :require => "geocoder"
+gem 'geocoder'
 
 # Use unicorn as the web server
 # gem 'unicorn'
