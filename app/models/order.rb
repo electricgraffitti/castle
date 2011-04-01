@@ -13,5 +13,4 @@ class Order < ActiveRecord::Base
   
   #Associtations
   belongs_to :user
-  belongs_to :cart
 end

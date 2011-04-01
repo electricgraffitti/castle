@@ -13,7 +13,7 @@ gem 'authlogic'
 gem 'rails3-generators'
 gem 'paperclip'
 gem 'chargify_api_ares'
-gem 'rails-geocoder', :require => "geocoder"
+gem 'geocoder'
 
 # Use unicorn as the web server
 # gem 'unicorn'
