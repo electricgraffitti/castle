@@ -10,9 +10,11 @@ class ProductsController < ApplicationController
     
     if params[:package_id]
       @cart.add_package(params[:package_id])
-    end
+      @package = Package.find(params[:package_id])
+    else 
+      @package = Package.find(@cart.package.id)
+    end  
     
-    @package = Package.find(params[:package_id])
     @products = @package.products
  
     @blog = Blog.last
