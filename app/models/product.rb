@@ -28,6 +28,8 @@ class Product < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
   has_many :systems
   has_many :packages, :through => :systems
+  has_many :order_products
+  has_many :orders, :through => :order_products
   
   #Assets
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => lambda { |a| a[:attachment].blank? }

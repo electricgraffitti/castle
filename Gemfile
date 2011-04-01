@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.5'
 gem 'mongrel'
 gem 'mysql2'
+gem 'annotate'
 
 # Use unicorn as the web server
 # gem 'unicorn'
