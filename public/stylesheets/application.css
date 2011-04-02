@@ -1273,6 +1273,9 @@ border: none;
 .btn:hover {
 background: url(../images/buttons/button.png) 0px 0px no-repeat;
 }
+.button_wrap {
+	text-align: center;
+}
 .banner_arrows {
 position: absolute;
 top: 50%;
