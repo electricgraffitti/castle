@@ -5,13 +5,10 @@
 		</h3>	
 		<%= image_tag(product.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
 		<p class="money blue_text">
-			Price: <%= number_to_currency(product.price) %>/Month Each
+			Price: <%= number_to_currency(product.price) %>/Month Each <%= link_to "Add to Cart", add_item_path(:product_id => product.id), :class => "tool_tip", :title => "Add #{(product.item_name).titleize} to Cart" %>
 		</p>
 		<p class="text">
 			<%= product.description %>
-		</p>
-		<p class="part bottom_hr">
-			Part#: <%= product.unit_number %><%= link_to "Add to Cart", add_item_path(:product_id => product.id), :class => "tool_tip", :title => "Add #{(product.item_name).titleize} to Cart" %>
 		</p>
 	</div>
 	<% if current_admin %>
