@@ -851,16 +851,17 @@ border: 1px solid #333;
 	padding: 10px 0px;
 }
 .product_wrap p.text {
-	height: 70px;
+	min-height: 20px;
 }
 .product_wrap p.part {
-width: 250px;
+  width: 250px;
+  float:left;
 }
 .product_wrap p.part a {
-display: inline;
-float: right;
-color:#3058BF;
-text-decoration: none;
+  display: inline;
+  float: right;
+  color:#3058BF;
+  text-decoration: none;
 }
 .product_wrap p.part a:hover {
 color:red;
