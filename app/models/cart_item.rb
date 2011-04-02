@@ -17,9 +17,6 @@ class CartItem < ActiveRecord::Base
   # validates :notes, :presence => true, :uniqueness => true
   
   #Associations
-  belongs_to :cart
-  belongs_to :product
-  belongs_to :package
   
   attr_reader :cart_item, :quantity, :name, :cart_price
   
