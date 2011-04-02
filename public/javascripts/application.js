@@ -148,7 +148,24 @@ var admin = {
 		// $('#event_end_date').datepicker({
 		// 	showButtonPanel: true
 		// });
+	},
+	
+	toggleDependencies: function() {
+	  var depCkBox = $("#dependent_checkbox input:checkbox"),
+	      depProds = $('#dependent_products');
+	  
+	  depCkBox.click(function() {
+	    
+	    if ($(this).is(':checked')) {
+        depProds.slideDown();
+      } else {
+        depProds.slideUp();
+      }
+      
+	  });
+	  
 	}
+	
 };
 //**********Initialize Document**********//
 $(document).ready(function() {

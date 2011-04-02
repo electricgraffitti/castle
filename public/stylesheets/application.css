@@ -853,19 +853,26 @@ border: 1px solid #333;
 .product_wrap p.text {
 	min-height: 20px;
 }
-.product_wrap p.part {
+.product_wrap div.part {
   width: 250px;
   float:left;
 }
-.product_wrap p.part a {
+.product_wrap div.part a {
   display: inline;
   float: right;
   color:#3058BF;
   text-decoration: none;
 }
-.product_wrap p.part a:hover {
+.product_wrap div.part a.left {
+  float:left;
+}
+.product_wrap div.part a:hover {
 color:red;
 text-decoration: underline;
+}
+.list_title {
+  font-weight: bold;
+  padding: 3px 0px 5px;
 }
 .product_wrap h4 {
 padding-bottom: 5px;
@@ -1260,7 +1267,7 @@ input[type="submit"].btn, input[type="button"].btn {
 }
 .btn {
 cursor: pointer;
-display: block;
+display: inline-block;
 font-size: 12px;
 height: 15px;
 padding: 10px 0px;
@@ -1331,6 +1338,26 @@ padding: 3px;
 }
 .listing ul li {
   font-size: 14px;
+}
+#dependent_products {
+  position: relative;
+  width: 100%;
+  display:none;
+  float:left;
+  padding-bottom: 10px;
+}
+#dependent_products .field {
+  width: 45%;
+}
+#dependent_products h3 {
+  padding: 8px;
+  font-size: 16px;
+}
+.cancel_link {
+  position: relative;
+  display: inline-block;
+  padding-top: 9px;
+  float: right;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** OVERLAY **********************/

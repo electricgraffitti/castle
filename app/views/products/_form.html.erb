@@ -28,6 +28,21 @@
 		<%= f.check_box :monitoring_addon %>
  		<%= f.label :monitoring_addon, "Monitoring Addon" %>
   </div>
+  <div id="dependent_checkbox" class="field">
+		<%= f.check_box :dependent_item %>
+ 		<%= f.label :dependent_item, "Requires Other Items" %>
+  </div>
+  <div class="clear"></div>
+  <div id="dependent_products">
+  <h3 class="page_header">Check dependent items</h3>
+    <% for p in Product.all %>
+  	  <div class="field">
+      	<%= check_box_tag "product[dependency_ids][]", p.id, @product.dependent_products.include?(p) %>
+      	<%= p.item_name %>
+    	</div>
+  	<% end %>
+    <%= hidden_field_tag 'product[dependency_ids][]', "" %>
+  </div>
 	<%= f.fields_for :photos do |photo_form| %>
 		<div class="field">
 			<%= photo_form.label :photo, "Upload an image" %><br />
@@ -40,6 +55,14 @@
 	</div>
 	<div class="clear"></div>
   <div class="field">
-   	<%= f.submit :class => 'btn' %>
+   	<%= f.submit :class => 'btn' %> <%= link_to "Cancel", admin_dashboard_path, :class => "cancel_link" %>
   </div>
+<% end %>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      admin.toggleDependencies();
+    });
+  </script>
 <% end %>

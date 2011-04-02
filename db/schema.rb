@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110402033217) do
+ActiveRecord::Schema.define(:version => 20110402162145) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "product_id"
@@ -72,6 +72,13 @@ ActiveRecord::Schema.define(:version => 20110402033217) do
   add_index "carts", ["package_id"], :name => "index_carts_on_package_id"
   add_index "carts", ["user_id"], :name => "index_carts_on_user_id"
 
+  create_table "dependent_products", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "dependency_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "order_products", :force => true do |t|
     t.integer  "order_id"
     t.integer  "product_id"
@@ -123,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20110402033217) do
     t.string   "unit_number"
     t.boolean  "monitoring_addon"
     t.integer  "list_order"
+    t.boolean  "dependent_item"
   end
 
   add_index "products", ["cart_id"], :name => "index_products_on_cart_id"

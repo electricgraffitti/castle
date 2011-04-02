@@ -21,7 +21,18 @@
 
 <div class="full_row no_top">
   <% @products.each do |product| %>
-    <% unless product.monitoring_addon %>
+    <% unless product.monitoring_addon || product.dependent_item %>
+	    <%= render :partial => 'products/product_addon', :locals => { :product => product} %>
+	  <% end %>
+	<% end %>
+</div>
+<div class="full_row">
+  	<h2 class="page_header">Dependent Add-Ons</h2>
+</div>
+
+<div class="full_row no_top">
+	<% @products.each do |product| %>
+	  <% if product.dependent_item %>
 	    <%= render :partial => 'products/product_addon', :locals => { :product => product} %>
 	  <% end %>
 	<% end %>
