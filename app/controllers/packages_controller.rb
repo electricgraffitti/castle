@@ -5,7 +5,7 @@ class PackagesController < ApplicationController
   # GET /packages
   # GET /packages.xml
   def index
-    @packages = Package.order('id DESC')
+    @packages = Package.package_order
     @blog = Blog.last
 
     respond_to do |format|
@@ -30,6 +30,7 @@ class PackagesController < ApplicationController
   def new
     @package = Package.new
     @package.photos.build
+    @listings = Package.order.package_order
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,6 +41,8 @@ class PackagesController < ApplicationController
   # GET /packages/1/edit
   def edit
     @package = Package.find(params[:id])
+    @listings = Package.order.package_order
+
     
     if @package.photos.blank?
        @package.photos.build

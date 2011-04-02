@@ -1,8 +1,13 @@
 <div class="full_row">
-  <h2 class="page_header">Edit <%= @product.item_name %></h2>
 </div>
 <div class="full_row no_top">
-	<div class="column_13">
+	<div class="column_2">
+	  <h2 class="page_header">Edit <%= @product.item_name %></h2>
 		<%= render 'products/form' %>
 	</div>
+	<div class="column_2 listing">
+	  <h2 class="page_header">Ex. Product Order</h2>
+	  <%= render :partial => 'products/admin_product_list' %>
+	</div>
 </div>
+

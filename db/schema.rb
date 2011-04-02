@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110401041732) do
+ActiveRecord::Schema.define(:version => 20110402033217) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "product_id"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20110401041732) do
     t.decimal  "price",       :precision => 8, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "list_order"
   end
 
   create_table "photos", :force => true do |t|
@@ -121,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20110401041732) do
     t.integer  "cart_id"
     t.string   "unit_number"
     t.boolean  "monitoring_addon"
+    t.integer  "list_order"
   end
 
   add_index "products", ["cart_id"], :name => "index_products_on_cart_id"

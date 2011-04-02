@@ -22,7 +22,7 @@ class PagesController < ApplicationController
   
   def about
     @packages = Package.order('id DESC')
-    @products = Product.all
+    @products = Product.all(:order => "list_order")
     @product = Product.last
   end
   

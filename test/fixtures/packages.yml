@@ -8,6 +8,7 @@
 #  price       :decimal(8, 2)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  list_order  :integer(4)
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

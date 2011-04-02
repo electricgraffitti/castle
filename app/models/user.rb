@@ -31,7 +31,6 @@ class User < ActiveRecord::Base
   
   # Associations
   belongs_to :account
-  has_many :carts
   has_many :orders
 
   # Validations

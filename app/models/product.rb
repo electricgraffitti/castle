@@ -11,6 +11,7 @@
 #  cart_id          :integer(4)
 #  unit_number      :string(255)
 #  monitoring_addon :boolean(1)
+#  list_order       :integer(4)
 #
 
 class Product < ActiveRecord::Base
@@ -22,6 +23,7 @@ class Product < ActiveRecord::Base
   
   #Scopes
   scope :monitoring, where("monitoring_addon = ?", true)
+  scope :product_order, :order => "list_order"
   # scope :system_listing, order("package_id")
   
   #Associations

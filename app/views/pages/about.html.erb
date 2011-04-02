@@ -38,6 +38,7 @@
 <div class="full_row no_top  bottom_hr">
 	<h2 class="page_header">Additional Devices to Customize Every Household.</h2>
 	<% @products.each do |product| %>
+		<% unless product.monitoring_addon %>
 		<div class="column_3 product_wrap">	
 			<h3>
 				<%= (product.item_name).titleize %>
@@ -47,6 +48,21 @@
 				<%= product.description %>
 			</p>
 		</div>
+		<% end %>
+	<% end %>
+	
+		<% @products.each do |product| %>
+		<% if product.monitoring_addon %>
+		<div class="column_3 product_wrap">	
+			<h3>
+				<%= (product.item_name).titleize %>
+			</h3>	
+			<%= image_tag(product.photos.last.attachment.url(:thumb), :class => "blue_bg center") %>
+			<p>
+				<%= product.description %>
+			</p>
+		</div>
+		<% end %>
 	<% end %>		
 </div>
 <div class="full_row">

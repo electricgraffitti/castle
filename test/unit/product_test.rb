@@ -11,6 +11,7 @@
 #  cart_id          :integer(4)
 #  unit_number      :string(255)
 #  monitoring_addon :boolean(1)
+#  list_order       :integer(4)
 #
 
 require 'test_helper'
