@@ -34,6 +34,10 @@
 			<%= photo_form.file_field :attachment, :size => 16 %>
 		</div>
 	<% end %>
+	<div class="field">
+	 	<%= f.label :list_order, "Product Listing Order" %><br />
+	 	<%= f.text_field :list_order, :size => 1 %>
+	</div>
 	<div class="clear"></div>
   <div class="field">
    	<%= f.submit :class => 'btn' %>
