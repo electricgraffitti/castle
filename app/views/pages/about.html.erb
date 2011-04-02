@@ -1,31 +1,64 @@
-<div class="full_row no_bottom">
-	<h2 class="page_header">Get Castle Protection Sytems</h2>
-</div>
-
-<div class="full_row no_top">
-  <div class="column_2">	
-    <h3>
-  	  How it Works
-    </h3>
+<div class="full_row">
+	<div class="column_2">
+		<h2 class="page_header">Castle Protection. Peace of Mind.</h2>
 		<p>
-			Quisque tellus felis, luctus et interdum eget, porta eu tortor. Vestibulum lacus risus, condimentum id elementum sed, euismod tristique mi? Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer pharetra tincidunt augue imperdiet consectetur. Phasellus pretium dolor id nibh pharetra vel suscipit tortor mattis. Praesent sit amet nulla diam, elementum facilisis sem? Nam sit amet porta est. Donec bibendum aliquet quam, vel accumsan turpis pharetra vitae. Nulla consectetur rutrum velit, quis eleifend enim sollicitudin nec. Donec scelerisque, lorem vitae commodo ultricies, ipsum est tincidunt tellus.
+			Securing your home has never been easier.  We have complete do-it-yourself systems and all of the state-of-the-art addon devises to customize any scenario you have.  With crime on the rise, there has never been a better time to get an alarm system and now it's more affordable than ever.
 		</p>
 	</div>
-	<div class="column_2 center">
-	  <%= image_tag('../images/about.jpg', :class => "wrapped_image") %>
+	<div class="column_2 cta_wrap1">
+		<a class="cta_button custom_text" href="/packages">Get Started Today</a>
 	</div>
 </div>
 <div class="full_row no_top">
-  <div class="column_2">
-    <p class="index_quote">
-      "I feel much safer with a Castle<br/>
-      Protection alarm system in my home"<br/>
-      <span>James Vaughn - Sante Fe, New Mexico</span>
-    </p>
-  </div>
-  <div class="column_2 cta_wrap">
-    <%= link_to "Get Started Today", packages_path, :class => "cta_button custom_text" %>
-  </div>
+
+</div>
+<div class="full_row no_top  bottom_hr">
+		<h2 class="page_header">Available Complete Alarm Packages</h2>
+	<% @packages.each do |package| %>
+		<div class="column_3 product_wrap">	
+			<h3>
+				<%= (package.name).titleize %>
+			</h3>	
+			<%= image_tag(package.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
+			<p>
+				<%= package.description %>
+			</p>
+			<h5>This System Comes Standard With:</h5>
+			<% if package.name == "Simon XT Base Package" %>
+        <%= render :partial => 'products/base_package' %>
+			<% elsif package.name == "Simon XT Pro Package" %>
+				<%= render :partial => 'products/pro_package' %>
+			<% elsif package.name == "Simon XT Pro Plus Package" %>
+        <%= render :partial => 'products/plus_package' %>
+			<% end %>
+		</div>
+	<% end %>		
+</div>
+
+<div class="full_row no_top  bottom_hr">
+	<h2 class="page_header">Additional Devices to Customize Every Household.</h2>
+	<% @products.each do |product| %>
+		<div class="column_3 product_wrap">	
+			<h3>
+				<%= (product.item_name).titleize %>
+			</h3>	
+			<%= image_tag(product.photos.last.attachment.url(:thumb), :class => "blue_bg center") %>
+			<p>
+				<%= product.description %>
+			</p>
+		</div>
+	<% end %>		
+</div>
+<div class="full_row">
+	<div class="column_2">
+		<p>
+			* Not all addon devices are available to all systems.<br />
+			* Actual devices may differ slightly from Image shown.<br /> <%= link_to "Visit our systems page to learn more", packages_path %>
+		</p>
+	</div>
+	<div class="column_2 cta_wrap">
+		<a class="cta_button custom_text" href="/packages">Get Started Today</a>
+	</div>
 </div>
 
 

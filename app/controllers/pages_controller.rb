@@ -21,6 +21,8 @@ class PagesController < ApplicationController
   end
   
   def about
+    @packages = Package.order('id DESC')
+    @products = Product.all
     @product = Product.last
   end
   
