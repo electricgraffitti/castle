@@ -45,10 +45,15 @@ class Product < ActiveRecord::Base
     # Setup empty Arrays
     dep = []
     cis = []
+    interactives = []
     
     # Create Array of Dependency ID's
     self.dependencies.each do |d|
-      dep.push(d.id)
+      if d.interactive_service
+        interactives.push(d.id)
+      else
+        dep.push(d.id)
+      end
     end
     
     # Create Array of product ID's in cart
@@ -61,23 +66,36 @@ class Product < ActiveRecord::Base
       if dep.include?(c)
         dep.delete(c)
       end
+      
+      if interactives.include?(c)
+        interactives = []
+      end
     end
     
-    if dep.empty? 
+    if dep.empty? && interactives.empty?
       return false
     else
-      return existing_dependencies(dep)
+      return existing_dependencies(dep, interactives)
     end
   end
   
-  def existing_dependencies(dep)
+  def existing_dependencies(dep, interactives)
     
     products = []
     
-    dep.each do |d|
-      product = Product.find(d)
-      products.push(product)
+    unless dep.empty?
+      dep.each do |d|
+        product = Product.find(d)
+        products.push(product)
+      end
     end
+    
+    unless interactives.empty?
+      interactives.each do |d|
+        product = Product.find(d)
+        products.push(product)
+      end
+    end 
     return products
   end
   
