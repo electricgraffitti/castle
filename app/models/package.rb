@@ -8,6 +8,7 @@
 #  price       :decimal(8, 2)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  list_order  :integer(4)
 #
 
 class Package < ActiveRecord::Base
@@ -20,6 +21,9 @@ class Package < ActiveRecord::Base
   # Associations
   has_many :photos, :dependent => :destroy
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => lambda { |a| a[:attachment].blank? }
+  
+  #Scopes
+  scope :package_order, :order => "list_order"
   
   # has_many :products
   has_many :systems

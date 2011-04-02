@@ -8,6 +8,7 @@
 #  price       :decimal(8, 2)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  list_order  :integer(4)
 #
 
 require 'test_helper'

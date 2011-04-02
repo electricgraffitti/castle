@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     end  
     
     if @package
-      @products = @package.products
+      @products = @package.products.product_order
     else
       @products = Product.all
     end
@@ -45,6 +45,7 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.photos.build
+    @listings = Product.order.product_order
     
     respond_to do |format|
       format.html # new.html.erb
@@ -55,6 +56,8 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
     @product = Product.find(params[:id])
+    @listings = Product.order.product_order
+    
     if @product.photos.blank?
        @product.photos.build
     end  
