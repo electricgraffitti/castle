@@ -3,9 +3,11 @@
     <h3>
 			<%= product.item_name %>
 		</h3>
-			<%= image_tag(product.photos.last.attachment.url(:thumb)) %>
+			<% unless product.photos.blank? %>
+				<%= image_tag(product.photos.last.attachment.url(:thumb)) %>
+			<% end %>
 		<p>
-			<%= truncate(product.description, :length => 250, :separator => '') %> <%= link_to "read more", products_path %>
+			<%= truncate(product.description, :length => 250, :separator => '') %><br /><%= link_to "See more products", products_path %>
 		</p>
 	</div>
 	<div class="column_23 column_right">
