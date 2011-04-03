@@ -27,6 +27,11 @@ class CartItem < ActiveRecord::Base
     @name = product_ref.item_name
     @cart_price = product_ref.price
     @quantity = 1
+    if product_ref.interactive_service
+      @interactive = product_ref.interactive_service
+    else
+      @interactive = product_ref.interactive_service
+    end
   end
   
   def increment_quantity
@@ -45,4 +50,7 @@ class CartItem < ActiveRecord::Base
     @cart_price * @quantity
   end
   
+  def interactive
+    @interactive
+  end
 end

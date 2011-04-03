@@ -31,7 +31,12 @@ class Cart # < ActiveRecord::Base
   end
   
   def add_items(product_id)
-    current_item = @items.find {|item| item.cart_item == product_id}
+    
+    product = Product.find(product_id)
+    
+    items = product.check_for_interactive(@items)
+    
+    current_item = items.find {|item| item.cart_item == product_id}
     if current_item
       current_item.increment_quantity
     else

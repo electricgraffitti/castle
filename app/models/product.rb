@@ -99,4 +99,21 @@ class Product < ActiveRecord::Base
     return products
   end
   
+  def check_for_interactive(items)
+    
+    # Check self to see if item is and interactive item
+    if self.interactive_service
+      # if interactive loop over current items to see if it already contains an interactive item
+      items.each do |item|
+        if item.interactive == true
+          items.delete(item)
+        end
+      end
+      return items
+    else
+      return items
+    end
+    
+  end
+  
 end

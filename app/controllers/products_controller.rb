@@ -109,6 +109,7 @@ class ProductsController < ApplicationController
   
   def add_items
     @cart = setup_cart
+    
     @cart.add_items(params[:product_id].to_i)
     redirect_to products_path
     
