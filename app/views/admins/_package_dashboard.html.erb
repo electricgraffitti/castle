@@ -9,6 +9,7 @@
         <th>System</th>
         <th>Price</th>
 				<th>Description</th>
+				<th>List Order No.</th>
         <th>Edit System</th>
         <th>Delete System</th>
       </tr>
@@ -21,6 +22,7 @@
           <td><%=h (package.name).titleize %></td>
 					<td><%=h number_to_currency(package.price) %></td>
           <td><%=h truncate(package.description, :length => 200) %></td>
+					<td><%=h package.list_order %></td>
           <td><%= link_to 'Update System', edit_package_path(package), :class => "update" %></td>
           <td><%= link_to 'Delete System', package, :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></td>
         </tr>
