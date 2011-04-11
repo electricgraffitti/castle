@@ -8,6 +8,7 @@
       <tr>
         <th>Title</th>
         <th>Description</th>
+				<th>Posted On</th>
         <th>Edit Blogs</th>
         <th>Delete Blogs</th>
       </tr>
@@ -19,6 +20,7 @@
         <tr>
           <td><%=h (blog.title).titleize %></td>
           <td><%=h truncate(blog.description, :length => 200) %></td>
+					<td><%=h (blog.created_at).to_s(:nice_date) %></td>
           <td><%= link_to 'Update Blog', edit_blog_path(blog), :class => "update" %></td>
           <td><%= link_to 'Delete Blog', blog, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
         </tr>
