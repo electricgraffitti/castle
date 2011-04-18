@@ -130,24 +130,32 @@ var admin = {
 			"bJQueryUI": true,
 			"sPaginationType": "full_numbers"
 		});
-		// photosTable = $('#dashboard_photos_table').dataTable({
-		// 	"bJQueryUI": true,
-		// 	"sPaginationType": "full_numbers"
-		// });
-		// customersTable = $('#dashboard_customers_table').dataTable({
-		// 	"bJQueryUI": true,
-		// 	"sPaginationType": "full_numbers"
-		// });
 	},
 	
-	setupCalendars: function() {
-		// $('#event_start_date').datepicker({
-		// 	showButtonPanel: true
-		// });
-		// 
-		// $('#event_end_date').datepicker({
-		// 	showButtonPanel: true
-		// });
+	addPackagedProduct: function() {
+		var selectWrapper = $("#packaged_products"),
+				fields = $(".product_select"),
+				addTrigger = $(".package_add_product"),
+				deleteLinkHTML = "<a href='' class='delete_product_field'>Remove</a>",
+				deleteLink = $(".delete_product_field");
+				
+		
+		addTrigger.click(function(e) {
+			var field = fields.clone(),
+					countInput = field.find('input:text');
+					
+			field.append(deleteLinkHTML)
+			countInput.val("");
+			selectWrapper.prepend(field);
+			e.preventDefault();
+		});
+		
+		deleteLink.live('click', function(e) {
+			insertedField = $(this).parents(".product_select").first();
+			insertedField.remove();
+			e.preventDefault();
+		});
+		
 	},
 	
 	toggleDependencies: function() {

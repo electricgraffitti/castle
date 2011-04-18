@@ -38,7 +38,7 @@ Castle::Application.routes.draw do
   match "add-item-to-cart(/:id)" => "products#add_items", :as => :add_item
   match "remove-cart-item(/:id)" => "products#remove_items", :as => :remove_item
   match "empty-cart" => "products#empty_cart", :as => :empty_cart
-  match "cart-checkout" => "products#cart_checkout", :as => :checkout
+  match "cart-checkout" => "orders#new", :as => :checkout
   match "process-account-info" => "orders#process_order", :as => :process_order
   
   root :to => "pages#index"

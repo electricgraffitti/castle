@@ -29,6 +29,7 @@ class Product < ActiveRecord::Base
   #Associations
   has_many :photos, :dependent => :destroy
   has_many :systems
+  has_many :packages, :through => :systems  
   has_many :packages, :through => :systems
   has_many :order_products
   has_many :orders, :through => :order_products

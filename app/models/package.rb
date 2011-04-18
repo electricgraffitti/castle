@@ -19,15 +19,17 @@ class Package < ActiveRecord::Base
   validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality => {:greater_than => 0, :less_than => 1000}
   
   # Associations
+  has_many :systems
+  has_many :products, :through => :systems
+  has_many :packaged_products, :dependent => :destroy
+  has_many :products, :through => :packaged_products
+  accepts_nested_attributes_for :packaged_products, :allow_destroy => true, :reject_if => proc { |a| a[:product_id].blank? }, :allow_destroy => true
+  
   has_many :photos, :dependent => :destroy
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => lambda { |a| a[:attachment].blank? }
   
   #Scopes
   scope :package_order, :order => "list_order"
-  
-  # has_many :products
-  has_many :systems
-  has_many :products, :through => :systems
   
   # Methods
   

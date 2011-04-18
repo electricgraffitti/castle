@@ -1340,12 +1340,15 @@ padding: 3px;
 .listing ul li {
   font-size: 14px;
 }
-#dependent_products {
+#dependent_products, #packaged_products {
   position: relative;
   width: 100%;
   display:none;
   float:left;
   padding-bottom: 10px;
+}
+#packaged_products {
+	display: block;
 }
 #dependent_products .field {
   width: 45%;

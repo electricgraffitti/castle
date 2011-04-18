@@ -30,6 +30,7 @@ class PackagesController < ApplicationController
   def new
     @package = Package.new
     @package.photos.build
+    @package.packaged_products.build
     @listings = Package.order.package_order
 
     respond_to do |format|
@@ -45,8 +46,13 @@ class PackagesController < ApplicationController
 
     
     if @package.photos.blank?
-       @package.photos.build
+      @package.photos.build
     end
+    
+    if @package.packaged_products.blank?
+      @package.packaged_products.build
+    end
+    
   end
 
   # POST /packages
