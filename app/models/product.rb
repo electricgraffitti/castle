@@ -2,16 +2,18 @@
 #
 # Table name: products
 #
-#  id               :integer(4)      not null, primary key
-#  item_name        :string(255)
-#  description      :text
-#  price            :decimal(8, 2)
-#  created_at       :datetime
-#  updated_at       :datetime
-#  cart_id          :integer(4)
-#  unit_number      :string(255)
-#  monitoring_addon :boolean(1)
-#  list_order       :integer(4)
+#  id                  :integer(4)      not null, primary key
+#  item_name           :string(255)
+#  description         :text
+#  price               :decimal(8, 2)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  cart_id             :integer(4)
+#  unit_number         :string(255)
+#  monitoring_addon    :boolean(1)
+#  list_order          :integer(4)
+#  dependent_item      :boolean(1)
+#  interactive_service :boolean(1)
 #
 
 class Product < ActiveRecord::Base

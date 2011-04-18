@@ -17,6 +17,9 @@
 	  <%= f.label :description %><br />
 	  <%= f.text_area :description, :rows => 5, :cols => 30 %>
 	</div>
+	<div class="field">
+		<h4>Available to:</h4>
+	</div>
 	<% for package in Package.all %>
 	  <div class="field">
     	<%= check_box_tag "product[package_ids][]", package.id, @product.packages.include?(package) %>

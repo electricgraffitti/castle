@@ -10,6 +10,7 @@
         <th>Price</th>
         <th>Unit No.</th>
         <th>Description</th>
+				<th>List Order No.</th>
         <th>Edit Item</th>
         <th>Delete Item</th>
       </tr>
@@ -20,9 +21,14 @@
 			<% unless product.blank? %>
         <tr>
           <td><%=h (product.item_name).titleize %></td>
-          <td><%=h product.price %></td>
+          <td><%=h number_to_currency(product.price) %></td>
           <td><%=h product.unit_number %></td>
           <td><%=h truncate(product.description, :length => 200) %></td>
+					<% if product.monitoring_addon %>
+					<td><%=h product.list_order %> - M</td>
+					<% else %>
+					<td><%=h product.list_order %></td>
+					<% end %>
           <td><%= link_to 'Update Items', edit_product_path(product), :class => "update" %></td>
           <td><%= link_to 'Delete Items', product, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
         </tr>
