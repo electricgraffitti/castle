@@ -23,9 +23,12 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @cart = setup_cart
-    @billing_info = params
-    # Cart.process_order(@cart, @billing_info)
     
+    @order.order_products.build
+    
+    # raise @cart.to_yaml
+    
+    @billing_info = params
     @order.process_order(transaction_return_path, @cart)
     
     respond_to do |format|
@@ -40,10 +43,11 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(params[:order])
-
+    @cart = setup_cart
     respond_to do |format|
       if @order.save
-        format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
+        @cart.order_id = @order.id
+        format.html { redirect_to(payment_info_path, :notice => 'Step 1 Completed. Step 2 Payment Information.') }
         format.xml  { render :xml => @order, :status => :created, :location => @order }
       else
         format.html { render :action => "new" }
@@ -80,6 +84,16 @@ class OrdersController < ApplicationController
     @cart = setup_cart
     @billing_info = params
     Cart.process_order(@cart, @billing_info)
+  end
+  
+  def cart_checkout
+    @user = User.new
+    @cart = setup_cart
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @products }
+    end
   end
   
 end

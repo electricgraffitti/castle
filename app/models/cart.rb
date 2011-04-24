@@ -23,6 +23,7 @@ class Cart # < ActiveRecord::Base
   def initialize
     @items = []
     @package
+    @order_id
   end
   
   def add_package(pid)

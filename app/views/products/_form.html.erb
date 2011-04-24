@@ -28,6 +28,10 @@
 	<% end %>
   <%= hidden_field_tag 'product[package_ids][]', "" %>
   <div class="field">
+		<%= f.check_box :requires_location %>
+ 		<%= f.label :requires_location, "Requires Location for Programming" %>
+  </div>
+  <div class="field">
 		<%= f.check_box :interactive_service %>
  		<%= f.label :interactive_service, "Interactive Service Plan" %>
   </div>

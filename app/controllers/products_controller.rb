@@ -133,14 +133,4 @@ class ProductsController < ApplicationController
     redirect_to packages_path, :notice => "Your cart is empty"
   end
   
-  def cart_checkout
-    @user = User.new
-    @cart = setup_cart
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @products }
-    end
-  end
-  
 end
