@@ -104,6 +104,24 @@ var base = {
 		});
 	},
 
+	removeFormFields: function(link) {
+		$(link).prev("input[type=hidden]").val("1");
+		$(link).closest('.fields').hide();
+	},
+	
+	addFormFields: function(association) {
+		var new_id = new Date().getTime(),
+				regexp = new RegExp("new_" + association, "g");
+				
+		$(link).parent().before(content.replace(regexp, new_id));
+	},
+	
+	triggerAddFormFields: function() {
+		var link = $(".package_add_product"),
+				formSetWrap = $("#packaged_products"),
+				newFormSet = $(".product_select").first();
+	}
+	
 };
 
 

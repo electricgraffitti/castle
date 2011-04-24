@@ -18,29 +18,25 @@ class Order < ActiveRecord::Base
   has_many :products, :through => :order_products
   
   
-  def process_order
+  def process_order(return_url, cart)
     
     values = {
-      # This is the account name from paypal
       :MerchantID => '65628', 
       :RegKey => '_cart',
-      :RURL => "",
-      :Type => "CC"
+      :RURL => return_url,
+      :Type => "CC",
       :ABAExpire => 0314,
-      :AoountNo => 4656056023461645,
+      :AccountNo => 4656056023461645,
       :AccountName => "Robert Hanson",
       :RefID => "1",
       :Amount => 23.00,
       :Address => "123 Some Street",
       :ZipCode => "84084",
-      :BillingCycle => "M"
+      :BillingCycle => "M",
       :StartDate => "051211",
-      :NoOfDebits => "0",
-      :send_url => "https://webservices.primerchants.com/billing/TransactionCentral/AddRecurring.asp?"
+      :NoOfDebits => "0"
     }
-    
-    raise values.to_yaml
-    
+    "https://webservices.primerchants.com/billing/TransactionCentral/AddRecurring.asp?"+values.map { |k,v| "#{k}=#{v}"}.join("&")
   end
   
 end

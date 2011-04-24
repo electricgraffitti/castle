@@ -13,7 +13,7 @@
     <%= f.text_field :price %>
   </div>
   <div class="clear"></div>
-  <h3 class="page_header">Add Included Items</h3><%= link_to "Add Another", "", :class => "package_add_product" %>
+  <h3 class="page_header">Add Included Items</h3><%= link_to "Add Another", "", :class => "package_add_product", :object => f %>
   <div id="packaged_products">
   <%= f.fields_for :packaged_products do |p| %>
     <div class="field product_select">
@@ -39,4 +39,6 @@
   </div>
 <% end %>
 
+<% content_for :javascripts do %>
+<% end %>
 
