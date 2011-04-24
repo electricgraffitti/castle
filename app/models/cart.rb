@@ -27,7 +27,15 @@ class Cart # < ActiveRecord::Base
   
   def add_package(pid)
     p = Package.find(pid)
-    self.package = p 
+    self.package = p
+    
+    # p.packaged_products.each do |pp|
+    #   counter = (pp.included_amount).to_i
+    #   counter.times do 
+    #     self.add_items(pp.product.id.to_i)
+    #   end
+    # end
+    
   end
   
   def add_items(product_id)
