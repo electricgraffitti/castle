@@ -22,7 +22,12 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-
+    @cart = setup_cart
+    @billing_info = params
+    # Cart.process_order(@cart, @billing_info)
+    
+    @order.process_order(transaction_return_path, @cart)
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @order }

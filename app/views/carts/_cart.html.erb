@@ -5,6 +5,10 @@
     
     <% if cart.package %>
       <li class="cart_alarm_title"><span>Alarm System:</span> <%= cart.package.name if cart.package %></li>
+      <li><span>Included Items:</span></li>
+      <% cart.package.packaged_products.each do |pp| %>
+        <li>(<%= pp.included_amount %>) <%= pp.product.item_name %></li>
+      <% end %>
     <% end %>
     
     <% unless cart.items.empty? %>

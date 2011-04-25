@@ -1163,7 +1163,7 @@ background: url(../images/buttons/admin_blue_button.png) 0px -35px no-repeat;
 color: #fff;
 font-weight: 300;
 border: none;
-margin-top: 15px;
+float:left;
 }
 .admin_btn:hover {
 background: url(../images/buttons/admin_blue_button.png) 0px 0px no-repeat;
@@ -1283,10 +1283,10 @@ font-weight: 300;
 border: none;
 }
 .btn:hover {
-background: url(../images/buttons/button.png) 0px 0px no-repeat;
+	background: url(../images/buttons/button.png) 0px 0px no-repeat;
 }
 .button_wrap {
-	text-align: center;
+	text-align: left;
 }
 .banner_arrows {
 position: absolute;
@@ -1340,12 +1340,15 @@ padding: 3px;
 .listing ul li {
   font-size: 14px;
 }
-#dependent_products {
+#dependent_products, #packaged_products {
   position: relative;
   width: 100%;
   display:none;
   float:left;
   padding-bottom: 10px;
+}
+#packaged_products {
+	display: block;
 }
 #dependent_products .field {
   width: 45%;

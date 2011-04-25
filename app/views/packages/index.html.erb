@@ -20,13 +20,12 @@
 				<%= package.description %>
 			</p>
 			<h5>This System Comes Standard With:</h5>
-			<% if package.name == "Simon XT Base Package" %>
-        <%= render :partial => 'products/base_package' %>
-			<% elsif package.name == "Simon XT Pro Package" %>
-				<%= render :partial => 'products/pro_package' %>
-			<% elsif package.name == "Simon XT Pro Plus Package" %>
-        <%= render :partial => 'products/plus_package' %>
-			<% end %>
+      <ul class="package_bullets">
+      	<li>(1) - Alarm Keypad/Control Panel</li>
+      	<% package.packaged_products.each do |pp| %>
+      	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
+      	<% end %>
+      </ul>
 			<div class="button_wrap">
   		  <%= link_to "Select System", products_path(:package_id => package.id), :class => "btn tool_tip", :title => "Add #{(package.name).titleize} to Cart" %>
 				<% if current_admin %>
