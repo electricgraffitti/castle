@@ -851,7 +851,9 @@ border: 1px solid #333;
 	padding: 10px 0px;
 }
 .product_wrap p.text {
-	min-height: 20px;
+	/*min-height: 20px;*/
+	height: 60px;
+	overflow: hidden;
 }
 .product_wrap div.part {
   width: 250px;
