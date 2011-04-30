@@ -24,11 +24,8 @@ class OrdersController < ApplicationController
     @order = Order.new
     @cart = setup_cart
     @package = Package.find(@cart.package_id)
-    
     @order.order_products.build
-    
     @billing_info = params
-    @order.process_order(transaction_return_path, @cart)
     
     respond_to do |format|
       format.html # new.html.erb
