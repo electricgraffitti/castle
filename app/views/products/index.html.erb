@@ -10,7 +10,7 @@
     	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
     	<% end %>
     </ul>
-	<h2>System Add-Ons</h2>
+	<h2>Device Add-Ons</h2>
 </div>
 <% else %>
   <div class="full_row">
@@ -31,7 +31,7 @@
   	<p>These system addon items require the purchase of additional monitoring addon services to make them function.  You cannot purchase these items without the additional monitoring items that are required.</p>
 </div>
 
-<div class="full_row no_top dependent_products">
+<div class="full_row no_top">
 	<% @products.each do |product| %>
 	  <% if product.dependent_item %>
 	    <%= render :partial => 'products/product_addon', :locals => { :product => product} %>
@@ -40,10 +40,10 @@
 </div>
 
 <div class="full_row">
-  	<h2 class="page_header">System Service Upgrades</h2>
+  	<h2 class="page_header">Monitoring Add-Ons</h2>
 </div>
 
-<div class="full_row no_top monitoring_products">
+<div class="full_row no_top">
 	<% @products.each do |product| %>
 	  <% if product.monitoring_addon %>
 	    <%= render :partial => 'products/product_addon', :locals => { :product => product} %>

@@ -14,6 +14,7 @@
 #  list_order          :integer(4)
 #  dependent_item      :boolean(1)
 #  interactive_service :boolean(1)
+#  requires_location   :boolean(1)
 #
 
 class Product < ActiveRecord::Base
