@@ -27,8 +27,8 @@ class Order < ActiveRecord::Base
   def self.process_order(return_url, cart, billing_info, total_price)
 
     values = {
-      :MerchantID => '65628', 
-      :RegKey => '12325432',
+      :MerchantID => APP["merchant_id"], 
+      :RegKey => APP["reg_key"],
       :RURL => return_url,
       :Type => "CC",
       :Description => "Castle Protection Service Fee",
