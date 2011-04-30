@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
       @package = Package.find(@cart.package_id)
     end  
     
-    @products = Product.all
+    @products = Product.product_order
 
     
     @blog = Blog.last
