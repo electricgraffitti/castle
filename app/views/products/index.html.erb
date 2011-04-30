@@ -10,11 +10,11 @@
     	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
     	<% end %>
     </ul>
-	<h2>Device Add-Ons</h2>
+	<h2>System Add-Ons</h2>
 </div>
 <% else %>
   <div class="full_row">
-    <h2 class="page_header">Castle Protection System Addons</h2>
+    <h2 class="page_header">Castle Protection System Add-Ons</h2>
   </div>
 <% end %>
 
@@ -27,8 +27,8 @@
 </div>
 
 <div class="full_row">
-  	<h2 class="page_header">Dependent Add-Ons</h2>
-  	<p>These system addon items require the purchase of additional monitoring addon services to make them function.  You cannot purchase these items without the additional monitoring items that are required.</p>
+  	<h2 class="page_header">Automatable Add-Ons</h2>
+  	<h4>All automatable add-ons require additional dependent add-ons for correct functionality.</h4>
 </div>
 
 <div class="full_row no_top">
@@ -38,9 +38,10 @@
 	  <% end %>
 	<% end %>
 </div>
+	<h5>**Only one Interactive Service is required for your system, Basic or Advanced depending on which features you would like to have.</h5>
 
 <div class="full_row">
-  	<h2 class="page_header">Monitoring Add-Ons</h2>
+  	<h2 class="page_header">System Service Upgrades</h2>
 </div>
 
 <div class="full_row no_top">
@@ -50,8 +51,6 @@
 	  <% end %>
 	<% end %>
 </div>
-
-<p class="bold">*Actual products may vary slightly from images shown.</p>
 
 <% content_for :sub_boxes do %>
 	<% render :partial => 'sub_boxes/products_sub_box', :locals => {:blog => @blog} %>
