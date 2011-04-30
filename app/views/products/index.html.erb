@@ -31,7 +31,7 @@
   	<p>These system addon items require the purchase of additional monitoring addon services to make them function.  You cannot purchase these items without the additional monitoring items that are required.</p>
 </div>
 
-<div class="full_row no_top">
+<div class="full_row no_top dependent_products">
 	<% @products.each do |product| %>
 	  <% if product.dependent_item %>
 	    <%= render :partial => 'products/product_addon', :locals => { :product => product} %>
@@ -43,7 +43,7 @@
   	<h2 class="page_header">Monitoring Add-Ons</h2>
 </div>
 
-<div class="full_row no_top">
+<div class="full_row no_top monitoring_products">
 	<% @products.each do |product| %>
 	  <% if product.monitoring_addon %>
 	    <%= render :partial => 'products/product_addon', :locals => { :product => product} %>
