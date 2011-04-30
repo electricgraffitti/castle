@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
       @cart.add_package(params[:package_id])
       @package = Package.find(params[:package_id])
     else 
-      @package = Package.find(@cart.package.id)
+      @package = Package.find(@cart.package_id)
     end  
     
     @products = Product.all

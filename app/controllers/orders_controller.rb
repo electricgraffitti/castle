@@ -23,10 +23,9 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @cart = setup_cart
+    @package = Package.find(@cart.package_id)
     
     @order.order_products.build
-    
-    # raise @cart.to_yaml
     
     @billing_info = params
     @order.process_order(transaction_return_path, @cart)
@@ -44,6 +43,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @cart = setup_cart
+
     respond_to do |format|
       if @order.save
         @cart.order_id = @order.id
@@ -81,19 +81,28 @@ class OrdersController < ApplicationController
   end
   
   def process_order
-    @cart = setup_cart
-    @billing_info = params
-    Cart.process_order(@cart, @billing_info)
+    cart = setup_cart
+    package = Package.find(cart.package_id)
+    billing_info = params
+    return_url = order_return_url
+    processing_fee = 30
+    total_price = (cart.total_price + package.price)
+    Cart.process_order(return_url, cart, billing_info, total_price)
   end
   
   def cart_checkout
     @user = User.new
     @cart = setup_cart
+    @package = Package.find(@cart.package_id)
     
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
     end
+  end
+  
+  def order_return
+    
   end
   
 end

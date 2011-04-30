@@ -1,32 +1,32 @@
 <%= form_for(order) do |f| %>
-        <%= render :partial => "layouts/error_block", :locals => {:object => order} %>
-
-        <%= f.fields_for :order_products do |op| %>
-        
-          <% cart.package.packaged_products.each do |pp| %>
-            <% count = (pp.included_amount).to_i %>
-            <% count.times do %>
-              <% if pp.product.requires_location? %>
-                <div class="field">
-                  <%= op.hidden_field :product_id, :value => pp.product.id %>
-                  <div class="item_textfield"><%= pp.product.item_name %> - Location: <%= op.text_field :product_location %></div>
-                </div>
-              <% end %>
-            <% end %>
-          <% end %>
-          
-          <% cart.items.each do |ci| %>
-            <% if ci.requires_location == true %>
-              <div class="field">
-                <%= op.hidden_field :product_id, :value => ci.cart_item %>
-                <div class="item_textfield"><%= ci.name %> - Location: <%= op.text_field :product_location %></div>
-              </div>
-            <% end %>
-          <% end %>
+  <%= render :partial => "layouts/error_block", :locals => {:object => order} %>
+  <% index = 1 %>
+  
+    <% package.packaged_products.each do |pp| %>
+      <% count = (pp.included_amount).to_i %>
+      <% count.times do %>
+        <% if pp.product.requires_location? %>
+          <div class="field">
+            <%= hidden_field_tag "[order][order_product_attributes][#{index}][product_id]", pp.product.id %>
+            <div class="item_textfield"><%= pp.product.item_name %> - Location: <%= text_field_tag "[order][order_product_attributes][#{index}][product_location]" %></div>
+          </div>
         <% end %>
-          
-        <div class="field button_wrap">
-          <%= f.submit "Add Locations", :class => 'btn tool_tip', :title => "Update Product Locations" %>
-          <%= link_to 'Cancel', :back, :class => "cancel_link" %>
+        <% index += 1 %>
+      <% end %>
+    <% end %>
+    
+    <% cart.items.each do |ci| %>
+      <% if ci.requires_location == true %>
+        <div class="field">
+          <%= hidden_field_tag "[order][order_product_attributes][#{index}][product_id]", ci.cart_item %>
+          <div class="item_textfield"><%= ci.name %> - Location: <%= text_field_tag "[order][order_product_attributes][#{index}][product_location]" %></div>
         </div>
       <% end %>
+      <% index += 1 %>
+    <% end %>
+    
+  <div class="field button_wrap">
+    <%= f.submit "Add Locations", :class => 'btn tool_tip', :title => "Update Product Locations" %>
+    <%= link_to 'Cancel', :back, :class => "cancel_link" %>
+  </div>
+<% end %>

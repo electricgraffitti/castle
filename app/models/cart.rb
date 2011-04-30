@@ -18,17 +18,19 @@ class Cart # < ActiveRecord::Base
   # has_one :package, :through => :cart_items
   # has_many :products, :through => :cart_items
   
-  attr_accessor :items, :package
+  attr_accessor :items, :package_id, :package_name, :order_id
   
   def initialize
     @items = []
-    @package
+    @package_id
+    @package_name
     @order_id
   end
   
   def add_package(pid)
     p = Package.find(pid)
-    self.package = p
+    self.package_id = p.id
+    self.package_name = p.name
     
     # p.packaged_products.each do |pp|
     #   counter = (pp.included_amount).to_i
@@ -72,10 +74,8 @@ class Cart # < ActiveRecord::Base
     end
   end
   
-  def self.process_order(cart, billing)
-    
-    raise cart.to_yaml
-    
+  def self.process_order(return_path, cart, billing, total_price)
+    Order.process_order(return_path, cart, billing, total_price)
   end
   
 end

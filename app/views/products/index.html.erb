@@ -1,12 +1,12 @@
-<%= render :partial => 'carts/cart', :locals => {:cart => @cart} %>
+<%= render :partial => 'carts/cart', :locals => {:cart => @cart, :package => @package} %>
 
-<% if @cart.package %>
+<% if @cart.package_id %>
 <div class="full_row">
-	<h2 class="page_header"><%= @cart.package.name %></h2>
+	<h2 class="page_header"><%= @package.name %></h2>
 	<h3>Items included in package:</h3>
     <ul class="package_bullets">
     	<li>(1) - Alarm Keypad/Control Panel</li>
-    	<% @cart.package.packaged_products.each do |pp| %>
+    	<% @package.packaged_products.each do |pp| %>
     	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
     	<% end %>
     </ul>

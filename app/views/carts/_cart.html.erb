@@ -1,12 +1,12 @@
-<% if cart.package || !cart.items.empty? %>
+<% if cart.package_id || !cart.items.empty? %>
 <div id="cart">
   <%= link_to "Empty Cart", empty_cart_path, :class => "empty_cart_link tool_tip", :title => "Empty Cart" %>
   <ul>
     
-    <% if cart.package %>
-      <li class="cart_alarm_title"><span>Alarm System:</span> <%= cart.package.name if cart.package %></li>
+    <% if cart.package_id %>
+      <li class="cart_alarm_title"><span>Alarm System:</span> <%= package.name if cart.package_id %></li>
       <li><span>Included Items:</span></li>
-      <% cart.package.packaged_products.each do |pp| %>
+      <% package.packaged_products.each do |pp| %>
         <li>(<%= pp.included_amount %>) <%= pp.product.item_name %></li>
       <% end %>
     <% end %>

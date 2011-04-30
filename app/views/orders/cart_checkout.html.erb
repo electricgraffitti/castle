@@ -5,21 +5,21 @@
   <div class="full_row no_top">
   		<div class="column_3 product_wrap">	
   			<h3>
-  				<%= (@cart.package.name).titleize %>
+  				<%= (@package.name).titleize %>
   			</h3>	
-  			<%= image_tag(@cart.package.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
+  			<%= image_tag(@package.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
   			<p class="money blue_text bottom_hr">
-  				Price: <%= number_to_currency(@cart.package.price) %>/Month*
+  				Price: <%= number_to_currency(@package.price) %>/Month*
   			</p>
   			<div class="top_hr bottom_hr"> 
     			<h5>This System Comes Standard With:</h5>
-    			<% if @cart.package.name == "Simon XT Base Package" %>
-            <%= render :partial => 'products/base_package' %>
-    			<% elsif @cart.package.name == "Simon XT Pro Package" %>
-    				<%= render :partial => 'products/pro_package' %>
-    			<% elsif @cart.package.name == "Simon XT Pro Plus Package" %>
-            <%= render :partial => 'products/plus_package' %>
-    			<% end %>
+        	<h3>Items included in package:</h3>
+            <ul class="package_bullets">
+            	<li>(1) - Alarm Keypad/Control Panel</li>
+            	<% @package.packaged_products.each do |pp| %>
+            	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
+            	<% end %>
+            </ul>
   			</div>
 				<% unless @cart.items.empty? %>
     		  <div class="top_hr bottom_h">
@@ -32,7 +32,7 @@
             <p class="bottom_hr">
   					  <%= link_to "More Addons", products_path, :class => "tool_tip", :title => "Get more Addons" %>
   					</p>
-					  <h3 class="top_hr">Total Monthly Rate: <%= number_to_currency(@cart.total_price) %></h3>
+					  <h3 class="top_hr">Total Monthly Rate: <%= number_to_currency(@cart.total_price + @package.price) %></h3>
     		  </div>
     		<% end %>
     		
@@ -102,7 +102,7 @@
       				<div class="clear"></div>
       	     	<div id="date_select" class="field">
       	        <%= label_tag :expiration_date, raw("<span class='bold'>*</span> Expiration Date") %><br />
-      					<%= date_select("credit_card_expiration", "expiration_date", :prompt => {:year => 'Year', :month => 'Month'}, :use_short_month => true, :order => [:month, :year], :start_year => 2010,:end_year => Time.now.year + 5 ) %>
+      					<%= date_select("credit_card_expiration", "expiration_date", :prompt => {:year => 'Year', :month => 'Month'}, :use_short_month => true, :order => [:month, :year], :start_year => 2011,:end_year => Time.now.year + 5 ) %>
       	      </div>
      			</div>
         </div>
