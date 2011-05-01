@@ -9,6 +9,7 @@
       <% package.packaged_products.each do |pp| %>
         <li>(<%= pp.included_amount %>) <%= pp.product.item_name %></li>
       <% end %>
+      <li>Monitoring Cost: <%= number_to_currency(package.price) %></li>
     <% end %>
     
     <% unless cart.items.empty? %>
