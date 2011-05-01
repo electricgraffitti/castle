@@ -42,6 +42,14 @@ class Product < ActiveRecord::Base
   
   # Methods
   
+  def dependent_checkbox
+    if self.dependent_products
+      return true
+    else
+      return false
+    end
+  end
+  
   def check_dependencies(cart)
     
     # Setup empty Arrays

@@ -51,10 +51,11 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     @listings = Product.order.product_order
+    @has_dependent_products = @product.dependent_checkbox
     
     if @product.photos.blank?
        @product.photos.build
-    end  
+    end
   end
 
   # POST /products
@@ -77,7 +78,6 @@ class ProductsController < ApplicationController
   # PUT /products/1.xml
   def update
     @product = Product.find(params[:id])
-
     respond_to do |format|
       if @product.update_attributes(params[:product])
         format.html { redirect_to admin_dashboard_path, :notice => 'Product was successfully updated.' }

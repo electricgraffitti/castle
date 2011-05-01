@@ -297,6 +297,9 @@ zoom: 1;
 .hide_text {
 text-indent: -3000em;
 }
+.hidden {
+	display: none;
+}
 .clear {
 clear: both;
 }
@@ -1356,7 +1359,6 @@ padding: 3px;
 #dependent_products, #packaged_products {
   position: relative;
   width: 100%;
-  display:none;
   float:left;
   padding-bottom: 10px;
 }
