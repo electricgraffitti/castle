@@ -13,11 +13,8 @@ class ProductsController < ApplicationController
       @package = Package.find(params[:package_id])
     else 
       @package = Package.find(@cart.package_id)
-    end  
-    
-    @products = Product.product_order
-
-    
+    end
+        
     @blog = Blog.last
     
     respond_to do |format|

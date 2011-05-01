@@ -26,12 +26,10 @@ class Product < ActiveRecord::Base
   #Scopes
   scope :monitoring, where("monitoring_addon = ?", true)
   scope :product_order, :order => "list_order"
-  # scope :system_listing, order("package_id")
   
   #Associations
   has_many :photos, :dependent => :destroy
   has_many :systems
-  has_many :packages, :through => :systems  
   has_many :packages, :through => :systems
   has_many :order_products
   has_many :orders, :through => :order_products
