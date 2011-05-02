@@ -13,11 +13,11 @@
     <%= f.text_field :price %>
   </div>
   <div class="clear"></div>
-  <h3 class="page_header">Add Included Items</h3><%= link_to "Add Another", "", :class => "package_add_product", :object => f %>
+  <!-- <h3 class="page_header">Add Included Items</h3><%#= link_to "Add Another", "", :class => "package_add_product", :object => f %> -->
   <div id="packaged_products">
   <%= f.fields_for :packaged_products do |p| %>
     <div class="field product_select">
-      <%= p.collection_select :product_id, Product.all, :id, :item_name, {:prompt => "Choose Product"} %>
+      <%= p.collection_select :product_id, Product.all, :id, :item_name, {:prompt => "Choose Product", :include_blank => true} %>
       <%= p.label :included_amount, "Quantity" %>
       <%= p.text_field :included_amount, :size => 1 %>
     </div>
