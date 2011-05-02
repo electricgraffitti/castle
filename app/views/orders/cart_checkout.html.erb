@@ -8,22 +8,22 @@
   				<%= (@package.name).titleize %>
   			</h3>	
   			<%= image_tag(@package.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
-  			<p class="money blue_text bottom_hr">
-  				Price: <%= number_to_currency(@package.price) %>/Month*
-  			</p>
   			<div class="top_hr bottom_hr"> 
     			<h5>This System Comes Standard With:</h5>
-        	<h3>Items included in package:</h3>
+        	<h3>Items included in system:</h3>
             <ul class="package_bullets">
             	<li>(1) - Alarm Keypad/Control Panel</li>
             	<% @package.packaged_products.each do |pp| %>
             	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
             	<% end %>
             </ul>
+          <p class="money blue_text bottom_hr">
+  				  Price: <%= number_to_currency(@package.price) %>/Month
+  			  </p>
   			</div>
 				<% unless @cart.items.empty? %>
     		  <div class="top_hr bottom_h">
-    		    <h3>Package Add Ons</h3>
+    		    <h3>System Add Ons</h3>
       		  <ul>
                 <% @cart.items.each do |p| %>
                 <li>(<%= link_to p.quantity, remove_item_path(:product_id => p.cart_item, :page => "order"), :class => "tool_tip", :title => "Remove Item" %>) <%= p.title %> - <%= number_to_currency(p.price) %></li>
@@ -32,10 +32,11 @@
             <p class="bottom_hr">
   					  <%= link_to "More Addons", products_path, :class => "tool_tip", :title => "Get more Addons" %>
   					</p>
-					  <h3 class="top_hr">Total Monthly Rate: <%= number_to_currency(@cart.total_price + @package.price) %></h3>
+					  <h3 class="top_hr">Total Cost: <%= number_to_currency((@cart.total_price * 2) + 30) %>*</h3>
     		  </div>
     		<% end %>
-    		
+    		<p>*Total cost of 1st billing includes first month and last month total monitoring fees and a one time $30.00 equipment setup fee.</p>
+    		<h4>Recurring monthly bill: <%= number_to_currency(@cart.total_price) %></h4>
   		</div>
       <div id="signup_form" class="column_23">
         <%= form_tag (process_order_path, :method => "post") do %>
@@ -103,6 +104,10 @@
       	     	<div id="date_select" class="field">
       	        <%= label_tag :expiration_date, raw("<span class='bold'>*</span> Expiration Date") %><br />
       					<%= date_select("credit_card_expiration", "expiration_date", :prompt => {:year => 'Year', :month => 'Month'}, :use_short_month => true, :order => [:month, :year], :start_year => 2011,:end_year => Time.now.year + 5 ) %>
+      	      </div>
+      	      <div class="field">
+      	        <h5>Terms of Agreement</h5>
+      	        <p>by checking this box i have read agree to the <%= link_to "terms of agreement", "" %></p>
       	      </div>
      			</div>
         </div>

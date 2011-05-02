@@ -1,5 +1,8 @@
 <div class="column_3">
-	<div class="product_wrap">	
+	<div class="product_wrap">
+	  	<% if current_admin %>
+		<%= link_to "Edit Product Add-On", edit_product_path(product) %>
+	<% end %>	
 		<h3>
 			<%= (product.item_name).titleize %>
 		</h3>	
@@ -28,7 +31,4 @@
 	    <% end %>
     </div>
 	</div>
-	<% if current_admin %>
-		<%= link_to "Edit Product Item", edit_product_path(product), :class => "admin_btn" %>
-	<% end %>
 </div>
