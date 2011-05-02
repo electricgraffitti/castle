@@ -31,10 +31,10 @@
             </ul>
             <p class="bottom_hr">
   					  <%= link_to "More Addons", products_path, :class => "tool_tip", :title => "Get more Addons" %>
-  					</p>
-					  <h3 class="top_hr">Total Cost: <%= number_to_currency((@cart.total_price * 2) + 30) %>*</h3>
-    		  </div>
+  					</p>				  
+    		  </div>  		  
     		<% end %>
+    		<h3 class="top_hr">Total Cost: <%= number_to_currency((@cart.total_price * 2) + 30) %>*</h3>
     		<p>*Total cost of 1st billing includes first month and last month total monitoring fees and a one time $30.00 equipment setup fee.</p>
     		<h4>Recurring monthly bill: <%= number_to_currency(@cart.total_price) %></h4>
   		</div>
