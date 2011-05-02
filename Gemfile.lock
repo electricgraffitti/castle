@@ -33,7 +33,7 @@ GEM
     authlogic (2.1.6)
       activesupport
     builder (2.1.2)
-    capistrano (2.5.25)
+    capistrano (2.5.21)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
@@ -45,19 +45,19 @@ GEM
     geocoder (0.9.13)
     highline (1.6.1)
     i18n (0.5.0)
-    mail (2.2.16)
+    mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    mysql2 (0.2.7)
+    mysql2 (0.3.2)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
       net-ssh (>= 2.0.9)
     net-ssh (2.1.4)
-    net-ssh-gateway (1.0.1)
+    net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     paperclip (2.3.11)
       activerecord (>= 2.3.0)
@@ -87,7 +87,7 @@ GEM
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    tzinfo (0.3.26)
+    tzinfo (0.3.27)
 
 PLATFORMS
   ruby
