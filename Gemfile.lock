@@ -33,7 +33,7 @@ GEM
     authlogic (2.1.6)
       activesupport
     builder (2.1.2)
-    capistrano (2.5.19)
+    capistrano (2.5.25)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
