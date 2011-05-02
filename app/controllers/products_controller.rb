@@ -11,8 +11,10 @@ class ProductsController < ApplicationController
     if params[:package_id]
       @cart.add_package(params[:package_id])
       @package = Package.find(params[:package_id])
-    else 
+    elsif @cart.package_id
       @package = Package.find(@cart.package_id)
+    else
+      @package = Package.find_by_name("Simon XT Pro Plus Package")
     end
         
     @blog = Blog.last
