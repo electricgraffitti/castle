@@ -12,33 +12,20 @@
 
 class Cart # < ActiveRecord::Base
   
-  #Associtations
-  # belongs_to :user
-  # has_many :cart_items, :dependent => :destroy
-  # has_one :package, :through => :cart_items
-  # has_many :products, :through => :cart_items
-  
-  attr_accessor :items, :package_id, :package_name, :order_id
+  attr_accessor :items, :package_id, :package_name, :order_id, :billing_record_id
   
   def initialize
     @items = []
     @package_id
     @package_name
     @order_id
+    @billing_record_id
   end
   
   def add_package(pid)
     p = Package.find(pid)
     self.package_id = p.id
     self.package_name = p.name
-    
-    # p.packaged_products.each do |pp|
-    #   counter = (pp.included_amount).to_i
-    #   counter.times do 
-    #     self.add_items(pp.product.id.to_i)
-    #   end
-    # end
-    
   end
   
   def add_items(product_id)

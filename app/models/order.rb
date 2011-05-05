@@ -14,6 +14,7 @@ class Order < ActiveRecord::Base
   #Associtations
   belongs_to :user
   
+  has_many :billing_records
   has_many :order_products, :dependent => :destroy
   has_many :products, :through => :order_products
   
@@ -43,8 +44,8 @@ class Order < ActiveRecord::Base
       :StartDate => start_date,
       :NoOfDebits => "2"
     }
-    raise values.to_yaml
-    "https://webservices.primerchants.com/billing/TransactionCentral/AddRecurring.asp?"+values.map { |k,v| "#{k}=#{v}"}.join("&")
+    # Convert hash to query string
+    qv = values.to_query
   end
   
   private

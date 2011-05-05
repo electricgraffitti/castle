@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   
   before_filter :require_admin, :only => [:index, :edit, :delete]
+  skip_before_filter :verify_authenticity_token, :only => :order_return
   
   def index
     @orders = Order.all
@@ -25,7 +26,6 @@ class OrdersController < ApplicationController
     @cart = setup_cart
     @package = Package.find(@cart.package_id)
     @order.order_products.build
-    @billing_info = params
     
     respond_to do |format|
       format.html # new.html.erb
@@ -77,19 +77,36 @@ class OrdersController < ApplicationController
     end
   end
   
-  def process_order
-    cart = setup_cart
-    package = Package.find(cart.package_id)
-    billing_info = params
-    return_url = order_return_url
-    processing_fee = 30
-    total_price = (cart.total_price + package.price)
-    Cart.process_order(return_url, cart, billing_info, total_price)
+  def cart_checkout
+    @cart = setup_cart
+    if @cart.billing_record_id
+      @billing_record = BillingRecord.find(@cart.billing_record_id)
+      @billing_record.update_attributes(params[:billing_record])
+      raise "billing record"
+    else 
+      params[:billing_record][:order_id] = @cart.order_id
+      @billing_record = BillingRecord.new(params[:billing_record])
+      @billing_record.save
+      @cart.billing_record_id = @billing_record.id
+    end
+    @package = Package.find(@cart.package_id)
+    # billing_info = params
+    # return_url = order_return_url
+    # total_recurring = @cart.total_price
+    # @query = Cart.process_order(return_url, @cart, @billing_record, total_recurring)
+    respond_to do |format|
+      format.html {redirect_to(products_path, :notice => "Order Processed")}
+      format.xml  { render :xml => @products }
+    end
   end
   
-  def cart_checkout
-    @user = User.new
+  def payment_info
     @cart = setup_cart
+    if @cart.billing_record_id
+      @billing_record = BillingRecord.find(@cart.billing_record_id)
+    else 
+      @billing_record = BillingRecord.new
+    end
     @package = Package.find(@cart.package_id)
     
     respond_to do |format|
@@ -99,7 +116,7 @@ class OrdersController < ApplicationController
   end
   
   def order_return
-    
+    raise params.to_yaml
   end
   
 end
