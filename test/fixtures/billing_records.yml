@@ -1,0 +1,42 @@
+# == Schema Information
+#
+# Table name: billing_records
+#
+#  id          :integer(4)      not null, primary key
+#  terms       :boolean(1)
+#  city        :string(255)
+#  address     :string(255)
+#  billing_zip :string(255)
+#  phone       :string(255)
+#  first_name  :string(255)
+#  last_name   :string(255)
+#  state_id    :integer(4)
+#  email       :string(255)
+#  order_id    :integer(4)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  terms: false
+  city: MyString
+  address: MyString
+  billing_zip: MyString
+  phone: MyString
+  first_name: MyString
+  last_name: MyString
+  state_id: 1
+  email: MyString
+
+two:
+  terms: false
+  city: MyString
+  address: MyString
+  billing_zip: MyString
+  phone: MyString
+  first_name: MyString
+  last_name: MyString
+  state_id: 1
+  email: MyString

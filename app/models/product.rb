@@ -14,6 +14,7 @@
 #  list_order          :integer(4)
 #  dependent_item      :boolean(1)
 #  interactive_service :boolean(1)
+#  requires_location   :boolean(1)
 #
 
 class Product < ActiveRecord::Base
@@ -26,12 +27,10 @@ class Product < ActiveRecord::Base
   #Scopes
   scope :monitoring, where("monitoring_addon = ?", true)
   scope :product_order, :order => "list_order"
-  # scope :system_listing, order("package_id")
   
   #Associations
   has_many :photos, :dependent => :destroy
   has_many :systems
-  has_many :packages, :through => :systems  
   has_many :packages, :through => :systems
   has_many :order_products
   has_many :orders, :through => :order_products
@@ -42,6 +41,14 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => lambda { |a| a[:attachment].blank? }
   
   # Methods
+  
+  def dependent_checkbox
+    if self.dependent_products
+      return true
+    else
+      return false
+    end
+  end
   
   def check_dependencies(cart)
     

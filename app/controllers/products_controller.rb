@@ -11,13 +11,12 @@ class ProductsController < ApplicationController
     if params[:package_id]
       @cart.add_package(params[:package_id])
       @package = Package.find(params[:package_id])
-    else 
-      @package = Package.find(@cart.package.id)
-    end  
-    
-    @products = Product.all
-
-    
+    elsif @cart.package_id
+      @package = Package.find(@cart.package_id)
+    else
+      @package = Package.find_by_name("Simon XT Pro Plus Package")
+    end
+        
     @blog = Blog.last
     
     respond_to do |format|
@@ -54,10 +53,11 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     @listings = Product.order.product_order
+    @has_dependent_products = @product.dependent_checkbox
     
     if @product.photos.blank?
        @product.photos.build
-    end  
+    end
   end
 
   # POST /products
@@ -80,7 +80,6 @@ class ProductsController < ApplicationController
   # PUT /products/1.xml
   def update
     @product = Product.find(params[:id])
-
     respond_to do |format|
       if @product.update_attributes(params[:product])
         format.html { redirect_to admin_dashboard_path, :notice => 'Product was successfully updated.' }
@@ -131,16 +130,6 @@ class ProductsController < ApplicationController
   def empty_cart
     session[:cart] = nil
     redirect_to packages_path, :notice => "Your cart is empty"
-  end
-  
-  def cart_checkout
-    @user = User.new
-    @cart = setup_cart
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @products }
-    end
   end
   
 end

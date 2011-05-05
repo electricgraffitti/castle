@@ -27,6 +27,8 @@ class CartItem < ActiveRecord::Base
     @name = product_ref.item_name
     @cart_price = product_ref.price
     @quantity = 1
+    @requires_location = product_ref.requires_location
+    
     if product_ref.interactive_service
       @interactive = product_ref.interactive_service
     else
@@ -52,5 +54,9 @@ class CartItem < ActiveRecord::Base
   
   def interactive
     @interactive
+  end
+  
+  def requires_location
+    @requires_location
   end
 end

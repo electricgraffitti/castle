@@ -12,30 +12,20 @@
 
 class Cart # < ActiveRecord::Base
   
-  #Associtations
-  # belongs_to :user
-  # has_many :cart_items, :dependent => :destroy
-  # has_one :package, :through => :cart_items
-  # has_many :products, :through => :cart_items
-  
-  attr_accessor :items, :package
+  attr_accessor :items, :package_id, :package_name, :order_id, :billing_record_id
   
   def initialize
     @items = []
-    @package
+    @package_id
+    @package_name
+    @order_id
+    @billing_record_id
   end
   
   def add_package(pid)
     p = Package.find(pid)
-    self.package = p
-    
-    # p.packaged_products.each do |pp|
-    #   counter = (pp.included_amount).to_i
-    #   counter.times do 
-    #     self.add_items(pp.product.id.to_i)
-    #   end
-    # end
-    
+    self.package_id = p.id
+    self.package_name = p.name
   end
   
   def add_items(product_id)
@@ -63,18 +53,17 @@ class Cart # < ActiveRecord::Base
   def total_price
     item_prices = @items.sum {|item| item.price}
     
-    if @package
-      total_price = item_prices + @package.price
+    if @package_id
+      p = Package.find(@package_id)
+      total_price = item_prices + p.price
       return total_price
     else
       return item_prices
     end
   end
   
-  def self.process_order(cart, billing)
-    
-    raise cart.to_yaml
-    
+  def self.process_order(return_path, cart, billing, total_price)
+    Order.process_order(return_path, cart, billing, total_price)
   end
   
 end

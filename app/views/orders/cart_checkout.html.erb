@@ -1,0 +1,50 @@
+<div class="checkout">
+  <div class="full_row">
+    <h2 class="page_header">Castle Protection Review Order & Checkout</h2>
+  </div>
+  <div class="full_row no_top">
+  		<div class="column_3 product_wrap">	
+  			<h3>
+  				<%= (@package.name).titleize %>
+  			</h3>	
+  			<%= image_tag(@package.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
+  			<div class="top_hr bottom_hr"> 
+    			<h5>This System Comes Standard With:</h5>
+        	<h3>Items included in system:</h3>
+            <ul class="package_bullets">
+            	<li>(1) - Alarm Keypad/Control Panel</li>
+            	<% @package.packaged_products.each do |pp| %>
+            	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
+            	<% end %>
+            </ul>
+          <p class="money blue_text bottom_hr">
+  				  Price: <%= number_to_currency(@package.price) %>/Month
+  			  </p>
+  			</div>
+				<% unless @cart.items.empty? %>
+    		  <div class="top_hr bottom_h">
+    		    <h3>System Add Ons</h3>
+      		  <ul>
+                <% @cart.items.each do |p| %>
+                <li>(<%= link_to p.quantity, remove_item_path(:product_id => p.cart_item, :page => "order"), :class => "tool_tip", :title => "Remove Item" %>) <%= p.title %> - <%= number_to_currency(p.price) %></li>
+                <% end %>
+            </ul>
+            <p class="bottom_hr">
+  					  <%= link_to "More Addons", products_path, :class => "tool_tip", :title => "Get more Addons" %>
+  					</p>				  
+    		  </div>  		  
+    		<% end %>
+    		<h3 class="top_hr">Total Cost: <%= number_to_currency((@cart.total_price * 2) + APP["process_fee"]) %>*</h3>
+    		<p>*Total cost of 1st billing includes first month and last month total monitoring fees and a one time $30.00 equipment setup fee.</p>
+    		<h4>Recurring monthly bill: <%= number_to_currency(@cart.total_price) %></h4>
+  		</div>
+      <div id="signup_form" class="column_23">
+        <%= form_tag (APP["recurring_url"], :method => "post") do %>
+          <%= hidden_field_tag @query %>
+          <div class="form_segment top_hr">
+            <%= submit_tag "Place Your Order", :class => "btn right custom_text" %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>

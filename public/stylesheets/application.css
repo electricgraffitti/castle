@@ -297,6 +297,9 @@ zoom: 1;
 .hide_text {
 text-indent: -3000em;
 }
+.hidden {
+	display: none;
+}
 .clear {
 clear: both;
 }
@@ -851,11 +854,23 @@ border: 1px solid #333;
 	padding: 10px 0px;
 }
 .product_wrap p.text {
-	min-height: 20px;
+	height: 40px;
+	overflow: hidden;
+}
+.dependent_products p.text {
+	height: 25px;
+	overflow: hidden;
+}
+.monitoring_products p.text {
+	height: 60px;
+	overflow: hidden;
 }
 .product_wrap div.part {
   width: 250px;
   float:left;
+}
+.dependent_products .product_wrap div.part {
+	height: 80px;
 }
 .product_wrap div.part a {
   display: inline;
@@ -1333,6 +1348,7 @@ input[type="text"], input[type="password"] {
 margin: 3px;
 padding: 3px;
 margin-right: 5px;
+width: 200px;
 }
 select {
 padding: 3px;
@@ -1343,7 +1359,6 @@ padding: 3px;
 #dependent_products, #packaged_products {
   position: relative;
   width: 100%;
-  display:none;
   float:left;
   padding-bottom: 10px;
 }

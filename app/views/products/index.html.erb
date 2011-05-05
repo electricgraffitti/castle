@@ -1,56 +1,57 @@
-<%= render :partial => 'carts/cart', :locals => {:cart => @cart} %>
+<%= render :partial => 'carts/cart', :locals => {:cart => @cart, :package => @package} %>
 
-<% if @cart.package %>
+<% if @cart.package_id %>
 <div class="full_row">
-	<h2 class="page_header"><%= @cart.package.name %></h2>
+	<h2 class="page_header"><%= @package.name %></h2>
 	<h3>Items included in package:</h3>
     <ul class="package_bullets">
     	<li>(1) - Alarm Keypad/Control Panel</li>
-    	<% @cart.package.packaged_products.each do |pp| %>
+    	<% @package.packaged_products.each do |pp| %>
     	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
     	<% end %>
     </ul>
-	<h2>Device Add-Ons</h2>
+	<h2>System Add-Ons</h2>
+	<p>You can fully customize and expand your home security system with any combinations of the items you see below. From smoke detection to getting the weather update on the fly, just add them to your cart and you will be on your way to securing and safeguarding your home like never before!</p>
 </div>
 <% else %>
   <div class="full_row">
-    <h2 class="page_header">Castle Protection System Addons</h2>
+    <h2 class="page_header">Castle Protection System Add-Ons</h2>
   </div>
 <% end %>
 
 <div class="full_row no_top">
-  <% @products.each do |product| %>
-    <% unless product.monitoring_addon || product.dependent_item %>
-	    <%= render :partial => 'products/product_addon', :locals => { :product => product} %>
+  <% @package.systems.each do |sys| %>
+    <% unless sys.product.monitoring_addon || sys.product.dependent_item %>
+	    <%= render :partial => 'products/product_addon', :locals => { :product => sys.product} %>
 	  <% end %>
 	<% end %>
 </div>
 
 <div class="full_row">
-  	<h2 class="page_header">Dependent Add-Ons</h2>
+  	<h2 class="page_header">Automatable Add-Ons</h2>
+  	<h4>All automatable add-ons require additional dependent add-ons for correct functionality.</h4>
 </div>
 
-<div class="full_row no_top">
-	<% @products.each do |product| %>
-	  <% if product.dependent_item %>
-	    <%= render :partial => 'products/product_addon', :locals => { :product => product} %>
+<div class="full_row no_top dependent_products">
+	<% @package.systems.each do |sys| %>
+	  <% if sys.product.dependent_item %>
+	    <%= render :partial => 'products/product_addon', :locals => { :product => sys.product} %>
 	  <% end %>
 	<% end %>
 </div>
+	<h5>**Only one Interactive Service is required for your system, Basic or Advanced depending on which features you would like to have.</h5>
 
 <div class="full_row">
-  	<h2 class="page_header">Monitoring Add-Ons</h2>
+  	<h2 class="page_header">System Service Upgrades</h2>
 </div>
 
-<div class="full_row no_top">
-	<% @products.each do |product| %>
-	  <% if product.monitoring_addon %>
-	    <%= render :partial => 'products/product_addon', :locals => { :product => product} %>
+<div class="full_row no_top monitoring_products">
+	<% @package.systems.each do |sys| %>
+	  <% if sys.product.monitoring_addon %>
+	    <%= render :partial => 'products/product_addon', :locals => { :product => sys.product} %>
 	  <% end %>
 	<% end %>
 </div>
-
-<p class="bold">*Actual products may vary slightly from images shown.</p>
 
 <% content_for :sub_boxes do %>
 	<% render :partial => 'sub_boxes/products_sub_box', :locals => {:blog => @blog} %>

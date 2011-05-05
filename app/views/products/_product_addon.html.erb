@@ -1,5 +1,8 @@
 <div class="column_3">
-	<div class="product_wrap">	
+	<div class="product_wrap">
+	<% if current_admin %>
+		<%= link_to "Edit Product Add-On", edit_product_path(product) %>
+	<% end %>	
 		<h3>
 			<%= (product.item_name).titleize %>
 		</h3>	
@@ -15,7 +18,7 @@
 	    <% pd = product.check_dependencies(@cart) %>
 	      <% if pd %>
 	        <ul>
-	          <li class="list_title red">Required Add-ons</li>
+	          <li class="list_title red">**Required Add-ons</li>
             <% pd.each do |p| %>
               <li><%= link_to  p.item_name + " - Add", add_item_path(:product_id => p.id), :class => "tool_tip left", :title => "Add #{(p.item_name).titleize} to Cart" %></li>
             <% end %>
@@ -28,7 +31,4 @@
 	    <% end %>
     </div>
 	</div>
-	<% if current_admin %>
-		<%= link_to "Edit Product Item", edit_product_path(product), :class => "admin_btn" %>
-	<% end %>
 </div>

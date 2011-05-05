@@ -1,5 +1,5 @@
-<%= form_for @product, :html => {:multipart => true} do |f| %>
-	<%= render :partial => "layouts/error_block", :locals => {:object => @product} %>
+<%= form_for product, :html => {:multipart => true} do |f| %>
+	<%= render :partial => "layouts/error_block", :locals => {:object => product} %>
 
   <div class="field">
     <%= f.label :item_name %><br />
@@ -22,11 +22,15 @@
 	</div>
 	<% for package in Package.all %>
 	  <div class="field">
-    	<%= check_box_tag "product[package_ids][]", package.id, @product.packages.include?(package) %>
+    	<%= check_box_tag "product[package_ids][]", package.id, product.packages.include?(package) %>
     	<%= package.name %>
   	</div>
 	<% end %>
   <%= hidden_field_tag 'product[package_ids][]', "" %>
+  <div class="field">
+		<%= f.check_box :requires_location %>
+ 		<%= f.label :requires_location, "Requires Location for Programming" %>
+  </div>
   <div class="field">
 		<%= f.check_box :interactive_service %>
  		<%= f.label :interactive_service, "Interactive Service Plan" %>
@@ -40,11 +44,17 @@
  		<%= f.label :dependent_item, "Requires Other Items" %>
   </div>
   <div class="clear"></div>
-  <div id="dependent_products">
+  
+  <% if @has_dependent_products %>
+    <div id="dependent_products">
+  <% else %>
+    <div id="dependent_products hidden">
+  <% end %>
+  
   <h3 class="page_header">Check dependent items</h3>
     <% for p in Product.all %>
   	  <div class="field">
-      	<%= check_box_tag "product[dependency_ids][]", p.id, @product.dependent_products.include?(p) %>
+      	<%= check_box_tag "product[dependency_ids][]", p.id, product.dependencies.include?(p) %>
       	<%= p.item_name %>
     	</div>
   	<% end %>

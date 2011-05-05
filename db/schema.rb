@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110403021933) do
+ActiveRecord::Schema.define(:version => 20110505134243) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "product_id"
@@ -37,6 +37,21 @@ ActiveRecord::Schema.define(:version => 20110403021933) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "billing_records", :force => true do |t|
+    t.boolean  "terms"
+    t.string   "city"
+    t.string   "address"
+    t.string   "billing_zip"
+    t.string   "phone"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "state_id"
+    t.string   "email"
+    t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -84,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20110403021933) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "product_location"
   end
 
   create_table "orders", :force => true do |t|
@@ -140,6 +156,7 @@ ActiveRecord::Schema.define(:version => 20110403021933) do
     t.integer  "list_order"
     t.boolean  "dependent_item"
     t.boolean  "interactive_service"
+    t.boolean  "requires_location"
   end
 
   add_index "products", ["cart_id"], :name => "index_products_on_cart_id"
