@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def new
+  def new # Step 1
     @cart = setup_cart
     if @cart.order_id
       @order = Order.find(@cart.order_id)

@@ -381,6 +381,7 @@ padding: 1px;
 }
 #signup_form p {
 position: relative;
+padding: 20px 0px;
 }
 label.error {
 background: #efefef none repeat scroll 0 0;
