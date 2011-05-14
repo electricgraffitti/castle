@@ -837,7 +837,6 @@ margin: 5px 0px 10px;
 }
 .checkout .product_wrap h3 {
 	margin: 0px 0px 10px;
-	padding-top: 10px;
 }
 .product_wrap img {
 padding: 3px;
@@ -955,6 +954,9 @@ font-weight: bold;
 	margin-left: 20px;
 	margin-top: 4px;
 	float: left;
+}
+.billing_info.package_bullets li {
+	padding: 6px 0px;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** CART *************************/

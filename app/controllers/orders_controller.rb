@@ -44,7 +44,6 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @cart = setup_cart
-
     respond_to do |format|
       if @order.save
         @cart.order_id = @order.id
@@ -81,29 +80,7 @@ class OrdersController < ApplicationController
     end
   end
   
-  def cart_checkout
-    @cart = setup_cart
-    if @cart.billing_record_id
-      @billing_record = BillingRecord.find(@cart.billing_record_id)
-      @billing_record.update_attributes(params[:billing_record])
-    else 
-      params[:billing_record][:order_id] = @cart.order_id
-      @billing_record = BillingRecord.new(params[:billing_record])
-      @billing_record.save
-      @cart.billing_record_id = @billing_record.id
-    end
-    @package = Package.find(@cart.package_id)
-    # billing_info = params
-    # return_url = order_return_url
-    # total_recurring = @cart.total_price
-    # @query = Cart.process_order(return_url, @cart, @billing_record, total_recurring)
-    # respond_to do |format|
-    #   format.html {redirect_to(products_path, :notice => "Order Processed")}
-    #   format.xml  { render :xml => @products }
-    # end
-  end
-  
-  def payment_info
+  def payment_info # Step 2
     @cart = setup_cart
     if @cart.billing_record_id
       @billing_record = BillingRecord.find(@cart.billing_record_id)
@@ -116,6 +93,24 @@ class OrdersController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @products }
     end
+  end
+  
+  def cart_checkout # Step 3
+    @cart = setup_cart
+    if @cart.billing_record_id
+      @billing_record = BillingRecord.find(@cart.billing_record_id)
+      @billing_record.update_attributes(params[:billing_record])
+    else 
+      params[:billing_record][:order_id] = @cart.order_id
+      @billing_record = BillingRecord.new(params[:billing_record])
+      @billing_record.save
+      @cart.billing_record_id = @billing_record.id
+    end
+    @package = Package.find(@cart.package_id)
+    @return_url = order_return_path
+    @expiration = Order.process_cc_expiration(params) 
+    @account_name = Order.process_account_name(params[:billing_record])
+    @cc = (params[:credit_card]).to_i
   end
   
   def order_return
