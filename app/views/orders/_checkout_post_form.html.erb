@@ -1,0 +1,36 @@
+<%= form_tag (APP["recurring_url"], :method => "post") do %>
+  <%= hidden_field_tag :MerchantID, APP["merchant_id"] %>
+  <%= hidden_field_tag :RegKey, APP["reg_key"] %>
+  <%= hidden_field_tag :RURL, return_url %>
+  <%= hidden_field_tag :Type, "CC" %>
+  <%= hidden_field_tag :Description, "Castle Protection Subscription Fee" %>
+  <%= hidden_field_tag :ABAExpire, expiration %>
+  <%= hidden_field_tag :AccountNo, cc %>
+  <%= hidden_field_tag :AccountName, account_name %>
+  <%= hidden_field_tag :RefID, cart.order_id %>
+  <%= hidden_field_tag :Amount, cart.total_price %>
+  <%= hidden_field_tag :Address, billing_record.address %>
+  <%= hidden_field_tag :ZipCode, billing_record.billing_zip %>
+  <%= hidden_field_tag :BillingCycle, "M"  %>
+  <%= hidden_field_tag :StartDate, Order.start_date %>
+  <%= hidden_field_tag :NoOfDebits, "2" %>
+  <%= submit_tag "Place Your Order", :class => "btn right custom_text" %>
+<% end %>
+
+
+<!-- 
+:MerchantID => APP["merchant_id"], 
+:RegKey => APP["reg_key"],
+:RURL => return_url,
+:Type => "CC",
+:Description => "Castle Protection Service Fee",
+:ABAExpire => process_cc_expiration(billing_info),
+:AccountNo => (billing_info[:credit_card]).to_i,
+:AccountName => process_account_name(billing_info),
+:RefID => cart.order_id,
+:Amount => total_price,
+:Address => billing_info[:address],
+:ZipCode => billing_info[:billing_zip],
+:BillingCycle => "M",
+:StartDate => start_date,
+:NoOfDebits => "2" -->

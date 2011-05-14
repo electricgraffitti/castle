@@ -12,5 +12,6 @@
 class State < ActiveRecord::Base
   
   has_many :supports
+  has_many :billing_records
   
 end
