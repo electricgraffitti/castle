@@ -107,7 +107,7 @@ class OrdersController < ApplicationController
       @cart.billing_record_id = @billing_record.id
     end
     @package = Package.find(@cart.package_id)
-    @return_url = order_return_path
+    @return_url = order_return_url
     @expiration = Order.process_cc_expiration(params) 
     @account_name = Order.process_account_name(params[:billing_record])
     @cc = (params[:credit_card]).to_i
