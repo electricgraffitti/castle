@@ -114,7 +114,7 @@ class OrdersController < ApplicationController
   end
   
   def order_return
-    raise params.to_yaml
+    
   end
   
 end
