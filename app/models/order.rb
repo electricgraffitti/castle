@@ -53,7 +53,7 @@ class Order < ActiveRecord::Base
   private
   
   def self.start_date
-    return Date.today.strftime("%m%d%y")
+    return Date.today.strftime("%m/%d/%y")
   end
   
   def self.process_cc_expiration(billing_info)
