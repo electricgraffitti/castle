@@ -16,7 +16,7 @@
     <% end %>
     
     <% cart.items.each do |ci| %>
-      <% if ci.requires_location? %>
+      <% if ci.requires_location %>
         <div class="field">
           <%= hidden_field_tag "[order][order_product_attributes][#{index}][product_id]", ci.cart_item %>
           <div class="item_textfield">*<%= ci.name %> - Location: <%= text_field_tag "[order][order_product_attributes][#{index}][product_location]", nil, :class => "validate(required)" %></div>
