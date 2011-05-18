@@ -14,5 +14,4 @@ merchant_id: 33163
 reg_key: "9WEB79RSQYB9Q9N7"
 process_fee: 30
 recurring_url: https://webservices.primerchants.com/billing/TransactionCentral/AddRecurring.asp?
-# recurring_url: https://webservices.primerchants.com/billing/TransactionCentral/AddRecurring.asp?
 single_charge_url: https://web.cert.transfirst.com/prigateway/creditcard.asmx?
