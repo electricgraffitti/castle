@@ -27,8 +27,8 @@ class BillingRecord < ActiveRecord::Base
   validates :terms, :presence => true
   validates :city, :presence => true
   validates :address, :presence => true
-  validates :billing_zip, :presence => true, :numericality => true
-  validates :phone, :presence => true, :numericality => true
+  validates :billing_zip, :presence => true, :numericality => true :length => { :minimum => 5, :maximum => 5 }
+  validates :phone, :presence => true, :numericality => true, :length => { :minimum => 10, :maximum => 10 }
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :state_id, :presence => true
