@@ -124,6 +124,17 @@ var base = {
 	
 };
 
+var forms = {
+	
+	validateLocations: function() {
+    $("#new_order").ketchup();
+  },	
+	
+	validatePaymentInfo: function() {
+    $("#new_billing_record").ketchup();
+  }
+	
+};
 
 var admin = {
 	

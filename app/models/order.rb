@@ -18,6 +18,10 @@ class Order < ActiveRecord::Base
   has_many :order_products, :dependent => :destroy
   has_many :products, :through => :order_products
   
+  #Validations
+  
+  #Methods
+  
   def order_product_attributes=(attributes)
     attributes.each do |attr|
       order_products.build(attr)

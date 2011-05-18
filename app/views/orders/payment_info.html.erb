@@ -3,13 +3,14 @@
     <h2 class="page_header">Castle Protection Order Processing</h2>
   </div>
   <div class="full_row no_top">
-  		<div class="column_3 product_wrap">	
+  		<div class="column_3 product_wrap">
+  		  <div class="bottom_hr">
   			<h3>
   				<%= (@package.name).titleize %>
   			</h3>	
   			<%= image_tag(@package.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
+  			</div>
   			<div class="top_hr bottom_hr"> 
-    			<h5>This System Comes Standard With:</h5>
         	<h3>Items included in system:</h3>
             <ul class="package_bullets">
             	<li>(1) - Alarm Keypad/Control Panel</li>
@@ -17,12 +18,12 @@
             	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
             	<% end %>
             </ul>
-          <p class="money blue_text bottom_hr">
+          <p class="money blue_text">
   				  Price: <%= number_to_currency(@package.price) %>/Month
   			  </p>
   			</div>
 				<% unless @cart.items.empty? %>
-    		  <div class="top_hr bottom_h">
+    		  <div class="top_hr bottom_hr">
     		    <h3>System Add Ons</h3>
       		  <ul>
                 <% @cart.items.each do |p| %>
@@ -55,11 +56,11 @@
               </div>
               <div class="field">
                 <%= f.label :email, raw("<span class='bold'>*</span> Email Address") %><br />
-                <%= f.text_field :email, :class => "tool_tip validate(required)", :title => "Current Email Address" %>
+                <%= f.text_field :email, :class => "tool_tip validate(required, email)", :title => "Current Email Address" %>
               </div>
               <div class="field">
                 <%= f.label :phone, raw("<span class='bold'>*</span> Phone Number") %><br />
-                <%= f.text_field :phone, :class => "tool_tip validate(required)", :title => "Contact Phone Number" %>
+                <%= f.text_field :phone, :class => "tool_tip validate(required, number)", :title => "Contact Phone Number" %>
               </div>
     			</div>
         </div>
@@ -82,7 +83,7 @@
               </div>
       	      <div class="field">
       	        <%= f.label :billing_zip, raw("<span class='bold'>*</span> Billing Zipcode") %><br />
-      	        <%= f.text_field :billing_zip, :class => "tool_tip validate(required)", :title => "Enter Billing Zipcode for Credit Card"%>
+      	        <%= f.text_field :billing_zip, :class => "tool_tip validate(required, rangelength(5,5), number )", :title => "Enter Billing Zipcode for Credit Card"%>
       	      </div>
     			</div>
         </div>
@@ -97,7 +98,7 @@
       	      </div>
       	      <div id="cvv_form">
       	        <%= label_tag :cvv, raw("<span class='bold'>*</span> CVV"), :class => "cvv" %><br />
-      	        <%= text_field_tag :cvv, "",  :class => "tool_tip validate(required)", :title => "3-4 Digit Code on Rear of Card" %>
+      	        <%= text_field_tag :cvv, "", :class => "tool_tip validate(required, rangelength(3,4), number )", :title => "3-4 Digit Code on Rear of Card" %>
       					<%= render :partial => 'layouts/cc_badge' %>
       	      </div>
       				<div class="clear"></div>
@@ -106,8 +107,8 @@
       					<%= date_select("credit_card_expiration", "expiration_date", :prompt => {:year => 'Year', :month => 'Month'}, :use_short_month => true, :order => [:month, :year], :start_year => 2011,:end_year => Time.now.year + 5 ) %>
       	      </div>
       	      <div class="field">
-      	        <h5><%= f.check_box :terms %> Terms of Agreement</h5>
-      	        <p>by checking this box i have read agree to the <%= link_to "terms of agreement", terms_path, :target => "_blank" %></p>
+      	        <h5><%= f.check_box :terms, :class => "validate(required)" %> Terms of Agreement</h5>
+      	        <p>by checking this box i have read agree to the <%= link_to "terms of agreement", terms_path, :class => "tool_tip", :title => "You must accept the terms of agreement.", :target => "_blank" %></p>
       	        
       	      </div>
      			</div>
@@ -119,3 +120,11 @@
       </div>
   </div>
 </div>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      forms.validatePaymentInfo();
+    });
+  </script>
+<% end %>

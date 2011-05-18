@@ -8,7 +8,7 @@
         <% if pp.product.requires_location? %>
           <div class="field">
             <%= hidden_field_tag "[order][order_product_attributes][#{index}][product_id]", pp.product.id %>
-            <div class="item_textfield"><%= pp.product.item_name %> - Location: <%= text_field_tag "[order][order_product_attributes][#{index}][product_location]" %></div>
+            <div class="item_textfield">*<%= pp.product.item_name %> - Location: <%= text_field_tag "[order][order_product_attributes][#{index}][product_location]", nil, :class => "validate(required)" %></div>
           </div>
         <% end %>
         <% index += 1 %>
@@ -16,10 +16,10 @@
     <% end %>
     
     <% cart.items.each do |ci| %>
-      <% if ci.requires_location == true %>
+      <% if ci.requires_location? %>
         <div class="field">
           <%= hidden_field_tag "[order][order_product_attributes][#{index}][product_id]", ci.cart_item %>
-          <div class="item_textfield"><%= ci.name %> - Location: <%= text_field_tag "[order][order_product_attributes][#{index}][product_location]" %></div>
+          <div class="item_textfield">*<%= ci.name %> - Location: <%= text_field_tag "[order][order_product_attributes][#{index}][product_location]", nil, :class => "validate(required)" %></div>
         </div>
       <% end %>
       <% index += 1 %>
