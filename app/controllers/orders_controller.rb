@@ -114,6 +114,30 @@ class OrdersController < ApplicationController
   end
   
   def order_return
+    OrderProduct.delete_empty_records
+    
+    @notes = params[:Notes]
+    
+    if @notes = ""
+      # setup order complete (add recurring id to order)
+      @order = Order.find(params[:RefNo])
+      @order.complete = true
+      @order.save
+      
+      # Need to setup second TC post to bill setup fee
+      
+      # Setup Castle Admin Mailer
+      
+      # Setup Customer Mailer
+      
+      @order_id = params[:RefNo]
+      @tc_id = params[:RecurringID]
+      @cart = setup_cart
+    else
+      respond_to do |format|
+        format.html redirect_to payment_info_path, :notice => "There was a problem processing your order. Please try again."
+      end
+    end
     
   end
   

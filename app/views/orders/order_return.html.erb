@@ -3,12 +3,10 @@
     <h2 class="page_header">Your order has been completed.</h2>
   </div>
   <div class="full_row no_top">
+    <p>Please keep note of your Reference Number and Transaction Number below. In the event you need to contact us about your account, you'll need these numbers. An email will also be sent to your email address.</p>
     <ul>
-      <li>RefNo: <%= params[:RefNo] %></li>
-      <li>Notes: <%= params[:Notes] %><li>
-      <li>RecurringID: <%= params[:RecurringID] %></li>
-      <li>action: <%= params[:action] %></li>
-      <li>controller: <%= params[:controller] %></li>
+      <li>Order Reference Number: <%= @order_id %></li>
+      <li>Transaction Number: <%= @tc_id %></li>
     </ul>
   </div>
 </div>

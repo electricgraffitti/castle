@@ -731,7 +731,7 @@ position: relative;
 width: 100%;
 float: left;
 padding-bottom: 20px;
-min-height: 300px;
+/*min-height: 300px;*/
 }
 #content_star {
 position: absolute;
@@ -757,6 +757,11 @@ padding: 5px;
 #content .sub_title {
 font-size: 12px;
 font-weight: 100;
+}
+.checkout {
+	position: relative;
+	float: left;
+	min-height: 350px;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** BANNER CONTENT ***************/

@@ -95,7 +95,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   authlogic
-  capistrano
+  capistrano (= 2.5.19)
   chargify_api_ares
   geocoder
   mysql2
