@@ -104,7 +104,18 @@ class Order < ActiveRecord::Base
       :AccountNo => cart.acnum,
       :CCMonth => Order.split_expiration_month(cart.abaex),
       :CCYear => Order.split_expiration_year(cart.abaex),
-      :CCRURL => ""
+      :CCRURL => "",
+      :TaxAmount => "",
+      :PONumber => "",
+      :TaxIndicator => "",
+      :NameonAccount => "",
+      :AVSADDR => "",
+      :AVSZIP => "",
+      :CVV2 => "",
+      :USER1 => "",
+      :USER2 => "",
+      :USER3 => "",
+      :USER4 => ""
     }
     
     response = Order.post_request(APP["single_charge_url"], params)
