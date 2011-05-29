@@ -12,7 +12,7 @@
 
 class Cart # < ActiveRecord::Base
   
-  attr_accessor :items, :package_id, :package_name, :order_id, :billing_record_id
+  attr_accessor :items, :package_id, :package_name, :order_id, :billing_record_id, :acnum, :abaex
   
   def initialize
     @items = []
@@ -20,6 +20,10 @@ class Cart # < ActiveRecord::Base
     @package_name
     @order_id
     @billing_record_id
+    # CC num
+    @acnum
+    # CC exp
+    @abaex
   end
   
   def add_package(pid)
@@ -60,10 +64,6 @@ class Cart # < ActiveRecord::Base
     else
       return item_prices
     end
-  end
-  
-  def self.process_order(return_path, cart, billing, total_price)
-    Order.process_order(return_path, cart, billing, total_price)
   end
   
 end

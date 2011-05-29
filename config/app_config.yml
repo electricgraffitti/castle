@@ -1,17 +1,17 @@
 username: admin
 password: coffee
 
-chargify_key: bXt3MAoT6-bwf8gitwqd
-chargify_domain: castle-protection
-
 gmkey: ABQIAAAASWEk1UdvToR0DcvOwCMx7xTlohoRC1KUZQN04oJlg35Jxm-N9RQPkzSSJfKHSxWKr90pRsTdoRDKSA
 
 gmail_username: 'cube2media@gmail.com'
 gmail_password: 'coffee*8'
+
+app_name: "Castle Protection LLC."
 
 # merchant_id: 65628
 merchant_id: 33163
 reg_key: "9WEB79RSQYB9Q9N7"
 process_fee: 30
 recurring_url: https://webservices.primerchants.com/billing/TransactionCentral/AddRecurring.asp?
-single_charge_url: https://web.cert.transfirst.com/prigateway/creditcard.asmx?
+charge_description: "Castle Protection Subscription Fee"
+single_charge_url: https://webservices.primerchants.com/billing/TransactionCentral/processCC.asp?

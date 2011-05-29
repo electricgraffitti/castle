@@ -53,7 +53,7 @@
           Thank you from Castle Protection.
         </p>
         <div class="form_segment top_hr">
-          <%= render :partial => 'orders/checkout_post_form', :locals => {:cart => @cart, :billing_record => @billing_record, :expiration => @expiration, :return_url => @return_url, :account_name => @account_name, :cc => @cc} %>
+          <%= link_to "Place Your Order", tc_process_order_path, :class => "btn right custom_text" %>
         </div>
       </div>
   </div>
