@@ -1350,7 +1350,7 @@ background: #ddd;
 .form_field, .field {
 float: left;
 padding: 8px;
-width: 215px;
+width: 240px;
 }
 form label {
 margin-bottom: 3px;
@@ -1365,6 +1365,12 @@ width: 200px;
 select {
 padding: 3px;
 }
+.form_section {
+	position: relative;
+	float: left;
+	width: 100%;
+	padding: 10px 0px;
+}
 .listing ul li {
   font-size: 14px;
 }
@@ -1372,7 +1378,6 @@ padding: 3px;
   position: relative;
   width: 100%;
   float:left;
-  padding-bottom: 10px;
 }
 #packaged_products {
 	display: block;

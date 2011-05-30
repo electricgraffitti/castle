@@ -16,6 +16,8 @@ class ProductsController < ApplicationController
     else
       @package = Package.find_by_name("Simon XT Pro Plus Package")
     end
+    
+    @cart_has_combo_item = @cart.combo_item?
         
     @blog = Blog.last
     

@@ -12,7 +12,7 @@
 
 class Cart # < ActiveRecord::Base
   
-  attr_accessor :items, :package_id, :package_name, :order_id, :billing_record_id, :acnum, :abaex
+  attr_accessor :items, :package_id, :package_name, :order_id, :billing_record_id, :acnum, :abaex, :combo_item
   
   def initialize
     @items = []
@@ -20,6 +20,7 @@ class Cart # < ActiveRecord::Base
     @package_name
     @order_id
     @billing_record_id
+    @combo_item
     # CC num
     @acnum
     # CC exp
@@ -32,11 +33,25 @@ class Cart # < ActiveRecord::Base
     self.package_name = p.name
   end
   
+  def combo_item?
+    if self.combo_item
+      return true
+    else
+      return false
+    end
+  end
+  
   def add_items(product_id)
     
     product = Product.find(product_id)
     
+    if product.combo_item
+      self.combo_item = true
+    end
+    
     items = product.check_for_interactive(@items)
+    
+    items = product.check_for_combo_items(items)
     
     current_item = items.find {|item| item.cart_item == product_id}
     if current_item

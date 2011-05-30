@@ -22,7 +22,7 @@
 <div class="full_row no_top">
   <% @package.systems.each do |sys| %>
     <% unless sys.product.monitoring_addon || sys.product.dependent_item %>
-	    <%= render :partial => 'products/product_addon', :locals => { :product => sys.product} %>
+	    <%= render :partial => 'products/product_addon', :locals => { :product => sys.product, :cart => @cart } %>
 	  <% end %>
 	<% end %>
 </div>
@@ -34,8 +34,12 @@
 
 <div class="full_row no_top dependent_products">
 	<% @package.systems.each do |sys| %>
-	  <% if sys.product.dependent_item %>
-	    <%= render :partial => 'products/product_addon', :locals => { :product => sys.product} %>
+	  <% if sys.product.dependent_item # Check if dependent item %> 
+	    <% unless sys.product.combo_id && @cart_has_combo_item # Hide it belongs to a combo item %>
+	      <% unless sys.product.combo_item && @cart_has_combo_item # Hide if a combo item is already in the cart %>
+	        <%= render :partial => 'products/product_addon', :locals => { :product => sys.product, :cart => @cart } %>
+	      <% end %>
+	    <% end %>
 	  <% end %>
 	<% end %>
 </div>
@@ -48,7 +52,7 @@
 <div class="full_row no_top monitoring_products">
 	<% @package.systems.each do |sys| %>
 	  <% if sys.product.monitoring_addon %>
-	    <%= render :partial => 'products/product_addon', :locals => { :product => sys.product} %>
+	    <%= render :partial => 'products/product_addon', :locals => { :product => sys.product, :cart => @cart } %>
 	  <% end %>
 	<% end %>
 </div>

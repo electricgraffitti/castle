@@ -28,6 +28,7 @@ class CartItem < ActiveRecord::Base
     @cart_price = product_ref.price
     @quantity = 1
     @requires_location = product_ref.requires_location
+    @combo_id = product_ref.combo_id
     
     if product_ref.interactive_service
       @interactive = product_ref.interactive_service
@@ -50,6 +51,10 @@ class CartItem < ActiveRecord::Base
   
   def price
     @cart_price * @quantity
+  end
+  
+  def combo_id
+    @combo_id
   end
   
   def interactive
