@@ -71,7 +71,6 @@ class Order < ActiveRecord::Base
         
         if fee_response.code == "200"
           fee_params = Order.process_response(fee_response)
-          raise fee_params.to_yaml
           
           if fee_params["Notes"] == ""
             combined_params = Order.combine_params(order_params, fee_params)

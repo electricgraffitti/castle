@@ -39,8 +39,8 @@
                   <h1 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 20px; color: #333;" >Castle Protection Order Submission</h1>
                   
                   <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Order Date: <%= (@order.created_at).to_s(:simple_date) %></h2>
-                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Transaction ID: <%= @trans_id %></h2>
-                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Recurring Billing ID: <%= @recurring_id %></h2>
+                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Service Fee Transaction ID: <%= @trans_id %></h2>
+                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Recurring Billing Transaction ID: <%= @recurring_id %></h2>
                   
                   <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #fff;" >Customer Info:</h2>
                   <ul style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 14px; color: #777777;">
@@ -51,7 +51,7 @@
                       Address: <%= @billing_info.address %><br/>
                       <%= @billing_info.city %> <%= @billing_info.state.full_name %>, <%= @billing_info.billing_zip %>
                     </li>
-                    <li>Email: <%= @billing_info.phone %></li>
+                    <li>Phone: <%= @billing_info.phone %></li>
                   </ul>
                   
                   <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Package Name: <%= (@package.name).titleize %> - <%= number_to_currency(@package.price) %>/Month</h2>

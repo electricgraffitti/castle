@@ -11,7 +11,7 @@ app_name: "Castle Protection LLC."
 # merchant_id: 65628
 merchant_id: 33163
 reg_key: "9WEB79RSQYB9Q9N7"
-process_fee: 30
+process_fee: 0.01
 recurring_url: https://webservices.primerchants.com/billing/TransactionCentral/AddRecurring.asp?
 charge_description: "Castle Protection Subscription Fee"
 single_charge_url: https://webservices.primerchants.com/billing/TransactionCentral/processCC.asp?

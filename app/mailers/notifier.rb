@@ -12,14 +12,15 @@ class Notifier < ActionMailer::Base
     @order = order
     @order_locations = @order.order_products
     @billing_info = @order.billing_records.last
-    @package = Package.find(@cart.package_id)
+    @package = Package.find(cart.package_id)
     @items = cart.items
     @trans_id = tc_id
     @recurring_id = tc_recurring_id
     @auth = auth
     
     mail(
-      :to => "support@cube2media.com", 
+      :to => "support@cube2media.com",
+      :from => "Castle Protection",
       :subject => "Castle Protection Order Submission")
   end
   
@@ -28,14 +29,15 @@ class Notifier < ActionMailer::Base
     @order = order
     @order_locations = @order.order_products
     @billing_info = @order.billing_records.last
-    @package = Package.find(@cart.package_id)
+    @package = Package.find(cart.package_id)
     @items = cart.items
     @trans_id = tc_id
     @recurring_id = tc_recurring_id
     
     
     mail(
-      :to => "support@cube2media.com",
+      :to => "#{@billing_info.email}, support@cube2media.com",
+      :from => "Castle Protection",
       :subject => "Your Castle Protection Order Details")
   end
   
