@@ -8,6 +8,8 @@ gmail_password: 'coffee*8'
 
 app_name: "Castle Protection LLC."
 
+order_email: "Josh Luttrell <jl.psi@sbcglobal.net>, Cube2Media Support <support@cube2media.com>"
+
 # merchant_id: 65628
 merchant_id: 33163
 reg_key: "9WEB79RSQYB9Q9N7"

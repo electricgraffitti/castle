@@ -2,7 +2,7 @@ class Notifier < ActionMailer::Base
 
   def support_notification(sender)
     @sender = sender
-    mail(:to => "support@cube2media.com", 
+    mail(:to => "#{APP["order_email"]}", 
          :from => sender.email,
          :subject => "New #{sender.support_type}")
   end
@@ -19,8 +19,8 @@ class Notifier < ActionMailer::Base
     @auth = auth
     
     mail(
-      :to => "support@cube2media.com",
-      :from => "Castle Protection",
+      :to => "#{APP["order_email"]}",
+      :from => "Castle Protection Order Transaction",
       :subject => "Castle Protection Order Submission")
   end
   
@@ -36,7 +36,7 @@ class Notifier < ActionMailer::Base
     
     
     mail(
-      :to => "#{@billing_info.email}, support@cube2media.com",
+      :to => "#{@billing_info.email}, #{APP["order_email"]}",
       :from => "Castle Protection",
       :subject => "Your Castle Protection Order Details")
   end
