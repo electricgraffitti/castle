@@ -15,6 +15,8 @@
 #  dependent_item      :boolean(1)
 #  interactive_service :boolean(1)
 #  requires_location   :boolean(1)
+#  combo_id            :integer(4)
+#  combo_item          :boolean(1)
 #
 
 class Product < ActiveRecord::Base
@@ -27,6 +29,7 @@ class Product < ActiveRecord::Base
   #Scopes
   scope :monitoring, where("monitoring_addon = ?", true)
   scope :product_order, :order => "list_order"
+  scope :combo_items, where("combo_item = ?", true)
   
   #Associations
   has_many :photos, :dependent => :destroy
@@ -107,6 +110,34 @@ class Product < ActiveRecord::Base
       end
     end 
     return products
+  end
+  
+  def single_cart_item_in_cart(cart)
+    # cart.items.each do |item|
+    #   if self.combo_id != nil && item.cart_item == self.id
+    #     return true
+    #   end
+    # end
+  end
+  
+  def check_for_combo_items(items)
+    
+    if self.combo_item
+      items.each do |item|
+        if item.combo_id == true
+          items.delete(item)
+        end
+      end
+      return items
+    else
+      items.each do |item|
+        if self.combo_id && item.cart_item == self.id
+          item.decrement_quantity
+        end
+      end
+      return items
+    end
+    
   end
   
   def check_for_interactive(items)

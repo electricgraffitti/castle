@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110505134243) do
+ActiveRecord::Schema.define(:version => 20110530024935) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "product_id"
@@ -157,6 +157,8 @@ ActiveRecord::Schema.define(:version => 20110505134243) do
     t.boolean  "dependent_item"
     t.boolean  "interactive_service"
     t.boolean  "requires_location"
+    t.integer  "combo_id"
+    t.boolean  "combo_item"
   end
 
   add_index "products", ["cart_id"], :name => "index_products_on_cart_id"

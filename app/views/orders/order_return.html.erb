@@ -1,0 +1,16 @@
+<div class="checkout">
+  <div class="full_row">
+    <h2 class="page_header">Your order has been completed.</h2>
+  </div>
+  <div class="full_row no_top">
+    <p>Please keep note of your Reference Number and Transaction Number below. In the event you need to contact us about your account, you'll need these numbers. An email will also be sent to your email address.</p>
+  </div>
+  <div class="full_row no_top">
+    <ul>
+      <li>Order Reference Number: <%= @order_id %></li>
+      <li>Transaction Number: <%= @tc_recurring_id %></li>
+      <li>Service Fee Transaction Number: <%= @tc_trans_id %></li>
+      <li>Authorization Number: <%= @auth %></li>
+    </ul>
+  </div>
+</div>

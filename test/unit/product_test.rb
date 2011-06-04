@@ -1,3 +1,12 @@
+require 'test_helper'
+
+class ProductTest < ActiveSupport::TestCase
+  # Replace this with your real tests.
+  test "the truth" do
+    assert true
+  end
+end
+
 # == Schema Information
 #
 # Table name: products
@@ -15,13 +24,7 @@
 #  dependent_item      :boolean(1)
 #  interactive_service :boolean(1)
 #  requires_location   :boolean(1)
+#  combo_id            :integer(4)
+#  combo_item          :boolean(1)
 #
 
-require 'test_helper'
-
-class ProductTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
-  end
-end

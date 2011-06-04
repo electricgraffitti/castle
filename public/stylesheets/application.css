@@ -381,6 +381,7 @@ padding: 1px;
 }
 #signup_form p {
 position: relative;
+padding: 20px 0px;
 }
 label.error {
 background: #efefef none repeat scroll 0 0;
@@ -441,6 +442,9 @@ margin: 20px auto;
 width: 800px;
 height: 500px;
 background: url(../images/500.png) 0px 0px no-repeat;
+}
+.item_textfield, .field, #cvv {
+	position: relative;
 }
 /*************************************************************************************************************************************/
 /*************************************************************************************************** TYPOGRAPHY **********************/
@@ -727,6 +731,7 @@ position: relative;
 width: 100%;
 float: left;
 padding-bottom: 20px;
+/*min-height: 300px;*/
 }
 #content_star {
 position: absolute;
@@ -752,6 +757,11 @@ padding: 5px;
 #content .sub_title {
 font-size: 12px;
 font-weight: 100;
+}
+.checkout {
+	position: relative;
+	float: left;
+	min-height: 350px;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** BANNER CONTENT ***************/
@@ -1340,7 +1350,7 @@ background: #ddd;
 .form_field, .field {
 float: left;
 padding: 8px;
-width: 215px;
+width: 240px;
 }
 form label {
 margin-bottom: 3px;
@@ -1355,6 +1365,12 @@ width: 200px;
 select {
 padding: 3px;
 }
+.form_section {
+	position: relative;
+	float: left;
+	width: 100%;
+	padding: 10px 0px;
+}
 .listing ul li {
   font-size: 14px;
 }
@@ -1362,7 +1378,6 @@ padding: 3px;
   position: relative;
   width: 100%;
   float:left;
-  padding-bottom: 10px;
 }
 #packaged_products {
 	display: block;

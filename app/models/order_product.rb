@@ -15,4 +15,20 @@ class OrderProduct < ActiveRecord::Base
   belongs_to :order
   belongs_to :product
   
+  # Scopes
+  scope :empty_order_products, where(:product_id => nil)
+  
+  # Methods
+  
+  def self.delete_empty_records
+    eop = self.empty_order_products
+    unless eop.empty?
+      eop.each do |ep|
+        ep.delete
+      end
+    end
+    
+  end
+  
+  
 end

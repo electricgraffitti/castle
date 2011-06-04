@@ -15,7 +15,7 @@
 		</p>
 	  <div class="part bottom_hr">
 	    <% if product.dependent_item? %>
-	    <% pd = product.check_dependencies(@cart) %>
+	    <% pd = product.check_dependencies(cart) %>
 	      <% if pd %>
 	        <ul>
 	          <li class="list_title red">**Required Add-ons</li>

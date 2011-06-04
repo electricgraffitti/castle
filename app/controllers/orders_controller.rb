@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def new
+  def new # Step 1
     @cart = setup_cart
     if @cart.order_id
       @order = Order.find(@cart.order_id)
@@ -80,7 +80,7 @@ class OrdersController < ApplicationController
     end
   end
   
-  def payment_info # Step 2
+  def payment_info # Step 2 (also CC Processing Error Return)
     @cart = setup_cart
     if @cart.billing_record_id
       @billing_record = BillingRecord.find(@cart.billing_record_id)
@@ -105,16 +105,54 @@ class OrdersController < ApplicationController
       @billing_record = BillingRecord.new(params[:billing_record])
       @billing_record.save
       @cart.billing_record_id = @billing_record.id
+      @cart.acnum = (params[:credit_card]).to_i
+      @cart.abaex = Order.process_cc_expiration(params)
     end
     @package = Package.find(@cart.package_id)
-    @return_url = order_return_path
-    @expiration = Order.process_cc_expiration(params) 
-    @account_name = Order.process_account_name(params[:billing_record])
-    @cc = (params[:credit_card]).to_i
+  end
+  
+  def tc_process_order
+    @cart = setup_cart
+    
+    # This processes the order and the fee transaction
+    recurring_response = Order.process_order(@cart)
+    
+    respond_to do |format|
+      if recurring_response
+        format.html { redirect_to order_return_path(recurring_response)}
+      else
+        formet.html {redirect_to payment_info_path, :notice => "There was a problem processing your order. Please try again."}
+      end
+    end
   end
   
   def order_return
-    raise params.to_yaml
+    # Empty nil order_product records to keep DB clean
+    OrderProduct.delete_empty_records
+
+    # set cart for one last display need
+    @cart = setup_cart
+    # setup order complete (add recurring id to order)
+    @order = Order.find(params[:order_id])
+    @order.complete = true
+    @order.save
+    
+    # Vars for page display
+    @order_id = params[:order_id]
+    @tc_trans_id = params[:fee_transaction_id]
+    @tc_recurring_id = params[:recurring_id]
+    @auth = params[:fee_auth_code]
+    
+    # Setup Castle Admin Mailer
+    Notifier.successful_order_admin(@order, @tc_id, @tc_recurring_id, @auth, @cart).deliver
+    # Setup Customer Mailer
+    Notifier.successful_order_customer(@order, @tc_id, @tc_recurring_id, @cart).deliver
+    
+    # Finally clear the cart in session
+    session[:cart] = nil
+    respond_to do |format|
+      format.html
+    end
   end
   
 end

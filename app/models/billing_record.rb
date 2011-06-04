@@ -19,7 +19,23 @@
 
 class BillingRecord < ActiveRecord::Base
   
+  # Associations
   belongs_to :order
   belongs_to :state
+  
+  # Validations
+  validates :terms, :presence => true
+  validates :city, :presence => true
+  validates :address, :presence => true
+  validates :billing_zip, :presence => true, :numericality => true, :length => { :minimum => 5, :maximum => 5 }
+  validates :phone, :presence => true, :numericality => true, :length => { :minimum => 10, :maximum => 10 }
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+  validates :state_id, :presence => true
+  validates :email,   
+            :presence => true,
+            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+  validates :order_id, :presence => true
+  
   
 end

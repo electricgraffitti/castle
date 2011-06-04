@@ -1,3 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  item_name: MyString
+  description: MyText
+  alarm_system: false
+  addons: false
+  price: 9.99
+
+two:
+  item_name: MyString
+  description: MyText
+  alarm_system: false
+  addons: false
+  price: 9.99
+
 # == Schema Information
 #
 # Table name: products
@@ -15,20 +31,7 @@
 #  dependent_item      :boolean(1)
 #  interactive_service :boolean(1)
 #  requires_location   :boolean(1)
+#  combo_id            :integer(4)
+#  combo_item          :boolean(1)
 #
 
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  item_name: MyString
-  description: MyText
-  alarm_system: false
-  addons: false
-  price: 9.99
-
-two:
-  item_name: MyString
-  description: MyText
-  alarm_system: false
-  addons: false
-  price: 9.99
