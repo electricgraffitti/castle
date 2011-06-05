@@ -21,6 +21,7 @@ class CartItem < ActiveRecord::Base
   attr_reader :cart_item, :quantity, :name, :cart_price
   
   def initialize(product_id)
+    
     product_ref = Product.find(product_id)
     
     @cart_item = product_ref.id
@@ -29,6 +30,7 @@ class CartItem < ActiveRecord::Base
     @quantity = 1
     @requires_location = product_ref.requires_location
     @combo_id = product_ref.combo_id
+    @combo_item = product_ref.combo_item
     
     if product_ref.interactive_service
       @interactive = product_ref.interactive_service
@@ -55,6 +57,10 @@ class CartItem < ActiveRecord::Base
   
   def combo_id
     @combo_id
+  end
+  
+  def combo_item
+    @combo_item
   end
   
   def interactive

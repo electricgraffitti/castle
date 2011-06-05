@@ -45,13 +45,9 @@ class Cart # < ActiveRecord::Base
     
     product = Product.find(product_id)
     
-    if product.combo_item
-      self.combo_item = true
-    end
+    ci_items = product.check_for_interactive(@items)
     
-    items = product.check_for_interactive(@items)
-    
-    items = product.check_for_combo_items(items)
+    items = product.check_for_combo_items(ci_items)
     
     current_item = items.find {|item| item.cart_item == product_id}
     if current_item
@@ -63,6 +59,9 @@ class Cart # < ActiveRecord::Base
   
   def remove_items(product_id)
     current_item = @items.find {|item| item.cart_item == product_id}
+    if current_item.combo_item
+      self.combo_item = false
+    end
     current_item.decrement_quantity
     if current_item.quantity <= 0
       @items.reject! { |item| item.quantity <= 0 }
