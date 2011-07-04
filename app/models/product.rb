@@ -112,20 +112,13 @@ class Product < ActiveRecord::Base
     return products
   end
   
-  def single_cart_item_in_cart(cart)
-    # cart.items.each do |item|
-    #   if self.combo_id != nil && item.cart_item == self.id
-    #     return true
-    #   end
-    # end
-  end
-  
   def check_for_combo_items(items)
     
     if self.combo_item
       items.each do |item|
-        if item.combo_id == true
-          items.delete(item)
+        items.delete_if {|item| item.combo_id == self.id }
+        if item.cart_item == self.id
+          item.decrement_quantity
         end
       end
       return items
@@ -134,6 +127,7 @@ class Product < ActiveRecord::Base
         if self.combo_id && item.cart_item == self.id
           item.decrement_quantity
         end
+        items.delete_if {|item| item.combo_item && item.cart_item == self.combo_id }
       end
       return items
     end

@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
     end
     
     @cart_has_combo_item = @cart.combo_item?
-        
+    
     @blog = Blog.last
     
     respond_to do |format|
