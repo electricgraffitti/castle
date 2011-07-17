@@ -11,7 +11,11 @@
 			Price: <%= number_to_currency(product.price) %>/Month Each
 		</p>
 		<p class="text">
-			<%= product.description %>
+			<% if (product.description).length >= 60 %>
+				<%= (product.description).truncate(60) %> <%= link_to "read more", product_path(product) %>
+			<% else %>
+				<%= product.description %>
+			<% end %>
 		</p>
 	  <div class="part bottom_hr">
 	    <% if product.dependent_item? %>

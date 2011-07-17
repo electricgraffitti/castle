@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   
-  before_filter :require_admin, :except => [:index, :add_items, :empty_cart, :remove_items, :cart_checkout ]
+  before_filter :require_admin, :except => [:index, :show, :add_items, :empty_cart, :remove_items, :cart_checkout ]
   
   # GET /products
   # GET /products.xml
@@ -31,7 +31,9 @@ class ProductsController < ApplicationController
   # GET /products/1.xml
   def show
     @product = Product.find(params[:id])
-
+    if @product.photos.blank?
+       @product.photos.build
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @product }

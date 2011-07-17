@@ -1,20 +1,19 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Item name:</b>
-  <%= @product.item_name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @product.description %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= @product.price %>
-</p>
-
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<div class="product_wrap show_view">
+	<div class="column_3">
+		<h3>
+			<%= (@product.item_name).titleize %>
+		</h3>	
+		<%= image_tag(@product.photos.last.attachment.url(:small), :class => "blue_bg") %>
+	</div>
+	<div class="column_3">
+		<p class="money blue_text price">
+			Price: <%= number_to_currency(@product.price) %>/Month Each
+		</p>
+		<p class="extra">
+			<%= @product.description %>
+		</p>
+		<div class="show_button">
+			<%= link_to 'Back', products_path, :class => 'btn'%>
+		</div>
+	</div>
+</div>
