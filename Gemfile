@@ -1,13 +1,39 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.6'
+gem 'rails', '3.2.1'
 gem 'mysql2'
-gem 'annotate'
-# Deploy with Capistrano
-gem 'capistrano', '2.5.19'
-gem 'nokogiri'
+
+gem 'capistrano'
+gem "stripe"
+gem 'nokogiri', '1.5.0'
 gem 'authlogic'
 gem 'rails3-generators'
 gem 'paperclip'
-gem 'chargify_api_ares'
-gem 'geocoder'
+gem 'exception_notification'
+gem 'json'
+
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer'
+
+  gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+  gem 'rspec-rails'
+  gem 'bullet'
+  gem 'ruby-growl'
+  gem 'xmpp4r'
+  gem 'jasmine'
+  gem 'zencoder-fetcher'
+  gem "thin"
+  gem 'annotate'
+end
+
+group :test do
+  gem "rspec-rails"
+  gem 'turn', '~> 0.8.3', :require => false
+end

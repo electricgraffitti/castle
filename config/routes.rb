@@ -1,20 +1,5 @@
 Castle::Application.routes.draw do
-  
-  resources :packages
-  resources :cart_items
-  resources :carts
-  resources :orders
-  resources :supports, :only => [:new, :create]
-  resources :products
-  resources :images
-  resources :blogs
-  resources :accounts
-  resources :users
-  resources :user_sessions
-  resources :admins
-  resources :admin_sessions
-
-  
+    
   # Admin Login/Logout Paths
   match "admin-login" => "admin_sessions#check_session", :as => :admin_login
   match "admin-logout" => "admin_sessions#destroy", :as => :admin_logout
@@ -45,6 +30,20 @@ Castle::Application.routes.draw do
   match "tc-process-fee" => "orders#tc_process_fee", :as => :tc_process_fee
   match "transaction-return" => "orders#edit", :as => :transaction_return
   match "order-return" => "orders#order_return", :as => :order_return
+
+  resources :packages
+  resources :cart_items
+  resources :carts
+  resources :orders
+  resources :supports, :only => [:new, :create]
+  resources :products
+  resources :images
+  resources :blogs
+  resources :accounts
+  resources :users
+  resources :user_sessions
+  resources :admins
+  resources :admin_sessions
   
   root :to => "pages#index"
 

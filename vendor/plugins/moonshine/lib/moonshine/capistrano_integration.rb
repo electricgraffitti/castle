@@ -110,6 +110,11 @@ module Moonshine
   capistrano deploy:setup behavior.
           DESC
           task :setup_directories do
+            set :moonshine_rails_env_yml_path, rails_root.join('config', 'moonshine', "#{rails_env}.yml")
+            if moonshine_rails_env_yml_path.exist?
+              run 'mkdir -p /tmp/moonshine'
+              upload moonshine_rails_env_yml_path.to_s, "/tmp/moonshine/#{rails_env}.yml"
+            end
             upload moonshine_yml_path.to_s, '/tmp/moonshine.yml'
             upload File.join(File.dirname(__FILE__), '..', 'moonshine_setup_manifest.rb'), '/tmp/moonshine_setup_manifest.rb'
 
@@ -180,10 +185,17 @@ module Moonshine
           desc 'Run script/console on the first application server'
           task :console, :roles => :app, :except => {:no_symlink => true} do
             input = ''
-            run "cd #{current_path} && ./script/console #{fetch(:rails_env)}" do |channel, stream, data|
+            if capture("test -f #{current_path}/script/console; echo $?").strip == "0"
+              command = "cd #{current_path} && ./script/console #{fetch(:rails_env)}"
+              prompt = /^(>|\?)>/
+            else
+              command = "cd #{current_path} && ./script/rails console #{fetch(:rails_env)}"
+              prompt = /:\d{3}:\d+(\*|>)/
+            end
+            run command do |channel, stream, data|
               next if data.chomp == input.chomp || data.chomp == ''
               print data
-              channel.send_data(input = $stdin.gets) if data =~ /^(>|\?)>/
+              channel.send_data(input = $stdin.gets) if data =~ prompt
             end
           end
 
@@ -344,6 +356,7 @@ module Moonshine
           task :upgrade do
             install
             sudo 'gem pristine --all'
+            passenger.compile
             apache.restart
           end
 
@@ -384,11 +397,11 @@ module Moonshine
             remove_ruby_from_apt
             run [
               'cd /tmp',
-              'sudo rm -rf ruby-enterprise-1.8.7-2010.02* || true',
+              'sudo rm -rf ruby-enterprise-1.8.7-2011.12* || true',
               'sudo mkdir -p /usr/lib/ruby/gems/1.8/gems || true',
-              'wget -q http://rubyforge.org/frs/download.php/71096/ruby-enterprise-1.8.7-2010.02.tar.gz',
-              'tar xzf ruby-enterprise-1.8.7-2010.02.tar.gz',
-              'sudo /tmp/ruby-enterprise-1.8.7-2010.02/installer --dont-install-useful-gems --no-dev-docs -a /usr'
+              'wget -q http://rubyenterpriseedition.googlecode.com/files/ruby-enterprise-1.8.7-2011.12.tar.gz',
+              'tar xzf ruby-enterprise-1.8.7-2011.12.tar.gz',
+              'sudo /tmp/ruby-enterprise-1.8.7-2011.12/installer --dont-install-useful-gems --no-dev-docs -a /usr'
             ].join(' && ')
           end
 
@@ -407,8 +420,43 @@ module Moonshine
             ].join(' && ')
           end
 
+          task :src192 do
+            remove_ruby_from_apt
+            pv = '1.9.2-p290'
+            p = "ruby-#{pv}"
+            run [
+              'cd /tmp',
+              "sudo rm -rf #{p}* || true",
+              "sudo mkdir -p /usr/lib/ruby/gems/1.9/gems || true",
+              "wget -q http://ftp.ruby-lang.org/pub/ruby/1.9/#{p}.tar.gz",
+              "tar xzf #{p}.tar.gz",
+              "cd /tmp/#{p}",
+              './configure --prefix=/usr',
+              'make',
+              'sudo make install'
+            ].join(' && ')
+          end
+
+          task :src193 do
+            remove_ruby_from_apt
+            pv = "1.9.3-p0"
+            p = "ruby-#{pv}"
+            run [
+              'cd /tmp',
+              "sudo rm -rf #{p}* || true",
+              'sudo mkdir -p /usr/lib/ruby/gems/1.9/gems || true',
+              "wget -q http://ftp.ruby-lang.org/pub/ruby/1.9/#{p}.tar.gz",
+              "tar xzf #{p}.tar.gz",
+              "cd /tmp/#{p}",
+              './configure --prefix=/usr',
+              'make',
+              'sudo make install'
+            ].join(' && ')
+          end
+
           task :install_rubygems do
-            version = fetch(:rubygems_version, '1.4.2')
+            default_rubygems_version = (fetch(:ruby) =~ /^src19/ ? '1.8.7' : '1.4.2')
+            version = fetch(:rubygems_version, default_rubygems_version)
             run [
               'cd /tmp',
               "sudo rm -rf rubygems-#{version}* || true",
@@ -423,14 +471,20 @@ module Moonshine
           task :install_deps do
             aptget.update
             sudo 'apt-get install -q -y build-essential zlib1g-dev libssl-dev libreadline5-dev wget'
+            if fetch(:ruby) ==  'src193'
+              sudo 'apt-get install -q -y libyaml-dev'
+            end
           end
 
           task :install_moonshine_deps do
             sudo 'gem install rake --no-rdoc --no-ri'
             sudo 'gem install i18n --no-rdoc --no-ri' # workaround for missing activesupport-3.0.2 dep on i18n
-            sudo 'gem install shadow_puppet --no-rdoc --no-ri'
+
+            shadow_puppet_version = fetch(:shadow_puppet_version, '~> 0.6.1')
+            sudo "gem install shadow_puppet --no-rdoc --no-ri --version '#{shadow_puppet_version}'"
             if rails_root.join('Gemfile').exist?
-              sudo 'gem install bundler --no-rdoc --no-ri'
+              bundler_version = fetch(:bundler_version, '1.0.21')
+              sudo "gem install bundler --no-rdoc --no-ri --version='#{bundler_version}'"
             end
           end
         end
@@ -439,6 +493,12 @@ module Moonshine
           desc 'Restarts the Apache web server'
           task :restart do
             sudo 'service apache2 restart'
+          end
+        end
+
+        namespace :passenger do
+          task :compile do
+            run 'gem list -i passenger && cd /usr/local/src/passenger && sudo /usr/bin/ruby -S rake clean apache2 || true'
           end
         end
 
