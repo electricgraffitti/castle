@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
       flash[:notice] = "Login successful!"
       redirect_to dashboard_path
     else
-      render :action => :new
+      redirect_to(new_user_session_path, :notice => "Login error. Please try again")
     end
   end
 
