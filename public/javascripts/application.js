@@ -1,7 +1,7 @@
 /*jslint white: false, onevar: false, browser: true, devel: true, undef: true, nomen: true, laxbreak: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, strict: false, newcap: true, immed: true, laxbreak: true */
 /*global jQuery, $, Raphael */
 
-var flash = {
+var Flash = {
 
 	injectFlashBox: function() {
 		$('#flash').addClass("flash_wrap");
@@ -12,24 +12,24 @@ var flash = {
 		var flash_message = $("#flash").html();
 		var msg = $.trim(flash_message);
 		if (msg !== "") {
-			flash.activateNotice(flash_message);
+			Flash.activateNotice(flash_message);
 		}
 	},
 
 	activateNotice: function(flash_message) {
-		var $flash_div = $("#flash");
-		$flash_div.html(flash_message);
-		$flash_div.show("slide", {
+		var flash_div = $("#flash");
+		flash_div.html(flash_message);
+		flash_div.show("slide", {
 			direction: 'up'
 		});
 		// Set the fadeout
 		setTimeout(function() {
-			$flash_div.hide("slide", {
+			flash_div.hide("slide", {
 				direction: 'up'
 			},
 			function() {
-				$flash_div.html("");
-				$flash_div.hide();
+				flash_div.html("");
+				flash_div.hide();
 			});
 		},
 		2500);
@@ -37,7 +37,7 @@ var flash = {
 
 };
 
-var base = {
+var Base = {
 	
 	indexBanners: function() {
     var horizontal = true,
@@ -72,16 +72,16 @@ var base = {
     $nav.bind('mouseover, click', selectNav);
 
     function selectNav() {
-      jQuery(this).parents('ul:first').find('a').removeClass('selected active').end().end().addClass('active selected');
-      jQuery(this).parents('ul:first').find('li').removeClass('selected active').end().end().addClass('active selected');
+      $(this).parents('ul:first').find('a').removeClass('selected active').end().end().addClass('active selected');
+      $(this).parents('ul:first').find('li').removeClass('selected active').end().end().addClass('active selected');
     }
     
     function trigger(data) {
-      var el = jQuery('#banner_nav .navigation').find('a[href$="' + data.id + '"]').get(0);
+      var el = $('#banner_nav .navigation').find('a[href$="' + data.id + '"]').get(0);
       selectNav.call(el);
     }
 
-    jQuery('#slider').serialScroll(scrollOptions);
+    $('#slider').serialScroll(scrollOptions);
     $.localScroll(scrollOptions);
   },
 	
@@ -124,7 +124,7 @@ var base = {
 	
 };
 
-var forms = {
+var Forms = {
 	
 	validateLocations: function() {
     $("#new_order").ketchup();
@@ -136,10 +136,10 @@ var forms = {
 	
 };
 
-var admin = {
+var Admin = {
 	
 	adminScripts: function() {
-		admin.setupDataTables();
+		Admin.setupDataTables();
 	},
 	
 	setupDataTables: function() {
@@ -206,8 +206,7 @@ var admin = {
 };
 //**********Initialize Document**********//
 $(document).ready(function() {
-	// injects flash div into dom
-	flash.injectFlashBox();
-	flash.setFlash();
-	base.setTips();
+	Flash.injectFlashBox();
+	Flash.setFlash();
+	Base.setTips();
 });
