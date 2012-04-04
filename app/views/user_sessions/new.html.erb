@@ -6,3 +6,11 @@
     <%= render :partial => 'user_sessions/form' %>
   </div>
 </div>
+
+<% content_for :javascripts do %> 
+	<script>
+    $(function() {
+      Base.pageResize();
+    });
+	</script>
+<% end %>

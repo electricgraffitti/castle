@@ -12,4 +12,9 @@ module ApplicationHelper
   def meta_description(meta_description)
     content_for(:description) {meta_description}
   end
+
+  def clear
+  	content_tag(:div, "", :class => "clear")
+  end
+
 end

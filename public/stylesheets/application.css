@@ -458,7 +458,7 @@ h1 {
 font-size: 235%;
 }
 h2 {
-font-size: 215%;
+font-size: 195%;
 }
 h3 {
 font-size: 145.5%;
@@ -1392,6 +1392,11 @@ background: #ddd;
 float: left;
 padding: 8px;
 width: 240px;
+}
+.checkbox input[type="checkbox"] {
+	position: relative;
+	margin-right: 5px;
+	top: -3px;
 }
 form label {
 margin-bottom: 3px;

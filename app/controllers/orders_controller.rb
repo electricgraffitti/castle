@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @orders }
+      format.json  { render :json => @orders }
     end
   end
 
@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @order }
+      format.json  { render :xml => @order }
     end
   end
 
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @order }
+      format.json  { render :json => @order }
     end
   end
 
@@ -42,6 +42,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    # raise params.to_yaml
     @order = Order.new(params[:order])
     @cart = setup_cart
     respond_to do |format|

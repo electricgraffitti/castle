@@ -7,8 +7,6 @@
 <!--[if IE]><script language="javascript" type="text/javascript" src="/javascripts/excanvas.compiled.js"></script><![endif]-->
 
 <%# Allow for page inserts from a content_for block %>
-
-<%= yield :javascripts %>
-
 <%# Load in the application.js very last %>
 <%= javascript_include_tag 'application' %>
+<%= yield :javascripts %>

@@ -12,7 +12,7 @@
   <!-- Application Layout -->
   <div id="wrapper" class="clearfix">
     <%= render :partial => 'layouts/flash', :locals => {:flash => flash} %>
-  	<header class="clearfix">
+  	<header id="hd" class="clearfix">
     	<%= render :partial => "layouts/header" %>
     </header>
     <div id="bd" class="clearfix">
@@ -28,7 +28,7 @@
       <%= yield :sub_boxes %>
     </div>
   </div>
-  <footer class="clearfix">
+  <footer id="ft" class="clearfix">
     <%= render :partial => "layouts/footer" %>
   </footer>
 	<%= render :partial => "layouts/scripts" %>

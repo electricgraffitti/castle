@@ -39,6 +39,23 @@ var Flash = {
 
 var Base = {
 	
+	pageResize: function() {
+		var header = $("#hd"),
+				body = $("#bd"),
+				subBoxes = $("#mast_sub_boxes"),
+				footer = $("#ft"),
+				segmentHeights = (header.outerHeight() + subBoxes.outerHeight() + footer.outerHeight());
+
+
+		body.height($(window).height() - segmentHeights);
+
+		$(window).resize(function() {
+			body.height($(window).height() - segmentHeights);
+		});
+
+
+	},
+
 	indexBanners: function() {
     var horizontal = true,
      		$panels = jQuery('#slider .panel'),
