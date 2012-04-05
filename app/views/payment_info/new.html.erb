@@ -92,25 +92,33 @@
      				Billing Information: - SECURE
      			</h3>
      			<div class="purchase_form">
-      	      <div class="field">
-      	        <%= label_tag :credit_card, raw("<span class='bold'>*</span> Credit Card Number") %><br />
-      	        <%= text_field_tag :credit_card, "",:class => "tool_tip validate(required)", :title => "Enter Valid Credit Card Numbers" %>
-      	      </div>
-      	      <div id="cvv_form">
-      	        <%= label_tag :cvv, raw("<span class='bold'>*</span> CVV"), :class => "cvv" %><br />
-      	        <%= text_field_tag :cvv, "", :class => "tool_tip validate(required, rangelength(3,4), number )", :title => "3-4 Digit Code on Rear of Card" %>
-      					<%= render :partial => 'layouts/cc_badge' %>
-      	      </div>
-      				<div class="clear"></div>
-      	     	<div id="date_select" class="field">
-      	        <%= label_tag :expiration_date, raw("<span class='bold'>*</span> Expiration Date") %><br />
-      					<%= date_select("credit_card_expiration", "expiration_date", :prompt => {:year => 'Year', :month => 'Month'}, :use_short_month => true, :order => [:month, :year], :start_year => 2011,:end_year => Time.now.year + 5 ) %>
-      	      </div>
-      	      <div class="field">
-      	        <h5><%= f.check_box :terms, :class => "validate(required)" %> Terms of Agreement</h5>
-      	        <p>by checking this box i have read agree to the <%= link_to "terms of agreement", terms_path, :class => "tool_tip", :title => "You must accept the terms of agreement.", :target => "_blank" %></p>
-      	        
-      	      </div>
+            <%= f.hidden_field :stripe_card_token %>  
+            <%= fields_for :credit_card do |cc| %>
+              <div class="field">
+                <%= label_tag "Card Number"  %>
+                <%= cc.text_field :card_number, :class => "card-number tool_tip validate(required)"%>
+              </div>
+              <div id="cvv_form">
+                <%= label_tag "CVV" %>
+                <%= cc.text_field :verification_value, :size => 4, :class => "card-cvc tool_tip validate(required, rangelength(3,4), number )" %>
+                <%= render :partial => 'layouts/cc_badge' %>
+              </div>
+              <div class="clear"></div>
+              <div id="date_select" class="field">
+                  <%= label_tag "Expiration Date" %>
+                  <%= cc.select :month, (1 .. 12).collect { |m| [m.to_s.rjust(2,"0"),m] }, :prompt => "Mo.", :class => "card-expiry-month" %>
+                  <%= cc.select :year, (Time.now.year .. 10.years.from_now.year), :prompt => "Yr.", :class => "card-expiry-year" %>
+              </div>
+              <div class="field">
+                  <%= label_tag "Card Type" %>
+                  <%= cc.select :type, [['Visa', 'visa'], ['MasterCard', 'master'], ['American Express', 'american_express'], ['Discover']], :prompt => 'Select Card Type'%>
+              </div><!-- / -->
+              <div class="field">
+                <h5><%= f.check_box :terms, :class => "validate(required)" %> Terms of Agreement</h5>
+                <p>by checking this box i have read agree to the <%= link_to "terms of agreement", terms_path, :class => "tool_tip", :title => "You must accept the terms of agreement.", :target => "_blank" %></p>
+                
+              </div>
+            <% end %>
      			</div>
         </div>
           <div class="form_segment top_hr">
@@ -124,7 +132,8 @@
 <% content_for :javascripts do %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      Forms.validatePaymentInfo();
+      Stripe.setPublishableKey("<%= APP['stripe_publish_key'] %>");
+      Forms.initForms(<%= (@cart.total_price).to_i %>);
     });
   </script>
 <% end %>

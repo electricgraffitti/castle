@@ -36,6 +36,9 @@ class BillingRecord < ActiveRecord::Base
             :presence => true,
             :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
   validates :order_id, :presence => true
+
+  # Attrs
+  attr_accessor :stripe_card_token
   
   
 end

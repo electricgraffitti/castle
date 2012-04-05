@@ -28,9 +28,9 @@ Castle::Application.routes.draw do
   match "add-item-to-cart(/:id)" => "products#add_items", :as => :add_item
   match "remove-cart-item(/:id)" => "products#remove_items", :as => :remove_item
   match "empty-cart" => "products#empty_cart", :as => :empty_cart
-  match "cart-checkout-setup-1" => "orders#new", :as => :checkout
-  match "cart-checkout-setup-2" => "orders#payment_info", :as => :payment_info
-  match "cart-checkout-setup-3" => "orders#cart_checkout", :as => :process_order
+  match "cart-checkout-setup-3" => "orders#new", :as => :checkout
+  match "cart-checkout-setup-1" => "payment_info#new", :as => :payment_info
+  match "cart-checkout-setup-2" => "orders#cart_checkout", :as => :process_order
   match "tc-process-order" => "orders#tc_process_order", :as => :tc_process_order
   match "tc-process-fee" => "orders#tc_process_fee", :as => :tc_process_fee
   match "transaction-return" => "orders#edit", :as => :transaction_return

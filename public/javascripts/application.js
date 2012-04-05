@@ -142,15 +142,80 @@ var Base = {
 };
 
 var Forms = {
+
+	initForms: function(plan_amount){
+		Forms.validateSignupForm(chargeAmount);
+	},
 	
 	validateLocations: function() {
     $("#new_order").ketchup();
-  },	
-	
-	validatePaymentInfo: function() {
+  },
+
+  validateSignupForm: function(chargeAmount) {
     $("#new_billing_record").ketchup();
+    $("input[type='submit']", "#new_billing_record").on("click", function(e) {
+    		e.preventDefault();
+        if( $('#new_billing_record').ketchup("isValid") ) { 
+          Gateway.formSubmit(chargeAmount);
+        };
+    });
   }
-	
+};
+
+
+var Gateway = {
+  
+  formSubmit: function(chargeAmount){
+    $("#new_billing_record").submit(function(event) {
+      var submitButton = $(this).find(".submit-button"),
+          actionsDiv = $(this).find(".actions"),
+          directBilling = $(this).find("#direct_billing");
+
+          $("#submit_error_message").remove();
+          $(".actions p").remove();
+
+        if (directBilling.val() === "") {
+          event.preventDefault();
+          Gateway.stripeVerify($(this), chargeAmount);
+          submitButton.attr("disabled", "disabled");
+          submitButton.addClass("disabled");
+        }
+    });
+  },
+
+  stripeVerify: function(stripeForm, chargeAmount) {
+    var self = stripeForm,
+        cardNumber = self.find("#credit_card_card_number").val(),
+        cardCvv = self.find("#credit_card_verification_value").val(),
+        cardMonth = self.find("#credit_card_month").val(),
+        cardYear = self.find("#credit_card_year").val(),
+        amount = (chargeAmount * 100); // Stripe expects amount to be in cents
+
+      if (cardNumber.length) {
+          // Submit Values to Stripe for auth
+          Stripe.createToken({
+            number: cardNumber,
+            cvc: cardCvv,
+            exp_month: cardMonth,
+            exp_year: parseInt(cardYear)
+          }, amount, Gateway.stripeResponseHandler);
+      } else {
+        return false;
+      }
+
+  },
+
+  stripeResponseHandler: function(status, response) {
+    if (status == 200) {
+      $('#subscription_stripe_card_token').val(response.id)
+      $('#new_billing_record')[0].submit();
+    } else {
+      $('.submit-button').attr('disabled', false);
+      $('.submit-button').removeClass('disabled');
+      $(".actions p").remove();
+      $(".actions").append("<div id='submit_error_message' class='red'>" + response.error.message + "</div>");
+    }
+  }
 };
 
 var Admin = {

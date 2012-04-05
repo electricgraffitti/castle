@@ -81,21 +81,6 @@ class OrdersController < ApplicationController
     end
   end
   
-  def payment_info # Step 2 (also CC Processing Error Return)
-    @cart = setup_cart
-    if @cart.billing_record_id
-      @billing_record = BillingRecord.find(@cart.billing_record_id)
-    else 
-      @billing_record = BillingRecord.new
-    end
-    @package = Package.find(@cart.package_id)
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @products }
-    end
-  end
-  
   def cart_checkout # Step 3
     @cart = setup_cart
     if @cart.billing_record_id
