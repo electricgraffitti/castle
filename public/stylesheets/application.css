@@ -600,6 +600,7 @@ width: 620px;
 }
 .top_hr {
 border-top: 1px solid #fff;
+padding-top: 10px;
 }
 .bottom_hr {
 border-bottom: 1px solid #b0b0b0;

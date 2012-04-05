@@ -82,6 +82,7 @@ class OrdersController < ApplicationController
   end
   
   def cart_checkout # Step 3
+    raise params.to_yaml
     @cart = setup_cart
     if @cart.billing_record_id
       @billing_record = BillingRecord.find(@cart.billing_record_id)

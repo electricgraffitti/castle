@@ -143,7 +143,7 @@ var Base = {
 
 var Forms = {
 
-	initForms: function(plan_amount){
+	initForms: function(chargeAmount){
 		Forms.validateSignupForm(chargeAmount);
 	},
 	
@@ -152,34 +152,32 @@ var Forms = {
   },
 
   validateSignupForm: function(chargeAmount) {
-    $("#new_billing_record").ketchup();
-    $("input[type='submit']", "#new_billing_record").on("click", function(e) {
-    		e.preventDefault();
-        if( $('#new_billing_record').ketchup("isValid") ) { 
-          Gateway.formSubmit(chargeAmount);
-        };
+  	var formEl = $("#new_billing_record"),
+  			submitButton = formEl.find("input[type='submit']");
+
+    formEl.ketchup();
+    submitButton.on("click", function() {
+      if( formEl.ketchup("isValid") ) { 
+        Gateway.formSubmit(chargeAmount);
+      };
     });
   }
 };
 
-
 var Gateway = {
   
   formSubmit: function(chargeAmount){
-    $("#new_billing_record").submit(function(event) {
+    $("#new_billing_record").submit(function(e) {
+    	e.preventDefault();
       var submitButton = $(this).find(".submit-button"),
-          actionsDiv = $(this).find(".actions"),
-          directBilling = $(this).find("#direct_billing");
+          actionsDiv = $(this).find(".actions");
 
           $("#submit_error_message").remove();
           $(".actions p").remove();
 
-        if (directBilling.val() === "") {
-          event.preventDefault();
           Gateway.stripeVerify($(this), chargeAmount);
           submitButton.attr("disabled", "disabled");
           submitButton.addClass("disabled");
-        }
     });
   },
 
@@ -207,7 +205,7 @@ var Gateway = {
 
   stripeResponseHandler: function(status, response) {
     if (status == 200) {
-      $('#subscription_stripe_card_token').val(response.id)
+      $('#billing_record_stripe_card_token').val(response.id)
       $('#new_billing_record')[0].submit();
     } else {
       $('.submit-button').attr('disabled', false);

@@ -30,7 +30,7 @@
                 <li>(<%= link_to p.quantity, remove_item_path(:product_id => p.cart_item, :page => "order"), :class => "tool_tip", :title => "Remove Item" %>) <%= p.title %> - <%= number_to_currency(p.price) %></li>
                 <% end %>
             </ul>
-            <p class="bottom_hr">
+            <p>
   					  <%= link_to "More Addons", products_path, :class => "tool_tip", :title => "Get more Addons" %>
   					</p>				  
     		  </div>  		  
@@ -114,7 +114,7 @@
                   <%= cc.select :type, [['Visa', 'visa'], ['MasterCard', 'master'], ['American Express', 'american_express'], ['Discover']], :prompt => 'Select Card Type'%>
               </div><!-- / -->
               <div class="field">
-                <h5><%= f.check_box :terms, :class => "validate(required)" %> Terms of Agreement</h5>
+                <h5><%= f.check_box :terms %> Terms of Agreement</h5>
                 <p>by checking this box i have read agree to the <%= link_to "terms of agreement", terms_path, :class => "tool_tip", :title => "You must accept the terms of agreement.", :target => "_blank" %></p>
                 
               </div>
@@ -130,6 +130,7 @@
 </div>
 
 <% content_for :javascripts do %>
+  <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       Stripe.setPublishableKey("<%= APP['stripe_publish_key'] %>");
