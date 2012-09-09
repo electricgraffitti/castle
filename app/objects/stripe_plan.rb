@@ -23,7 +23,7 @@ class StripePlan
 		
 	end
 
-	def get_plan(plan_id
+	def get_plan(plan_id)
 		plan = Stripe::Plan.retrieve(plan_id)
 	end
 
