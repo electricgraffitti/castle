@@ -148,7 +148,26 @@ class Product < ActiveRecord::Base
     else
       return items
     end
-    
   end
+
+  def category1
+    list_category == "Category-1" ? true : false
+  end
+
+  def category2
+    list_category == "Category-2" ? true : false
+  end
+
+  def category3
+    list_category == "Category-3" ? true : false
+  end
+
+  def category4
+    list_category == "Category-4" ? true : false
+  end  
+
+  def category5
+    list_category == "Category-5" ? true : false
+  end  
   
 end

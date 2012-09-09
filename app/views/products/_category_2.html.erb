@@ -1,0 +1,12 @@
+	<div class="full_row">
+    <h2><%= title %></h2>
+    <p>You can fully customize and expand your home security system with any combinations of the items you see below. From smoke detection to getting the weather update on the fly, just add them to your cart and you will be on your way to securing and safeguarding your home like never before!</p>
+  </div>
+
+	<div class="full_row no_top">
+	  <% package.systems.each do |sys| %>
+	    <% if category2(sys) %>
+		    <%= render partial: 'products/product_addon', locals: { product: sys.product, cart: cart } %>
+		  <% end %>
+		<% end %>
+	</div>

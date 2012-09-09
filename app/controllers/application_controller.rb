@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   helper :all
-  helper_method  :current_admin, :current_admin_session, :super_admin, :super?
+  helper_method  :current_user, :current_user_session, :require_user, :require_no_user, :current_admin, :current_admin_session, :super_admin, :super?
 
   private
   

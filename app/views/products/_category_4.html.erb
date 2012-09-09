@@ -1,0 +1,11 @@
+<div class="full_row">
+  	<h2 class="page_header"><%= title %></h2>
+  	<h4>All automatable add-ons require additional dependent add-ons for correct functionality.</h4>
+</div>
+<div class="full_row no_top dependent_products">
+	<% package.systems.each do |sys| %>
+	  <% if category4(sys) %> 
+	  	<%= render partial: 'products/product_addon', locals: { product: sys.product, cart: cart } %>
+	  <% end %>
+	<% end %>
+</div>

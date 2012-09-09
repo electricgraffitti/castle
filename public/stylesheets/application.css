@@ -752,8 +752,8 @@ margin-bottom: 10px;
 #content img.wrapped_image.contact {
 background: none repeat scroll 0 0 #EFEFEF;
 border: 1px solid #AAAAAA;
-margin-bottom: 10px;
-margin-top: 40px;
+position: absolute;
+left: -80px;
 padding: 5px;
 }
 #content .sub_title {

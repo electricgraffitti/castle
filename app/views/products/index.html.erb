@@ -1,62 +1,37 @@
-<%= render :partial => 'carts/cart', :locals => {:cart => @cart, :package => @package} %>
+<%= render partial: 'carts/cart', locals: {cart: @cart, package: @package} %>
 
 <% if @cart.package_id %>
-<div class="full_row">
-	<h2 class="page_header"><%= @package.name %></h2>
-	<h3>Items included in package:</h3>
-    <ul class="package_bullets">
-    	<li>(1) - Alarm Keypad/Control Panel</li>
-    	<% @package.packaged_products.each do |pp| %>
-    	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
-    	<% end %>
-    </ul>
-	<h2>System Addons</h2>
-	<p>You can fully customize and expand your home security system with any combinations of the items you see below. From smoke detection to getting the weather update on the fly, just add them to your cart and you will be on your way to securing and safeguarding your home like never before!</p>
-</div>
+	<div class="full_row">
+		<h2 class="page_header"><%= @package.name %></h2>
+		<h3>Items included in package:</h3>
+	    <ul class="package_bullets">
+	    	<li>(1) - Alarm Keypad/Control Panel</li>
+	    	<% @package.packaged_products.each do |pp| %>
+	    	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
+	    	<% end %>
+	    </ul>
+	</div>
 <% else %>
   <div class="full_row">
     <h2 class="page_header">Castle Protection System Add-Ons</h2>
   </div>
 <% end %>
 
-<div class="full_row no_top">
-  <% @package.systems.each do |sys| %>
-    <% unless sys.product.monitoring_addon || sys.product.dependent_item %>
-	    <%= render :partial => 'products/product_addon', :locals => { :product => sys.product, :cart => @cart } %>
-	  <% end %>
-	<% end %>
-</div>
+<%# Category = 1 %>
+<%= render partial: 'products/category_1', locals: {package: @package, cart: @cart, title: "Interactive Service Upgrades"} %>
 
-<div class="full_row">
-  	<h2 class="page_header">Interactive Addons</h2>
-  	<h4>All automatable add-ons require additional dependent add-ons for correct functionality.</h4>
-</div>
+<%# Category 2 %>
+<%= render partial: 'products/category_2', locals: {package: @package, cart: @cart, title: "Remote Control Devices"} %>
 
-<div class="full_row no_top dependent_products">
-	<% @package.systems.each do |sys| %>
-	  <% if sys.product.dependent_item # Check if dependent item %> 
-	    <%# unless sys.product.combo_id && @cart_has_combo_item # Hide it belongs to a combo item %>
-	      <%# unless sys.product.combo_item && @cart_has_combo_item # Hide if a combo item is already in the cart %>
-	        <%= render :partial => 'products/product_addon', :locals => { :product => sys.product, :cart => @cart } %>
-	      <%# end %>
-	    <%# end %>
-	  <% end %>
-	<% end %>
-</div>
-	<h5>**Only one Interactive Service is required for your system, Basic or Advanced depending on which features you would like to have.</h5>
+<%# Category 3 %>
+<%= render partial: 'products/category_3', locals: {package: @package, cart: @cart, title: "Remote Control Upgrades"} %>
 
-<div class="full_row">
-  	<h2 class="page_header">System Service Upgrades</h2>
-</div>
+<%# Category 4 %>
+<%= render partial: 'products/category_4', locals: {package: @package, cart: @cart, title: "Additional Devices"} %>
 
-<div class="full_row no_top monitoring_products">
-	<% @package.systems.each do |sys| %>
-	  <% if sys.product.monitoring_addon %>
-	    <%= render :partial => 'products/product_addon', :locals => { :product => sys.product, :cart => @cart } %>
-	  <% end %>
-	<% end %>
-</div>
+<h5>**Only one Interactive Service is required for your system, Basic or Advanced depending on which features you would like to have.</h5>
+
 
 <% content_for :sub_boxes do %>
-	<% render :partial => 'sub_boxes/products_sub_box', :locals => {:blog => @blog} %>
+	<% render partial: 'sub_boxes/products_sub_box', locals: {blog: @blog} %>
 <% end %>

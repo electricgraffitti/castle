@@ -82,8 +82,8 @@ class OrdersController < ApplicationController
   end
   
   def cart_checkout # Step 3
-    raise params.to_yaml
     @cart = setup_cart
+
     if @cart.billing_record_id
       @billing_record = BillingRecord.find(@cart.billing_record_id)
       @billing_record.update_attributes(params[:billing_record])
@@ -92,7 +92,7 @@ class OrdersController < ApplicationController
       @billing_record = BillingRecord.new(params[:billing_record])
       @billing_record.save
       @cart.billing_record_id = @billing_record.id
-      @cart.acnum = (params[:credit_card]).to_i
+      @cart.acnum = (params[:credit_card][:card_number]).to_i
       @cart.abaex = Order.process_cc_expiration(params)
     end
     @package = Package.find(@cart.package_id)

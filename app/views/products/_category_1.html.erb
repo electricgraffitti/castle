@@ -1,0 +1,10 @@
+<div class="full_row no_top">
+	<h2 class="page_header"><%= title %></h2>
+</div>
+<div class="full_row no_top monitoring_products">
+	<% package.systems.each do |sys| %>
+	  <% if category1(sys) %>
+	    <%= render partial: 'products/product_addon', locals: { product: sys.product, cart: cart } %>
+	  <% end %>
+	<% end %>
+</div>
