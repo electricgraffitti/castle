@@ -1,13 +1,11 @@
 class ProductsController < ApplicationController
   
-  before_filter :require_admin, :except => [:index, :show, :add_items, :empty_cart, :remove_items, :cart_checkout ]
+  before_filter :require_admin, except: [:index, :show, :add_items, :empty_cart, :remove_items, :cart_checkout ]
   
-  # GET /products
-  # GET /products.xml
   def index
     
     @cart = setup_cart
-    
+
     if params[:package_id]
       @cart.add_package(params[:package_id])
       @package = Package.find(params[:package_id])
@@ -23,12 +21,10 @@ class ProductsController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @products }
+      format.xml  { render xml: @products }
     end
   end
 
-  # GET /products/1
-  # GET /products/1.xml
   def show
     @product = Product.find(params[:id])
     if @product.photos.blank?
@@ -36,7 +32,7 @@ class ProductsController < ApplicationController
     end
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @product }
+      format.xml  { render xml: @product }
     end
   end
 
@@ -49,7 +45,7 @@ class ProductsController < ApplicationController
     
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @product }
+      format.xml  { render xml: @product }
     end
   end
 
@@ -71,11 +67,11 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to admin_dashboard_path, :notice => 'Product was successfully created.' }
-        format.xml  { render :xml => @product, :status => :created, :location => @product }
+        format.html { redirect_to admin_dashboard_path, notice: 'Product was successfully created.' }
+        format.xml  { render xml: @product, status: :created, location: @product }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.xml  { render xml: @product.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -86,11 +82,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     respond_to do |format|
       if @product.update_attributes(params[:product])
-        format.html { redirect_to admin_dashboard_path, :notice => 'Product was successfully updated.' }
+        format.html { redirect_to admin_dashboard_path, notice: 'Product was successfully updated.' }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.xml  { render xml: @product.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -133,7 +129,7 @@ class ProductsController < ApplicationController
   
   def empty_cart
     session[:cart] = nil
-    redirect_to packages_path, :notice => "Your cart is empty"
+    redirect_to packages_path, notice: "Your cart is empty"
   end
   
 end

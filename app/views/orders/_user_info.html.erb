@@ -1,0 +1,26 @@
+<div class="purchase_form">
+  <div class="field">
+    <%= user.label :first_name, raw("<span class='bold'>*</span> First Name") %><br />
+    <%= user.text_field :first_name, :class => "tool_tip validate(required)", :title => "First Name as it appears on your credit card" %>
+  </div>
+  <div class="field">
+    <%= user.label :last_name, raw("<span class='bold'>*</span> Last Name") %><br />
+    <%= user.text_field :last_name, :class => "tool_tip validate(required)", :title => "Last Name as it appears on your Credit Card" %>
+  </div>
+  <div class="field">
+    <%= user.label :email, raw("<span class='bold'>*</span> Email Address") %><br />
+    <%= user.text_field :email, :class => "tool_tip validate(required, email)", :title => "Unique Email Address" %>
+  </div>
+  <div class="field">
+    <%= user.label :phone, raw("<span class='bold'>*</span> Phone Number") %><br />
+    <%= user.text_field :phone, :class => "tool_tip validate(required, number)", :title => "Contact Phone Number" %>
+  </div>
+  <div class="field">
+    <%= user.label :password, raw("<span class='bold'>*</span> Account Password") %><br />
+    <%= user.password_field :password, :class => "tool_tip validate(required)", :title => "Account Password" %>
+  </div>
+  <div class="field">
+    <%= user.label :password_confirmation, raw("<span class='bold'>*</span> Password Confirmation") %><br />
+    <%= user.password_field :password_confirmation, :class => "tool_tip validate(required)", :title => "Account Password Confirmation" %>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="field">
+  <%= br.label :address, raw("<span class='bold'>*</span> Address") %><br />
+  <%= br.text_field :address, :class => "tool_tip validate(required)", :title => "Your Billing Address" %>
+</div>
+<div class="field">
+  <%= br.label :city, raw("<span class='bold'>*</span> City") %><br />
+  <%= br.text_field :city, :class => "tool_tip validate(required)", :title => "City" %>
+</div>
+<div class="field">
+  <%= br.label :state, raw("<span class='bold'>*</span> State") %><br />
+  <%= br.collection_select :state_id, State.all, :id, :abbreviation, {:prompt => "Select State"} %>
+</div>
+<div class="field">
+  <%= br.label :billing_zip, raw("<span class='bold'>*</span> Billing Zipcode") %><br />
+  <%= br.text_field :billing_zip, :class => "tool_tip validate(required, rangelength(5,5), number )", :title => "Enter Billing Zipcode for Credit Card"%>
+</div>

@@ -40,7 +40,8 @@
     		<h4>Recurring monthly bill: <%= number_to_currency(@cart.total_price) %></h4>
   		</div>
       <div id="signup_form" class="column_23">
-        <%= form_for(@billing_record, :url => process_order_path, :method => "post") do |f| %>
+        <%= form_for(@billing_record, :url => orders_path, :method => "post") do |f| %>
+          <%= render partial: 'products/ordered_products_fields', locals: {package: @package, cart: @cart} %>
           <div class="form_segment bottom_hr">
           <h3>
     				Account Information
@@ -99,7 +100,7 @@
                 <%= cc.text_field :card_number, :class => "card-number tool_tip validate(required)"%>
               </div>
               <div id="cvv_form">
-                <%= label_tag "CVV" %>
+                <%= label_tag "CVV" %><br/>
                 <%= cc.text_field :verification_value, :size => 4, :class => "card-cvc tool_tip validate(required, rangelength(3,4), number )" %>
                 <%= render :partial => 'layouts/cc_badge' %>
               </div>

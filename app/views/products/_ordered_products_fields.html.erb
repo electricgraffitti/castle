@@ -1,0 +1,18 @@
+  <% index = 1 %>
+  
+  <% package.packaged_products.each do |pp| %>
+    <% count = (pp.included_amount).to_i %>
+    <% count.times do %>
+      <% if pp.product.requires_location? %>
+        <%= hidden_field_tag "[order_product]][#{index}][product_id]", pp.product.id %>
+      <% end %>
+      <% index += 1 %>
+    <% end %>
+  <% end %>
+  
+  <% cart.items.each do |ci| %>
+    <% if ci.requires_location %>
+      <%= hidden_field_tag "[order_product][#{index}][product_id]", ci.cart_item %>
+    <% end %>
+    <% index += 1 %>
+  <% end %>

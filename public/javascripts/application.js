@@ -34,7 +34,6 @@ var Flash = {
 		},
 		2500);
 	}
-
 };
 
 var Base = {
@@ -52,8 +51,6 @@ var Base = {
 		$(window).resize(function() {
 			body.height($(window).height() - segmentHeights);
 		});
-
-
 	},
 
 	indexBanners: function() {
@@ -152,7 +149,7 @@ var Forms = {
   },
 
   validateSignupForm: function(chargeAmount) {
-  	var formEl = $("#new_billing_record"),
+  	var formEl = $("#new_order"),
   			submitButton = formEl.find("input[type='submit']");
 
     formEl.ketchup();
@@ -167,7 +164,7 @@ var Forms = {
 var Gateway = {
   
   formSubmit: function(chargeAmount){
-    $("#new_billing_record").submit(function(e) {
+    $("#new_order").submit(function(e) {
     	e.preventDefault();
       var submitButton = $(this).find(".submit-button"),
           actionsDiv = $(this).find(".actions");
@@ -205,8 +202,8 @@ var Gateway = {
 
   stripeResponseHandler: function(status, response) {
     if (status == 200) {
-      $('#billing_record_stripe_card_token').val(response.id)
-      $('#new_billing_record')[0].submit();
+      $('#order_stripe_card_token').val(response.id)
+      $('#new_order')[0].submit();
     } else {
       $('.submit-button').attr('disabled', false);
       $('.submit-button').removeClass('disabled');

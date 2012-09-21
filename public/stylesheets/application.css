@@ -1321,7 +1321,7 @@ width: 328px;
 background: url(../images/buttons/cta_button.png) 0px -85px no-repeat;
 color: #fff;
 font-weight: 700;
-font-family:'Museo Sans W01 700';
+font-family:"Museo Sans W01 300",Helvetica,Arial,sans-serif;
 }
 a.cta_button:hover {
 background: url(../images/buttons/cta_button.png) 0px 0px no-repeat;

@@ -32,13 +32,16 @@ class User < ActiveRecord::Base
   # Associations
   belongs_to :account
   has_many :orders
+  has_many :billing_records
 
   # Validations
-  validates :first_name, :presence => true, :length => { :minimum => 2 }
-  validates :last_name, :presence => true, :length => { :minimum => 2 }
-  validates :phone, :presence => true, :numericality => true
-
-  # Paperclip
+  validates :first_name, presence: true, length: { minimum: 2 }
+  validates :last_name, presence: true, length: { minimum: 2 }
+  validates :phone, presence: true, numericality: true
+  validates :email,   
+            presence: true,
+            uniqueness: true,
+            format: { with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
 
   # Scopes
   
@@ -46,6 +49,7 @@ class User < ActiveRecord::Base
 
   # Authlogic
   acts_as_authentic do |c|
+    c.login_field(:email)
     c.logged_in_timeout = 120.minutes
   end
 

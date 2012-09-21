@@ -1,5 +1,5 @@
 <%= form_for(order) do |f| %>
-  <%= render :partial => "layouts/error_block", :locals => {:object => order} %>
+  <%= render partial: "layouts/error_block", locals: {object: order} %>
   <% index = 1 %>
   
     <% package.packaged_products.each do |pp| %>
@@ -8,7 +8,7 @@
         <% if pp.product.requires_location? %>
           <div class="field">
             <%= hidden_field_tag "[order][order_product_attributes][#{index}][product_id]", pp.product.id %>
-            <div class="item_textfield">*<%= pp.product.item_name %> - Location: <%= text_field_tag "[order][order_product_attributes][#{index}][product_location]", nil, :class => "validate(required)" %></div>
+            <div class="item_textfield">*<%= pp.product.item_name %> - Location: <%= text_field_tag "[order][order_product_attributes][#{index}][product_location]", nil, class: "validate(required)" %></div>
           </div>
         <% end %>
         <% index += 1 %>
@@ -19,14 +19,14 @@
       <% if ci.requires_location %>
         <div class="field">
           <%= hidden_field_tag "[order][order_product_attributes][#{index}][product_id]", ci.cart_item %>
-          <div class="item_textfield">*<%= ci.name %> - Location: <%= text_field_tag "[order][order_product_attributes][#{index}][product_location]", nil, :class => "validate(required)" %></div>
+          <div class="item_textfield">*<%= ci.name %> - Location: <%= text_field_tag "[order][order_product_attributes][#{index}][product_location]", nil, class: "validate(required)" %></div>
         </div>
       <% end %>
       <% index += 1 %>
     <% end %>
     
   <div class="field button_wrap">
-    <%= f.submit "Add Locations", :class => 'btn tool_tip', :title => "Update Product Locations" %>
-    <%= link_to 'Cancel', :back, :class => "cancel_link" %>
+    <%= f.submit "Add Locations", class: 'btn tool_tip', title: "Update Product Locations" %>
+    <%= link_to 'Cancel', :back, class: "cancel_link" %>
   </div>
 <% end %>
