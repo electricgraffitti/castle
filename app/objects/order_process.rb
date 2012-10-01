@@ -9,34 +9,39 @@ class OrderProcess
 
 			ActiveRecord::Base.transaction do
 
-			# Create User
-			@user = ObjectBuilder.create_new_user(params)
-			@user.save!
+				# Create User
+				@user = ObjectBuilder.create_new_user(params)
+				@user.save!
 
-			# Create Account
+				# Create Account
 
-			# Create Order
-			@order = Order.create(user_id: @user.id)
-			@order.save!
+				# Create Order
+				@order = Order.new(params[:order])
+				@order.user_id = @user.id
+				@order.save!
 
-			# Create Order Products
-			OrderProduct.create_order_products(params, @order)
+				# Create Order Products
+				OrderProduct.create_order_products(params, @order)
 
-			# Create Stripe Customer
-			customer = StripeCustomer.create_customer(params)
+				# Create Stripe Customer
+				customer = StripeCustomer.create_customer(params)
+				@user.update_attribute(:stripe_id, customer.id)
 
-			# Create Stripe Plan
-			plan = StripePlan.create_plan(params, @user)
+				# # Create Stripe Plan
+				# plan = StripePlan.create_plan(params, @user)
 
-			# Create Stripe Subscription
-			subscription = StripeSubscription.create_subscription(plan, customer)
+				# # Create Stripe Subscription
+				# subscription = StripeSubscription.create_subscription(plan, customer)
 
-			# Send Confirmation Emails
+				# Send Confirmation Emails
 
 			end
 
 			return true
-		rescue ActiveRecord::RecordInvalid => invalid
+		rescue ActiveRecord::Rollback
+			if customer
+				StripeCustomer.delete_customer(customer.id)
+			end
 			return false
 		end
 

@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   
   before_filter :require_admin, only: [:index, :edit, :delete]
-  skip_before_filter :verify_authenticity_token, only: :order_return
   
   def index
     @orders = Order.all
@@ -21,7 +20,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def new # Step 1
+  def new
     @cart = setup_cart
 
     @order = Order.new
@@ -30,7 +29,7 @@ class OrdersController < ApplicationController
     @package = Package.find(@cart.package_id)
     
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
     end
   end
 
@@ -39,15 +38,14 @@ class OrdersController < ApplicationController
   end
 
   def create
-    processed_order = OrderProcess.create_new_order(params)
+    @order = OrderProcess.create_new_order(params)
     @cart = setup_cart
     respond_to do |format|
-      if processed_order
-        @cart.order_id = @order.id
+      if @order
         format.html { redirect_to(dashboard_path, notice: 'Order Processed. Please complete product locations.') }
         format.json  { render json: @order, status: :created, location: @order }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new", notice: "Processing Error." }
         format.json  { render json: @order.errors, status: :unprocessable_entity }
       end
     end

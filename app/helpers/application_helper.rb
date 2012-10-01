@@ -17,4 +17,16 @@ module ApplicationHelper
   	content_tag(:div, "", :class => "clear")
   end
 
+  def user_name
+    "#{current_user.first_name} #{current_user.last_name}"
+  end
+
+  def login_logout_link
+    if current_user
+      link_to "Logout", logout_path
+    else
+      link_to "Login", login_path
+    end
+  end
+
 end

@@ -4,12 +4,13 @@ gem 'rails', '3.2.7'
 gem 'mysql2'
 gem 'capistrano'
 gem "stripe"
-gem 'nokogiri', '1.5.0'
+# gem 'nokogiri', '1.5.0'
 gem 'authlogic'
-gem 'rails3-generators'
+# gem 'rails3-generators'
 gem 'paperclip'
 gem 'exception_notification'
 gem 'json'
+gem 'i18n'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

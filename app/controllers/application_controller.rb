@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   helper :all
-  helper_method  :current_user, :current_user_session, :require_user, :require_no_user, :current_admin, :current_admin_session, :super_admin, :super?
+  helper_method  :current_user, :current_user_session, :require_user, :require_no_user, :current_admin, :current_admin_session, :require_admin, :require_no_admin, :require_auth, :super_admin, :super?
 
   private
   
@@ -64,6 +64,15 @@ class ApplicationController < ActionController::Base
       if current_admin
         flash[:notice] = "You must be logged out to access this page"
         redirect_to root_path
+        return false
+      end
+    end
+
+    def require_auth
+      unless current_user || current_admin
+        store_location
+        flash[:notice] = "You must be logged in to access this page"
+        redirect_to new_user_session_url
         return false
       end
     end

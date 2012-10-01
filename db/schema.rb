@@ -153,13 +153,13 @@ ActiveRecord::Schema.define(:version => 20120918023918) do
     t.integer  "cart_id"
     t.string   "unit_number"
     t.boolean  "monitoring_addon"
-    t.string   "list_category"
     t.integer  "list_order"
     t.boolean  "dependent_item"
     t.boolean  "interactive_service"
     t.boolean  "requires_location"
     t.integer  "combo_id"
     t.boolean  "combo_item"
+    t.string   "list_category"
   end
 
   add_index "products", ["cart_id"], :name => "index_products_on_cart_id"

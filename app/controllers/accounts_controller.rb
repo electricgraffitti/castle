@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   before_filter :require_admin
+  
   def index
     @accounts = Account.all
 

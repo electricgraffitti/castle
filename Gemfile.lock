@@ -97,7 +97,6 @@ GEM
     net-ssh (2.5.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    nokogiri (1.5.0)
     paperclip (3.2.0)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -120,8 +119,6 @@ GEM
       activesupport (= 3.2.7)
       bundler (~> 1.0)
       railties (= 3.2.7)
-    rails3-generators (0.17.6)
-      railties (>= 3.0.0)
     railties (3.2.7)
       actionpack (= 3.2.7)
       activesupport (= 3.2.7)
@@ -205,13 +202,12 @@ DEPENDENCIES
   capistrano
   coffee-rails (~> 3.2.1)
   exception_notification
+  i18n
   jasmine
   json
   mysql2
-  nokogiri (= 1.5.0)
   paperclip
   rails (= 3.2.7)
-  rails3-generators
   rspec-rails
   ruby-growl
   sass-rails (~> 3.2.3)

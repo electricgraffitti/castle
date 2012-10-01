@@ -8,7 +8,7 @@ Castle::Application.routes.draw do
   # Admin Login/Logout Paths
   match "login" => "user_sessions#check_session", :as => :login
   match "logout" => "user_sessions#destroy", :as => :logout
-  match "user-dashboard" => "accounts#show", :as => :dashboard
+  match "user-dashboard" => "users#show", :as => :dashboard
   
   # Password Reset Path
   match "password-reset-submit" => "password_resets#create", :as => :password_submit_reset

@@ -21,9 +21,8 @@ class OrderProduct < ActiveRecord::Base
   # Methods
 
   def self.create_order_products(params, order)
-    params[:order_product_attributes].each do |order_product|
-      op = OrderProduct.new(order_product[1])
-      op.order_id = order.id
+    params[:order_product].each do |order_product|
+      op = OrderProduct.create(product_id: order_product[1]['product_id'], order_id: order.id)
     end
   end
   

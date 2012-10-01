@@ -10,12 +10,7 @@
 #
 
 class Order < ActiveRecord::Base
-  
-  # Includes to do POST from model
-  require "nokogiri"
-  require "uri"
-  require "net/https"
-  
+    
   #Associtations
   belongs_to :user
   
@@ -30,13 +25,5 @@ class Order < ActiveRecord::Base
   validates :terms, :presence => true
   
   #Methods
-  
-  def order_product_attributes=(attributes)
-    attributes.each do |attr|
-      order_products.build(attr)
-    end
-  end
-  
 
-  
 end

@@ -727,6 +727,7 @@ text-decoration: underline;
 #bd {
 background: url(../images/highlight.png) 35px -4px no-repeat;
 text-align: left;
+min-height: 415px;
 }
 #content {
 position: relative;
