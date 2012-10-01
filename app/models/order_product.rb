@@ -19,6 +19,13 @@ class OrderProduct < ActiveRecord::Base
   scope :empty_order_products, where(:product_id => nil)
   
   # Methods
+
+  def self.create_order_products(params, order)
+    params[:order_product_attributes].each do |order_product|
+      op = OrderProduct.new(order_product[1])
+      op.order_id = order.id
+    end
+  end
   
   def self.delete_empty_records
     eop = self.empty_order_products

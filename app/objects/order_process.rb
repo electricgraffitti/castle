@@ -1,33 +1,45 @@
 class OrderProcess
 
 	def self.create_new_order(params)
+		customer = nil
+		plan = nil
+		subscription = nil
 
-		# Create User
-		@user = ObjectBuilder.create_new_user(params)
-		raise @user.to_yaml
+		begin
 
-		# Create Stripe Plan
+			ActiveRecord::Base.transaction do
 
-		# Create Stripe Subscription
+			# Create User
+			@user = ObjectBuilder.create_new_user(params)
+			@user.save!
 
-		# Create Order
+			# Create Account
 
-		# Create Order Products
+			# Create Order
+			@order = Order.create(user_id: @user.id)
+			@order.save!
 
-		# Send Confirmation Emails
+			# Create Order Products
+			OrderProduct.create_order_products(params, @order)
 
-		ActiveRecord::Base.transaction do
+			# Create Stripe Customer
+			customer = StripeCustomer.create_customer(params)
 
-			# Create new Order Record
-			@order = Order.create(user_id: current_user.id)
+			# Create Stripe Plan
+			plan = StripePlan.create_plan(params, @user)
 
-			params[:order_product_attributes].each do |order_product|
-			 op = OrderProduct.new(order_product[1])
-			 op.order_id = @order.id
+			# Create Stripe Subscription
+			subscription = StripeSubscription.create_subscription(plan, customer)
+
+			# Send Confirmation Emails
+
 			end
 
+			return true
+		rescue ActiveRecord::RecordInvalid => invalid
+			return false
 		end
-		return true
+
 	end
 
 end

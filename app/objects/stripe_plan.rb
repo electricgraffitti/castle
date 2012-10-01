@@ -2,19 +2,20 @@ class StripePlan
 
 	require "stripe"
 
-	def self.create_plan(params)
+	def self.create_plan(params, user)
+		Stripe.api_key = APP["stripe_key"] # Get Key from app_config.yml
 		plan = Stripe::Plan.create(
   		:amount => params[:amount],
   		:interval => 'month',
   		:name => 'Castle',
   		:currency => 'usd',
-  		:id => "user_last_name + user_id"
+  		:id => "#{user.last_name}_#{user.id}"
 		)
 		return plan
 	end
 
 	def self.update_plan(plan_id)
-		plan = StripeInteface.get_plan(plan_id)
+		plan = get_plan(plan_id)
 		# ... update values
 		plan.save
 	end
