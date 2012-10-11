@@ -1,0 +1,8 @@
+#internal #wrapper {margin: 0px; width: 100%; min-width: 1024px;}
+#internal #mast_header {height: 64px;}
+#internal footer {height: 30px;}
+#internal header {height: 69px;}
+#internal #main_nav {margin-top: 24px; }
+#internal #logo {background: url("../images/logo_internal.png") no-repeat scroll 0 0 transparent;height: 119px;left: 75px;top: -3px;width: 277px;}
+#sidebar {border-right: 1px solid #999; width: 230px; min-height: 600px; position:relative; float: left;}
+#content {border-left: 1px solid #fff; min-height: 600px; padding: 0px; width: 792px;}

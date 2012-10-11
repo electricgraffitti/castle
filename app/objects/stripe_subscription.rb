@@ -4,17 +4,14 @@ class StripeSubscription
 
 	def self.create_subscription(customer, plan)
 		Stripe.api_key = APP["stripe_key"] # Get Key from app_config.yml
-		customer.update_subscription(
-			plan: plan,
-			trial_end: 60.days_from_now
-		)
+		customer.update_subscription(plan: plan.id)
 	end
 
 	def self.update_subscription
 		
 	end
 
-	def self.cancel_subscrition(customer)
+	def self.delete_subscription(customer)
 		customer.cancel_subscription(at_period_end: true)
 	end
 

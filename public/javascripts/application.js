@@ -135,7 +135,6 @@ var Base = {
 				formSetWrap = $("#packaged_products"),
 				newFormSet = $(".product_select").first();
 	}
-	
 };
 
 var Forms = {
@@ -197,7 +196,6 @@ var Gateway = {
       } else {
         return false;
       }
-
   },
 
   stripeResponseHandler: function(status, response) {
@@ -211,6 +209,25 @@ var Gateway = {
       $(".actions").append("<div id='submit_error_message' class='red'>" + response.error.message + "</div>");
     }
   }
+};
+
+var Layout = {
+
+	setPanelSizes: function() {
+		var header = $("#mast_header"),
+				footer = $("#ft"),
+				sidebar = $("#internal #sidebar"),
+				content = $("#internal #content");
+
+		sidebar.height($(window).height() - (footer.outerHeight() + header.outerHeight()));
+		content.height($(window).height() - (footer.outerHeight() + header.outerHeight()));
+
+		$(window).resize(function() {
+			sidebar.height($(window).height() - (footer.outerHeight() + header.outerHeight()));
+			content.height($(window).height() - (footer.outerHeight() + header.outerHeight()));
+		});
+	}
+
 };
 
 var Admin = {
@@ -261,7 +278,6 @@ var Admin = {
 			insertedField.remove();
 			e.preventDefault();
 		});
-		
 	},
 	
 	toggleDependencies: function() {
@@ -277,13 +293,12 @@ var Admin = {
       }
       
 	  });
-	  
 	}
-	
 };
 //**********Initialize Document**********//
 $(document).ready(function() {
 	Flash.injectFlashBox();
 	Flash.setFlash();
 	Base.setTips();
+	Layout.setPanelSizes();
 });

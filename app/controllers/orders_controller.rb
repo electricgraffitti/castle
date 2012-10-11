@@ -38,8 +38,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = OrderProcess.create_new_order(params)
     @cart = setup_cart
+    price = @cart.total_price
+    @order = OrderProcess.create_new_order(params, price)
     respond_to do |format|
       if @order
         format.html { redirect_to(dashboard_path, notice: 'Order Processed. Please complete product locations.') }

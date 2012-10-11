@@ -2,14 +2,16 @@ class StripePlan
 
 	require "stripe"
 
-	def self.create_plan(params, user)
+	def self.create_plan(price, params, user)
+		timestamp = Time.now
 		Stripe.api_key = APP["stripe_key"] # Get Key from app_config.yml
 		plan = Stripe::Plan.create(
-  		:amount => params[:amount],
-  		:interval => 'month',
-  		:name => 'Castle',
-  		:currency => 'usd',
-  		:id => "#{user.last_name}_#{user.id}"
+  		amount: Currency.calculate_dollars_to_cents(price),
+  		interval: 'month',
+  		name: "Castle Plan: #{user.last_name}_#{user.id}_#{timestamp.nsec}",
+  		currency: 'usd',
+  		id: "#{user.last_name}_#{user.id}_#{timestamp.nsec}",
+  		trial_period_days: 30
 		)
 		return plan
 	end
@@ -20,28 +22,13 @@ class StripePlan
 		plan.save
 	end
 
-	def self.delete_plan
-		
+	def self.delete_plan(plan_id)
+		plan = get_plan(plan_id)
+		plan.delete
 	end
 
 	def get_plan(plan_id)
 		plan = Stripe::Plan.retrieve(plan_id)
-	end
-
-	def self.create_subscription
-		
-	end
-
-	def self.update_subscription
-		
-	end
-
-	def self.delete_subscrition
-		
-	end
-
-	def create_charge
-		
 	end
 
 	private
