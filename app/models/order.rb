@@ -15,14 +15,14 @@ class Order < ActiveRecord::Base
   belongs_to :user
   
   has_many :billing_records
-  has_many :order_products, :dependent => :destroy
-  has_many :products, :through => :order_products
+  has_many :order_products, dependent: :destroy
+  has_many :products, through: :order_products
 
   # Attrs
   attr_accessor :stripe_card_token
 
   # Validations
-  validates :terms, :presence => true
+  validates :terms, presence: true
   
   #Methods
 
