@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @order_products = current_user.order_products
 
     respond_to do |format|      
       format.html { render layout: 'internal'}

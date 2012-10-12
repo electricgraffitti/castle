@@ -9,4 +9,13 @@
   </div>
 
 </div>
-<div id="internal_content"></div>
+<div id="internal_content">
+    
+    <ul id="product_listings">
+      <% @order_products.each do |op| %>
+        <li><%= op.product.item_name %> <%= op.product.description %></li>
+      <% end %>
+    </ul>
+
+
+</div>
