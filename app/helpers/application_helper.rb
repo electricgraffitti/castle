@@ -17,6 +17,10 @@ module ApplicationHelper
   	content_tag(:div, "", :class => "clear")
   end
 
+  def separator
+    content_tag(:div, '', class: "separator")
+  end
+
   def user_name
     "#{current_user.first_name} #{current_user.last_name}"
   end

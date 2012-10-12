@@ -18,7 +18,7 @@
       </header>
       <div id="bd" class="clearfix">
         <section id="sidebar">
-          
+          <%= yield :sidebar %>
         </section>
         <section id="content" class="clearfix">
           <%= yield %>
@@ -29,5 +29,10 @@
     </footer>
   	<%= render :partial => "layouts/scripts" %>
   </div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        Layout.setPanels();
+      });
+    </script>
 </body>
 </html>

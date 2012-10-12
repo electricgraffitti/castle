@@ -1,8 +1,23 @@
 #internal #wrapper {margin: 0px; width: 100%; min-width: 1024px;}
 #internal #mast_header {height: 64px;}
-#internal footer {height: 30px;}
+#internal footer {height: 30px; border-top: 3px solid #3058BF;}
 #internal header {height: 69px;}
 #internal #main_nav {margin-top: 24px; }
 #internal #logo {background: url("../images/logo_internal.png") no-repeat scroll 0 0 transparent;height: 119px;left: 75px;top: -3px;width: 277px;}
-#sidebar {border-right: 1px solid #999; width: 230px; min-height: 600px; position:relative; float: left;}
-#content {border-left: 1px solid #fff; min-height: 600px; padding: 0px; width: 792px;}
+
+#sidebar {border-right: 1px solid #999; width: 230px; min-height: 600px; position:relative; float: left; text-align:center;}
+#internal_nav {padding-top: 50px;}
+#sidebar #internal_nav header {font-size: 20px;text-align: center;font-weight: 700;border-bottom: 1px solid #B1B1B1;height: 30px; float:none;}
+#sidebar .separator {border-top: 1px solid white;padding: 20px;}
+#internal_nav li {position: relative; border-top: 1px solid #fff; border-bottom: 1px solid #B1B1B1; font-weight: 700; text-align: left;}
+#internal_nav li:hover {background: #ccc; background: rgba(0,0,0,0.2);}
+#internal_nav li a {position: relative; width: 190px; height: 100%; padding: 10px 20px; display: block;}
+
+#content {position: relative; border-left: 1px solid #fff; min-height: 600px; padding: 0px; width: 792px;}
+#notification_header {position: relative; height: 73px; border-bottom: 1px solid #b1b1b1;}
+#notification {padding: 10px; color:#fff; font-size: 16px; font-weight: 700; margin: 7px 40px 0;}
+#notification .close {position: absolute;top: -6px;right: 34px;font-weight: 700;background: white;text-align: center;width: 20px;height: 20px;display: block;line-height: 22px;}
+#internal_content {position: relative; border-top: 1px solid white;}
+
+#notification.notice1 {border: 4px solid #03B12D; background: #6EC583; background: rgba(3, 177, 45, 0.5);}
+#notification.notice1 .close {color: #03B12D;border: 1px solid #03B12D;}

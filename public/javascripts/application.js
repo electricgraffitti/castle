@@ -213,6 +213,11 @@ var Gateway = {
 
 var Layout = {
 
+	setPanels: function() {
+		Layout.setPanelSizes();
+		Layout.setInternalContentPanel();
+	},
+
 	setPanelSizes: function() {
 		var header = $("#mast_header"),
 				footer = $("#ft"),
@@ -225,6 +230,16 @@ var Layout = {
 		$(window).resize(function() {
 			sidebar.height($(window).height() - (footer.outerHeight() + header.outerHeight()));
 			content.height($(window).height() - (footer.outerHeight() + header.outerHeight()));
+		});
+	},
+
+	setInternalContentPanel: function() {
+		var contentPanel = $("#content"),
+				sidebar = $("#sidebar");
+
+		contentPanel.width($(window).width() - (sidebar.outerWidth() + 1));
+		$(window).resize(function() {
+			contentPanel.width($(window).width() - (sidebar.outerWidth() + 1));
 		});
 	}
 
@@ -300,5 +315,4 @@ $(document).ready(function() {
 	Flash.injectFlashBox();
 	Flash.setFlash();
 	Base.setTips();
-	Layout.setPanelSizes();
 });
