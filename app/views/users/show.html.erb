@@ -13,7 +13,7 @@
     
     <ul id="product_listings">
       <% @order_products.each do |op| %>
-        <li><%= op.product.item_name %> <%= op.product.description %></li>
+        <%= render partial: 'products/listed_dashboard_product', locals: {product: op.product, order_product: op} %>
       <% end %>
     </ul>
 

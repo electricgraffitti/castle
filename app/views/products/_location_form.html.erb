@@ -1,0 +1,6 @@
+<%= form_for order_product do |op| %>
+	<div class="field">
+		<%= op.text_field :product_location %>
+		<%= op.submit "Update", class: "button blue_button" %>
+	</div>
+<% end %>

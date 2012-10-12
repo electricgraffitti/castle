@@ -1297,6 +1297,25 @@ text-decoration: underline;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** BUTTONS **********************/
+.button{position:relative;display:block;outline:none;cursor:pointer;text-align:center;text-decoration:none;font:14px/100% Arial,Helvetica,sans-serif;padding:10px 25px;text-shadow:0 1px 1px rgba(0,0,0,.3);-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 0px 6px rgba(0,0,0,.8);-moz-box-shadow:0 0px 6px rgba(0,0,0,.8);box-shadow:0 0px 6px rgba(0,0,0,.8);color:#fff;}
+.button:hover{text-decoration:none;color:#fff;}
+.blue_button{background:#54a2c3;/* Old browsers */
+background:-moz-linear-gradient(top,#54a2c3 0%,#237ea6 100%);/* FF3.6+ */
+background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#54a2c3),color-stop(100%,#237ea6));/* Chrome,Safari4+ */
+background:-webkit-linear-gradient(top,#54a2c3 0%,#237ea6 100%);/* Chrome10+,Safari5.1+ */
+background:-o-linear-gradient(top,#54a2c3 0%,#237ea6 100%);/* Opera 11.10+ */
+background:-ms-linear-gradient(top,#54a2c3 0%,#237ea6 100%);/* IE10+ */
+background:linear-gradient(top,#54a2c3 0%,#237ea6 100%);/* W3C */
+filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#54a2c3',endColorstr='#237ea6',GradientType=0 );/* IE6-9 */
+border:1px solid #1f6d8f;text-shadow:1px 1px 0px #1f6d8f;}
+.blue_button:hover{background:#38647f;/* Old browsers */
+background:-moz-linear-gradient(top,#38647f 0%,#237ea6 100%);/* FF3.6+ */
+background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#38647f),color-stop(100%,#237ea6));/* Chrome,Safari4+ */
+background:-webkit-linear-gradient(top,#38647f 0%,#237ea6 100%);/* Chrome10+,Safari5.1+ */
+background:-o-linear-gradient(top,#38647f 0%,#237ea6 100%);/* Opera 11.10+ */
+background:-ms-linear-gradient(top,#38647f 0%,#237ea6 100%);/* IE10+ */
+background:linear-gradient(top,#38647f 0%,#237ea6 100%);/* W3C */
+filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#38647f',endColorstr='#237ea6',GradientType=0 );/* IE6-9 */}
 .cta_wrap {
 position: relative;
 padding-bottom: 90px;

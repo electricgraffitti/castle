@@ -34,6 +34,7 @@ Castle::Application.routes.draw do
   resources :cart_items
   resources :carts
   resources :orders
+  resources :order_products
   resources :supports, :only => [:new, :create]
   resources :products
   resources :images
