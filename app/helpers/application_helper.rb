@@ -25,6 +25,10 @@ module ApplicationHelper
     "#{current_user.first_name} #{current_user.last_name}"
   end
 
+  def orders_without_locations
+    current_user.orders_without_locations.length > 0 ? true : false
+  end
+
   def login_logout_link
     if current_user
       link_to "Logout", logout_path

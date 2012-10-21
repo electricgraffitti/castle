@@ -61,6 +61,16 @@ class User < ActiveRecord::Base
     Notify.password_reset(self).deliver
   end
 
+  def orders_without_locations
+    needs_locations = []
+    order_products.each do |order_product|
+      if order_product.product_location.blank?
+        needs_locations.push(order_product)
+      end
+    end
+    needs_locations
+  end
+
   def full_name
     full_name = self.first_name + " " + self.last_name
     return full_name

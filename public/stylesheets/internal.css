@@ -28,8 +28,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#206db0', end
 }
 #internal_nav li.active a, #internal_nav li.active:hover a {color:#fff;}
 #content {position: relative; border-left: 1px solid #fff; min-height: 600px; padding: 0px; width: 792px;}
-#notification_header {position: relative; height: 73px; border-bottom: 1px solid #b1b1b1;}
-#notification {padding: 10px; color:#fff; font-size: 16px; font-weight: 700; margin: 7px 60px 0;}
+#notification_header {position: relative; height: 80px; border-bottom: 1px solid #b1b1b1;}
+#notification {padding: 10px; color:#fff; font-size: 16px; font-weight: 700; margin: 0 60px 0; top: 7px;position: relative;}
 #notification .close {position: absolute; cursor: pointer; top: -6px;right: 54px;font-weight: 700;background: white;text-align: center;width: 20px;height: 20px;display: block;line-height: 22px;}
 #internal_content {position: relative; border-top: 1px solid white;}
 

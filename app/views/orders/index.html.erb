@@ -1,14 +1,7 @@
 <% content_for :sidebar do %>
   <%= render partial: 'users/dashboard_sidebar' %>
 <% end %>
-<div id="notification_header">
-  <%# Should be removed and implemented with JS %>
-  <div id="notification" class="notice1 round2">
-    <span class="close round2">X</span>
-    You have products that have not been assigned a location. Please assign them and submit it to Castle Alarm so we can program your products and get them out to you.
-  </div>
-
-</div>
+<%= render partial: 'layouts/internal_notifications' %>
 <div id="internal_content">
     <ul id="product_listings">
       <% @orders.each do |order| %>
