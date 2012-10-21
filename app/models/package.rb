@@ -2,13 +2,13 @@
 #
 # Table name: packages
 #
-#  id          :integer(4)      not null, primary key
+#  id          :integer          not null, primary key
 #  name        :string(255)
 #  description :text
 #  price       :decimal(8, 2)
 #  created_at  :datetime
 #  updated_at  :datetime
-#  list_order  :integer(4)
+#  list_order  :integer
 #
 
 class Package < ActiveRecord::Base

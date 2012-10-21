@@ -2,9 +2,9 @@
 #
 # Table name: dependent_products
 #
-#  id            :integer(4)      not null, primary key
-#  product_id    :integer(4)
-#  dependency_id :integer(4)
+#  id            :integer          not null, primary key
+#  product_id    :integer
+#  dependency_id :integer
 #  created_at    :datetime
 #  updated_at    :datetime
 #

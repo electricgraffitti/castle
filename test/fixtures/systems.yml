@@ -2,9 +2,9 @@
 #
 # Table name: systems
 #
-#  id         :integer(4)      not null, primary key
-#  product_id :integer(4)
-#  package_id :integer(4)
+#  id         :integer          not null, primary key
+#  product_id :integer
+#  package_id :integer
 #  created_at :datetime
 #  updated_at :datetime
 #

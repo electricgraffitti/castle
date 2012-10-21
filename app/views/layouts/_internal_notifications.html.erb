@@ -1,6 +1,6 @@
 <div id="notification_header">
 
-  <% if orders_without_locations %>
+  <% if unassigned_products(current_user.order_products) %>
     <div id="notification" class="notice1 round2">
       You have products that have not been assigned a location. Please assign them and submit it to Castle Alarm so we can program your products and get them out to you.
     </div>

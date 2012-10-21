@@ -2,27 +2,29 @@
 #
 # Table name: users
 #
-#  id                  :integer(4)      not null, primary key
+#  id                  :integer          not null, primary key
 #  first_name          :string(255)
 #  last_name           :string(255)
 #  email               :string(255)
+#  phone               :string(255)
+#  terms               :boolean
 #  username            :string(255)
-#  account_id          :integer(4)
+#  stripe_id           :string(255)
+#  stripe_plan_id      :string(255)
+#  account_id          :integer
 #  crypted_password    :string(255)
 #  password_salt       :string(255)
 #  persistence_token   :string(255)
 #  single_access_token :string(255)
 #  perishable_token    :string(255)
-#  login_count         :integer(4)
-#  failed_login_count  :integer(4)
+#  login_count         :integer
+#  failed_login_count  :integer
 #  last_request_at     :datetime
 #  current_login_at    :datetime
 #  last_login_at       :datetime
 #  current_login_ip    :string(255)
 #  last_login_ip       :string(255)
-#  phone               :string(255)
-#  terms               :boolean(1)
-#  admin_user          :boolean(1)
+#  admin_user          :boolean
 #  created_at          :datetime
 #  updated_at          :datetime
 #
@@ -59,16 +61,6 @@ class User < ActiveRecord::Base
   def deliver_password_reset_instructions!
     reset_perishable_token!
     Notify.password_reset(self).deliver
-  end
-
-  def orders_without_locations
-    needs_locations = []
-    order_products.each do |order_product|
-      if order_product.product_location.blank?
-        needs_locations.push(order_product)
-      end
-    end
-    needs_locations
   end
 
   def full_name

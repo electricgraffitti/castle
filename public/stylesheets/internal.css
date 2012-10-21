@@ -28,24 +28,26 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#206db0', end
 }
 #internal_nav li.active a, #internal_nav li.active:hover a {color:#fff;}
 #content {position: relative; border-left: 1px solid #fff; min-height: 600px; padding: 0px; width: 792px;}
-#notification_header {position: relative; height: 80px; border-bottom: 1px solid #b1b1b1;}
-#notification {padding: 10px; color:#fff; font-size: 16px; font-weight: 700; margin: 0 60px 0; top: 7px;position: relative;}
+#notification_header {position: relative; min-height: 66px; padding: 7px 0; border-bottom: 1px solid #b1b1b1;}
+#notification {padding: 10px; color:#fff; font-size: 16px; font-weight: 700; margin: 0 60px 0; position: relative;}
 #notification .close {position: absolute; cursor: pointer; top: -6px;right: 54px;font-weight: 700;background: white;text-align: center;width: 20px;height: 20px;display: block;line-height: 22px;}
 #internal_content {position: relative; border-top: 1px solid white;}
 
 #notification.notice1 {border: 4px solid #03B12D; background: #6EC583; background: rgba(3, 177, 45, 0.5);}
 #notification.notice1 .close {color: #03B12D;border: 1px solid #03B12D;}
 
-#product_listings {padding: 20px; position: relative; float:left;}
-#product_listings li {list-style: none; border: 1px solid #ccc; font-size: 14px; background: #f3f3f3;}
+.product_listings {padding: 20px; position: relative; float:left;}
+.product_listings li {list-style: none; border: 1px solid #ccc; border-top:1px solid #aaa; border-bottom: 1px solid #fff; font-size: 14px; background: #f3f3f3;}
 .listed_section, .listed_product {position: relative; float: left;}
 .listed_product {width: 100%;}
-.listed_section {padding: 10px;}
-#internal_content #product_listings header {height: 20px; width: 200px;}
+.listed_section {padding: 13px 10px 9px;}
+#internal_content .product_listings header {height: 20px; width: 200px;}
 .product_description {width: 250px;}
-.product_location {width: 420px;}
-.product_location span {display: block; float: left; padding: 15px 10px 0px;}
-.product_location form {float: left;}
+.product_location {width: 334px;}
+.product_location span {display: block; float: left; padding: 0px 10px 0px;}
+.product_location form {float: left; margin-top: -10px;}
 .product_location .field {width: 100%;}
 .product_location .field input {float: left;}
 .product_location .field input.button {margin-left: 10px;}
+
+#internal_content #assigned_submit .listed_section {width: 45%;}

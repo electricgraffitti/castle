@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918023918) do
+ActiveRecord::Schema.define(:version => 20121021175636) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "product_id"
@@ -43,14 +43,14 @@ ActiveRecord::Schema.define(:version => 20120918023918) do
   end
 
   create_table "billing_records", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "order_id"
     t.string   "city"
     t.string   "address"
     t.string   "billing_zip"
     t.integer  "state_id"
-    t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   add_index "billing_records", ["user_id"], :name => "index_billing_records_on_user_id"
@@ -99,14 +99,15 @@ ActiveRecord::Schema.define(:version => 20120918023918) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "product_location"
+    t.boolean  "finalized",        :default => false
   end
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
+    t.boolean  "terms"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "complete"
-    t.boolean  "terms"
   end
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
@@ -153,13 +154,13 @@ ActiveRecord::Schema.define(:version => 20120918023918) do
     t.integer  "cart_id"
     t.string   "unit_number"
     t.boolean  "monitoring_addon"
+    t.string   "list_category"
     t.integer  "list_order"
     t.boolean  "dependent_item"
     t.boolean  "interactive_service"
     t.boolean  "requires_location"
     t.integer  "combo_id"
     t.boolean  "combo_item"
-    t.string   "list_category"
   end
 
   add_index "products", ["cart_id"], :name => "index_products_on_cart_id"
@@ -204,7 +205,11 @@ ActiveRecord::Schema.define(:version => 20120918023918) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
+    t.string   "phone"
+    t.boolean  "terms"
     t.string   "username"
+    t.string   "stripe_id"
+    t.string   "stripe_plan_id"
     t.integer  "account_id"
     t.string   "crypted_password"
     t.string   "password_salt"
@@ -218,13 +223,9 @@ ActiveRecord::Schema.define(:version => 20120918023918) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
-    t.string   "phone"
-    t.boolean  "terms"
     t.boolean  "admin_user"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "stripe_id"
-    t.string   "stripe_plan_id"
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"

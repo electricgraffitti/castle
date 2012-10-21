@@ -1,0 +1,3 @@
+<%= order_product.product_location %> 
+<%= " - " unless order_product.is_finalized? %>
+<%= link_to('Reassign', reassign_order_product_path(id: order_product.id, reassign: 'true'), class: 'green') unless order_product.is_finalized? %>

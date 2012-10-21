@@ -2,21 +2,22 @@
 #
 # Table name: products
 #
-#  id                  :integer(4)      not null, primary key
+#  id                  :integer          not null, primary key
 #  item_name           :string(255)
 #  description         :text
 #  price               :decimal(8, 2)
 #  created_at          :datetime
 #  updated_at          :datetime
-#  cart_id             :integer(4)
+#  cart_id             :integer
 #  unit_number         :string(255)
-#  monitoring_addon    :boolean(1)
-#  list_order          :integer(4)
-#  dependent_item      :boolean(1)
-#  interactive_service :boolean(1)
-#  requires_location   :boolean(1)
-#  combo_id            :integer(4)
-#  combo_item          :boolean(1)
+#  monitoring_addon    :boolean
+#  list_category       :string(255)
+#  list_order          :integer
+#  dependent_item      :boolean
+#  interactive_service :boolean
+#  requires_location   :boolean
+#  combo_id            :integer
+#  combo_item          :boolean
 #
 
 class Product < ActiveRecord::Base

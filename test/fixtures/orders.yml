@@ -2,11 +2,12 @@
 #
 # Table name: orders
 #
-#  id         :integer(4)      not null, primary key
-#  user_id    :integer(4)
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  terms      :boolean
 #  created_at :datetime
 #  updated_at :datetime
-#  complete   :boolean(1)
+#  complete   :boolean
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

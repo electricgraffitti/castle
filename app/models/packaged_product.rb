@@ -2,10 +2,10 @@
 #
 # Table name: packaged_products
 #
-#  id              :integer(4)      not null, primary key
-#  package_id      :integer(4)
-#  product_id      :integer(4)
-#  included_amount :integer(4)
+#  id              :integer          not null, primary key
+#  package_id      :integer
+#  product_id      :integer
+#  included_amount :integer
 #  created_at      :datetime
 #  updated_at      :datetime
 #

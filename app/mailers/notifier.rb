@@ -6,6 +6,10 @@ class Notifier < ActionMailer::Base
          :from => sender.email,
          :subject => "New #{sender.support_type}")
   end
+
+  def send_assigned_items
+    
+  end
   
   def successful_order_admin(order, tc_id, tc_recurring_id, auth, cart)
     

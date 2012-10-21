@@ -25,8 +25,16 @@ module ApplicationHelper
     "#{current_user.first_name} #{current_user.last_name}"
   end
 
-  def orders_without_locations
-    current_user.orders_without_locations.length > 0 ? true : false
+  def unassigned_products(order_products)
+    OrderProduct.unassigned_items(order_products).length > 0 ? true : false
+  end
+
+  def assigned_products(order_products)
+    OrderProduct.assigend_items(order_products).length > 0 ? true : false
+  end
+
+  def finalized_items(order_products)
+    OrderProduct.finalized_items(order_products).length > 0 ? true : false
   end
 
   def login_logout_link

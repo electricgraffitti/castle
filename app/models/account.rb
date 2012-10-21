@@ -2,8 +2,8 @@
 #
 # Table name: accounts
 #
-#  id         :integer(4)      not null, primary key
-#  product_id :integer(4)
+#  id         :integer          not null, primary key
+#  product_id :integer
 #  created_at :datetime
 #  updated_at :datetime
 #

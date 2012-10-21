@@ -1,9 +1,13 @@
-class OrdersController < ApplicationController
+class OrderProductsController < ApplicationController
   
   before_filter :require_user
 
   def update
     @order_product = OrderProduct.find(params[:id])
+
+    if params[:reassign]
+      @order_product.product_location = nil
+    end
 
     respond_to do |format|
       if @order_product.update_attributes(params[:order_product])

@@ -2,7 +2,7 @@
 #
 # Table name: blogs
 #
-#  id          :integer(4)      not null, primary key
+#  id          :integer          not null, primary key
 #  title       :string(255)
 #  description :text
 #  created_at  :datetime

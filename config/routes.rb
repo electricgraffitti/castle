@@ -20,8 +20,10 @@ Castle::Application.routes.draw do
   match "castle-terms-of-service" => "pages#terms", :as  => :terms
   match "frequently-asked-questions" => "pages#faq", :as => :faq
   match "castle-return-policy" => "pages#return_policy", :as => :returns
+  match "reassign-order-product" => "order_products#update", :as => :reassign_order_product
   
   # Mailer Paths
+  match "send-assigned-item-notification" => "notifications#send_assigned_items", :as => :send_assigned_items
   match "send-contact-email" => "supports#contact_email", :as => :contact_email
   
   # Cart Paths
