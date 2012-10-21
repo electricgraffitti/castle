@@ -26,4 +26,12 @@ class Order < ActiveRecord::Base
   
   #Methods
 
+  def order_owner
+    user.full_name
+  end
+
+  def order_date
+    created_at.strftime("Ordered on %m/%d/%Y")
+  end
+
 end

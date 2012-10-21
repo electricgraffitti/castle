@@ -1,25 +1,22 @@
-<h1>Listing orders</h1>
-
-<table>
-  <tr>
-    <th>User</th>
-    <th>Cart</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @orders.each do |order| %>
-  <tr>
-    <td><%= order.user_id %></td>
-    <td><%= order.cart_id %></td>
-    <td><%= link_to 'Show', order %></td>
-    <td><%= link_to 'Edit', edit_order_path(order) %></td>
-    <td><%= link_to 'Destroy', order, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<% content_for :sidebar do %>
+  <%= render partial: 'users/dashboard_sidebar' %>
 <% end %>
-</table>
+<div id="notification_header">
+  <%# Should be removed and implemented with JS %>
+  <div id="notification" class="notice1 round2">
+    <span class="close round2">X</span>
+    You have products that have not been assigned a location. Please assign them and submit it to Castle Alarm so we can program your products and get them out to you.
+  </div>
 
-<br />
-
-<%= link_to 'New Order', new_order_path %>
+</div>
+<div id="internal_content">
+    <ul id="product_listings">
+      <% @orders.each do |order| %>
+        <li class="listed_product">
+          <header class="listed_section"><%= order.order_owner %></header>
+          <div class="listed_section product_description">Order Number: stripe_order_number</div>
+          <div class="listed_section product_location"><%= order.order_date %></div>
+        </li>
+      <% end %>
+    </ul>
+</div>

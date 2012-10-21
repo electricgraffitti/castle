@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
   
-  before_filter :require_admin, only: [:index, :edit, :delete]
+  before_filter :require_admin, only: [:edit, :delete]
+  before_filter :require_auth, only: [:index, :show]
   
   def index
     @orders = Order.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: 'internal'}
       format.json  { render json: @orders }
     end
   end
