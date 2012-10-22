@@ -41,6 +41,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#206db0', end
 .listed_section, .listed_product {position: relative; float: left;}
 .listed_product {width: 100%;}
 .listed_section {padding: 13px 10px 9px;}
+.listed_section a.listed_action_link {color:#206db0; float:right;}
+.listed_section a.listed_action_link:hover {color:#144782;}
 #internal_content .product_listings header {height: 20px; width: 200px;}
 .product_description {width: 250px;}
 .product_location {width: 334px;}
@@ -49,5 +51,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#206db0', end
 .product_location .field {width: 100%;}
 .product_location .field input {float: left;}
 .product_location .field input.button {margin-left: 10px;}
-
-#internal_content #assigned_submit .listed_section {width: 45%;}
+#assigned_submit {background: #C4E3FD;}
+#internal_content #assigned_submit header.listed_section {width: 375px;}
+#internal_content #assigned_submit .listed_section.assigned_submit_button {float:right;padding-right: 13px;}

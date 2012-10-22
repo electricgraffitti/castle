@@ -23,11 +23,9 @@
             <%= render partial: 'products/listed_dashboard_product', locals: {product: op.product, order_product: op} %>
           <% end %>
         <% end %>
-      </ul>
-      <ul id="assigned_submit" class="product_listings">
-        <li class="listed_product">
+        <li id="assigned_submit" class="listed_product">
           <header class="listed_section">Submit Assigned Products to Castle LLC for programming.</header>
-          <div class="listed_section"><%= link_to "Send Items", send_assigned_items_path, class: "button blue_button" %></div>
+          <div class="listed_section assigned_submit_button"><%= link_to "Send Items", send_assigned_items_path, class: "button blue_button" %></div>
         </li>
       </ul>
     <% end %>
