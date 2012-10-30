@@ -1,0 +1,2 @@
+module UserDependentProductsHelper
+end

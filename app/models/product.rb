@@ -40,6 +40,7 @@ class Product < ActiveRecord::Base
   has_many :orders, :through => :order_products
   has_many :dependent_products
   has_many :dependencies, :through => :dependent_products
+  has_many :user_dependent_products
   
   #Assets
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => lambda { |a| a[:attachment].blank? }
@@ -169,6 +170,10 @@ class Product < ActiveRecord::Base
 
   def category5
     list_category == "Category-5" ? true : false
-  end  
+  end
+
+  def remote_control_device
+    category2
+  end
   
 end

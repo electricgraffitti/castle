@@ -11,6 +11,7 @@
 #  username            :string(255)
 #  stripe_id           :string(255)
 #  stripe_plan_id      :string(255)
+#  package_id          :integer
 #  account_id          :integer
 #  crypted_password    :string(255)
 #  password_salt       :string(255)

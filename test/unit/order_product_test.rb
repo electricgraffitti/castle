@@ -8,7 +8,7 @@
 #  created_at       :datetime
 #  updated_at       :datetime
 #  product_location :string(255)
-#  finalized        :boolean
+#  finalized        :boolean          default(FALSE)
 #
 
 require 'test_helper'

@@ -1,5 +1,7 @@
 Castle::Application.routes.draw do
-    
+
+  resources :user_dependent_products
+
   # Admin Login/Logout Paths
   match "admin-login" => "admin_sessions#check_session", :as => :admin_login
   match "admin-logout" => "admin_sessions#destroy", :as => :admin_logout
@@ -33,6 +35,7 @@ Castle::Application.routes.draw do
   match "checkout" => "orders#new", :as => :checkout
 
   resources :packages
+  resources :add_ons
   resources :cart_items
   resources :carts
   resources :orders

@@ -1,0 +1,23 @@
+<% content_for :sidebar do %>
+  <%= render partial: 'users/dashboard_sidebar' %>
+<% end %>
+<div id="internal_content">
+	<div id="add_ons">
+	<%= render partial: 'carts/addon_cart', locals: {cart: @cart, package: @package} %>
+
+	<%# Category = 1 %>
+	<%= render partial: 'products/category_1', locals: {package: @package, cart: @cart, title: "Interactive Service Upgrades"} %>
+
+	<%# Category 2 %>
+	<%= render partial: 'products/category_2', locals: {package: @package, cart: @cart, title: "Remote Control Devices"} %>
+
+	<%# Category 3 %>
+	<%= render partial: 'products/category_3', locals: {package: @package, cart: @cart, title: "Remote Control Upgrades"} %>
+
+	<%# Category 4 %>
+	<%= render partial: 'products/category_4', locals: {package: @package, cart: @cart, title: "Additional Devices"} %>
+	<%= clear %>
+	<h5>**Only one Interactive Service is required for your system, Basic or Advanced depending on which features you would like to have.</h5>
+
+	</div>
+</div>

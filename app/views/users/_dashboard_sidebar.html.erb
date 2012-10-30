@@ -1,11 +1,22 @@
 <ul id="internal_nav">
 	<header><%= user_name %></header>
+	<div class="sub_header"><%= monthly_rate %></div>
 	<li><%= link_to "My Products", dashboard_path %></li>
 	<li><%= link_to "My Orders", orders_path %></li>
 </ul>
 <segment class="sidebar_segment">
-	<%= link_to "Purchase Addons", "", :class => "button red_button" %>
+	<%= link_to "Purchase Addons", add_ons_path, :class => "button red_button" %>
 </segment>
 <segment id="alarm_widget" class="sidebar_segment"> 
 	<header>Alarm.com Login Widget</header>
+</segment>
+<segment class="sidebar_segment message_form">
+	<div class="segemnt_header">Need Something?<br/>Send us a message.</div>
+	<%= form_tag do %>
+		<%= text_area_tag :contact_submission %>
+		<%= submit_tag "Send", class: "button blue_button right" %>
+	<% end %>
+</segment>
+<segment class="sidebar_segment terms"> 
+	<div><%= link_to "Download Castle Protection Terms", "/downloads/terms.pdf" %></div>
 </segment>

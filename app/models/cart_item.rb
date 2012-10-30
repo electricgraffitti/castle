@@ -28,15 +28,11 @@ class CartItem < ActiveRecord::Base
     @name = product_ref.item_name
     @cart_price = product_ref.price
     @quantity = 1
+    @interactive = product_ref.interactive_service
     @requires_location = product_ref.requires_location
+    @remote_control_device = product_ref.remote_control_device
     @combo_id = product_ref.combo_id
     @combo_item = product_ref.combo_item
-    
-    if product_ref.interactive_service
-      @interactive = product_ref.interactive_service
-    else
-      @interactive = product_ref.interactive_service
-    end
   end
   
   def increment_quantity
@@ -70,4 +66,10 @@ class CartItem < ActiveRecord::Base
   def requires_location
     @requires_location
   end
+
+  def remote_control_device
+    @remote_control_device
+  end
+
+
 end

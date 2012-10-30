@@ -1,6 +1,5 @@
 module ApplicationHelper
   
-  
   def page_title(page_title)
     content_for(:title) { page_title }
   end
@@ -23,6 +22,10 @@ module ApplicationHelper
 
   def user_name
     "#{current_user.first_name} #{current_user.last_name}"
+  end
+
+  def monthly_rate
+    @monthly_rate = @monthly_rate || "Current Monthly Rate: " + number_to_currency(current_user.monthly_rate)
   end
 
   def unassigned_products(order_products)

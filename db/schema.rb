@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021175636) do
+ActiveRecord::Schema.define(:version => 20121030024408) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "product_id"
@@ -196,6 +196,13 @@ ActiveRecord::Schema.define(:version => 20121021175636) do
   add_index "systems", ["package_id"], :name => "index_systems_on_package_id"
   add_index "systems", ["product_id"], :name => "index_systems_on_product_id"
 
+  create_table "user_dependent_products", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "user_sessions", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -210,6 +217,7 @@ ActiveRecord::Schema.define(:version => 20121021175636) do
     t.string   "username"
     t.string   "stripe_id"
     t.string   "stripe_plan_id"
+    t.integer  "package_id"
     t.integer  "account_id"
     t.string   "crypted_password"
     t.string   "password_salt"
@@ -229,5 +237,6 @@ ActiveRecord::Schema.define(:version => 20121021175636) do
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"
+  add_index "users", ["package_id"], :name => "index_users_on_package_id"
 
 end

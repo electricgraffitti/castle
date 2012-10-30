@@ -19,6 +19,7 @@ class Package < ActiveRecord::Base
   validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality => {:greater_than => 0, :less_than => 1000}
   
   # Associations
+  has_many :users
   has_many :systems
   has_many :products, :through => :systems
   has_many :packaged_products, :dependent => :destroy

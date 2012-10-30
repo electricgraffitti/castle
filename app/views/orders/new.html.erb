@@ -7,6 +7,7 @@
       <div id="signup_form" class="column_23">
         <%= form_for(@order, :method => "post") do |f| %>
           <%= render partial: 'products/ordered_products_fields', locals: {package: @package, cart: @cart} %>
+          <%= render partial: 'products/dependent_products_fields', locals: {package: @package, cart: @cart} %>
           <%= fields_for @user do |user| %>
             <div class="form_segment bottom_hr">
               <h3>

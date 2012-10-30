@@ -1,6 +1,6 @@
 class OrderProcess
 
-	def self.create_new_order(params, price)
+	def self.create_new_order(params, package_id, price)
 		customer = nil
 		plan = nil
 		subscription = nil
@@ -12,12 +12,16 @@ class OrderProcess
 
 				# Create User
 				@user = ObjectBuilder.create_new_user(params)
+				@user.package_id = package_id
 				@user.save!
 
 				# Create Order
 				@order = Order.new(params[:order])
 				@order.user_id = @user.id
 				@order.save!
+
+				# Create User Owned Dependant Products
+				UserDependentProduct.create_user_dependent_products(params, @user)
 
 				# Create Order Products
 				OrderProduct.create_order_products(params, @order)

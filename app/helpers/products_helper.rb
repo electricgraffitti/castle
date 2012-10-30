@@ -1,16 +1,23 @@
 module ProductsHelper
 
+	def not_user_dependent_product(sys)
+		!user_dependent_product(sys.product)
+	end
+
+	def user_dependent_product(product)
+		current_user && current_user.dependent_products.include?(product) ? true : false
+	end
+
+	def product_meets_dependency_requirements(product)
+		user_dependent_product(product) && product.monitoring_addon
+	end
+
 	def category1(sys)
 		(sys.product.monitoring_addon && sys.product.category1) ? true : false
 	end
 
 	def category2(sys)
 		sys.product.category2 ? true : false
-		# if sys.product.category2
-		# 	sys.product.monitoring_addon || sys.product.dependent_item ? false : true
-		# else
-		# 	return false
-		# end
 	end
 
 	def category3(sys)

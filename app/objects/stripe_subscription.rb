@@ -15,6 +15,11 @@ class StripeSubscription
 		customer.cancel_subscription(at_period_end: true)
 	end
 
+	def self.get_monthly_rate(customer)
+		Stripe.api_key = APP["stripe_key"] # Get Key from app_config.yml
+		Stripe::Plan.retrieve(customer.stripe_plan_id)
+	end
+
 	private
 
 	def retrieve_stripe_key

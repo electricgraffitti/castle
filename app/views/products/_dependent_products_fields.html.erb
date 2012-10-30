@@ -1,0 +1,7 @@
+  <% index = 1 %>  
+  <% cart.items.each do |ci| %>
+    <% if ci.remote_control_device || ci.interactive %>
+      <%= hidden_field_tag "[dependent_product][#{index}][product_id]", ci.cart_item %>
+    <% end %>
+    <% index += 1 %>
+  <% end %>

@@ -40,10 +40,12 @@ class OrdersController < ApplicationController
 
   def create
     @cart = setup_cart
+    package_id = @cart.package_id
     price = @cart.total_price
-    @order = OrderProcess.create_new_order(params, price)
+    @order = OrderProcess.create_new_order(params, package_id, price)
     respond_to do |format|
       if @order
+        session[:cart] = nil
         format.html { redirect_to(dashboard_path, notice: 'Order Processed. Please complete product locations.') }
         format.json  { render json: @order, status: :created, location: @order }
       else

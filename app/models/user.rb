@@ -11,6 +11,7 @@
 #  username            :string(255)
 #  stripe_id           :string(255)
 #  stripe_plan_id      :string(255)
+#  package_id          :integer
 #  account_id          :integer
 #  crypted_password    :string(255)
 #  password_salt       :string(255)
@@ -33,10 +34,12 @@ class User < ActiveRecord::Base
   
   # Associations
   belongs_to :account
+  belongs_to :package
   has_many :orders
   has_many :order_products, through: :orders
   has_many :products, through: :order_products
-
+  has_many :user_dependent_products
+  has_many :products, through: :user_dependent_products
   has_many :billing_records
 
   # Validations
@@ -66,6 +69,19 @@ class User < ActiveRecord::Base
   def full_name
     full_name = self.first_name + " " + self.last_name
     return full_name
+  end
+
+  def monthly_rate
+    current_plan = StripeSubscription.get_monthly_rate(self)
+    return Currency.calculate_cents_to_dollars(current_plan.amount)
+  end
+
+  def dependent_products
+    dependent_products = []
+    user_dependent_products.each do |udp|
+      dependent_products.push(udp.product)
+    end
+    return dependent_products 
   end
   
 end

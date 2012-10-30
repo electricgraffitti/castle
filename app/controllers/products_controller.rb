@@ -107,12 +107,20 @@ class ProductsController < ApplicationController
     @cart = setup_cart
     
     @cart.add_items(params[:product_id].to_i)
-    redirect_to products_path
+      if current_user
+        redirect_to addons_path
+      else
+        redirect_to products_path
+      end
     
     rescue ActiveRecord::RecordNotFound 
       logger.error("Attempt to access invalid product #{params[:id]}") 
-      flash[:notice] = "Invalid product" 
-      redirect_to products_path
+      flash[:notice] = "Invalid product"
+      if current_user
+        redirect_to addons_path
+      else
+        redirect_to products_path
+      end
     
   end
   
@@ -123,13 +131,21 @@ class ProductsController < ApplicationController
     if params[:page]
       redirect_to checkout_path
     else
-      redirect_to products_path
+      if current_user
+        redirect_to addons_path
+      else
+        redirect_to products_path
+      end
     end
   end
   
   def empty_cart
     session[:cart] = nil
-    redirect_to packages_path, notice: "Your cart is empty"
+    if current_user
+      redirect_to addons_path, notice: "Your cart is empty"
+    else
+      redirect_to packages_path, notice: "Your cart is empty"
+    end
   end
   
 end

@@ -3,13 +3,14 @@
 <% end %>
 <%= render partial: 'layouts/internal_notifications' %>
 <div id="internal_content">
-    <ul id="product_listings">
-      <% @orders.each do |order| %>
-        <li class="listed_product">
-          <header class="listed_section"><%= order.order_owner %></header>
-          <div class="listed_section product_description">Order Number: stripe_order_number</div>
-          <div class="listed_section product_location"><%= order.order_date %></div>
-        </li>
-      <% end %>
-    </ul>
+  <ul class="product_listings">
+    <header>Recent Orders</header>
+    <% @orders.each do |order| %>
+      <li class="listed_product">
+        <header class="listed_section"><%= order.order_owner %></header>
+        <div class="listed_section product_description">Order Number: stripe_order_number</div>
+        <div class="listed_section product_location"><%= order.order_date %></div>
+      </li>
+    <% end %>
+  </ul>
 </div>
