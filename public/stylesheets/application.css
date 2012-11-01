@@ -683,7 +683,7 @@ right: 0;
 top: 0;
 width: 400px;
 }
-#serving_list {position: absolute;bottom: -39px;left: 199px;font-style: italic;color: #222;width: 500px;font-size: 13px;text-align: left;z-index: 3;}
+#serving_list {position: absolute;bottom: 13px;left: 199px;font-style: italic;color: #777;width: 900px;font-size: 13px;text-align: left;z-index: 3;}
 /*************************************************************************************************************************************/
 /****************************************************************************************************** NAVIGATION *******************/
 #main_nav {
@@ -906,6 +906,7 @@ border: 1px solid #333;
 	height: 45px;
 	overflow: hidden;
 }
+.product_wrap .button {width: 100px;}
 .product_wrap_show p.show_text {
 	float:left;
 	position:relative;
@@ -1356,22 +1357,22 @@ a.cta_button {
 cursor: pointer;
 display: block;
 font-size: 31px;
-height: 63px;
+height: 40px;
 margin-left: 20px;
 padding-top: 22px;
 position: relative;
 text-align: center;
 text-decoration: none;
 text-shadow: 0 2px 2px #222222;
-width: 328px;
-background: url(../images/buttons/cta_button.png) 0px -85px no-repeat;
+width: 277px;
+/*background: url(../images/buttons/cta_button.png) 0px -85px no-repeat;*/
 color: #fff;
 font-weight: 700;
 font-family:"Museo Sans W01 300",Helvetica,Arial,sans-serif;
 }
 a.cta_button:hover {
-background: url(../images/buttons/cta_button.png) 0px 0px no-repeat;
-color: #efefef;
+/*background: url(../images/buttons/cta_button.png) 0px 0px no-repeat;*/
+/*color: #efefef;*/
 }
 a.cta_button:active,a.cta_button:visited {
 color: #fff;
@@ -1488,6 +1489,7 @@ padding: 3px;
   padding-top: 9px;
   float: right;
 }
+.state_disclaimer {width: 400px;color: #777;font-size: 12px;position: relative;float: left;}
 /*************************************************************************************************************************************/
 /****************************************************************************************************** OVERLAY **********************/
 /* the overlayed element */

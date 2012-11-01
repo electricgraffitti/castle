@@ -27,7 +27,7 @@
       	<% end %>
       </ul>
 			<div class="button_wrap">
-  		  <%= link_to "Select System", products_path(:package_id => package.id), :class => "btn tool_tip", :title => "Add #{(package.name).titleize} to Cart" %>
+  		  <%= link_to "Select System", products_path(:package_id => package.id), :class => "button red_button tool_tip", :title => "Add #{(package.name).titleize} to Cart" %>
 				<% if current_admin %>
 					<%= link_to "Edit System Item", edit_package_path(package), :class => "admin_btn" %>
 				<% end %>
@@ -38,7 +38,7 @@
 	<% end %>		
 </div>
 <div class="full_row">
-	* Each system requires a monthly monitoring agreement. <%= link_to "View agreement here.", "" %>
+	* Plus applicable tax and each system requires a monthly monitoring agreement. <%= link_to "View agreement here.", "/downloads/terms.pdf" %>
 </div>
 
 <% content_for :sub_boxes do %>
