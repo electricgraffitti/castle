@@ -16,7 +16,19 @@ class AddOnsController < ApplicationController
   end
 
   def create
-    raise params.to_yaml
+    @cart = setup_cart
+    price = @cart.total_price
+    @order = OrderProcess.create_addon_order(current_user, params, price)
+    respond_to do |format|
+      if @order
+        session[:cart] = nil
+        format.html { redirect_to(dashboard_path, notice: 'Add On Order Processed. Please complete product locations.') }
+        format.json  { render json: @order, status: :created, location: @order }
+      else
+        format.html { render action: dashboard_path, notice: "Processing Error." }
+        format.json  { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
   end
   
 end

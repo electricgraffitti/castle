@@ -12,6 +12,10 @@ class StripeCustomer
     return customer
 	end
 
+	def self.get_customer(user)
+		Stripe::Customer.retrieve(user.stripe_id)
+	end
+
 	def self.update_customer
 		
 	end
