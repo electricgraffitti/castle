@@ -46,6 +46,10 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => lambda { |a| a[:attachment].blank? }
   
   # Methods
+
+  def self.has_existing_interactive_product(product)
+    
+  end
   
   def dependent_checkbox
     if self.dependent_products

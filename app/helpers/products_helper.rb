@@ -9,7 +9,11 @@ module ProductsHelper
 	end
 
 	def product_meets_dependency_requirements(product)
-		user_dependent_product(product) && product.monitoring_addon
+		user_dependent_product(product) || product_is_existing_interactive_product?(product)
+	end
+
+	def product_is_existing_interactive_product?(product)
+		(current_user && current_user.has_existing_interactive_product?) && product.interactive_service
 	end
 
 	def category1(sys)

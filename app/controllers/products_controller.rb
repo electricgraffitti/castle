@@ -108,7 +108,7 @@ class ProductsController < ApplicationController
     
     @cart.add_items(params[:product_id].to_i)
       if current_user
-        redirect_to addons_path
+        redirect_to add_ons_path
       else
         redirect_to products_path
       end
@@ -117,7 +117,7 @@ class ProductsController < ApplicationController
       logger.error("Attempt to access invalid product #{params[:id]}") 
       flash[:notice] = "Invalid product"
       if current_user
-        redirect_to addons_path
+        redirect_to add_ons_path
       else
         redirect_to products_path
       end
@@ -132,7 +132,7 @@ class ProductsController < ApplicationController
       redirect_to checkout_path
     else
       if current_user
-        redirect_to addons_path
+        redirect_to add_ons_path
       else
         redirect_to products_path
       end
@@ -142,7 +142,7 @@ class ProductsController < ApplicationController
   def empty_cart
     session[:cart] = nil
     if current_user
-      redirect_to addons_path, notice: "Your cart is empty"
+      redirect_to add_ons_path, notice: "Your cart is empty"
     else
       redirect_to packages_path, notice: "Your cart is empty"
     end

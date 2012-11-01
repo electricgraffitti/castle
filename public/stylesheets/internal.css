@@ -65,6 +65,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#206db0', end
 .message_form textarea {width: 185px; height: 70px; margin-bottom: 5px;}
 
 #internal_content #add_ons {padding: 10px; width: 640px;}
-#internal_content  #cart {position: fixed;top: 69px;right: 15px;}
+#notification_header  #cart {position: relative;top: -6px;right: 1px;float: right;}
 #internal_content .full_row {width: 640px;}
 #internal_content h2.page_header {padding-top: 5px;}

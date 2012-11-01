@@ -83,6 +83,16 @@ class User < ActiveRecord::Base
     end
     return dependent_products 
   end
+
+  def has_existing_interactive_product?
+    dependent_products.each do |product|
+      if product.interactive_service
+        return true
+      else
+        return false
+      end
+    end
+  end
   
 end
 
