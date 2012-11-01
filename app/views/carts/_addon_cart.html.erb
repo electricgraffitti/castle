@@ -27,7 +27,7 @@
     </ul>
     <div class="cart_actions">
       <span>New Monthly Rate: <%= number_to_currency((current_user.monthly_rate + cart.total_price)) %></span>
-      <%= submit_tag "Purchase Add Ons", :class => "btn tool_tip", :title => "Purchase Add Ons" %>
+      <%= submit_tag "Purchase", :class => "button red_button tool_tip", :title => "Purchase Add Ons" %>
     </div>
   <% end %>
 </div>
