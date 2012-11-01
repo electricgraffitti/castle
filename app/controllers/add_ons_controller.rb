@@ -16,7 +16,7 @@ class AddOnsController < ApplicationController
   end
 
   def create
-    
+    raise params.to_yaml
   end
   
 end

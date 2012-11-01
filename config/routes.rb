@@ -33,6 +33,7 @@ Castle::Application.routes.draw do
   match "remove-cart-item(/:id)" => "products#remove_items", :as => :remove_item
   match "empty-cart" => "products#empty_cart", :as => :empty_cart
   match "checkout" => "orders#new", :as => :checkout
+  match "purchase_add_ons" => "add_ons#create", :as => :add_on_purchase
 
   resources :packages
   resources :add_ons
