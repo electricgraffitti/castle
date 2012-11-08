@@ -27,6 +27,7 @@ group :development do
   gem 'zencoder-fetcher'
   gem "thin"
   gem 'annotate'
+  gem 'debugger'
 end
 
 group :test do

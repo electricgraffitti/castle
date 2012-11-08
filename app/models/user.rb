@@ -88,9 +88,8 @@ class User < ActiveRecord::Base
     dependent_products.each do |product|
       if product.interactive_service
         return true
-      else
-        return false
       end
+      return false
     end
   end
   
