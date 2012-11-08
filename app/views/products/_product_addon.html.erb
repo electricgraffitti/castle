@@ -19,13 +19,13 @@
 				<% end %>
 			</p>
 		  <div class="part bottom_hr">
-		    <% if product.dependent_item? %>
-		    <% pd = product.check_dependencies(cart) %>
+		    <% if product_meets_dependency_requirements(product) %>
+		    	<% pd = product.check_dependencies(cart) %>
 		      <% if pd %>
 		        <ul>
 		          <li class="list_title red">**Required Add-ons</li>
 	            <% pd.each do |p| %>
-	              <li><%= link_to(p.item_name + " - Add", add_item_path(:product_id => p.id), :class => "tool_tip left", :title => "Add #{(p.item_name).titleize} to Cart") unless product_meets_dependency_requirements(p) %></li>
+	            	<li><%= link_to(p.item_name + " - Add", add_item_path(:product_id => p.id), :class => "tool_tip left", :title => "Add #{(p.item_name).titleize} to Cart") %></li>
 	            <% end %>
 	          </ul>
 		      <% else %>

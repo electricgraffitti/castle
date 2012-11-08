@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   
   def index
     @orders = Order.all
+    @invoices = StripeCustomer.get_invoices(current_user)
 
     respond_to do |format|
       format.html { render layout: 'internal'}

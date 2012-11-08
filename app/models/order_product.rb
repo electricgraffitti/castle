@@ -22,15 +22,19 @@ class OrderProduct < ActiveRecord::Base
   # Methods
 
   def self.create_order_products(params, order)
-    params[:order_product].each do |order_product|
-      op = OrderProduct.create(product_id: order_product[1]['product_id'], order_id: order.id)
+    if params[:order_product]
+      params[:order_product].each do |order_product|
+        op = OrderProduct.create(product_id: order_product[1]['product_id'], order_id: order.id)
+      end
     end
   end
 
   def self.get_interactive_service(params)
-    params[:order_product].each do |order_product|
-      if order_product[1]['product_id'] == "24" || "25"
-        interactive_service_id = (order_product[1]['product_id']).to_i
+    if params[:order_product]
+      params[:order_product].each do |order_product|
+        if order_product[1]['product_id'] == "24" || "25"
+          interactive_service_id = (order_product[1]['product_id']).to_i
+        end
       end
     end
   end

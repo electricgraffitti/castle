@@ -40,7 +40,7 @@ class OrderProcess
 
 				# Update needed records
 				@user.update_attributes(stripe_id: customer.id, stripe_plan_id: plan.id)
-
+				@order.update_attributes(stripe_invoice_id: plan.id)
 
 				# Send Confirmation Emails
 
@@ -77,6 +77,7 @@ class OrderProcess
 				# Create Order
 				@order = Order.new(params[:order])
 				@order.user_id = user.id
+				@order.terms = 1
 				@order.save!
 
 				# Create User Owned Dependant Products
@@ -95,7 +96,8 @@ class OrderProcess
 				subscription = StripeSubscription.create_subscription(customer, plan)
 
 				# Update needed records
-				@user.update_attributes(stripe_id: customer.id, stripe_plan_id: plan.id)
+				user.update_attributes(stripe_plan_id: plan.id)
+				@order.update_attributes(stripe_invoice_id: plan.id)
 
 
 				# Send Confirmation Emails

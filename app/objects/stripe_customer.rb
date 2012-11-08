@@ -24,6 +24,12 @@ class StripeCustomer
 		
 	end
 
+	def self.get_invoices(user)
+		Stripe::Invoice.all(
+		  :customer => user.stripe_id
+		)
+	end
+
 	private
 
 	def retrieve_stripe_key

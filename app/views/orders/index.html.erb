@@ -8,8 +8,18 @@
     <% @orders.each do |order| %>
       <li class="listed_product">
         <header class="listed_section"><%= order.order_owner %></header>
-        <div class="listed_section product_description">Order Number: stripe_order_number</div>
+        <div class="listed_section product_description">Order Number: <%= order.stripe_invoice_id %></div>
         <div class="listed_section product_location"><%= order.order_date %></div>
+      </li>
+    <% end %>
+  </ul>
+  <ul class="product_listings">
+    <header>Recent Invoices</header>
+    <% @invoices.data.each do |invoice| %>
+      <li class="listed_product">
+        <header class="listed_section">Invoice Date: <%= DateTime.strptime(invoice.date.to_s,'%s').strftime("%m/%d/%Y") %></header>
+        <div class="listed_section product_description">Invoice Number: <%= invoice.id %></div>
+        <div class="listed_section product_location">Invoice Amount: <%= number_to_currency(invoice.total) %></div>
       </li>
     <% end %>
   </ul>

@@ -17,7 +17,7 @@ class AddOnsController < ApplicationController
 
   def create
     @cart = setup_cart
-    price = @cart.total_price
+    price = @cart.total_price + current_user.monthly_rate
     @order = OrderProcess.create_addon_order(current_user, params, price)
     respond_to do |format|
       if @order

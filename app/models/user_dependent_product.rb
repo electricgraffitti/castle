@@ -17,9 +17,11 @@ class UserDependentProduct < ActiveRecord::Base
   belongs_to :product, :class_name => "Product", :foreign_key => "product_id"
 
   def self.create_user_dependent_products(params, user)
-  	params[:dependent_product].each do |dependent_product|
-      op = self.create(product_id: dependent_product[1]['product_id'], user_id: user.id)
-    end
+  	if params[:dependent_product]
+	  	params[:dependent_product].each do |dependent_product|
+	      op = self.create(product_id: dependent_product[1]['product_id'], user_id: user.id)
+	    end
+  	end
   end
 
 end
