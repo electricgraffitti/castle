@@ -77,7 +77,7 @@ GEM
     httparty (0.9.0)
       multi_json (~> 1.0)
       multi_xml
-    i18n (0.6.1)
+    i18n (0.6.0)
     jasmine (1.2.1)
       jasmine-core (>= 1.2.0)
       rack (~> 1.0)
@@ -211,7 +211,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
   exception_notification
-  i18n
   jasmine
   json
   mysql2

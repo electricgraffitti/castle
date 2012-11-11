@@ -10,7 +10,7 @@ gem 'authlogic'
 gem 'paperclip'
 gem 'exception_notification'
 gem 'json'
-gem 'i18n'
+# gem 'i18n'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
