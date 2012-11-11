@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>CastleProtectionLLC.com - Order Submission</title>
+  <style>
+  body {
+    background: #ececec;
+  	font-family: 'Helvetica', 'Arial', sans-serif;
+  	margin: 0px;
+  }
+  p, tr { font-size: 14px; color: #777777; }
+  </style>
+</head>
+<body style="font-family:'Helvetica', 'Arial', sans-serif;" >
+  <!-- Setup centered table -->
+  <table style="width: 100%;" bgcolor="#ececec" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr style="font-size: 14px; color: #777777;">
+        <td align="center">
+          <table style="width: 660px;" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr style="font-size: 14px; color: #777777;" bgcolor="#ffffff">
+                <td>
+                  <img style="width: 660px; height: 122px;" src="http://dl.dropbox.com/u/3105141/HCICDN/email/castle/email/email_header.png" align="center" border="0" height="122" width="660" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr style="border: 1px solid #f0f0f0; font-size: 14px; color: #777777;">
+        <td align="center">
+          <table style="width: 660px;" bgcolor="#e3e3e3" border="0" cellpadding="10" cellspacing="0">
+            <!-- Title -->
+            <tbody>
+            <!-- First Paragraph -->
+              <tr style="font-size: 14px; color: #777777;">
+                <td colspan="6" align="left">
+                  <h1 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 20px; color: #333;" >Castle Protection Order Submission</h1>
+                  
+                  <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Order Date: <%= (@order.created_at).to_s(:simple_date) %></h2>
+                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Service Fee Transaction ID: <%= @trans_id %></h2>
+                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Recurring Billing Transaction ID: <%= @recurring_id %></h2>
+                  
+                  <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #fff;" >Customer Info:</h2>
+                  <ul style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 14px; color: #777777;">
+                    <li>First Name: <%= @billing_info.first_name %></li>
+                    <li>Last Name: <%= @billing_info.last_name %></li>
+                    <li>Email: <%= @billing_info.email %></li>
+                    <li>
+                      Address: <%= @billing_info.address %><br/>
+                      <%= @billing_info.city %> <%= @billing_info.state.full_name %>, <%= @billing_info.billing_zip %>
+                    </li>
+                    <li>Phone: <%= @billing_info.phone %></li>
+                  </ul>
+                  
+                  <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Package Name: <%= (@package.name).titleize %> - <%= number_to_currency(@package.price) %>/Month</h2>
+                  
+                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #fff;" >Products: </h2>
+                  <ul style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 14px; color: #777777;">
+                    <% @package.packaged_products.each do |pp| %>
+                  	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
+                  	<% end %>
+                  	<% unless @items.empty? %>
+                      <% @items.each do |i| %>
+                        <li>(<%= i.quantity %>) <%= i.title %> - <%= number_to_currency(i.price) %></li>
+                      <% end %>
+                    <% end %>
+                  </ul>
+                  
+                  <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #fff;" >Products with Locations: </h2>
+                  <ul style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 14px; color: #777777;">
+                    <% @order_locations.each do |i| %>
+                  	  <li><%= i.product.item_name %> - Location: <%= i.product_location %></li>
+                  	<% end %>
+                  </ul>
+                </td>
+              </tr>
+              <tr bgcolor="#264699">
+                <td>
+                  <p style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 14px; color: #8ab9ea;">
+                    &copy; Copyright 2011 <%= APP["app_name"] %>.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

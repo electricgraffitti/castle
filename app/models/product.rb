@@ -41,15 +41,12 @@ class Product < ActiveRecord::Base
   has_many :dependent_products
   has_many :dependencies, :through => :dependent_products
   has_many :user_dependent_products
+  has_many :user_interactive_products
   
   #Assets
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => lambda { |a| a[:attachment].blank? }
   
   # Methods
-
-  def self.has_existing_interactive_product(product)
-    
-  end
   
   def dependent_checkbox
     if self.dependent_products
@@ -136,8 +133,7 @@ class Product < ActiveRecord::Base
         items.delete_if {|item| item.combo_item && item.cart_item == self.combo_id }
       end
       return items
-    end
-    
+    end 
   end
   
   def check_for_interactive(items)

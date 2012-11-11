@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css" media="screen">
+      h3 { color: #3058bf; }
+      ul { list-style-type: none; }
+      li { list-style-type: none; }
+    </style>
+  </head>
+    <body>
+      <h3>Castle Protection Inc :: Customer Contact Submission</h3>
+      <h4>Contact Requestor:</h4>
+      <ul>
+        <li><strong>First Name:</strong> <%= @user.first_name %></li>
+        <li><strong>Last Name:</strong> <%= @user.last_name %>
+        <li><strong>Email:</strong> <%= @user.email %></li>
+        <li><strong>Phone Number:</strong> <%= @user.phone %></li>
+      </ul>
+
+      <p>
+        <h4>Comments: </h4>
+        <%= @comments %>
+      </p>
+
+    </body>
+</html>

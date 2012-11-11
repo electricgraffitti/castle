@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
   has_many :products, through: :order_products
   has_many :user_dependent_products
   has_many :products, through: :user_dependent_products
+  has_many :user_interactive_products
+  has_many :products, through: :user_interactive_products
   has_many :billing_records
 
   # Validations

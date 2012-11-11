@@ -1,0 +1,2 @@
+module UserInteractiveProductsHelper
+end

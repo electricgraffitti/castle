@@ -1,6 +1,6 @@
 class OrderProcess
 
-	def self.create_new_order(params, package_id, price)
+	def self.create_new_order(params, package_id, price. cart)
 		customer = nil
 		plan = nil
 		subscription = nil
@@ -19,6 +19,9 @@ class OrderProcess
 				@order = Order.new(params[:order])
 				@order.user_id = @user.id
 				@order.save!
+
+				# Create User Interactive Products
+				UserInteractiveProduct.create_user_interactive_products(params, @user)
 
 				# Create User Owned Dependant Products
 				UserDependentProduct.create_user_dependent_products(params, @user)
@@ -43,6 +46,8 @@ class OrderProcess
 				@order.update_attributes(stripe_invoice_id: plan.id)
 
 				# Send Confirmation Emails
+				Notifier.successful_order_admin(@order, cart, user).deliver
+				Notifier.successful_order_customer(@order, cart, user).deliver
 
 			end
 
@@ -65,7 +70,7 @@ class OrderProcess
 		end
 	end
 
-	def self.create_addon_order(user, params, price)
+	def self.create_addon_order(user, params, price, cart)
 		customer = nil
 		plan = nil
 		subscription = nil
@@ -80,6 +85,9 @@ class OrderProcess
 				@order.terms = 1
 				@order.save!
 
+				# Create User Interactive Products
+				UserInteractiveProduct.create_user_interactive_products(params, @user)
+
 				# Create User Owned Dependant Products
 				UserDependentProduct.create_user_dependent_products(params, user)
 
@@ -90,7 +98,7 @@ class OrderProcess
 				customer = StripeCustomer.get_customer(user)
 
 				# Create Stripe Plan
-				plan = StripePlan.create_plan(price, params, user)
+				plan = StripePlan.create_updated_plan(price, params, user)
 
 				# Create Stripe Subscription
 				subscription = StripeSubscription.create_subscription(customer, plan)
@@ -101,6 +109,8 @@ class OrderProcess
 
 
 				# Send Confirmation Emails
+				Notifier.successful_update_order_admin(@order, cart, user).deliver
+				Notifier.successful_update_order_customer(@order, cart, user).deliver
 
 			end
 

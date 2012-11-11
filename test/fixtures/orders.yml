@@ -2,12 +2,13 @@
 #
 # Table name: orders
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  terms      :boolean
-#  created_at :datetime
-#  updated_at :datetime
-#  complete   :boolean
+#  id                :integer          not null, primary key
+#  user_id           :integer
+#  terms             :boolean
+#  created_at        :datetime
+#  updated_at        :datetime
+#  complete          :boolean
+#  stripe_invoice_id :string(255)
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

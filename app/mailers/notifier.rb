@@ -7,20 +7,31 @@ class Notifier < ActionMailer::Base
          :subject => "New #{sender.support_type}")
   end
 
-  def send_assigned_items
-    
+  def user_dash_contact_request(user, params)
+    @user = user
+    @comments = params[:contact_submission]
+
+    mail(:to => "#{APP["order_email"]}", 
+     :from => user.email,
+     :subject => "User Support Request")
+  end
+
+  def send_product_locations(user, params)
+
+    @user = user
+    @params = params
+
+    mail(:to => "#{APP["order_email"]}", 
+     :from => user.email,
+     :subject => "User Support Request")
   end
   
-  def successful_order_admin(order, tc_id, tc_recurring_id, auth, cart)
+  def successful_order_admin(order, cart, user)
     
     @order = order
-    @order_locations = @order.order_products
-    @billing_info = @order.billing_records.last
     @package = Package.find(cart.package_id)
     @items = cart.items
-    @trans_id = tc_id
-    @recurring_id = tc_recurring_id
-    @auth = auth
+    @user = user 
     
     mail(
       :to => "#{APP["order_email"]}",
@@ -28,19 +39,39 @@ class Notifier < ActionMailer::Base
       :subject => "Castle Protection Order Submission")
   end
   
-  def successful_order_customer(order, tc_id, tc_recurring_id, cart)
+  def successful_order_customer(order, cart, user)
     
     @order = order
-    @order_locations = @order.order_products
-    @billing_info = @order.billing_records.last
     @package = Package.find(cart.package_id)
     @items = cart.items
-    @trans_id = tc_id
-    @recurring_id = tc_recurring_id
-    
     
     mail(
-      :to => "#{@billing_info.email}, #{APP["order_email"]}",
+      :to => "#{user.email}, #{APP["order_email"]}",
+      :from => "Castle Protection",
+      :subject => "Your Castle Protection Order Details")
+  end
+
+  def successful_update_order_admin(order, cart, user)
+    
+    @order = order
+    @package = Package.find(cart.package_id)
+    @items = cart.items
+    @user = user 
+    
+    mail(
+      :to => "#{APP["order_email"]}",
+      :from => "Castle Protection Order Transaction",
+      :subject => "Castle Protection Order Submission")
+  end
+  
+  def successful_update_order_customer(order, cart, user)
+    
+    @order = order
+    @package = Package.find(cart.package_id)
+    @items = cart.items
+    
+    mail(
+      :to => "#{user.email}, #{APP["order_email"]}",
       :from => "Castle Protection",
       :subject => "Your Castle Protection Order Details")
   end

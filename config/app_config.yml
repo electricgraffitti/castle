@@ -22,3 +22,6 @@ single_charge_url: https://webservices.primerchants.com/billing/TransactionCentr
 # Stripe API Key TEST Keys
 stripe_key: fdZrjkd34GBTUNJpT0cGGI3BQBNf2VCQ
 stripe_publish_key: pk_vR3sSsukToxICYJ9RZaU8Zoq3qsXP
+
+# Purchase rates
+tax_rate: 0.0825

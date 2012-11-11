@@ -25,7 +25,7 @@ module ApplicationHelper
   end
 
   def monthly_rate
-    @monthly_rate = @monthly_rate || "Current Monthly Rate: " + number_to_currency(current_user.monthly_rate)
+    @monthly_rate = @monthly_rate || "Current Monthly Rate: " + number_to_currency((current_user.monthly_rate) * APP['tax_rate'])
   end
 
   def unassigned_products(order_products)

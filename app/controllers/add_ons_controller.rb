@@ -17,8 +17,8 @@ class AddOnsController < ApplicationController
 
   def create
     @cart = setup_cart
-    price = @cart.total_price + current_user.monthly_rate
-    @order = OrderProcess.create_addon_order(current_user, params, price)
+    price = (@cart.total_price + current_user.monthly_rate) * APP['tax_rate']
+    @order = OrderProcess.create_addon_order(current_user, params, price, @cart)
     respond_to do |format|
       if @order
         session[:cart] = nil
