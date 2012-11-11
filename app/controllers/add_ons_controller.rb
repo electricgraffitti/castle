@@ -17,12 +17,12 @@ class AddOnsController < ApplicationController
 
   def create
     @cart = setup_cart
-    price = (@cart.total_price + current_user.monthly_rate) * APP['tax_rate']
+    price = @cart.total_price + current_user.monthly_rate
     @order = OrderProcess.create_addon_order(current_user, params, price, @cart)
     respond_to do |format|
       if @order
         session[:cart] = nil
-        format.html { redirect_to(dashboard_path, notice: 'Add On Order Processed. Please complete product locations.') }
+        format.html { redirect_to(dashboard_path, notice: 'Add-On Order Processed. Please complete product locations.') }
         format.json  { render json: @order, status: :created, location: @order }
       else
         format.html { render action: dashboard_path, notice: "Processing Error." }

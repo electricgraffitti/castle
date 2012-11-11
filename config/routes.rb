@@ -21,11 +21,12 @@ Castle::Application.routes.draw do
   match "frequently-asked-questions" => "pages#faq", :as => :faq
   match "castle-return-policy" => "pages#return_policy", :as => :returns
   match "reassign-order-product" => "order_products#update", :as => :reassign_order_product
+  match "send-location-assignments" => "send_assigned_items#create", :as => :send_location_assignments 
   
   # Mailer Paths
   match "send-product-locations-notification" => "notifications#send_product_locations", :as => :send_product_locations
   match "send-contact-email" => "supports#contact_email", :as => :contact_email
-  match "send-user-contact-request" => "notifications#user_dash_contact_request", :as => :user_contact_request
+  match "send-user-contact-request" => "supports#user_dash_contact_request", :as => :user_contact_request
   
   # Cart Paths
   match "add-item-to-cart(/:id)" => "products#add_items", :as => :add_item
@@ -42,6 +43,7 @@ Castle::Application.routes.draw do
   resources :order_products
   resources :user_interactive_products
   resources :user_dependent_products
+  resources :send_assigned_items, :only => [:new, :create]
   resources :supports, :only => [:new, :create]
   resources :products
   resources :images

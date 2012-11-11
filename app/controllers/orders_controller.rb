@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
   def create
     @cart = setup_cart
     package_id = @cart.package_id
-    price = (@cart.total_price) * APP['tax_rate']
+    price = @cart.total_price
     @order = OrderProcess.create_new_order(params, package_id, price, @cart)
     respond_to do |format|
       if @order

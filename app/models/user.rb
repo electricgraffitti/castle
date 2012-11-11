@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   has_many :products, through: :user_dependent_products
   has_many :user_interactive_products
   has_many :products, through: :user_interactive_products
-  has_many :billing_records
+  has_one :billing_record
 
   # Validations
   validates :first_name, presence: true, length: { minimum: 2 }
@@ -76,6 +76,20 @@ class User < ActiveRecord::Base
   def monthly_rate
     current_plan = StripeSubscription.get_monthly_rate(self)
     return Currency.calculate_cents_to_dollars(current_plan.amount)
+  end
+
+  def assigned_products
+    order_products_list = []
+    order_products.each do |order_product|
+      if order_product.isnt_finalized?
+        order_products_list.push(order_product)
+      end
+    end
+    return order_products_list
+  end
+
+  def interactive_product
+    user_interactive_products.first
   end
 
   def dependent_products

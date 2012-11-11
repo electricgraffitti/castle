@@ -10,18 +10,20 @@ app_name: "Castle Protection, Inc."
 
 order_email: "Josh Luttrell <jl.psi@sbcglobal.net>, Cube2Media Support <support@cube2media.com>"
 
+# Old Gateway Values
 # merchant_id: 65628
-merchant_id: 33163
-reg_key: "9WEB79RSQYB9Q9N7"
-process_fee: 30
-recurring_url: https://webservices.primerchants.com/billing/TransactionCentral/AddRecurring.asp?
-charge_description: "Castle Protection Subscription Fee"
-single_charge_url: https://webservices.primerchants.com/billing/TransactionCentral/processCC.asp?
+# merchant_id: 33163
+# reg_key: "9WEB79RSQYB9Q9N7"
+# process_fee: 30
+# recurring_url: https://webservices.primerchants.com/billing/TransactionCentral/AddRecurring.asp?
+# charge_description: "Castle Protection Subscription Fee"
+# single_charge_url: https://webservices.primerchants.com/billing/TransactionCentral/processCC.asp?
 
 
 # Stripe API Key TEST Keys
 stripe_key: fdZrjkd34GBTUNJpT0cGGI3BQBNf2VCQ
 stripe_publish_key: pk_vR3sSsukToxICYJ9RZaU8Zoq3qsXP
 
-# Purchase rates
+# Addon rates
+process_fee: 30
 tax_rate: 0.0825

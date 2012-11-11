@@ -36,50 +36,50 @@
             <!-- First Paragraph -->
               <tr style="font-size: 14px; color: #777777;">
                 <td colspan="6" align="left">
-                  <h1 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 20px; color: #333;" >Castle Protection Order Submission</h1>
+                  <h1 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 20px; color: #333;" >Welcome to Castle Protection</h1>
                   
-                  <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Order Date: <%= (@order.created_at).to_s(:simple_date) %></h2>
-                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Service Fee Transaction ID: <%= @trans_id %></h2>
-                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Recurring Billing Transaction ID: <%= @recurring_id %></h2>
+                  <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Order Date: <%= (@order.created_at).strftime("%m/%d/%Y") %></h2>
+                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >
+                    Customer ID: <%= @user.stripe_id %>
+                  </h2>
+                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >
+                    Plan ID: <%= @user.stripe_plan_id %>
+                  </h2>
                   
-                  <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #fff;" >Customer Info:</h2>
+                  <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #264699;" >Customer Info:</h2>
                   <ul style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 14px; color: #777777;">
-                    <li>First Name: <%= @billing_info.first_name %></li>
-                    <li>Last Name: <%= @billing_info.last_name %></li>
-                    <li>Email: <%= @billing_info.email %></li>
+                    <li>First Name: <%= @user.first_name %></li>
+                    <li>Last Name: <%= @user.last_name %></li>
+                    <li>Email: <%= @user.email %></li>
                     <li>
-                      Address: <%= @billing_info.address %><br/>
-                      <%= @billing_info.city %> <%= @billing_info.state.full_name %>, <%= @billing_info.billing_zip %>
+                      Address: <%= @user.billing_record.address %><br/>
+                      <%= @user.billing_record.city %> <%= @user.billing_record.state.full_name %>, <%= @user.billing_record.billing_zip %>
                     </li>
-                    <li>Phone: <%= @billing_info.phone %></li>
                   </ul>
                   
-                  <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Package Name: <%= (@package.name).titleize %> - <%= number_to_currency(@package.price) %>/Month</h2>
+                  <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #444;" >Package Name: <%= (@package.name).titleize %></h2>
                   
-                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #fff;" >Products: </h2>
+                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #264699;" >Products: </h2>
                   <ul style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 14px; color: #777777;">
                     <% @package.packaged_products.each do |pp| %>
                   	  <li>(<%= pp.included_amount %>) - <%= pp.product.item_name %></li>
                   	<% end %>
                   	<% unless @items.empty? %>
                       <% @items.each do |i| %>
-                        <li>(<%= i.quantity %>) <%= i.title %> - <%= number_to_currency(i.price) %></li>
+                        <li>(<%= i.quantity %>) <%= i.title %></li>
                       <% end %>
                     <% end %>
                   </ul>
-                  
-                  <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #fff;" >Products with Locations: </h2>
-                  <ul style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 14px; color: #777777;">
-                    <% @order_locations.each do |i| %>
-                  	  <li><%= i.product.item_name %> - Location: <%= i.product_location %></li>
-                  	<% end %>
-                  </ul>
+                  <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #264699;" >
+                    Monthly Rate: <%= number_to_currency((@user.monthly_rate) + (@user.monthly_rate * APP['tax_rate'])) %>
+                  </h2>
+                  <p>Login to your Castle Protection account at anytime to view products, invoices or to add more products to you system. Please take a moment to complete your order by logging in to your account and setting the locations where your products will be set (e.g. fromt room, back door etc..)</p>
                 </td>
               </tr>
               <tr bgcolor="#264699">
                 <td>
                   <p style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 14px; color: #8ab9ea;">
-                    &copy; Copyright 2011 <%= APP["app_name"] %>.
+                    &copy; Copyright <%= Time.now.year %> <%= APP["app_name"] %>.
                   </p>
                 </td>
               </tr>

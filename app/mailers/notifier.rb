@@ -3,7 +3,7 @@ class Notifier < ActionMailer::Base
   def support_notification(sender)
     @sender = sender
     mail(:to => "#{APP["order_email"]}", 
-         :from => sender.email,
+         :from => "Castle Protection General Notification",
          :subject => "New #{sender.support_type}")
   end
 
@@ -12,25 +12,25 @@ class Notifier < ActionMailer::Base
     @comments = params[:contact_submission]
 
     mail(:to => "#{APP["order_email"]}", 
-     :from => user.email,
-     :subject => "User Support Request")
+     :from => "Castle Protection Customer Support Request",
+     :subject => "User Support Request"
+    )
   end
 
-  def send_product_locations(user, params)
+  def send_product_locations(user, products)
 
     @user = user
-    @params = params
+    @products = products
 
     mail(:to => "#{APP["order_email"]}", 
-     :from => user.email,
-     :subject => "User Support Request")
+     :from => "Castle Protection Product Location Submissions",
+     :subject => "Castle Protection Product Location Submissions")
   end
   
-  def successful_order_admin(order, cart, user)
+  def successful_order_admin(user, cart, order)
     
     @order = order
-    @package = Package.find(cart.package_id)
-    @items = cart.items
+    @price = cart.total_price
     @user = user 
     
     mail(
@@ -39,11 +39,13 @@ class Notifier < ActionMailer::Base
       :subject => "Castle Protection Order Submission")
   end
   
-  def successful_order_customer(order, cart, user)
+  def successful_order_customer(user, cart, order, plan)
     
     @order = order
     @package = Package.find(cart.package_id)
     @items = cart.items
+    @plan = plan
+    @user = user
     
     mail(
       :to => "#{user.email}, #{APP["order_email"]}",

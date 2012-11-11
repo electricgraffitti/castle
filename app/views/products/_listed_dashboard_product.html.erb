@@ -2,9 +2,10 @@
 	<header class="listed_section"><%= product.item_name %></header>
 	 <div class="listed_section product_description"><%= product.description %></div>
 	 <div class="listed_section product_location"><span>Location:</span> 
-	 		<%= order_product.has_location? ? 
-	 			render(partial: 'products/location_form', locals: {order_product: order_product}) : 
-	 			render(partial: 'order_products/listed_order_product', locals: {order_product: order_product})
+	 		<%= order_product.has_location? ?  
+	 		render(partial: 'order_products/listed_order_product', locals: {order_product: order_product}) 
+	 		:
+	 		render(partial: 'products/location_form', locals: {order_product: order_product})
 	 		%>
 	 	</div>
 </li>

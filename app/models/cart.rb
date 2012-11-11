@@ -74,9 +74,9 @@ class Cart # < ActiveRecord::Base
     if @package_id
       p = Package.find(@package_id)
       total_price = item_prices + p.price
-      return total_price
+      return (total_price + (total_price * APP['tax_rate']))
     else
-      return item_prices
+      return (item_prices + (item_prices * APP['tax_rate']))
     end
   end
   

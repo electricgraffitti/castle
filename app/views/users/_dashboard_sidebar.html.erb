@@ -12,7 +12,7 @@
 </segment>
 <segment class="sidebar_segment message_form">
 	<div class="segemnt_header">Need Something?<br/>Send us a message.</div>
-	<%= form_tag user_contact_request do %>
+	<%= form_tag user_contact_request_path do %>
 		<%= text_area_tag :contact_submission %>
 		<%= submit_tag "Send", class: "button blue_button right" %>
 	<% end %>

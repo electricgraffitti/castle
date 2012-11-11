@@ -22,7 +22,7 @@
     
   </ul>
   <div class="cart_actions">
-    <span>Total Monthly Rate: <%= number_to_currency(cart.total_price) %></span>
+    <span>Total Monthly Rate Including Tax: <%= cart_monthly_rate(cart) %></span>
     <%= link_to "Check Out", checkout_path, :class => "button red_button tool_tip", :title => "Check Out"%>
   </div>
 </div>

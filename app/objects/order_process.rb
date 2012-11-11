@@ -1,6 +1,6 @@
 class OrderProcess
 
-	def self.create_new_order(params, package_id, price. cart)
+	def self.create_new_order(params, package_id, price, cart)
 		customer = nil
 		plan = nil
 		subscription = nil
@@ -19,6 +19,9 @@ class OrderProcess
 				@order = Order.new(params[:order])
 				@order.user_id = @user.id
 				@order.save!
+
+				# Create Billing Record
+				BillingRecord.create_new_billing_record(@user, params)
 
 				# Create User Interactive Products
 				UserInteractiveProduct.create_user_interactive_products(params, @user)
@@ -46,8 +49,8 @@ class OrderProcess
 				@order.update_attributes(stripe_invoice_id: plan.id)
 
 				# Send Confirmation Emails
-				Notifier.successful_order_admin(@order, cart, user).deliver
-				Notifier.successful_order_customer(@order, cart, user).deliver
+				Notifier.successful_order_admin(@user, cart, @order).deliver
+				Notifier.successful_order_customer(@user, cart, @order, plan).deliver
 
 			end
 

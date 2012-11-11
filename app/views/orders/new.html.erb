@@ -6,6 +6,7 @@
       <%= render partial: 'orders/order_sidebar', locals: {package: @package, cart: @cart} %>
       <div id="signup_form" class="column_23">
         <%= form_for(@order, :method => "post") do |f| %>
+          <%= render partial: 'products/user_interactive_product_fields', locals: {package: @package, cart: @cart} %>
           <%= render partial: 'products/ordered_products_fields', locals: {package: @package, cart: @cart} %>
           <%= render partial: 'products/dependent_products_fields', locals: {package: @package, cart: @cart} %>
           <%= fields_for @user do |user| %>
@@ -60,8 +61,8 @@
             </div>
           </div>
           <div class="form_segment top_hr">
-            <div class="state_disclaimer">Reminder - Castle Protection currently only serves these states. Colorado, Indiana, Kansas, Kentucky, Missouri, New Hampshire, North Dakota, Ohio, Pennsylvania, South Dakota, Wisconsin, and Texas.</div>
-            <%= f.submit "Setup Account", :class => "button red_button right custom_text" %>
+            <div class="state_disclaimer">Reminder - <%= APP['app_name'] %> currently only serves these states. Colorado, Indiana, Kansas, Kentucky, Missouri, New Hampshire, North Dakota, Ohio, Pennsylvania, South Dakota, Wisconsin, and Texas.</div>
+            <%= f.submit "Setup Account", id: "order_submit", class: "button red_button right custom_text" %>
           </div>
         <% end %>
       </div>
@@ -74,6 +75,8 @@
     $(document).ready(function() {
       Stripe.setPublishableKey("<%= APP['stripe_publish_key'] %>");
       Forms.initForms(<%= (@cart.total_price).to_i %>);
+      Forms.resetSubmitButton();
+      Forms.orderSubmitButton();
     });
   </script>
 <% end %>

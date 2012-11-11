@@ -4,41 +4,55 @@
 <%= render partial: 'layouts/internal_notifications' %>
 <div id="internal_content">
 
-    <% if unassigned_products(@order_products) %>
+    <% if unassigned_products(current_user.order_products) %>
       <ul class="product_listings">
         <header>Unassigned Products</header>
-        <% @order_products.each do |op| %>
-          <% if op.has_location? %>
+        <% current_user.order_products.each do |op| %>
+          <% unless op.has_location? %>
             <%= render partial: 'products/listed_dashboard_product', locals: {product: op.product, order_product: op} %>
           <% end %>
         <% end %>
       </ul>
     <% end %>
     
-    <% if assigned_products(@order_products) %>
+    <% if assigned_products(current_user.order_products) %>      
       <ul class="product_listings">
         <header>Assigned Products</header>
-        <% @order_products.each do |op| %>
-          <% if op.is_assigned? %>
-            <%= render partial: 'products/listed_dashboard_product', locals: {product: op.product, order_product: op} %>
-          <% end %>
+        <% current_user.assigned_products.each do |order_product| %>
+          <%= render partial: 'products/listed_dashboard_product', locals: {product: order_product.product, order_product: order_product} %>
         <% end %>
-        <li id="assigned_submit" class="listed_product">
-          <header class="listed_section">Submit Assigned Products to Castle LLC for programming.</header>
-          <div class="listed_section assigned_submit_button"><%= link_to "Send Items", send_assigned_items_path, class: "button blue_button" %></div>
-        </li>
+        <% index = 1 %>
+        <%= form_tag send_location_assignments_path do %>
+          <% current_user.assigned_products.each do |ap| %>
+            <%= hidden_field_tag "[assigned_products][#{index}][product_id]", ap.id %>
+            <% index += 1 %>
+          <% end %>
+          <li id="assigned_submit" class="listed_product">
+            <header class="listed_section">Submit Assigned Products to Castle LLC for programming.</header>
+            <div class="listed_section assigned_submit_button"><%= submit_tag "Send Items", id: "assigned_products_submit", class: "button red_button" %></div>
+          </li>
+        <% end %>
       </ul>
     <% end %>
 
-    <% if finalized_items(@order_products) %>
+    <% if finalized_items(current_user.order_products) %>
       <ul class="product_listings">
         <header>Finalized Products</header>
-        <% @order_products.each do |op| %>
+        <% current_user.order_products.each do |op| %>
           <% if op.is_finalized? %>
             <%= render partial: 'products/listed_dashboard_product', locals: {product: op.product, order_product: op} %>
           <% end %>
         <% end %>
       </ul>
     <% end %>
-
 </div>
+
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      Forms.resetAssignedSubmitButton();
+      Forms.assignedProductsSubmitButton();
+    });
+  </script>
+<% end %>

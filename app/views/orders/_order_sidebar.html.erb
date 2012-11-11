@@ -30,7 +30,8 @@
       </p>          
     </div>        
   <% end %>
-  <h3 class="top_hr">Total Cost: <%= number_to_currency((cart.total_price * 2) + APP["process_fee"]) %>*</h3>
-  <p>*Total cost of 1st billing includes first month and last month total monitoring fees and a one time $30.00 equipment setup fee.</p>
-  <h4>Recurring monthly bill: <%= number_to_currency(cart.total_price) %></h4>
+  <h3 class="top_hr">Total Setup: <%= total_setup_charge(cart) %>*</h3>
+  <p>*Total cost of 1st billing includes first month and last month total monitoring fees, a one time $30.00 equipment setup fee and applicable tax.</p>
+  <h4>Recurring monthly bill: <%= cart_monthly_rate(cart) %></h4>
+  <p>All charges include tax of 8.25%</p>
 </div>

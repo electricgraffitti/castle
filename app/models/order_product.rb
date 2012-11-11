@@ -40,15 +40,33 @@ class OrderProduct < ActiveRecord::Base
   end
 
   def has_location?
-    product_location.blank? ? true : false
+    product_location ? true : false
   end
 
   def is_finalized?
     finalized ? true : false
   end
 
+  def isnt_finalized?
+    has_location? && finalized.blank? ? true : false
+  end
+
   def is_assigned?
-    has_location? || is_finalized? ? false : true
+    has_location? || is_finalized? ? true : false
+  end
+
+  def self.finalize_products(products)
+    products.each do |product|
+      product.update_attribute(:finalized, 1)
+    end
+  end
+
+  def self.create_list_of_assigned_products_to_send(params)
+    products = []
+      params[:assigned_products].each do |assigned_product|
+        products.push(self.find(assigned_product[1]['product_id']))
+      end
+    return products
   end
 
   def self.unassigned_items(order_products)
@@ -61,10 +79,10 @@ class OrderProduct < ActiveRecord::Base
     unassigned_items
   end
 
-  def self.assigend_items(order_products)
+  def self.assigned_items(order_products)
     has_locations = []
     order_products.each do |order_product|
-      if order_product.has_location?
+      if order_product.isnt_finalized?
         has_locations.push(order_product)
       end
     end

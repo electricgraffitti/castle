@@ -142,6 +142,49 @@ var Forms = {
 	initForms: function(chargeAmount){
 		Forms.validateSignupForm(chargeAmount);
 	},
+
+	resetSubmitButton: function() {
+		var submitButton = $("#order_submit");
+
+		submitButton.val("Setup Account");
+		submitButton.removeAttr('disabled');
+		submitButton.removeClass('blue_button');
+		submitButton.addClass('red_button');
+	},
+
+	orderSubmitButton: function() {
+		var submitButton = $("#order_submit");
+
+		submitButton.on('click', function() {
+			$(this).val("Processing...");
+			$(this).attr('disabled', 'disabled');
+			$(this).removeClass('red_button');
+			$(this).addClass('blue_button');
+			$(this).submit();
+		});
+	},
+
+	resetAssignedSubmitButton: function() {
+		var submitButton = $("#assigned_products_submit");
+
+		submitButton.val("Send Items");
+		submitButton.removeAttr('disabled');
+		submitButton.removeClass('blue_button');
+		submitButton.addClass('red_button');
+	},
+
+	assignedProductsSubmitButton: function() {
+		var submitButton = $("#assigned_products_submit");
+
+		submitButton.on('click', function() {
+			$(this).val("Processing...");
+			$(this).attr('disabled', 'disabled');
+			$(this).removeClass('red_button');
+			$(this).addClass('blue_button');
+			$(this).parents("form").first().submit();
+		});
+	},
+
 	
 	validateLocations: function() {
     $("#new_order").ketchup();

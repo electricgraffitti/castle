@@ -23,9 +23,17 @@ module ApplicationHelper
   def user_name
     "#{current_user.first_name} #{current_user.last_name}"
   end
+  
+  def total_setup_charge(cart)
+    number_to_currency((cart.total_price * 2) + APP["process_fee"])
+  end
+
+  def cart_monthly_rate(cart)
+    number_to_currency(cart.total_price + (cart.total_price * APP['tax_rate']))
+  end
 
   def monthly_rate
-    @monthly_rate = @monthly_rate || "Current Monthly Rate: " + number_to_currency((current_user.monthly_rate) * APP['tax_rate'])
+    @monthly_rate = @monthly_rate || "Current Monthly Rate: " + number_to_currency((current_user.monthly_rate) + (current_user.monthly_rate * APP['tax_rate']))
   end
 
   def unassigned_products(order_products)
@@ -33,7 +41,7 @@ module ApplicationHelper
   end
 
   def assigned_products(order_products)
-    OrderProduct.assigend_items(order_products).length > 0 ? true : false
+    OrderProduct.assigned_items(order_products).length > 0 ? true : false
   end
 
   def finalized_items(order_products)

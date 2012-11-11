@@ -19,9 +19,9 @@ class UserInteractiveProduct < ActiveRecord::Base
   def self.create_user_interactive_products(params, user)
     if params[:interactive_product]
       if user.interactive_product
-        user.interactive_product.product_id = params[:interactive_product]['product_id']
+        user.user_interactive_products.first.product_id = params[:interactive_product][:product_id]
     	else
-        self.create(product_id: interactive_product['product_id'], user_id: user.id)
+        self.create(product_id: params[:interactive_product][:product_id], user_id: user.id)
     	end
     end
   end

@@ -186,7 +186,8 @@ input[type="radio"] {
 vertical-align: text-bottom;
 }
 input[type="checkbox"] {
-vertical-align: bottom;
+	margin-top: -2px;
+	vertical-align: middle;
 }
 .ie7 input[type="checkbox"] {
 vertical-align: baseline;
