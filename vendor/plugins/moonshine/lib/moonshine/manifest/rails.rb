@@ -36,7 +36,7 @@ class Moonshine::Manifest::Rails < Moonshine::Manifest
   include Moonshine::Manifest::Rails::Rails
   include Moonshine::Manifest::Rails::Os
 
-  # A super recipe for installing Apache, Passenger, a database, 
+  # A super recipe for installing Apache, Passenger, a database,
   # Rails, NTP, Cron, Postfix. To customize your stack, call the
   # individual recipes you want to include rather than default_stack.
   #
@@ -44,7 +44,7 @@ class Moonshine::Manifest::Rails < Moonshine::Manifest
   def default_stack
     recipe :apache_server
     recipe :passenger_gem, :passenger_configure_gem_path, :passenger_apache_module, :passenger_site
-    case database_environment[:adapter]
+    case database_environment && database_environment[:adapter]
     when 'mysql', 'mysql2'
       recipe :mysql_server, :mysql_gem, :mysql_database, :mysql_user, :mysql_fixup_debian_start
     when 'postgresql'
@@ -54,6 +54,10 @@ class Moonshine::Manifest::Rails < Moonshine::Manifest
     end
     recipe :rails_rake_environment, :rails_gems, :rails_directories, :rails_bootstrap, :rails_migrations, :rails_logrotate
     recipe :ntp, :time_zone, :postfix, :cron_packages, :motd, :security_updates, :apt_sources, :hostname
+
+    if configuration[:assets] && (configuration[:assets][:enabled] || configuration[:assets][:precompile])
+      recipe :rails_asset_pipeline
+    end
   end
 
   def rails_template_dir

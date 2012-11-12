@@ -49,12 +49,16 @@ As the configuration of this server is managed with Moonshine, please refrain
 from installing any gems, packages, or dependencies directly on the server.
 ----------------
 """
-    file '/var/run/motd',
-      :mode => '644',
-      :content => `uname -snrvm`+motd_contents
+    if ubuntu_intrepid?
+      file '/var/run/motd',
+        :mode => '644',
+        :content => `uname -snrvm`+motd_contents
+    end
+
     file '/etc/motd.tail',
       :mode => '644',
       :content => motd_contents
+
   end
 
   #### Hostname
@@ -79,13 +83,29 @@ from installing any gems, packages, or dependencies directly on the server.
   # and makes sending emails, a common task for many Rails apps,
   # easy to setup.
   #
+  # To disable postfix from running, include this in config/moonshine.yml:
+  #
+  #     :postfix:
+  #       :enabled: false
+  #
   # We also allow configuring the hostname used for sending email
   # via the `configuration[:mailname]` variable, which can be set
   # in a recipe/manifest via the `configure(opts)` method or in
   # a Moonshine YML file.
 
   def postfix
+    options = configuration[:postfix] || {}
+    enabled = if options[:enable] == nil || options[:enable] == true
+                true
+              else
+                false
+              end
+
     package 'postfix', :ensure => :latest
+    service 'postfix', :ensure => (enabled ? :running : :stopped),
+                       :enable => enabled,
+                       :require => package('postfix')
+
     file '/etc/mailname',
       :ensure  => :present,
       :content => (configuration[:mailname] || Facter.fqdn || Facter.hostname || ''),
