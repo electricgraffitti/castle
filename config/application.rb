@@ -8,8 +8,11 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Castle
   class Application < Rails::Application
-    config.paths['app/manifests'] = 'app/manifests'
-    config.paths['app/manifests'].skip_eager_load!
+    
+  # don't attempt to auto-require the moonshine manifests into the rails env
+  config.paths['app/manifests'] = 'app/manifests'
+  config.paths['app/manifests'].skip_eager_load!
+  
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
