@@ -17,7 +17,7 @@ class NotificationsController < ApplicationController
 		Notifier.user_dash_contact_request(current_user, params)
 
 		respond_to do |format|
-    	format.html { dashboard_path, notice: 'Your support request has been sent.' }
+    	format.html { redirect_to(dashboard_path, notice: 'Your support request has been sent.') }
     end
 	end
 
