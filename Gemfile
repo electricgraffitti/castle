@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.7'
 gem 'mysql2'
-gem 'capistrano'
+gem 'capistrano', '2.12.0'
 gem "stripe"
 gem 'authlogic'
 gem 'paperclip'
