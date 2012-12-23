@@ -64,7 +64,7 @@
 
                   <h4 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 13px; color: #444;" >Interactive:</h4>
                   <ul>
-                    <li><%= @user.interactive_product.product.item_name %></li>
+                    <li><%= @user.interactive_product.product.item_name if @user.interactive_product %></li>
                   </ul>
 
                   <h4 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 13px; color: #444;" >Dependent:</h4>
