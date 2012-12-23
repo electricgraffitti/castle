@@ -160,7 +160,7 @@ var Forms = {
 			$(this).attr('disabled', 'disabled');
 			$(this).removeClass('red_button');
 			$(this).addClass('blue_button');
-			// $(this).submit();
+			$(this).submit();
 		});
 	},
 
@@ -195,10 +195,13 @@ var Forms = {
   			submitButton = formEl.find("input[type='submit']");
 
     formEl.ketchup();
-    submitButton.on("click", function() {
-      if( formEl.ketchup("isValid") ) { 
+    submitButton.on("click", function(e) {
+      if( formEl.ketchup("isValid") ) {
         Gateway.formSubmit(chargeAmount);
-      };
+      } else {
+      	e.preventDefault();
+      	Forms.resetSubmitButton();
+      }
     });
   }
 };
