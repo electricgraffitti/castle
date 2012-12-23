@@ -29,7 +29,7 @@ module ApplicationHelper
   end
 
   def cart_monthly_rate(cart)
-    number_to_currency(cart.total_price + (cart.total_price * APP['tax_rate']))
+    number_to_currency(cart.total_price)
   end
 
   def monthly_rate
