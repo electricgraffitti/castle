@@ -55,7 +55,7 @@ class OrderProcess
 			end
 
 			return true
-		rescue ActiveRecord::Rollback
+		rescue ActiveRecord::RecordInvalid
 			if customer
 				StripeCustomer.delete_customer(customer.id)
 			end
