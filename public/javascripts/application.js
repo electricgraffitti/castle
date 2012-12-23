@@ -160,7 +160,7 @@ var Forms = {
 			$(this).attr('disabled', 'disabled');
 			$(this).removeClass('red_button');
 			$(this).addClass('blue_button');
-			$(this).submit();
+			// $(this).submit();
 		});
 	},
 
