@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
         format.html { redirect_to(dashboard_path, notice: 'Order Processed. Please complete product locations.') }
         format.json  { render json: @order, status: :created, location: @order }
       else
-        format.html { render action: "new", notice: "Processing Error." }
+        format.html { redirect_to(checkout_path, notice: "Processing Error.") }
         format.json  { render json: @order.errors, status: :unprocessable_entity }
       end
     end
