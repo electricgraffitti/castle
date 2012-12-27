@@ -6,6 +6,7 @@
   <table id="dashboard_packages_table" class="display">
     <thead>  
       <tr>
+        <th>Image</th>
         <th>System</th>
         <th>Price</th>
 				<th>Description</th>
@@ -19,6 +20,7 @@
       <% packages.each do |package| %>
 			<% unless package.blank? %>
         <tr>
+          <td><%= image_tag(package.photos.last.attachment.url(:tiny)) %></td>
           <td><%=h (package.name).titleize %></td>
 					<td><%=h number_to_currency(package.price) %></td>
           <td><%=h truncate(package.description, :length => 200) %></td>

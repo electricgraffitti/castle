@@ -1,11 +1,12 @@
 <div class="admin_segment">
-  <h3>Addon Items</h3>
+  <h3>Additional Products</h3>
   <div class="table_actions">
     <%= link_to 'Add Items', new_product_path, :class => "admin_btn right" %>
   </div>
   <table id="dashboard_products_table" class="display">
     <thead>  
       <tr>
+        <th>Image</th>
         <th>Item Name</th>
         <th>Price</th>
         <th>Unit No.</th>
@@ -20,6 +21,7 @@
       <% products.each do |product| %>
 			<% unless product.blank? %>
         <tr>
+          <td><%= image_tag(product.photos.last.attachment.url(:tiny)) %></td>
           <td><%=h (product.item_name).titleize %></td>
           <td><%=h number_to_currency(product.price) %></td>
           <td><%=h product.unit_number %></td>

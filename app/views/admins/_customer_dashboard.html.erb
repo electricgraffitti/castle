@@ -2,6 +2,7 @@
   <h3>Account Users</h3>
   <div class="table_actions">
     <%= link_to 'Add New User', new_user_path, :class => "admin_btn right" %>
+    <%= link_to 'Log Into Stripe', "https://manage.stripe.com/login", :target => '_blank', :class => "admin_btn right" %>
   </div>
   <table id="dashboard_users_table" class="display">
     <thead>  
@@ -11,6 +12,8 @@
         <th>Email</th>
         <th>Phone</th>
 				<th>Username</th>
+				<th>SignUp Date</th>
+				<th>Stripe Id</th>
 				<th>Edit User</th>
         <th>Delete User</th>
       </tr>
@@ -25,6 +28,8 @@
 					<td><%=h user.email %></td>
 					<td><%=h user.phone %></td>
 					<td><%=h user.username %></td>
+					<td><%=h user.created_at.to_s(:full) %></td>
+					<td><%=h user.stripe_id %></td>
           <td><%= link_to 'Update Users', edit_user_path(user), :class => "update" %></td>
           <td><%= link_to 'Delete Users', user, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
         </tr>
