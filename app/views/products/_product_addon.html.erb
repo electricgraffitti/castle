@@ -1,7 +1,7 @@
 <div class="column_3">
 	<div class="product_wrap">
 	<% if current_admin %>
-		<%= link_to "Edit Product Add-On", edit_product_path(product) %>
+		<%= link_to "Edit Product", edit_product_path(product) %>
 	<% end %>	
 		<h3>
 			<%= (product.item_name).titleize %>

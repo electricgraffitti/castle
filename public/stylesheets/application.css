@@ -1222,6 +1222,11 @@ text-decoration: underline;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** ADMINS **********************/
+.admin_segment {
+	margin-top:30px;
+	padding: 10px 0px 40px 0px;
+	border-bottom:1px solid #000;
+}
 .admin_btn {
 cursor: pointer;
 display: block;
@@ -1261,6 +1266,7 @@ margin-right: 5px;
 .admin_panel a {
 color: #efefef;
 text-decoration: none;
+margin:5px 0px;
 }
 .admin_panel a:hover {
 color: #fff;
