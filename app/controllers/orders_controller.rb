@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_filter :require_auth, only: [:index, :show]
   
   def index
-    @orders = Order.all
+    @orders = current_admin ? Order.all : current_user.orders
     @invoices = StripeCustomer.get_invoices(current_user)
 
     respond_to do |format|
