@@ -14,9 +14,8 @@
         <% end %>
       </ul>
     <% end %>
-    
-    <% if assigned_products(current_user.order_products) %>      
-      <ul class="product_listings">
+         
+      <ul id="assigned_products" class="product_listings <%= "hidden" unless assigned_products(current_user.order_products) %>">
         <header>Assigned Products</header>
         <% current_user.assigned_products.each do |order_product| %>
           <%= render partial: 'products/listed_dashboard_product', locals: {product: order_product.product, order_product: order_product} %>
@@ -27,13 +26,13 @@
             <%= hidden_field_tag "[assigned_products][#{index}][product_id]", ap.id %>
             <% index += 1 %>
           <% end %>
+          <span id="added_products"></span>
           <li id="assigned_submit" class="listed_product">
             <header class="listed_section">Submit Assigned Products to Castle LLC for programming.</header>
             <div class="listed_section assigned_submit_button"><%= submit_tag "Send Items", id: "assigned_products_submit", class: "button red_button" %></div>
           </li>
         <% end %>
       </ul>
-    <% end %>
 
     <% if finalized_items(current_user.order_products) %>
       <ul class="product_listings">
@@ -53,6 +52,7 @@
     $(document).ready(function() {
       Forms.resetAssignedSubmitButton();
       Forms.assignedProductsSubmitButton();
+      Forms.submitLocationFormElements();
     });
   </script>
 <% end %>

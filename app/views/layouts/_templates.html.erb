@@ -1,0 +1,11 @@
+<script id="location_template" type="text/template" class="template">
+ <li class="listed_product">
+		<header class="listed_section">{{order_product.product.item_name}}</header>
+		<div class="listed_section product_description">{{order_product.product.description}}</div>
+		<div class="listed_section product_location">
+		 	<span>Location: {{order_product.product_location}}</span>
+			<a href="/reassign-order-product?id={{order_product.id}}&reassign=true" class="green listed_action_link">Reassign</a>
+		</div>
+		<input id="_assigned_products_{{order_product.id}}_product_id" name="[assigned_products][{{order_product.id}}][product_id]" type="hidden" value="{{order_product.id}}">
+	</li>
+</script>

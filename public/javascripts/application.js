@@ -185,7 +185,6 @@ var Forms = {
 		});
 	},
 
-	
 	validateLocations: function() {
     $("#new_order").ketchup();
   },
@@ -203,6 +202,62 @@ var Forms = {
       	Forms.resetSubmitButton();
       }
     });
+  },
+
+  submitLocationFormElements: function () {
+  	var formHolder = $("#internal_content");
+
+  	formHolder.on({
+  		blur: function (e) {
+				Forms.checkforFieldValue($(this));
+  		},
+  		keypress: function (e) {
+	  		if (e.keyCode == 13) {
+	  			e.preventDefault();
+	  			$(this).blur();
+	  		}
+  		}
+  	}, '.location_field');
+  },
+
+  checkforFieldValue: function (inputElement) {
+  		if (inputElement.val() != "") {
+  			Forms.submitLocationForm(inputElement);
+  		} else {
+  			return;
+  		}
+  },
+
+  submitLocationForm: function(inputElement) {
+  	var form = inputElement.parents('form').first();
+  	$.ajax({
+  		url: form.attr('action'),
+  		data: {id: inputElement.attr('item_id'), product_location: inputElement.val()},
+  		dataType: 'json',
+  		cache: false,
+  		type: "POST"
+  	}).done(function(data) {
+  		  Forms.removeCurrentLocationForm(inputElement);
+  			Forms.displayAssignedProductsSection();
+  			Forms.updateLocationsAfterSave(data);
+  	});
+  },
+
+  removeCurrentLocationForm: function (inputElement) {
+  	inputElement.parents('li').first().remove();
+  },
+
+  displayAssignedProductsSection: function () {
+  	$("#assigned_products").removeClass('hidden');
+  },
+
+  updateLocationsAfterSave: function (returnedDataObject) {
+  	$("#added_products").append(Forms.assignedLocationTemplate(returnedDataObject));
+  },
+
+  assignedLocationTemplate: function (returnedDataObject) {
+  	var template = Handlebars.compile($("#location_template").html());
+  	return template(returnedDataObject);
   }
 };
 

@@ -22,6 +22,7 @@ Castle::Application.routes.draw do
   match "castle-return-policy" => "pages#return_policy", :as => :returns
   match "reassign-order-product" => "order_products#update", :as => :reassign_order_product
   match "send-location-assignments" => "send_assigned_items#create", :as => :send_location_assignments 
+  match "update-location" => "order_products#ajax_update", as: :location_update
   
   # Mailer Paths
   match "send-product-locations-notification" => "notifications#send_product_locations", :as => :send_product_locations
