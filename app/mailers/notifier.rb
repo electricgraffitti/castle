@@ -53,12 +53,12 @@ class Notifier < ActionMailer::Base
       :subject => "Your Castle Protection Order Details")
   end
 
-  def successful_update_order_admin(order, cart, user)
+  def successful_update_order_admin(order, cart, user, old_plan, plan)
     
     @order = order
-    @package = Package.find(cart.package_id)
-    @items = cart.items
-    @user = user 
+    @user = user
+    @old_plan_amount = Currency.calculate_cents_to_dollars(old_plan.amount)
+    @new_plan_amount = Currency.calculate_cents_to_dollars(plan.amount)
     
     mail(
       :to => "#{APP["order_email"]}",
@@ -66,11 +66,12 @@ class Notifier < ActionMailer::Base
       :subject => "Castle Protection Order Submission")
   end
   
-  def successful_update_order_customer(order, cart, user)
+  def successful_update_order_customer(order, cart, user, old_plan, plan)
     
     @order = order
-    @package = Package.find(cart.package_id)
-    @items = cart.items
+    @user = user
+    @old_plan_amount = Currency.calculate_cents_to_dollars(old_plan.amount)
+    @new_plan_amount = Currency.calculate_cents_to_dollars(plan.amount)
     
     mail(
       :to => "#{user.email}, #{APP["order_email"]}",

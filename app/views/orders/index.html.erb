@@ -19,7 +19,7 @@
       <li class="listed_product">
         <header class="listed_section">Invoice Date: <%= DateTime.strptime(invoice.date.to_s,'%s').strftime("%m/%d/%Y") %></header>
         <div class="listed_section product_description">Invoice Number: <%= invoice.id %></div>
-        <div class="listed_section product_location">Invoice Amount: <%= number_to_currency(invoice.total) %></div>
+        <div class="listed_section product_location">Invoice Amount: <%= invoice_amount(invoice) %></div>
       </li>
     <% end %>
   </ul>

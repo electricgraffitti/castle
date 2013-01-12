@@ -6,10 +6,8 @@ class OrderProcess
 		subscription = nil
 		fee = nil
 
-		begin
-
-			ActiveRecord::Base.transaction do
-
+		ActiveRecord::Base.transaction do
+			begin
 				# Create User
 				@user = ObjectBuilder.create_new_user(params)
 				@user.package_id = package_id
@@ -51,25 +49,22 @@ class OrderProcess
 				# Send Confirmation Emails
 				Notifier.successful_order_admin(@user, cart, @order).deliver
 				Notifier.successful_order_customer(@user, cart, @order, plan).deliver
-
+				return true
+			rescue Exception => e
+				if customer
+					StripeCustomer.delete_customer(customer.id)
+				end
+				if plan
+					StripePlan.delete_plan(plan.id)
+				end
+				if subscription
+					StripeSubscription.delete_subscription(subscription.id)
+				end
+				if fee
+					StripeCharge.delete_charge(fee.id)
+				end
+				return false
 			end
-
-			return true
-		rescue ActiveRecord::RecordInvalid
-			if customer
-				StripeCustomer.delete_customer(customer.id)
-			end
-			if plan
-				StripePlan.delete_plan(plan.id)
-			end
-			if subscription
-				StripeSubscription.delete_subscription(subscription.id)
-			end
-			if fee
-				StripeCharge.delete_charge(fee.id)
-			end
-
-			return false
 		end
 	end
 
@@ -77,11 +72,10 @@ class OrderProcess
 		customer = nil
 		plan = nil
 		subscription = nil
+		old_plan = StripePlan.get_plan(user.stripe_plan_id)
 
-		begin
-
-			ActiveRecord::Base.transaction do
-
+		ActiveRecord::Base.transaction do
+			begin
 				# Create Order
 				@order = Order.new(params[:order])
 				@order.user_id = user.id
@@ -104,28 +98,25 @@ class OrderProcess
 				plan = StripePlan.create_updated_plan(price, params, user)
 
 				# Create Stripe Subscription
-				subscription = StripeSubscription.create_subscription(customer, plan)
+				subscription = StripeSubscription.update_subscription(customer, plan)
 
 				# Update needed records
 				user.update_attributes(stripe_plan_id: plan.id)
 				@order.update_attributes(stripe_invoice_id: plan.id)
 
-
 				# Send Confirmation Emails
-				Notifier.successful_update_order_admin(@order, cart, user).deliver
-				Notifier.successful_update_order_customer(@order, cart, user).deliver
-
+				Notifier.successful_update_order_admin(@order, cart, user, old_plan, plan).deliver
+				Notifier.successful_update_order_customer(@order, cart, user, old_plan, plan).deliver
+				return true
+			rescue Exception => e
+				if plan
+					StripePlan.delete_plan(plan.id)
+				end
+				if subscription
+					StripeSubscription.update_subscription(customer, old_plan)
+				end
+				return false
 			end
-
-			return true
-		rescue ActiveRecord::Rollback
-			if plan
-				StripePlan.delete_plan(plan.id)
-			end
-			if subscription
-				StripeSubscription.delete_subscription(subscription.id)
-			end
-			return false
 		end
 	end
 

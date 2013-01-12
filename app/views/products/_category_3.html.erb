@@ -1,10 +1,16 @@
 <div class="full_row">
   	<h2 class="page_header"><%= title %></h2>
 		<div class="full_row no_top">
-		  <% package.systems.each do |sys| %>
+	  <% package.systems.each do |sys| %>
+	  	<% if current_user %>
+	  		<% if category3(sys) && not_user_dependent_product(sys) %>
+			    <%= render partial: 'products/user_product_addon', locals: { product: sys.product, cart: cart } %>
+			  <% end %>
+	  	<% else %>
 		    <% if category3(sys) %>
 			    <%= render partial: 'products/product_addon', locals: { product: sys.product, cart: cart } %>
 			  <% end %>
 			<% end %>
+		<% end %>
 		</div>
 </div>

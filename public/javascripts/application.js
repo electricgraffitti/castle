@@ -316,31 +316,22 @@ var Layout = {
 
 	setPanels: function() {
 		Layout.setPanelSizes();
-		Layout.setInternalContentPanel();
 	},
 
 	setPanelSizes: function() {
 		var header = $("#mast_header"),
 				footer = $("#ft"),
-				sidebar = $("#internal #sidebar"),
-				content = $("#internal #content");
+				sidebar = $("#sidebar"),
+				content = $("#content");
 
-		sidebar.height($(window).height() - (footer.outerHeight() + header.outerHeight()));
-		content.height($(window).height() - (footer.outerHeight() + header.outerHeight()));
+		sidebar.height($(window).height() - (footer.height() + header.height()));
+		content.height($(window).height() - (footer.height() + header.height()));
+		content.width($(window).width() - (sidebar.outerWidth() + 1));
 
 		$(window).resize(function() {
-			sidebar.height($(window).height() - (footer.outerHeight() + header.outerHeight()));
-			content.height($(window).height() - (footer.outerHeight() + header.outerHeight()));
-		});
-	},
-
-	setInternalContentPanel: function() {
-		var contentPanel = $("#content"),
-				sidebar = $("#sidebar");
-
-		contentPanel.width($(window).width() - (sidebar.outerWidth() + 1));
-		$(window).resize(function() {
-			contentPanel.width($(window).width() - (sidebar.outerWidth() + 1));
+			sidebar.height($(window).height() - (footer.height() + header.height()));
+			content.height($(window).height() - (footer.height() + header.height()));
+			content.width($(window).width() - (sidebar.outerWidth() + 1));
 		});
 	}
 

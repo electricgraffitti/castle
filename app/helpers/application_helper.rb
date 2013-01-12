@@ -32,8 +32,21 @@ module ApplicationHelper
     number_to_currency(cart.total_price)
   end
 
+  def add_cart_rate(cart)
+    number_to_currency(current_user.monthly_rate + cart.total_price)
+    # number_to_currency((current_user.monthly_rate + cart.total_price) + ((current_user.monthly_rate + cart.total_price) * APP['tax_rate']))
+  end
+
+  def addon_monthly_rate
+    @monthly_rate = @monthly_rate || "Current Monthly Rate: " + number_to_currency(current_user.monthly_rate)
+  end
+
   def monthly_rate
-    @monthly_rate = @monthly_rate || "Current Monthly Rate: " + number_to_currency((current_user.monthly_rate) + (current_user.monthly_rate * APP['tax_rate']))
+    "Current Monthly Rate: " + number_to_currency(current_user.monthly_rate)
+  end
+
+  def invoice_amount(invoice)
+    number_to_currency(Currency.calculate_cents_to_dollars(invoice.total))
   end
 
   def unassigned_products(order_products)

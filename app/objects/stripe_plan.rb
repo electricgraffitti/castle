@@ -40,7 +40,7 @@ class StripePlan
 		plan.delete
 	end
 
-	def get_plan(plan_id)
+	def self.get_plan(plan_id)
 		plan = Stripe::Plan.retrieve(plan_id)
 	end
 

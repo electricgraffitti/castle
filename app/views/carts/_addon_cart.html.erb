@@ -18,7 +18,7 @@
     <% end %>
     <ul>
       <% unless cart.items.empty? %>
-        <li><span><%= monthly_rate %> </span></li>
+        <li><span><%= addon_monthly_rate %> </span></li>
         <li><span>System Addons:</span></li>
         <% cart.items.each do |p| %>
         <li>(<%= link_to p.quantity, remove_item_path(:product_id => p.cart_item), :class => "tool_tip", :title => "Remove Item" %>) <%= p.title %> - <%= number_to_currency(p.price) %></li>
@@ -26,7 +26,7 @@
       <% end %>
     </ul>
     <div class="cart_actions">
-      <span>New Monthly Rate: <%= number_to_currency((current_user.monthly_rate + cart.total_price)) %></span>
+      <span>New Monthly Rate: <%= add_cart_rate(cart) %> * includes tax</span>
       <%= submit_tag "Purchase", :class => "button red_button tool_tip", :title => "Purchase Add Ons" %>
     </div>
   <% end %>
