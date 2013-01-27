@@ -367,7 +367,7 @@ var Navigation = {
       all_links.removeClass('active');
       active_link.addClass('active');
     }
-  },
+  }
 
 };
 
