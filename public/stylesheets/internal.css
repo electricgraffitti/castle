@@ -61,6 +61,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#206db0', end
 #internal_content #assigned_submit header.listed_section {width: 375px;}
 #internal_content #assigned_submit .listed_section.assigned_submit_button {float:right;padding-right: 13px;}
 
+#alarm_widget {text-align: left;}
+#alarm_widget header {height: 20px; font-weight: 700;}
+#alarm_widget .field {width: 195px; padding: 8px 0px;}
+#alarm_widget .field input {width: 178px;}
+
 .message_form {text-align: left;}
 .message_form textarea {width: 185px; height: 70px; margin-bottom: 5px;}
 

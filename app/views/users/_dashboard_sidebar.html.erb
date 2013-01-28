@@ -7,8 +7,8 @@
 <segment class="sidebar_segment">
 	<%= link_to "Purchase Addons", add_ons_path, :class => "button red_button" %>
 </segment>
-<segment id="alarm_widget" class="sidebar_segment"> 
-	<header>Alarm.com Login Widget</header>
+<segment id="alarm_widget" class="sidebar_segment">
+	<%= render partial: "users/alarm_dot_com_form" %>
 </segment>
 <segment class="sidebar_segment message_form">
 	<div class="segemnt_header">Need Something?<br/>Send us a message.</div>

@@ -21,6 +21,6 @@
 <meta name="csrf-token" content="<%= form_authenticity_token %>" />
 <meta name="csrf-param" content="authenticity_token" />
 <script type="text/javascript" src="http://fast.fonts.com/jsapi/f1c4c40a-111d-4274-bd22-fda9c34552a7.js"></script>
-
+<%= yield :headmeta %>
 <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
 <%= javascript_include_tag "preload" %>
