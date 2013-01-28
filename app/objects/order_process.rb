@@ -49,8 +49,8 @@ class OrderProcess
 				@order.update_attributes(stripe_invoice_id: plan.id)
 
 				# Send Confirmation Emails
-				# Notifier.successful_order_admin(@user, cart, @order).deliver
-				# Notifier.successful_order_customer(@user, cart, @order, plan).deliver
+				Notifier.successful_order_admin(@user, cart, @order).deliver
+				Notifier.successful_order_customer(@user, cart, @order, plan).deliver
 				return true
 			end
 		rescue Exception => e
