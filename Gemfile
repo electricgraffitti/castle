@@ -13,6 +13,9 @@ group :development do
   gem 'rspec-rails'
   gem "thin"
   gem 'annotate'
+  gem 'debugger'
+  gem 'pry'
+  gem 'pry-debugger'
 end
 
 group :test do

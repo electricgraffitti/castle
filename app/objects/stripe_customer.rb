@@ -20,7 +20,7 @@ class StripeCustomer
 		
 	end
 
-	def self.delete_customer
+	def self.delete_customer()
 		
 	end
 

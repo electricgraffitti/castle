@@ -6,8 +6,9 @@ class OrderProcess
 		subscription = nil
 		fee = nil
 
-		ActiveRecord::Base.transaction do
-			begin
+		begin
+			ActiveRecord::Base.transaction do
+			
 				# Create User
 				@user = ObjectBuilder.create_new_user(params)
 				@user.package_id = package_id
@@ -35,8 +36,9 @@ class OrderProcess
 
 				# Create Stripe Plan
 				plan = StripePlan.create_plan(price, params, @user)
-
-				# Create Stripe Subscription
+				
+					
+				# Create Stripe Subscription 
 				subscription = StripeSubscription.create_subscription(customer, plan)
 
 				# Charge Processing Fee
@@ -50,22 +52,22 @@ class OrderProcess
 				Notifier.successful_order_admin(@user, cart, @order).deliver
 				Notifier.successful_order_customer(@user, cart, @order, plan).deliver
 				return true
-			rescue Exception => e
-				if customer
-					StripeCustomer.delete_customer(customer.id)
-				end
-				if plan
-					StripePlan.delete_plan(plan.id)
-				end
-				if subscription
-					StripeSubscription.delete_subscription(subscription.id)
-				end
-				if fee
-					StripeCharge.delete_charge(fee.id)
-				end
-				return false
 			end
-		end
+		rescue Exception => e
+			if customer
+				customer.delete
+			end
+			if plan
+				plan.delete
+			end
+			if subscription
+				customer.cancel_subscription
+			end
+			if fee
+				StripeCharge.delete_charge(fee.id)
+			end
+			return false
+		end		
 	end
 
 	def self.create_addon_order(user, params, price, cart)
@@ -74,8 +76,9 @@ class OrderProcess
 		subscription = nil
 		old_plan = StripePlan.get_plan(user.stripe_plan_id)
 
-		ActiveRecord::Base.transaction do
-			begin
+		begin
+			ActiveRecord::Base.transaction do
+			
 				# Create Order
 				@order = Order.new(params[:order])
 				@order.user_id = user.id
@@ -108,15 +111,15 @@ class OrderProcess
 				Notifier.successful_update_order_admin(@order, cart, user, old_plan, plan).deliver
 				Notifier.successful_update_order_customer(@order, cart, user, old_plan, plan).deliver
 				return true
-			rescue Exception => e
+			end
+		rescue Exception => e
 				if plan
-					StripePlan.delete_plan(plan.id)
+					plan.delete
 				end
 				if subscription
 					StripeSubscription.update_subscription(customer, old_plan)
 				end
 				return false
-			end
 		end
 	end
 

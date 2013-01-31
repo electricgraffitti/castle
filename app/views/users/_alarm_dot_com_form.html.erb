@@ -1,0 +1,25 @@
+<header>Alarm.com Login</header>
+<form action="https://www.alarm.com/login.asp" method="POST" name="loginForm" onSubmit="javascript:doLoginTimeChecks();">
+      <input type="hidden" name="JavaScriptTest" value="">
+      <input type="hidden" name="cookieTest" value="">
+      <input type="hidden" name="loginFolder" value="<%= SITE_URL + 'user-dashboard' %>">
+      <div id="divAlarmMessage" style="color: Red;">          
+      </div> 
+      <script language="javascript">
+          showAlarmLoginMessage()
+      </script>
+      <div class="field">
+        <%= label_tag "Login" %><br />
+        <%= text_field_tag :login, nil, id: 'login' %>
+      </div>
+      <div class="field">
+        <%= label_tag "password" %><br />
+        <%= password_field_tag :password, nil, id: 'password' %>
+      </div>
+      <script language="javascript">
+          LoadRememberedLoginName()
+      </script>
+      <!-- End of Remember Me  -->
+
+     <input type="submit" value="Login" class="button blue_button right" />
+</form>
