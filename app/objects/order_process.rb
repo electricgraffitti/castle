@@ -22,6 +22,9 @@ class OrderProcess
 				# Create Billing Record
 				BillingRecord.create_new_billing_record(@user, params)
 
+				# Create Additional Information Records
+				AdditionalServiceRecord.create_new_additional_service_record(@user, params)
+
 				# Create User Interactive Products
 				UserInteractiveProduct.create_user_interactive_products(params, @user)
 

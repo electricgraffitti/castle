@@ -9,6 +9,7 @@
 #  updated_at        :datetime
 #  complete          :boolean
 #  stripe_invoice_id :string(255)
+#  restricted_aware  :boolean
 #
 
 require 'test_helper'

@@ -1449,6 +1449,14 @@ float: left;
 padding: 8px;
 width: 240px;
 }
+.form_field, .field.two.column {
+	clear: both;
+	width: 480px;
+}
+.form_field, .field.two.column textarea {
+	width: 464px;
+	height: 40px;
+}
 .checkbox input[type="checkbox"] {
 	position: relative;
 	margin-right: 5px;
@@ -1498,6 +1506,8 @@ padding: 3px;
   float: right;
 }
 .state_disclaimer {width: 400px;color: #777;font-size: 12px;position: relative;float: left;}
+.inline_checkbox {float: right;}
+.inline_checkbox label {font-size: 13px;}
 /*************************************************************************************************************************************/
 /****************************************************************************************************** OVERLAY **********************/
 /* the overlayed element */

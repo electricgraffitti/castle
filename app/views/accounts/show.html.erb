@@ -1,10 +1,33 @@
-<p id="notice"><%= notice %></p>
+<% content_for :headmeta do %>
+  <%= render partial: 'users/alarm_dot_com_script' %>
+<% end %>
 
-<p>
-  <b>Product:</b>
-  <%= @account.product_id %>
-</p>
+<% content_for :sidebar do %>
+  <%= render partial: 'users/dashboard_sidebar' %>
+<% end %>
+<%= render partial: 'layouts/internal_notifications' %>
+<div id="internal_content">
+	<div class="info_block">
+		<h3>User Information</h3>
+		<%= render partial: 'accounts/user_info' %>
+		<h3>Billing Information</h3>
+		<%= render partial: 'accounts/user_billing_info' %>
+		<h3>Update Credit Card</h3>
+		<%= render partial: 'accounts/update_credit_card' %>
+		<h3>Additional Account Information</h3>
+		<%= render partial: 'accounts/update_additional_record' %>			
+	</div>
+</div>
 
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<% content_for :javascripts do %>
+	<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+    	Forms.infoFormToggle();
+    	Stripe.setPublishableKey("<%= APP['stripe_publish_key'] %>");
+    	Gateway.creditCardUpdateSubmit();
+    });
+  </script>
+
+<% end %>

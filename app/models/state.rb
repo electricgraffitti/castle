@@ -13,5 +13,6 @@ class State < ActiveRecord::Base
   
   has_many :supports
   has_many :billing_records
+  has_many :additional_service_records
   
 end

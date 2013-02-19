@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @additional_service_record.user_id %>
+</p>
+
+<p>
+  <b>Cross street:</b>
+  <%= @additional_service_record.cross_street %>
+</p>
+
+<p>
+  <b>Permit info:</b>
+  <%= @additional_service_record.permit_info %>
+</p>
+
+<p>
+  <b>Secondary phone:</b>
+  <%= @additional_service_record.secondary_phone %>
+</p>
+
+<p>
+  <b>Subdivision:</b>
+  <%= @additional_service_record.subdivision %>
+</p>
+
+<p>
+  <b>Emergency name:</b>
+  <%= @additional_service_record.emergency_name %>
+</p>
+
+<p>
+  <b>Emergency password:</b>
+  <%= @additional_service_record.emergency_password %>
+</p>
+
+<p>
+  <b>Secondary address:</b>
+  <%= @additional_service_record.secondary_address %>
+</p>
+
+<p>
+  <b>Secondary city:</b>
+  <%= @additional_service_record.secondary_city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @additional_service_record.state_id %>
+</p>
+
+<p>
+  <b>Secondary zip:</b>
+  <%= @additional_service_record.secondary_zip %>
+</p>
+
+
+<%= link_to 'Edit', edit_additional_service_record_path(@additional_service_record) %> |
+<%= link_to 'Back', additional_service_records_path %>

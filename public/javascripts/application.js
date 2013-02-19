@@ -258,7 +258,124 @@ var Forms = {
   assignedLocationTemplate: function (returnedDataObject) {
   	var template = Handlebars.compile($("#location_template").html());
   	return template(returnedDataObject);
+  },
+
+  infoFormToggle: function() {
+  	var internalContent = $("#internal_content");
+
+  	internalContent.on('click', ".hidden_form_link", function() {
+  		var link = $(this),
+  				form = link.siblings('form');
+
+  		link.toggleClass('open');
+  		form.slideToggle(function() {
+  			Forms.toggleEditInfoLinkText(link);
+  		});	
+  	});	
+  },
+
+  toggleEditInfoLinkText: function(link) {
+  	if (link.hasClass('open')) {
+  		link.text("Hide Form");
+  	} else {
+  		link.text("Edit Information")
+  	}
+  },
+
+  sameServiceCheckboxToggle: function() {
+  	var checkBox = $("#same_as_billing");
+
+  	checkBox.on('change', function() {
+  		Forms.toggleAddressState($(this));
+  	});
+
+  	Forms.liveBillingUpdateCheck(checkBox);
+  },
+
+  liveBillingUpdateCheck: function(checkbox) {
+  	Forms.liveAddressUpdate(checkbox);
+  	Forms.liveCityUpdate(checkbox);
+  	Forms.liveStateUpdate(checkbox);
+  	Forms.liveZipUpdate(checkbox);
+  },
+
+  liveAddressUpdate: function() {
+  	var billingAddress = $("#billing_record_address");
+
+  	billingAddress.on('blur', function() {
+  		if ($("#same_as_billing").is(':checked')) {
+  			Forms.copyTextField(document.getElementById('billing_record_address'), document.getElementById('additional_service_record_address'));
+  		}
+  	});
+  },
+
+  liveCityUpdate: function() {
+  	var billingCity = $("#billing_record_city");
+
+  	billingCity.on('blur', function() {
+  		if ($("#same_as_billing").is(':checked')) {
+  			Forms.copyTextField(document.getElementById('billing_record_city'), document.getElementById('additional_service_record_city'));
+  		}
+  	});
+  },
+
+  liveZipUpdate: function() {
+  	var billingZip = $("#billing_record_billing_zip");
+
+  	billingZip.on('blur', function() {
+  		if ($("#same_as_billing").is(':checked')) {
+  			Forms.copyTextField(document.getElementById('billing_record_billing_zip'), document.getElementById('additional_service_record_secondary_zip'));
+  		}
+  	});
+  },  
+
+  liveStateUpdate: function() {
+  	var billingZip = $("#billing_record_state_id");
+
+  	billingZip.on('change', function() {
+  		if ($("#same_as_billing").is(':checked')) {
+  			Forms.copySelectField(document.getElementById('billing_record_state_id'), document.getElementById('additional_service_record_state_id'));
+  		}
+  	});
+  },
+
+  toggleAddressState: function(checkBox) {
+  	if (checkBox.is(':checked')) {
+  		Forms.applyBillingAddressToServiceAddress();
+  	} else {
+  		Forms.emptyFormFields($("#additional_records"));
+  	}
+  },
+
+  applyBillingAddressToServiceAddress: function() {
+  	Forms.copyTextField(document.getElementById('billing_record_address'), document.getElementById('additional_service_record_address'));
+  	Forms.copyTextField(document.getElementById('billing_record_city'), document.getElementById('additional_service_record_city'));
+  	Forms.copyTextField(document.getElementById('billing_record_billing_zip'), document.getElementById('additional_service_record_secondary_zip'));
+  	Forms.copySelectField(document.getElementById('billing_record_state_id'), document.getElementById('additional_service_record_state_id'));
+  },
+
+  copyTextField: function(copyFromField, copyToField) {
+  	copyToField.value = copyFromField.value;
+  },
+
+  copySelectField: function(copyFromField, copyToField) {
+  	copyToField.selectedIndex = copyFromField.selectedIndex;
+  	copyToField.options[copyToField.selectedIndex].value = copyFromField.options[copyFromField.selectedIndex].value;
+  	copyToField.options[copyToField.selectedIndex].text = copyFromField.options[copyFromField.selectedIndex].text;
+  },
+
+  emptyFormFields: function(fieldContainer) {
+  	var textFields = fieldContainer.find('input.address_swap'),
+  			selectFields = fieldContainer.find('select.address_swap');
+	
+  	textFields.each(function() {
+  		$(this).val('');
+  	});
+  	selectFields.each(function() {
+  		$(this).prop('selectedIndex',0);
+  	});
   }
+
 };
 
 var Gateway = {
@@ -309,7 +426,49 @@ var Gateway = {
       $(".actions p").remove();
       $(".actions").append("<div id='submit_error_message' class='red'>" + response.error.message + "</div>");
     }
-  }
+  },
+
+  creditCardUpdateSubmit: function(){
+    $("#cc_update").submit(function(e) {
+      e.preventDefault();
+      var submitButton = $(this).find("#update_credt_card_submit");
+
+          Gateway.stripeUpdateVerify($(this));
+          submitButton.attr("disabled", "disabled");
+          submitButton.addClass("disabled");
+    });
+  },
+
+  stripeUpdateVerify: function(stripeForm) {
+    var self = stripeForm,
+        cardNumber = self.find("#credit_card_card_number").val(),
+        cardCvv = self.find("#credit_card_verification_value").val(),
+        cardMonth = self.find("#credit_card_month").val(),
+        cardYear = self.find("#credit_card_year").val(),
+        amount = 500; // Stripe expects amount to be in cents
+
+      if (cardNumber.length) {
+          // Submit Values to Stripe for auth
+          Stripe.createToken({
+            number: cardNumber,
+            cvc: cardCvv,
+            exp_month: cardMonth,
+            exp_year: parseInt(cardYear)
+          }, amount, Gateway.stripeUpdateResponseHandler);
+      } else {
+        return false;
+      }
+  },
+
+  stripeUpdateResponseHandler: function(status, response) {
+    if (status == 200) {
+      $('#stripe_card_token').val(response.id)
+      $('#cc_update')[0].submit();
+    } else {
+      $('#update_credt_card_submit').attr('disabled', false);
+      $('#update_credt_card_submit').removeClass('disabled');
+    }
+  }  
 };
 
 var Layout = {

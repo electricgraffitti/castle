@@ -1,0 +1,36 @@
+<div class="customer_info_block">
+	<ul>
+		<li>User Name: <%= user_name %></li>
+		<li>Account Id: <%= user_stripe_id %></li>
+		<li>User Email: <%= user_email %></li>
+		<li>User Phone: <%= user_phone %></li>
+	</ul>
+	<div class="info_form">
+		<%= link_to "Edit Information", "#", class: "hidden_form_link" %>
+		<%= clear %>
+		<%= form_tag update_user_information_path do |f| %>
+			<%= fields_for current_user do |f| %>
+			  <div class="field">
+			  	<%= f.label :first_name, "First Name" %>
+			  	<%= f.text_field :first_name %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :last_name, "Last Name" %>
+			  	<%= f.text_field :last_name %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :email, "Email Address" %>
+			  	<%= f.text_field :email %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :phone, "Phone Number" %>
+			  	<%= f.text_field :phone %>
+			  </div>
+		  <% end %>
+		  <div class="field">
+			<%= submit_tag "Update Information", id: "update_user_submit", class: "button red_button custom_text" %>
+		  </div>		  	  
+		<% end %>
+	</div>
+	<%= clear %>
+</div>

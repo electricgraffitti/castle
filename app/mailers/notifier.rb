@@ -26,6 +26,26 @@ class Notifier < ActionMailer::Base
      :from => "Castle Protection Product Location Submissions",
      :subject => "Castle Protection Product Location Submissions")
   end
+
+  def successful_user_update_admin(user, update_type)
+    @user = user
+    @update_type = update_type
+    mail(
+      :to => "#{APP["order_email"]}",
+      :from => "Castle Protection Admin Notifier",
+      :subject => "Castle Protection Updated User Record")    
+  end
+
+  def successful_user_update_customer(user, update_type)
+
+    @user = user
+    @update_type = update_type
+    
+    mail(
+      :to => "#{user.email}, #{APP["order_email"]}",
+      :from => "Castle Protection",
+      :subject => "Your Castle Protection user record has been updated.")
+  end  
   
   def successful_order_admin(user, cart, order)
     

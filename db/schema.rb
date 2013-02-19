@@ -11,12 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121111182927) do
+ActiveRecord::Schema.define(:version => 20130217220927) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "additional_service_records", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "cross_street"
+    t.text     "permit_info"
+    t.string   "secondary_phone"
+    t.string   "subdivision"
+    t.string   "emergency_name"
+    t.string   "emergency_password"
+    t.string   "secondary_address"
+    t.string   "secondary_city"
+    t.integer  "state_id"
+    t.string   "secondary_zip"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "admin_sessions", :force => true do |t|
@@ -109,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20121111182927) do
     t.datetime "updated_at"
     t.boolean  "complete"
     t.string   "stripe_invoice_id"
+    t.boolean  "restricted_aware"
   end
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"

@@ -1,0 +1,40 @@
+<div class="field">
+  <%= sr.label :secondary_address, raw("<span class='bold'>*</span> Service Address") %><br />
+  <%= sr.text_field :address, class: "address_swap tool_tip validate(required)", title: "Your Service Address" %>
+</div>
+<div class="field">
+  <%= sr.label :secondary_city, raw("<span class='bold'>*</span> Service City") %><br />
+  <%= sr.text_field :city, class: "address_swap tool_tip validate(required)", title: "Service City" %>
+</div>
+<div class="field">
+  <%= sr.label :state, raw("<span class='bold'>*</span> Service State") %><br />
+  <%= sr.collection_select :state_id, State.all, :id, :abbreviation, {prompt: "Select State"}, {class: 'address_swap'} %>
+</div>
+<div class="field">
+  <%= sr.label :secondary_zip, raw("<span class='bold'>*</span> Service Zipcode") %><br />
+  <%= sr.text_field :secondary_zip, class: "address_swap tool_tip validate(required, rangelength(5,5), number )", title: "Service Zipcode"%>
+</div>
+<div class="field">
+  <%= sr.label :secondary_phone, raw("Secondary Phone") %><br />
+  <%= sr.text_field :secondary_phone, class: "tool_tip", title: "Secondary Phone"%>
+</div>
+<div class="field">
+  <%= sr.label :cross_street, raw("Cross Street") %><br />
+  <%= sr.text_field :cross_street, class: "tool_tip", title: "Your Major Cross Street" %>
+</div>
+<div class="field">
+  <%= sr.label :subdivision, raw("Subdivision") %><br />
+  <%= sr.text_field :subdivision, class: "tool_tip", title: "Your Subdivision Name" %>
+</div>
+<div class="field">
+  <%= sr.label :emergency_name, raw("Emergency Contact Name") %><br />
+  <%= sr.text_field :emergency_name, class: "tool_tip", title: "Your Emergency Contact Name" %>
+</div>
+<div class="field">
+  <%= sr.label :emergency_password, raw("Emergency System Password") %><br />
+  <%= sr.text_field :emergency_password, class: "tool_tip", title: "Emergency Password for Call Center Authorization" %>
+</div>
+<div class="field two column">
+  <%= sr.label :permit_info, raw("Permit Information") %><br />
+  <%= sr.text_area :permit_info, class: "tool_tip", title: "Any related permit information" %>
+</div>

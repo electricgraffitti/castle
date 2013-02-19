@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
-  before_filter :require_admin
+  before_filter :require_admin, except: [:show]
+  before_filter :require_user, only: [:show]
   
   def index
     @accounts = Account.all
@@ -11,10 +12,10 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @account = Account.find(params[:id])
+    # @account = Account.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render layout: 'internal'}
       format.xml  { render :xml => @account }
     end
   end

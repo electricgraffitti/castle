@@ -1,0 +1,43 @@
+<h1>Listing additional_service_records</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Cross street</th>
+    <th>Permit info</th>
+    <th>Secondary phone</th>
+    <th>Subdivision</th>
+    <th>Emergency name</th>
+    <th>Emergency password</th>
+    <th>Secondary address</th>
+    <th>Secondary city</th>
+    <th>State</th>
+    <th>Secondary zip</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @additional_service_records.each do |additional_service_record| %>
+  <tr>
+    <td><%= additional_service_record.user_id %></td>
+    <td><%= additional_service_record.cross_street %></td>
+    <td><%= additional_service_record.permit_info %></td>
+    <td><%= additional_service_record.secondary_phone %></td>
+    <td><%= additional_service_record.subdivision %></td>
+    <td><%= additional_service_record.emergency_name %></td>
+    <td><%= additional_service_record.emergency_password %></td>
+    <td><%= additional_service_record.secondary_address %></td>
+    <td><%= additional_service_record.secondary_city %></td>
+    <td><%= additional_service_record.state_id %></td>
+    <td><%= additional_service_record.secondary_zip %></td>
+    <td><%= link_to 'Show', additional_service_record %></td>
+    <td><%= link_to 'Edit', edit_additional_service_record_path(additional_service_record) %></td>
+    <td><%= link_to 'Destroy', additional_service_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Additional service record', new_additional_service_record_path %>

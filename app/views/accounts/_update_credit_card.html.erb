@@ -1,0 +1,34 @@
+<div class="customer_info_block">
+  <div class="info_form">
+    <%= link_to "Edit Information", "#", class: "hidden_form_link" %>
+    <%= clear %>
+    <%= form_tag update_credit_card_information_path, id: "cc_update" do %>
+      <%= hidden_field_tag :stripe_card_token %>  
+      <%= fields_for :credit_card do |cc| %>
+        <div class="field">
+          <%= label_tag "Card Number"  %>
+          <%= cc.text_field :card_number, :class => "card-number tool_tip validate(required)", :title => "Valid Credit Card Number" %>
+        </div>
+        <div id="cvv_form">
+          <%= label_tag "CVV" %><br/>
+          <%= cc.text_field :verification_value, :size => 4, :class => "card-cvc tool_tip validate(required, rangelength(3,4), number )" %>
+          <%= render :partial => 'layouts/cc_badge' %>
+        </div>
+        <div class="clear"></div>
+        <div id="date_select" class="field">
+            <%= label_tag "Expiration Date" %>
+            <%= cc.select :month, (1 .. 12).collect { |m| [m.to_s.rjust(2,"0"),m] }, :prompt => "Mo.", :class => "card-expiry-month" %>
+            <%= cc.select :year, (Time.now.year .. 10.years.from_now.year), :prompt => "Yr.", :class => "card-expiry-year" %>
+        </div>
+        <div class="field">
+            <%= label_tag "Card Type" %>
+            <%= cc.select :type, [['Visa', 'visa'], ['MasterCard', 'master'], ['American Express', 'american_express'], ['Discover']], :prompt => 'Select Card Type'%>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= submit_tag "Update Information", id: "update_credt_card_submit", class: "button red_button custom_text" %>
+      </div>      
+    <% end %>
+  </div>
+  <%= clear %>
+</div>

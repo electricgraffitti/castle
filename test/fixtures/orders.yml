@@ -9,6 +9,7 @@
 #  updated_at        :datetime
 #  complete          :boolean
 #  stripe_invoice_id :string(255)
+#  restricted_aware  :boolean
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

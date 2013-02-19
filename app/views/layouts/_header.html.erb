@@ -1,3 +1,3 @@
 <h1 id="logo"><%= link_to "Castle Protection", root_path %></h1>
 <%= render :partial => "layouts/main_nav" %>
-<div id="serving_list">Colorado, Indiana, Kansas, Kentucky, Missouri, New Hampshire, North Dakota, Ohio, Pennsylvania, South Dakota, Wisconsin, Texas.</div>
+<div id="serving_list"><%= APP['service_states'] %>.</div>

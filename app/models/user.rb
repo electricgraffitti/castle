@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
   has_many :user_interactive_products
   has_many :products, through: :user_interactive_products
   has_one :billing_record
+  has_one :additional_service_record
 
   # Validations
   validates :first_name, presence: true, length: { minimum: 2 }
@@ -61,6 +62,12 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     c.login_field(:email)
     c.logged_in_timeout = 120.minutes
+  end
+
+  def update_info(params)
+    
+    self.update_attributes(params[:user])
+
   end
 
   def deliver_password_reset_instructions!

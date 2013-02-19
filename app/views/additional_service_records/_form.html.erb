@@ -1,0 +1,61 @@
+<%= form_for(@additional_service_record) do |f| %>
+  <% if @additional_service_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@additional_service_record.errors.count, "error") %> prohibited this additional_service_record from being saved:</h2>
+
+      <ul>
+      <% @additional_service_record.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :cross_street %><br />
+    <%= f.text_field :cross_street %>
+  </div>
+  <div class="field">
+    <%= f.label :permit_info %><br />
+    <%= f.text_area :permit_info %>
+  </div>
+  <div class="field">
+    <%= f.label :secondary_phone %><br />
+    <%= f.text_field :secondary_phone %>
+  </div>
+  <div class="field">
+    <%= f.label :subdivision %><br />
+    <%= f.text_field :subdivision %>
+  </div>
+  <div class="field">
+    <%= f.label :emergency_name %><br />
+    <%= f.text_field :emergency_name %>
+  </div>
+  <div class="field">
+    <%= f.label :emergency_password %><br />
+    <%= f.text_field :emergency_password %>
+  </div>
+  <div class="field">
+    <%= f.label :secondary_address %><br />
+    <%= f.text_field :secondary_address %>
+  </div>
+  <div class="field">
+    <%= f.label :secondary_city %><br />
+    <%= f.text_field :secondary_city %>
+  </div>
+  <div class="field">
+    <%= f.label :state_id %><br />
+    <%= f.number_field :state_id %>
+  </div>
+  <div class="field">
+    <%= f.label :secondary_zip %><br />
+    <%= f.text_field :secondary_zip %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,66 @@
+<div class="customer_info_block">
+	<ul>
+		<li>Service Address: <%= location_address %></li>
+		<li>Service City: <%= location_city %></li>
+		<li>Service State: <%= location_state %></li>
+		<li>Service Zipcode: <%= location_zip %></li>
+		<li>Secondary Phone: <%= secondary_phone %></li>
+		<li>Subdivision <%= subdivision %></li>
+		<li>Cross Street: <%= cross_street %></li>
+		<li>Emergency Name: <%= emergency_name %></li>
+		<li>Emergency Password: <%= emergency_password %></li>
+		<li>Permit Info: <%= permit_info %></li>
+	</ul>
+	<div class="info_form">
+		<%= link_to "Edit Information", "#", class: "hidden_form_link" %>
+		<%= clear %>
+		<%= form_tag update_additional_information_path do %>
+			<%= fields_for current_user.additional_service_record do |f| %>
+			  <div class="field">
+			  	<%= f.label :secondary_address, "Location Address" %>
+			  	<%= f.text_field :secondary_address %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :secondary_city, "Location City" %>
+			  	<%= f.text_field :secondary_city %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :state_id, "Location State" %>
+			  	<%= f.collection_select(:state_id, State.all, :id, :full_name) %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :secondary_zip, "Location Zipcode" %>
+			  	<%= f.text_field :secondary_zip %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :secondary_phone, "Secondary Phone" %>
+			  	<%= f.text_field :secondary_phone %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :cross_street, "Cross Streets" %>
+			  	<%= f.text_field :cross_street %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :subdivision, "Subdivision" %>
+			  	<%= f.text_field :subdivision %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :emergency_name, "Emergency Name" %>
+			  	<%= f.text_field :emergency_name %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :emergency_password, "Emergency Name" %>
+			  	<%= f.text_field :emergency_password %>
+			  </div>			  	  
+			  <div class="field">
+			  	<%= f.label :permit_info, "Permit Info" %>
+			  	<%= f.text_field :permit_info %>
+			  </div>			  		  		  		  		  
+		  <% end %>
+		  <div class="field">
+				<%= submit_tag "Update Information", id: "update_additional_submit", class: "button red_button custom_text" %>
+		  </div>		  
+		<% end %>
+	</div>
+	<%= clear %>
+</div>

@@ -1,0 +1,36 @@
+<div class="customer_info_block">
+	<ul>
+		<li>Billing Address: <%= billing_address %></li>
+		<li>Billing City: <%= billing_city %></li>
+		<li>Billing State: <%= billing_state %></li>
+		<li>Billing Zipcode: <%= billing_zip %></li>
+	</ul>
+	<div class="info_form">
+		<%= link_to "Edit Information", "#", class: "hidden_form_link" %>
+		<%= clear %>
+		<%= form_tag update_billing_information_path do %>
+			<%= fields_for current_user.billing_record do |f| %>
+			  <div class="field">
+			  	<%= f.label :address, "Billing Address" %>
+			  	<%= f.text_field :address %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :city, "Billing City" %>
+			  	<%= f.text_field :city %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :state, "Billing State" %>
+			  	<%= f.collection_select(:state_id, State.all, :id, :full_name) %>
+			  </div>
+			  <div class="field">
+			  	<%= f.label :billing_zip, "Zipcode" %>
+			  	<%= f.text_field :billing_zip %>
+			  </div>
+		  <% end %>
+		  <div class="field">
+				<%= submit_tag "Update Information", id: "update_billing_submit", class: "button red_button custom_text" %>
+		  </div>		  
+		<% end %>
+	</div>
+	<%= clear %>
+</div>

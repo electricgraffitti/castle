@@ -22,11 +22,25 @@
               <h3>
                 Account/Billing Address
               </h3>
-              <div class="purchase_form">
+              <div id="billing_address" class="purchase_form">
                 <%= render partial: 'orders/user_address', locals: {br: br} %>
               </div>
             </div>
           <% end %>
+          <%= fields_for :additional_service_record do |sr| %>
+            <div class="form_segment top_hr bottom_hr">
+              <h3>
+                Additional Account Information
+                <div class="inline_checkbox">
+                  <%= check_box_tag :same_as_billing %>
+                  <%= label_tag :same_as_billing, "Service Address same as Billing" %>
+                </div>
+              </h3>
+              <div id="additional_records" class="purchase_form">
+                <%= render partial: 'orders/additional_service_record', locals: {sr: sr} %>
+              </div>
+            </div>
+          <% end %>          
           <div class="form_segment top_hr bottom_hr">
             <h3>
               Billing Information: - SECURE
@@ -54,14 +68,18 @@
                     <%= cc.select :type, [['Visa', 'visa'], ['MasterCard', 'master'], ['American Express', 'american_express'], ['Discover']], :prompt => 'Select Card Type'%>
                 </div><!-- / -->
                 <div class="field">
-                  <h5><%= f.check_box :terms %> Terms of Agreement</h5>
-                  <p>by checking this box i have read agree to the <%= link_to "terms of agreement", terms_path, :class => "tool_tip", :title => "You must accept the terms of agreement.", :target => "_blank" %></p>
+                  <h5><%= f.check_box :terms, {} %> Terms of Agreement</h5>
+                  <p>by checking this box i have read agree to the <%= link_to "terms of agreement", terms_path, :class => "tool_tip ", :title => "You must accept the terms of agreement.", :target => "_blank" %></p>
                 </div>
+                <div class="field">
+                  <h5><%= f.check_box :restricted_aware, {} %> Location Aware</h5>
+                  <p>by checking this box I acknowledge that I'm aware of the states Castle Protection, Inc. services </p>
+                </div>                
               <% end %>
             </div>
           </div>
           <div class="form_segment top_hr">
-            <div class="state_disclaimer">Reminder - <%= APP['app_name'] %> currently only serves these states. Colorado, Indiana, Kansas, Kentucky, Missouri, New Hampshire, North Dakota, Ohio, Pennsylvania, South Dakota, Wisconsin, and Texas.</div>
+            <div class="state_disclaimer">Reminder - <%= APP['app_name'] %> currently only serves these states. <%= APP['service_states'] %>.</div>
             <%= f.submit "Setup Account", id: "order_submit", class: "button red_button right custom_text" %>
           </div>
         <% end %>
@@ -77,6 +95,7 @@
       Forms.initForms(<%= (@cart.total_price).to_i %>);
       Forms.resetSubmitButton();
       Forms.orderSubmitButton();
+      Forms.sameServiceCheckboxToggle();
     });
   </script>
 <% end %>
