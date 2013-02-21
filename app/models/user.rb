@@ -65,14 +65,12 @@ class User < ActiveRecord::Base
   end
 
   def update_info(params)
-    
     self.update_attributes(params[:user])
-
   end
 
   def deliver_password_reset_instructions!
     reset_perishable_token!
-    Notify.password_reset(self).deliver
+    Notifier.password_reset(self).deliver
   end
 
   def full_name

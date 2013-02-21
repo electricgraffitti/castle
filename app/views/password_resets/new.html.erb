@@ -1,0 +1,18 @@
+<div class="full_row">
+  <h2 class="page_header">Castle Protection Password Reset Request Form</h2>
+</div>
+<div class="full_row no_top">
+	<p>Fill out the form below and instructions to reset your password will be emailed to you:</p>
+
+	<div id="form_box">
+		<%= form_tag password_resets_path do %>
+	    <div class="field">
+	    	<label>Email:</label><br/>
+	      <%= text_field_tag :email %>
+	    </div>
+	    <div class="field">
+	      <%= submit_tag "Reset my password", class: "button red_button" %>
+	    </div>
+		<% end %>
+	</div>
+</div>

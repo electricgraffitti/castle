@@ -7,6 +7,15 @@ class Notifier < ActionMailer::Base
          :subject => "New #{sender.support_type}")
   end
 
+  def password_reset(user)
+    @user = user
+    @edit_password_reset_url = edit_password_reset_url(user.perishable_token)
+    mail(
+      :to => "#{user.email}, #{APP["order_email"]}",
+      :from => "Castle Protection",
+      :subject => "Castle Protection password reset notice.")    
+  end
+
   def user_dash_contact_request(user, params)
     @user = user
     @comments = params[:contact_submission]

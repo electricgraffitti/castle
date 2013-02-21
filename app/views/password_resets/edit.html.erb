@@ -1,0 +1,21 @@
+<div class="full_row">
+  <h2 class="page_header">Castle Protection Update Account Password</h2>
+</div>
+<div class="full_row no_top">
+	<div id="form_box">
+		<%= form_for @user, :url => password_reset_path, :method => :put do |f| %>
+		<%= render :partial => 'layouts/form_errors', :locals => {:obj => @user} %>
+	    <div class="field">
+  			<%= f.label :password %><br />
+  			<%= f.password_field :password %>
+	    </div>
+	    <div class="field">
+	    	<%= f.label :password_confirmation %><br />
+  			<%= f.password_field :password_confirmation %>
+	    </div>
+	    <div class="field">
+	      <%= submit_tag "Update my password", class: "button red_button" %>
+	    </div>
+		<% end %>
+	</div>
+</div>

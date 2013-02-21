@@ -1,8 +1,5 @@
 Castle::Application.routes.draw do
 
-  resources :additional_service_records
-
-
   # Admin Login/Logout Paths
   match "admin-login" => "admin_sessions#check_session", as: :admin_login
   match "admin-logout" => "admin_sessions#destroy", as: :admin_logout
@@ -19,9 +16,6 @@ Castle::Application.routes.draw do
   match "update-user-creditcard-information" => "payment_info#update_credit_card_information", as: :update_credit_card_information
   match "update-user-information" => "payment_info#update_user_information", as: :update_user_information
   match "update-additional-account-information" => "payment_info#update_additional_information", as: :update_additional_information
-  
-  # Password Reset Path
-  match "password-reset-submit" => "password_resets#create", as: :password_submit_reset
   
   # Custom Routes
   match "about-castle-protection" => "pages#about", as: :about
@@ -46,6 +40,8 @@ Castle::Application.routes.draw do
   match "checkout" => "orders#new", as: :checkout
   match "purchase_add_ons" => "add_ons#create", as: :add_on_purchase
 
+  resources :password_resets
+  resources :additional_service_records
   resources :packages
   resources :add_ons
   resources :cart_items
