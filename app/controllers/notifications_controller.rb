@@ -8,7 +8,7 @@ class NotificationsController < ApplicationController
 		Notifier.send_product_locations(current_user, params)
 
 		respond_to do |format|
-    	format.html { redirect_to(:back, notice: 'Assigned items sent to Castle LLC.') }
+    	format.html { redirect_to(:back, notice: "Assigned items sent to #{APP['app_name']}.") }
     end
 	end
 
