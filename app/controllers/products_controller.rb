@@ -31,7 +31,11 @@ class ProductsController < ApplicationController
        @product.photos.build
     end
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { 
+        if current_user
+          render layout: 'internal'
+        end
+      }
       format.xml  { render xml: @product }
     end
   end

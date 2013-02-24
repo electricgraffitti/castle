@@ -2,25 +2,34 @@
 <div id="cart">
   <%= link_to "Empty Cart", empty_cart_path, :class => "empty_cart_link tool_tip", :title => "Empty Cart" %>
   <%= form_tag add_on_purchase_path do %>
+
     <% index = 1 %>
     <% cart.items.each do |ci| %>
-      <% if ci.requires_location %>
-        <%= hidden_field_tag "[order_product][#{index}][product_id]", ci.cart_item %>
+      <% count = (ci.quantity).to_i %>
+      <% count.times do %>
+        <% if ci.requires_location %>
+          <%= hidden_field_tag "[order_product][#{index}][product_id]", ci.cart_item %>
+        <% end %>
+        <% index += 1 %>
       <% end %>
-      <% index += 1 %>
     <% end %>
+
     <% dp_index = 1 %>  
     <% cart.items.each do |ci| %>
-      <% if ci.remote_control_device || ci.interactive %>
-        <%= hidden_field_tag "[dependent_product][#{index}][product_id]", ci.cart_item %>
-      <% end %>
-      <% dp_index += 1 %>
+      <% dp_count = (ci.quantity).to_i %>
+      <% dp_count.times do %>    
+        <% if ci.remote_control_device || ci.interactive %>
+          <%= hidden_field_tag "[dependent_product][#{index}][product_id]", ci.cart_item %>
+        <% end %>
+        <% dp_index += 1 %>
+      <% end %>        
     <% end %>
     <ul>
       <% unless cart.items.empty? %>
         <li><span><%= addon_monthly_rate %> </span></li>
         <li><span>System Addons:</span></li>
         <% cart.items.each do |p| %>
+
         <li>(<%= link_to p.quantity, remove_item_path(:product_id => p.cart_item), :class => "tool_tip", :title => "Remove Item" %>) <%= p.title %> - <%= number_to_currency(p.price) %></li>
         <% end %>
       <% end %>

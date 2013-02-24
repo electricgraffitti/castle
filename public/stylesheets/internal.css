@@ -9,6 +9,7 @@ body {overflow-y: hidden; overflow-y: auto;}
 #internal #main_nav {margin-top: 24px; }
 #internal #logo {background: url("../images/logo_internal.png") no-repeat scroll 0 0 transparent;height: 119px;left: 75px;top: -3px;width: 277px;}
 #internal_content a, #internal_content a:hover, #internal_content a:visited {color:#0088cc;}
+#internal_content a.button {color:#fff;}
 
 #sidebar {border-right: 1px solid #999; width: 230px; min-height: 600px; position:relative; float: left; text-align:center;}
 #internal_nav {padding-top: 50px;}

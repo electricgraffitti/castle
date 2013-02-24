@@ -1,0 +1,15 @@
+<div class="column_3">
+	<div class="product_wrap">
+		<h3>
+			<%= (product.item_name).titleize %>
+		</h3>	
+		<%= image_tag(product.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
+		<p class="text">
+			<% if (product.description).length >= 60 %>
+				<%= (product.description).truncate(60) %> <%= link_to "read more", product_path(product) %>
+			<% else %>
+				<%= product.description %>
+			<% end %>
+		</p>
+	</div>
+</div>

@@ -1455,7 +1455,7 @@ width: 240px;
 }
 .form_field, .field.two.column textarea {
 	width: 464px;
-	height: 40px;
+/*	height: 40px;*/
 }
 .checkbox input[type="checkbox"] {
 	position: relative;

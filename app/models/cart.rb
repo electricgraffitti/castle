@@ -42,6 +42,7 @@ class Cart # < ActiveRecord::Base
   end
   
   def add_items(product_id)
+    binding.pry
     
     product = Product.find(product_id)
     

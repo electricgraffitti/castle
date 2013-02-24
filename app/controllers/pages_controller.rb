@@ -23,6 +23,7 @@ class PagesController < ApplicationController
   end
   
   def about
+    @cart = setup_cart
     @packages = Package.order('id DESC')
     @products = Product.all(:order => "list_order")
     @blog = Blog.first

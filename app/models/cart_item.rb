@@ -22,8 +22,9 @@ class CartItem < ActiveRecord::Base
   
   def initialize(product_id)
     
+    binding.pry
+
     product_ref = Product.find(product_id)
-    
     @cart_item = product_ref.id
     @name = product_ref.item_name
     @cart_price = product_ref.price

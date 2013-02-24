@@ -6,7 +6,7 @@
 		</p>
 	</div>
 	<div class="column_2 cta_wrap1">
-		<a class="cta_button custom_text" href="/packages">Get Started Today</a>
+		<a class="cta_button button red_button custom_text" href="/packages">Get Started Today</a>
 	</div>
 </div>
 <div class="full_row no_top">
@@ -39,29 +39,13 @@
 	<h2 class="page_header">Additional Devices to Customize Every Household.</h2>
 	<% @products.each do |product| %>
 		<% unless product.monitoring_addon %>
-		<div class="column_3 product_wrap">	
-			<h3>
-				<%= (product.item_name).titleize %>
-			</h3>	
-			<%= image_tag(product.photos.last.attachment.url(:thumb), :class => "blue_bg center") %>
-			<p>
-				<%= product.description %>
-			</p>
-		</div>
+			<%= render partial: 'products/base_product_display', locals: {product: product} %>
 		<% end %>
 	<% end %>
 	
-		<% @products.each do |product| %>
+	<% @products.each do |product| %>
 		<% if product.monitoring_addon %>
-		<div class="column_3 product_wrap">	
-			<h3>
-				<%= (product.item_name).titleize %>
-			</h3>	
-			<%= image_tag(product.photos.last.attachment.url(:thumb), :class => "blue_bg center") %>
-			<p>
-				<%= product.description %>
-			</p>
-		</div>
+			<%= render partial: 'products/base_product_display', locals: {product: product} %>
 		<% end %>
 	<% end %>		
 </div>
@@ -73,7 +57,7 @@
 		</p>
 	</div>
 	<div class="column_2 cta_wrap">
-		<a class="cta_button custom_text" href="/packages">Get Started Today</a>
+		<a class="cta_button button red_button custom_text" href="/packages">Get Started Today</a>
 	</div>
 </div>
 
