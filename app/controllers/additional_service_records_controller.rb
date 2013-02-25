@@ -1,4 +1,6 @@
 class AdditionalServiceRecordsController < ApplicationController
+
+  before_filter :require_user
   # GET /additional_service_records
   # GET /additional_service_records.json
   def index

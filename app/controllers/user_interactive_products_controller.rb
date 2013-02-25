@@ -1,4 +1,6 @@
 class UserInteractiveProductsController < ApplicationController
+
+  before_filter :require_user
   # GET /user_interactive_products
   # GET /user_interactive_products.json
   def index

@@ -1,6 +1,7 @@
 class PackagesController < ApplicationController
   
   before_filter :require_admin, :except => [:index]
+  before_filter :require_no_user
 
   # GET /packages
   # GET /packages.xml
