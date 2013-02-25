@@ -47,7 +47,6 @@ class StripeCustomer
 
 		begin
 			ActiveRecord::Base.transaction do
-				binding.pry
 				customer.card = params[:stripe_card_token]
 				customer.save
 
