@@ -11,8 +11,11 @@
   <% end %>
   
   <% cart.items.each do |ci| %>
-    <% if ci.requires_location %>
-      <%= hidden_field_tag "[order_product][#{index}][product_id]", ci.cart_item %>
+    <% ci_count = (ci.quantity).to_i %>
+    <% ci_count.times do %>
+      <% if ci.requires_location %>
+        <%= hidden_field_tag "[order_product][#{index}][product_id]", ci.cart_item %>
+      <% end %>
+      <% index += 1 %>
     <% end %>
-    <% index += 1 %>
   <% end %>
