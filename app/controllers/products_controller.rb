@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   
   before_filter :require_admin, except: [:index, :show, :add_items, :empty_cart, :remove_items, :cart_checkout ]
-  before_filter :require_no_user, except: [:show]
+  before_filter :require_no_user, except: [:add_items, :remove_items, :empty_cart, :show]
   
   def index
     
