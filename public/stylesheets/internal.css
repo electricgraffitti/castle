@@ -11,13 +11,14 @@ body {overflow-y: hidden; overflow-y: auto;}
 #internal_content a, #internal_content a:hover, #internal_content a:visited {color:#0088cc;}
 #internal_content a.button {color:#fff;}
 
-#sidebar {border-right: 1px solid #999; width: 230px; min-height: 600px; position:relative; float: left; text-align:center;}
+#sidebar {border-right: 1px solid #999; width: 248px; min-height: 600px; position:relative; float: left; text-align:center; overflow-x: hidden; overflow-y: scroll;}
 #internal_nav {padding-top: 50px;}
 #sidebar #internal_nav header {font-size: 20px;text-align: center;font-weight: 700;border-bottom: 1px solid #B1B1B1;height: 30px; float:none;}
 .sub_header {font-size: 14px; padding: 10px 20px; background: #efefef;}
-.segemnt_header {font-size: 14px; font-weight:700; padding-bottom: 5px;}
+.segment_header {font-size: 14px; font-weight:700; padding-bottom: 5px;}
 .terms {padding: 10px; text-align: left; font-size: 12px;}
 .sidebar_segment {border-top: 1px solid white;padding: 20px;border-bottom: 1px solid #B1B1B1;position: relative;float: left;width: 190px;}
+
 #internal_nav li {position: relative; border-top: 1px solid #fff; border-bottom: 1px solid #B1B1B1; font-weight: 700; text-align: left;}
 #internal_nav li:hover {background: #ccc; background: rgba(0,0,0,0.2);}
 #internal_nav li a {position: relative; width: 190px; height: 100%; padding: 10px 20px; display: block; text-decoration: none;}
@@ -92,3 +93,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#206db0', end
 .info_block h3 {padding: 0 0 10px;}
 .info_form {padding: 10px;}
 .info_form form {display: none; float: left;}
+
+.gecko.win #internal #cart .button {margin-top: -7px;}
+.ie8 .sidebar_segment {display: block;}
+.ie8 #sidebar .field {width: 218px;}
+.ie8 #sidebar .sidebar_header {display: block; width: 190px; padding: 20px; height: 0px;}
+.ie8 #contact_submission {width: 205px; margin: 10px 0px;}
+.ie8 #sidebar .blue_button {margin-right: 10px;}

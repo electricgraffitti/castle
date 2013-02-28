@@ -731,6 +731,7 @@ background: url(../images/highlight.png) 35px -4px no-repeat;
 text-align: left;
 min-height: 415px;
 }
+#internal #bd {overflow: hidden;}
 #content {
 position: relative;
 width: 100%;

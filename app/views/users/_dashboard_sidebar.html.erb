@@ -1,5 +1,5 @@
 <ul id="internal_nav">
-	<header><%= user_name %></header>
+	<header class="sidebar_header"><%= user_name %></header>
 	<div class="sub_header"><%= monthly_rate %></div>
 	<li><%= link_to "My Account", user_account_path %></li>
 	<li><%= link_to "My Products", dashboard_path %></li>
@@ -12,12 +12,12 @@
 	<%= render partial: "users/alarm_dot_com_form" %>
 </segment>
 <segment class="sidebar_segment message_form">
-	<div class="segemnt_header">Need Something?<br/>Send us a message.</div>
+	<header class="sidebar_header">Need Something?<br/>Send us a message.</header>
 	<%= form_tag user_contact_request_path do %>
 		<%= text_area_tag :contact_submission %>
 		<%= submit_tag "Send", class: "button blue_button right" %>
 	<% end %>
 </segment>
 <segment class="sidebar_segment terms"> 
-	<div><%= link_to "Download Castle Protection Terms", "/downloads/terms.pdf", target: '_blank' %></div>
+	<header class="sidebar_header"><%= link_to "Download Castle Protection Terms", "/downloads/terms.pdf", target: '_blank' %></header>
 </segment>
