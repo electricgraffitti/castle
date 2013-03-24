@@ -53,7 +53,7 @@
 			  	<%= f.text_field :emergency_password %>
 			  </div>			  	  
 			  <div class="field">
-			  	<%= f.label :permit_info, "Permit Info" %>
+			  	<%= f.label :permit_info, raw("Permit Info <span class='info_button' data-info='Some municipalities require system owners to obtain a permit before they will respond to emergency activity. It is your responsibility to obtain the proper permits if required in your area.'>?</span>") %>
 			  	<%= f.text_field :permit_info %>
 			  </div>			  		  		  		  		  
 		  <% end %>

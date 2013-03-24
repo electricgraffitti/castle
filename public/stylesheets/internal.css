@@ -94,6 +94,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#206db0', end
 .info_form {padding: 10px;}
 .info_form form {display: none; float: left;}
 
+.info_button {display: inline-block; width: 20px; height: 20px; text-indent: -9999em; background: url(../images/buttons/help-icon.png) no-repeat 0 0;}
+
 .gecko.win #internal #cart .button {margin-top: -7px;}
 .ie8 .sidebar_segment {display: block;}
 .ie8 #sidebar .field {width: 218px;}

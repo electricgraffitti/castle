@@ -505,6 +505,25 @@ h4.form_header {
 visibility: hidden;
 }
 */
+
+/*************************************************************************************************************************************/
+/****************************************************************************************************** MODALS ***********************/
+/* the overlayed element */
+.simple_overlay{display:none;z-index:10000;min-height:145px;background-color:#ffffe8;border:7px solid #6c66e2;box-shadow:0 0 90px 5px #000000;-moz-box-shadow:0 0 90px 5px #000;-webkit-box-shadow:0 0 90px #000;}
+.simple_overlay .close,.photo_overlay .close{background-image:url("/images/close.png");cursor:pointer;height:25px;position:absolute;right:-12px;top:-12px;width:25px;}
+.simple_overlay .content{padding:20px;width:500px; text-align: left;}
+.simple_overlay .content p {padding: 0px 0px 10px;}
+.simple_overlay .content .help_avatar {margin-bottom: 20px;}
+.simple_overlay .content .section_header {font-size: 13px;}
+#modal_wrap{position:absolute;width:400px;top:108px;left:50%;margin-left:-200px;z-index:100;background:#333;background:rgba(0,0,0,0.5);padding:10px;}
+#modal_wrap #modal_header{position:relative;float:left;width:380px;padding:10px;background:#000;text-align:left;}
+#modal_title{font-size:16px;color:#fff;font-weight:700;}
+#modal_wrap #modal_content{position:relative;float:left;width:380px;padding:10px;background:#fff;text-align:left;}
+#modal_wrap .close_button{font-size:16px;font-weight:700;width:18px;height:16px;padding:2px;float:right;}
+#confirm_wrap{padding-bottom:10px;}
+#confirm_message{padding:10px 0px;font-weight:700;font-size:16px;}
+#confirm_wrap span{position:relative;float:left;width:128px;margin:0px 5px;}
+
 /*************************************************************************************************************************************/
 /**************************************************************************************************** GENERAL LAYOUT *****************/
 body {

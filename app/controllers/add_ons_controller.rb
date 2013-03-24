@@ -22,7 +22,7 @@ class AddOnsController < ApplicationController
     respond_to do |format|
       if @order
         session[:cart] = nil
-        format.html { redirect_to(dashboard_path, notice: 'Add-On Order Processed. Please complete product locations.') }
+        format.html { redirect_to(dashboard_path, notice: 'Add-On Order Processed. Please complete product locations if necessary.') }
         format.json  { render json: @order, status: :created, location: @order }
       else
         format.html { redirect_to(dashboard_path, notice: "Processing Error.") }
