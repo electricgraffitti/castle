@@ -79,8 +79,15 @@ class Product < ActiveRecord::Base
     
     # Remove the ID if it is in both the Cart and a Dependency
     cis.each do |c|
+
       if dep.include?(c)
         dep.delete(c)
+      else
+        self.dependencies.each do |dep_prd|
+          if dep_prd.secondary_product == c
+            dep.delete(dep_prd.id)
+          end
+        end
       end
       
       if interactives.include?(c)
