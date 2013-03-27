@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
 
-    respond_to do |format|k
+    respond_to do |format|
       format.html # new.html.erb
       format.json  { render json: @user }
     end
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to(users_url) }
+      format.html { redirect_to(admin_dashboard_path) }
       format.json  { head :ok }
     end
   end

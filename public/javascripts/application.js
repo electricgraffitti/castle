@@ -66,7 +66,7 @@ var Modal = {
   confirmModalContent: function(message) {
     var confirmWrap = $("<div id='confirm_wrap'></div>"),
         confirmMessage = $("<div id='confirm_message'></div>"),
-        confirmOkButton = $("<span id='confirm_ok' class='button green_button'>Ok</span>"),
+        confirmOkButton = $("<span id='confirm_ok' class='button blue_button'>Ok</span>"),
         confirmCancelButton = $("<span id='confirm_cancel' class='button red_button'>Cancel</span>");
 
         confirmMessage.text(message);
@@ -692,10 +692,45 @@ var Admin = {
 	  });
 	}
 };
+
+var App = {
+
+  initDeleteLinks: function() {
+    var deleteLinks = $(".delete_link");
+
+    deleteLinks.on("click", function(e) {
+      var self = $(this);
+      
+      Modal.confirmDelete("Are you sure?", function() {
+        App.deleteRecord(self);
+      });
+      e.preventDefault();
+    });
+  },
+
+  deleteRecord: function(link) {
+    var url = link.attr("href"),
+        parent = link.parents(".delete_parent").first();
+
+    $.ajax({
+      url: url,
+      type: "DELETE",
+      success: function(response) {
+        parent.remove();
+        Modal.loadModal("Record deleted.");
+      },
+      error: function(response, text, message) {
+        var errorMessage = text + " - " + message;
+        Modal.loadModal(errorMessage);
+      }
+    }); 
+  }
+};
 //**********Initialize Document**********//
 $(document).ready(function() {
 	Flash.injectFlashBox();
 	Flash.setFlash();
 	Base.setTips();
   Base.helpIcon();
+  App.initDeleteLinks();
 });

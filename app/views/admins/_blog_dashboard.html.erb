@@ -18,13 +18,13 @@
     <tbody>
       <% blogs.each do |blog| %>
 			<% unless blog.blank? %>
-        <tr>
+        <tr class="delete_parent">
           <td><%= image_tag(blog.photos.last.attachment.url(:tiny),) %></td>
           <td><%=h (blog.title).titleize %></td>
           <td><%=h truncate(blog.description, :length => 200) %></td>
 					<td><%=h (blog.created_at).to_s(:full) %></td>
           <td><%= link_to 'Update Blog', edit_blog_path(blog), :class => "update" %></td>
-          <td><%= link_to 'Delete Blog', blog, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
+          <td><%= link_to 'Delete Blog', blog, :confirm => 'Are you sure?', :method => :delete, :class => "delete delete_link" %></td>
         </tr>
 			<% end %>
       <% end %>
