@@ -1329,6 +1329,8 @@ text-decoration: underline;
 }
 /*************************************************************************************************************************************/
 /****************************************************************************************************** BUTTONS **********************/
+.info_button {top: -3px;position: relative;display: inline-block; width: 20px; height: 20px; text-indent: -9999em; background: url(../images/buttons/help-icon.png) no-repeat 0 0;}
+
 .button{position:relative;display:block;outline:none;cursor:pointer;text-align:center;text-decoration:none;font:14px/100% Arial,Helvetica,sans-serif;padding:10px 25px;text-shadow:0 1px 1px rgba(0,0,0,.3);-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 0px 6px rgba(0,0,0,.8);-moz-box-shadow:0 0px 6px rgba(0,0,0,.8);box-shadow:0 0px 4px rgba(0,0,0,.8);color:#fff;}
 .button:hover{text-decoration:none;color:#fff;}
 .blue_button{

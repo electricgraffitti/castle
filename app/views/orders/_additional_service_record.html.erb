@@ -35,6 +35,6 @@
   <%= sr.text_field :emergency_password, class: "tool_tip", title: "Emergency Password for Call Center Authorization" %>
 </div>
 <div class="field two column">
-  <%= sr.label :permit_info, raw("Permit Information") %><br />
+  <%= sr.label :permit_info, raw("Permit Info <span class='info_button' data-info='Some municipalities require system owners to obtain a permit before they will respond to emergency activity. It is your responsibility to obtain the proper permits if required in your area.'>?</span>") %><br />
   <%= sr.text_area :permit_info, rows: 3, columns: 35, class: "tool_tip", title: "Any related permit information" %>
 </div>
