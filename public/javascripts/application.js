@@ -95,7 +95,7 @@ var Modal = {
         
     Modal.removeModal();    
     $('body').append(modal);
-    modal.css({"top" : ($("body").scrollTop() + 50) })
+    modal.css({"top" : ($(window).scrollTop() + 50) })
     Modal.closeModal();
     Modal.dragModal();
   },
