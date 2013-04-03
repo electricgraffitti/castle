@@ -17,7 +17,7 @@ body {overflow-y: hidden; overflow-y: auto;}
 .sub_header {font-size: 14px; padding: 10px 20px; background: #efefef;}
 .segment_header {font-size: 14px; font-weight:700; padding-bottom: 5px;}
 .terms {padding: 10px; text-align: left; font-size: 12px;}
-.sidebar_segment {border-top: 1px solid white;padding: 20px;border-bottom: 1px solid #B1B1B1;position: relative;float: left;width: 190px;}
+.sidebar_segment {border-top: 1px solid white;padding: 20px;border-bottom: 1px solid #B1B1B1;position: relative;float: left;width: 207px;}
 
 #internal_nav li {position: relative; border-top: 1px solid #fff; border-bottom: 1px solid #B1B1B1; font-weight: 700; text-align: left;}
 #internal_nav li:hover {background: #ccc; background: rgba(0,0,0,0.2);}
@@ -67,12 +67,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#206db0', end
 #alarm_widget {text-align: left;}
 #alarm_widget header {height: 20px; font-weight: 700;}
 #alarm_widget .field {width: 195px; padding: 8px 0px;}
-#alarm_widget .field input {width: 178px;}
+#alarm_widget .field input {width: 195px;}
 
 .message_form {text-align: left;}
-.message_form textarea {width: 185px; height: 70px; margin-bottom: 5px;}
+.message_form textarea {width: 202px; height: 70px; margin-bottom: 5px;}
 
-#internal_content #add_ons {padding: 10px; width: 640px;}
+#internal_content #add_ons {padding: 10px; width: 760px;}
 #notification_header  #cart {position: relative;top: -6px;right: 1px;float: right;}
 #internal_content .full_row {width: 640px;}
 #internal_content h2.page_header {padding-top: 5px;}

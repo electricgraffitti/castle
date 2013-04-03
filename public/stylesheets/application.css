@@ -871,16 +871,25 @@ text-align: left;
 /*************************************************************************************************************************************/
 /****************************************************************************************************** PRODUCT CONTENT **************/
 .product_wrap {
+	position: relative;
+	float: left;
+	margin: 20px 0px 0px;
 }
 .product_wrap h3 {
-margin: 5px 0px 10px;
+	margin: 5px 0px 10px;
+	float: left;
 }
 .checkout .product_wrap h3 {
 	margin: 0px 0px 10px;
 }
 .product_wrap img {
-padding: 3px;
-border: 1px solid #333;
+	padding: 3px;
+	border: 1px solid #333;
+	float:left;
+	margin-right: 10px;
+}
+.column_3.product_wrap img, .column_3.product_wrap img h3, .column_3.product_wrap .money {
+	float: none;
 }
 .show_view {
 	margin-top: 100px;
@@ -914,47 +923,41 @@ border: 1px solid #333;
 	float:left;
 }
 .product_wrap p {
-  margin-right: 35px;
   margin-top: 0;
-  padding: 5px 0 0;
+  padding: 5px 0;
   text-align: left;
+}
+.column_3 .product_wrap p {
+	width: 276px;
 }
 .checkout .product_wrap p {
 	margin: 0px;
 	padding: 10px 0px;
 }
 .product_wrap p.text {
-	height: 45px;
-	overflow: hidden;
+	float: left;
+	width: 760px;
 }
 .product_wrap .button {width: 100px;}
 .product_wrap_show p.show_text {
 	float:left;
 	position:relative;
 }
-.dependent_products p.text {
-	height: 45px;
-	overflow: hidden;
-}
-.monitoring_products p.text {
-	height: 45px;
-	overflow: hidden;
-}
 .product_wrap div.part {
-  width: 250px;
+  width: 100%;
   float:left;
 }
-.dependent_products .product_wrap div.part {
-	height: 80px;
+.product_wrap ul.required_addons {
+	float: right;
+}
+.product_wrap ul.required_addons, .product_wrap ul.required_addons li {
+	text-align: right;
 }
 .product_wrap div.part a {
   display: inline;
   float: right;
   color:#3058BF;
   text-decoration: none;
-}
-.product_wrap div.part a.left {
-  float:left;
 }
 .product_wrap div.part a:hover {
 color:red;
@@ -987,6 +990,7 @@ margin-right: 30px;
 }
 .money {
 font-weight: bold;
+float:right;
 }
 .selection_bottom {
 	width: 100%;
@@ -1034,6 +1038,7 @@ font-weight: bold;
 .billing_info.package_bullets li {
 	padding: 6px 0px;
 }
+.inline_notice {float: left;padding: 10px 0px;width: 100%;background: rgba(0, 0, 0, 0.2);color: white;text-align: center;text-shadow: 0px 1px 2px black;}
 /*************************************************************************************************************************************/
 /****************************************************************************************************** CART *************************/
 #cart {
