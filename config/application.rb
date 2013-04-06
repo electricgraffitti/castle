@@ -9,6 +9,8 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 module Castle
   class Application < Rails::Application
     
+  #config.force_ssl = true
+
   # don't attempt to auto-require the moonshine manifests into the rails env
   config.paths['app/manifests'] = 'app/manifests'
   config.paths['app/manifests'].skip_eager_load!
