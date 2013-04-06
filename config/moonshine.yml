@@ -35,6 +35,11 @@
 :repository: git@github.com:electricgraffitti/castle.git
 :branch: release
 
+:ssl:
+  :certificate_file: /home/rails/certs/castle/castleprotectioninc.com.crt
+  :certificate_key_file: /home/rails/certs/castle/castleprotectioninc.key
+  :certificate_chain_file: /home/rails/certs/castle/gd_bundle.crt
+
 # Use :app_symlinks to setup directories under public/ that you want to persist
 # across deployments. They'll be symlinked to the shared directory.
 :app_symlinks:
