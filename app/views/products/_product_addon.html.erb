@@ -1,27 +1,27 @@
-<div class="column_3">
+
 	<div class="product_wrap">
 	<% if current_admin %>
 		<%= link_to "Edit Product", edit_product_path(product) %>
-	<% end %>	
+	<% end %>
+
+		<%= image_tag(product.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
 		<h3>
 			<%= (product.item_name).titleize %>
 		</h3>	
-		<%= image_tag(product.photos.last.attachment.url(:thumb), :class => "blue_bg") %>
+		
 		<p class="money blue_text">
 			Price: <%= number_to_currency(product.price) %>/Month Each
 		</p>
+
 		<p class="text">
-			<% if (product.description).length >= 60 %>
-				<%= (product.description).truncate(60) %> <%= link_to "read more", product_path(product) %>
-			<% else %>
-				<%= product.description %>
-			<% end %>
+			<%= product.description %>
 		</p>
+
 	  <div class="part bottom_hr">
 	    <% if product.dependent_item? %>
 	    <% pd = product.check_dependencies(cart) %>
 	      <% if pd %>
-	        <ul>
+	        <ul class="required_addons">
 	          <li class="list_title red">**Required Add-ons</li>
             <% pd.each do |p| %>
               <li><%= link_to  p.item_name + " - Add", add_item_path(:product_id => p.id), :class => "tool_tip left", :title => "Add #{(p.item_name).titleize} to Cart" %></li>
@@ -34,5 +34,5 @@
 	      <%= link_to "Add to Cart", add_item_path(:product_id => product.id), :class => "tool_tip", :title => "Add #{(product.item_name).titleize} to Cart" %>
 	    <% end %>
     </div>
+
 	</div>
-</div>
