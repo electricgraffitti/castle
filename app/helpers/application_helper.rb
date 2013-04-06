@@ -134,7 +134,7 @@ module ApplicationHelper
     if current_user
       link_to "Logout", logout_path
     else
-      link_to "Login", login_path
+      link_to "Existing Customer Login", login_path
     end
   end
 
