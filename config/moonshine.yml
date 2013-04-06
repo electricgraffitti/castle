@@ -34,7 +34,7 @@
 #:scm: git
 # Reposistory URI for checking out code at deploy time
 :repository: git@github.com:electricgraffitti/castle.git
-:branch: release
+:branch: master-2
 
 :ssl:
   :certificate_file: /home/rails/certs/castle/castleprotectioninc.com.crt
