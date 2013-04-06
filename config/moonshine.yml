@@ -21,12 +21,13 @@
 :deploy_to: /var/www/apps/castle
 
 # Primary domain application will be accessed as 
-:domain: castle.cube2media.com
+:domain: castleprotectioninc.com
 
 # Domain aliases for application. One common use of this is for asset hosts.
-#:domain_aliases:
-#  - assets1.yourapp.com
-#  - assets2.yourapp.com
+:domain_aliases:
+ - castleprotectioninc.org
+ - castleprotectioninc.net
+ - castleprotectioninc.info
 
 # Source control management to use. Defaults to git.
 # If you change this value, you will need to run: cap vcs:install
