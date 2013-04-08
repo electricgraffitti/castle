@@ -714,6 +714,7 @@ margin-right: -24px;
 margin-top: 53px;
 min-width: 100px;
 }
+#main_nav.internal {margin-right: 0px;}
 #main_nav ul {
 float: left;
 position: relative;
