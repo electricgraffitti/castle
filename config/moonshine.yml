@@ -36,6 +36,8 @@
 :repository: git@github.com:electricgraffitti/castle.git
 :branch: master-2
 
+# :branch: stripe_master
+
 :ssl:
   :certificate_file: /home/rails/certs/castle/castleprotectioninc.com.crt
   :certificate_key_file: /home/rails/certs/castle/castleprotectioninc.key
