@@ -1082,7 +1082,7 @@ float:right;
 #cart div.cart_actions {
 	position: relative;
 	margin-top: 10px;
-	bottom: 0px;
+	bottom: 10px;
 	width: 385px;
 	float: left;
 }

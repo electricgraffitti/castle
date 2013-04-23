@@ -582,12 +582,12 @@ var Layout = {
 
 		sidebar.height($(window).height() - (footer.height() + header.height()));
 		content.height($(window).height() - (footer.height() + header.height()));
-		content.width($(window).width() - (sidebar.outerWidth() + 1));
+		content.width($(window).width() - (sidebar.outerWidth() + 5));
 
 		$(window).resize(function() {
 			sidebar.height($(window).height() - (footer.height() + header.height()));
 			content.height($(window).height() - (footer.height() + header.height()));
-			content.width($(window).width() - (sidebar.outerWidth() + 1));
+			content.width($(window).width() - (sidebar.outerWidth() + 5));
 		});
 	}
 

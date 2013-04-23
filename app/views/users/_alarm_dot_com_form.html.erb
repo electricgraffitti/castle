@@ -1,4 +1,4 @@
-<header class="sidebar_header">Alarm.com Login</header>
+<p>When you receive your equipment, you will be provided with login information to the <%= alarm_dot_com_link %> website for your interactive features. You may log in at <%= alarm_dot_com_link %>, or log in below and you will be taken to <%= alarm_dot_com_link %>.</p>
 <form action="https://www.alarm.com/login.asp" method="POST" name="loginForm" onSubmit="javascript:doLoginTimeChecks();">
       <input type="hidden" name="JavaScriptTest" value="">
       <input type="hidden" name="cookieTest" value="">
@@ -9,11 +9,11 @@
           showAlarmLoginMessage()
       </script>
       <div class="field">
-        <%= label_tag "Login" %><br />
+        <%= label_tag "Login" %>
         <%= text_field_tag :login, nil, id: 'login' %>
       </div>
       <div class="field">
-        <%= label_tag "password" %><br />
+        <%= label_tag "password" %>
         <%= password_field_tag :password, nil, id: 'password' %>
       </div>
       <script language="javascript">

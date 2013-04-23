@@ -130,6 +130,10 @@ module ApplicationHelper
     OrderProduct.finalized_items(order_products).length > 0 ? true : false
   end
 
+  def alarm_dot_com_link
+    link_to "alarm.com", "https://www.alarm.com/login.asp"
+  end
+
   def login_logout_link
     if current_user
       link_to "Logout", logout_path
