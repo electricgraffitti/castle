@@ -1183,6 +1183,12 @@ margin: 20px 0px;
 .sub_pages p {
 margin-bottom: 20px;
 }
+span.terms_bullet {
+	margin-left:10px;
+}
+span.terms_sub_bullet {
+	margin-left:20px;
+}
 ul.address {
 margin-bottom: 5px;
 }
