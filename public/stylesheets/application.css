@@ -882,6 +882,7 @@ text-align: left;
 }
 .checkout .product_wrap h3 {
 	margin: 0px 0px 10px;
+	width: 100%;
 }
 .product_wrap img {
 	padding: 3px;
