@@ -105,6 +105,22 @@ class User < ActiveRecord::Base
     return dependent_products 
   end
 
+  def dependent_product_ids
+    dependent_product_ids = []
+    user_dependent_products.each do |udp|
+      dependent_product_ids.push(udp.product_id)
+    end
+    return dependent_product_ids 
+  end
+
+  def interactive_product_ids
+    interactive_product_ids = []
+    user_interactive_products.each do |uip|
+      interactive_product_ids.push(uip.product_id)
+    end
+    return interactive_product_ids 
+  end  
+
   def has_existing_interactive_product?
     dependent_products.each do |product|
       if product.interactive_service

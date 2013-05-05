@@ -1,0 +1,6 @@
+<ul class="required_addons">
+  <li class="list_title red">**Required Add-ons</li>
+  <% pd.each do |p| %>
+  	<%= render partial: 'products/add_dependent_link', locals: {p: p} %>
+  <% end %>
+</ul>

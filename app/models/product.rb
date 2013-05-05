@@ -55,66 +55,93 @@ class Product < ActiveRecord::Base
       return false
     end
   end
-  
-  def check_dependencies(cart)
-    
-    # Setup empty Arrays
-    dep = []
-    cis = []
-    interactives = []
-    
-    # Create Array of Dependency ID's
+
+  def set_product_interactive_dependent_ids
+    ids = []
     self.dependencies.each do |d|
       if d.interactive_service
-        interactives.push(d.id)
-      else
-        dep.push(d.id)
+        ids.push(d.id)
       end
     end
-    
-    # Create Array of product ID's in cart
-    cart.items.each do |ci|
-      cis.push(ci.cart_item)
-    end
-    
-    # Remove the ID if it is in both the Cart and a Dependency
-    cis.each do |c|
+    return ids
+  end
 
-      if dep.include?(c)
-        dep.delete(c)
+  def set_product_dependent_ids
+    ids = []
+    self.dependencies.each do |d|
+      unless d.interactive_service
+        ids.push(d.id)
+      end
+    end
+    return ids
+  end
+
+  def set_cart_ids(cart)
+    ids = []
+    cart.items.each do |ci|
+      ids.push(ci.cart_item)
+    end
+    return ids
+  end
+
+  def merge_item_arrays(a,b,c)
+    d = a + b + c
+    return d.uniq
+  end
+  
+  def check_dependencies(cart, current_user = nil)
+    
+    # Setup Dependent and Interactive Product ID Arrays
+    item_inter_dep_ids = self.set_product_interactive_dependent_ids
+    item_dep_ids = self.set_product_dependent_ids
+
+    # Setup Cart Item and Current User Dependent Product ID arrays
+    cart_item_ids = set_cart_ids(cart)
+    user_dep_ids = current_user ? current_user.dependent_product_ids : []
+    user_interactive_dep_ids = current_user ? current_user.interactive_product_ids : []
+
+    # Merge Cart Item IDs and Current User Dependent Item IDs to make a single array of item ID's 
+    # that are either in the Cart or the current user has already purchased.
+    cart_and_user_item_ids = merge_item_arrays(cart_item_ids, user_dep_ids, user_interactive_dep_ids)
+    
+    # Remove the ID if it is in cart_and_user_item_ids and either the item_inter_dep_ids or item_dep_ids
+    cart_and_user_item_ids.each do |c|
+
+      if item_dep_ids.include?(c)
+        item_dep_ids.delete(c)
       else
         self.dependencies.each do |dep_prd|
           if dep_prd.secondary_product == c
-            dep.delete(dep_prd.id)
+            item_dep_ids.delete(dep_prd.id)
           end
         end
       end
       
-      if interactives.include?(c)
-        interactives = []
+      if item_inter_dep_ids.include?(c)
+        item_inter_dep_ids = []
       end
     end
     
-    if dep.empty? && interactives.empty?
+    if item_dep_ids.empty? && item_inter_dep_ids.empty?
       return false
     else
-      return existing_dependencies(dep, interactives)
+      return existing_dependencies(item_dep_ids, item_inter_dep_ids)
     end
   end
   
-  def existing_dependencies(dep, interactives)
+  def existing_dependencies(item_dep_ids, item_inter_dep_ids)
     
     products = []
     
-    unless dep.empty?
-      dep.each do |d|
+    unless item_dep_ids.empty?
+      item_dep_ids.each do |d|
         product = Product.find(d)
         products.push(product)
       end
     end
     
-    unless interactives.empty?
-      interactives.each do |d|
+    unless item_inter_dep_ids.empty?
+      item_inter_dep_ids.each do |d|
         product = Product.find(d)
         products.push(product)
       end

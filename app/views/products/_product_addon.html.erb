@@ -1,5 +1,4 @@
-
-	<div class="product_wrap">
+<div class="product_wrap">
 	<% if current_admin %>
 		<%= link_to "Edit Product", edit_product_path(product) %>
 	<% end %>
@@ -21,18 +20,12 @@
 	    <% if product.dependent_item? %>
 	    <% pd = product.check_dependencies(cart) %>
 	      <% if pd %>
-	        <ul class="required_addons">
-	          <li class="list_title red">**Required Add-ons</li>
-            <% pd.each do |p| %>
-              <li><%= link_to  p.item_name + " - Add", add_item_path(:product_id => p.id), :class => "tool_tip left", :title => "Add #{(p.item_name).titleize} to Cart" %></li>
-            <% end %>
-          </ul>
+					<%= render partial: 'products/required_addon_links', locals: {pd: pd} %>
 	      <% else %>
-	         <%= link_to "Add to Cart", add_item_path(:product_id => product.id), :class => "tool_tip", :title => "Add #{(product.item_name).titleize} to Cart" %>
+	         <%= render partial: 'products/add_to_cart_link', locals: {product: product} %>
 	      <% end %>
 	    <% else %>
-	      <%= link_to "Add to Cart", add_item_path(:product_id => product.id), :class => "tool_tip", :title => "Add #{(product.item_name).titleize} to Cart" %>
+	      <%= render partial: 'products/add_to_cart_link', locals: {product: product} %>
 	    <% end %>
     </div>
-
 	</div>
