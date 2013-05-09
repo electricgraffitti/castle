@@ -8,7 +8,7 @@ class OrderProcess
 
 		begin
 			ActiveRecord::Base.transaction do
-			
+
 				# Create User
 				@user = ObjectBuilder.create_new_user(params)
 				@user.package_id = package_id
@@ -57,17 +57,17 @@ class OrderProcess
 				return true
 			end
 		rescue Exception => e
-			if customer
-				customer.delete
-			end
-			if plan
-				plan.delete
+			if fee
+				fee.refund
 			end
 			if subscription
 				customer.cancel_subscription
 			end
-			if fee
-				StripeCharge.delete_charge(fee.id)
+			if plan
+				plan.delete
+			end					
+			if customer
+				customer.delete
 			end
 			return false
 		end		
