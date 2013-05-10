@@ -82,7 +82,7 @@
 
                   <h2 style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #264699;" >Purchase Details:</h2>
                   <ul style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 14px; color: #777777;">
-                    <li>Monthly Rate: <%= number_to_currency((@price + (@price * APP['tax_rate']))) %></li>
+                    <li>Monthly Rate: <%= number_to_currency(@monthly_rate) %></li>
                     <li>Stripe ID: <%= @user.stripe_id %></li>
                     <li>Plan ID: <%= @user.stripe_plan_id %></li>
                   </ul>

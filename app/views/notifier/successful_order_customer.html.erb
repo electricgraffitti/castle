@@ -71,7 +71,7 @@
                     <% end %>
                   </ul>
                   <h2 style="margin-top: 0px; margin-bottom: 10px; margin-right: 30px; margin-left: 30px; line-height: 1.3em; font-size: 16px; color: #264699;" >
-                    Monthly Rate: <%= number_to_currency((@user.monthly_rate) + (@user.monthly_rate * APP['tax_rate'])) %>
+                    Monthly Rate: <%= number_to_currency(@monthly_rate) %>
                   </h2>
                   <p>Login to your Castle Protection account at anytime to view products, invoices or to add more products to you system. Please take a moment to complete your order by logging in to your account and setting the locations where your products will be set (e.g. front room, back door etc..)</p>
                 </td>

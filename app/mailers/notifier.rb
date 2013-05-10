@@ -59,7 +59,7 @@ class Notifier < ActionMailer::Base
   def successful_order_admin(user, cart, order)
     
     @order = order
-    @price = cart.total_price
+    @monthly_rate = cart.total_price
     @user = user 
     
     mail(
@@ -75,6 +75,7 @@ class Notifier < ActionMailer::Base
     @items = cart.items
     @plan = plan
     @user = user
+    @monthly_rate = cart.total_price
     
     mail(
       :to => "#{user.email}, #{APP["order_email"]}",
