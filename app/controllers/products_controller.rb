@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   
   before_filter :require_admin, except: [:index, :show, :add_items, :empty_cart, :remove_items, :cart_checkout ]
-  before_filter :require_no_user, except: [:add_items, :remove_items, :empty_cart, :show]
+  before_filter :require_no_user, except: [:add_items, :remove_items, :empty_cart, :show, :delete, :update, :create, :edit]
   
   def index
     
@@ -103,7 +103,7 @@ class ProductsController < ApplicationController
     @product.destroy
 
     respond_to do |format|
-      format.html { redirect_to(products_url) }
+      format.html { redirect_to admin_dashboard_path, notice: 'Product was successfully deleted.' }
       format.xml  { head :ok }
     end
   end
